@@ -78,3 +78,7 @@ li a:hover {
   text-decoration: underline;
   color: #eee;
 }
+
+#studentNavBar {
+  background-color: #16BD88;
+}

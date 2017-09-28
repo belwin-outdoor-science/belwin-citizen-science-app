@@ -22,8 +22,8 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/info', {
-      templateUrl: '/views/templates/info.html',
+    .when('/student', {
+      templateUrl: '/views/templates/student-view.html',
       controller: 'InfoController',
       resolve: {
         getuser : function(UserService){
