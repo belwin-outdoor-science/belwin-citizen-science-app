@@ -28,9 +28,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     };
 
     vm.deciduousTreeQuestions = ['Breaking leaf buds', 'Leaves', 'Increasing leaf size', 'Colored leaves', 'Falling leaves', 'Flowers or flower buds', 'Open flowers', 'Pollen release', 'Fruits', 'Ripe fruits', 'Recent fruit or seed drop'];
-    vm.forbQuestions = ['Initial growth', 'Leaves', 'Flowers or flower buds', 'Open flowers', 'Fruits', 'Ripe fruits', 'Recent fruits or seed drop'];
-    vm.birdQuestions = ['Active individuals', 'Feeding', 'Fruit/seed consumption', 'Insect consumption', 'Calls or song', 'Singing individuals', 'Territorial individuals', 'Courtship', 'Mating', 'Nest building', 'Occupied nest', 'Nestlings', 'Fledged young', 'Dead individuals', 'Dead nestlings or fledglings', 'Individuals at a feeding station'];
-    vm.mammalQuestions = ['Active individuals', 'Feeding', 'Young individuals', 'Dead individuals'];
+
 
     vm.showDialog = function($event) {
         console.log('$event:', $event);
