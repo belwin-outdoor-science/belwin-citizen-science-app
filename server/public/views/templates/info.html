@@ -1,6 +1,19 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
-  <p>
-    In Info
-  </p>
+  <div>
+    <form ng-submit="ic.submit()">
+      <p>Select a class to start exploring! Your teacher will tell you your class number</p>
+
+      <md-radio-group ng-model="data.group1">
+
+        <md-radio-button value="Class 1" ng-model="ic.class">Class 1</md-radio-button>
+        <md-radio-button value="Class 2" ng-model="ic.class">Class 2</md-radio-button>
+        <md-radio-button value="Class 3" ng-model="ic.class">Class 3</md-radio-button>
+
+      </md-radio-group>
+
+      <md-button type="ng-submit" class="md-primary md-raised" >Done</md-button>
+
+    </form>
+  </div>
 </div>
