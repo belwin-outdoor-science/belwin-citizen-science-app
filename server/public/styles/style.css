@@ -88,3 +88,10 @@ li a:hover {
   padding: 50px;
   border: 3px solid black;
 }
+.typeButton {
+  color : rgb(49, 46, 46);
+  background-color: rgba(255, 222, 121, 0.96);
+  border-radius: 10px 0 0 10px;
+  font-size: 16px;
+}
+

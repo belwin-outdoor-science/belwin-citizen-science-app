@@ -190,26 +190,27 @@ router.post('/northern_red_oak', function (req, res) {
     });
 });
 
-// router.post('/ruby_throated_hummingbird', function (req, res) {
-//     var newHummingbird = req.body;
-//     console.log('ruby_throated_hummingbird router post called ');
-//     pool.connect(function (err, client, done) {
-//         if (err) {
-//             console.log('Error connecting to database', err);
-//             res.sendStatus(500);
-//         } else {
-//             client.query('INSERT INTO ruby_throated_hummingbird (class, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_bulding, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);',
-//                 [class, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_bulding, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes]);
-//             done();
-//             if (err) {
-//                 console.log('Error making ruby_throated_hummingbird post query: ', err);
-//                 res.sendStatus(500);
-//             } else {
-//                 res.sendStatus(201);
-//             }
-//         }
-//     });
-// });
+
+router.post('/ruby_throated_hummingbird', function (req, res) {
+    var newHummingbird = req.body;
+    console.log('ruby_throated_hummingbird router post called ');
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log('Error connecting to database', err);
+            res.sendStatus(500);
+        } else {
+            client.query('INSERT INTO ruby_throated_hummingbird (class, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_bulding, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18);',
+                [newHummingbird.class, newHummingbird.active_individuals, newHummingbird.feeding, newHummingbird.insect_consumption, newHummingbird.flower_visitation, newHummingbird.calls_or_song, newHummingbird.singing_individuals, newHummingbird.territorial_individuals, newHummingbird.courtship, newHummingbird.mating, newHummingbird.nest_bulding, newHummingbird.occupied_nest, newHummingbird.nestlings, newHummingbird.fledged_young, newHummingbird.dead_individuals, newHummingbird.dead_nestlings_or_fledlings, newHummingbird.individuals_at_feeding_station, newHummingbird.notes]);
+            done();
+            if (err) {
+                console.log('Error making ruby_throated_hummingbird post query: ', err);
+                res.sendStatus(500);
+            } else {
+                res.sendStatus(201);
+            }
+        }
+    });
+});
 
 
 module.exports = router;
