@@ -95,3 +95,12 @@ li a:hover {
   font-size: 16px;
 }
 
+#classSelect {
+  margin: auto;
+  max-width: 300px;
+  margin-top: 50px;
+}
+
+#staffLoginLink {
+  float: right;
+}
