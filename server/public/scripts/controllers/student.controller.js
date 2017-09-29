@@ -1,9 +1,16 @@
-myApp.controller('StudentController', ['UserService', '$mdDialog', function (UserService, $mdDialog) {
+myApp.controller('StudentController', ['UserService', '$mdDialog', '$mdSidenav', function (UserService, $mdDialog, $mdSidenav) {
     console.log('StudentController Loaded');
 
     var vm = this;
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
+    vm.class = "";
+    vm.appSetup = true;
+    
+    vm.openLeftMenu = function () {
+        $mdSidenav('left').toggle();
+    };
+    
 
     vm.deciduousTreeQuestions = ['Breaking leaf buds', 'Leaves', 'Increasing leaf size', 'Colored leaves', 'Falling leaves', 'Flowers or flower buds', 'Open flowers', 'Pollen release', 'Fruits', 'Ripe fruits', 'Recent fruit or seed drop'];
     vm.forbQuestions = ['Initial growth', 'Leaves', 'Flowers or flower buds', 'Open flowers', 'Fruits', 'Ripe fruits', 'Recent fruits or seed drop'];
@@ -21,4 +28,9 @@ myApp.controller('StudentController', ['UserService', '$mdDialog', function (Use
     }
 
 
+    
+      vm.submit = function() {
+        console.log('selected class is', vm.class)
+        vm.appSetup = false;
+      }
 }]);
