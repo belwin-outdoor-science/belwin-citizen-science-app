@@ -1,16 +1,20 @@
 myApp.service('StudentService', ['$http', function ($http) {
     console.log('StudentService loaded');
     var self = this;
-    bur_oak
-    common_buckthorn
-    common_milkweed
-    eastern_bluebird
-    ground_squirrel
-    dark_eyed_junco
-    paper_birch
-    quaking_aspen
-    northern_red_oak
-    ruby_throated_hummingbird
+    // bur_oak
+    // common_buckthorn
+    // common_milkweed
+    // eastern_bluebird
+    // ground_squirrel
+    // dark_eyed_junco
+    // paper_birch
+    // quaking_aspen
+    // northern_red_oak
+    // ruby_throated_hummingbird
+
+    //PROBLEM: how to handle errors with 10 simultaneous requests.
+    //IDEAS:
+    //1. Store 
     self.addBurOak = function (studentData) {
         
         $http.post('/student_data/bur_oak', card).then(function (response) {
