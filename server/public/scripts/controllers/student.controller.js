@@ -11,6 +11,20 @@ myApp.controller('StudentController', ['UserService', '$mdDialog', '$mdSidenav',
         $mdSidenav('left').toggle();
     };
     
+    vm.burOakOne = {
+        breaking_leaf_buds: "",
+        leaves: "",
+        increasing_leaf_size: "",
+        colored_leaves: "",
+        falling_leaves: "",
+        flowers_or_flower_buds: "",
+        open_flowers: "",
+        pollen_release: "",
+        fruits: "",
+        ripe_fruits: "",
+        recent_fruit_or_seed_drop: "",
+        notes: ""
+    };
 
     vm.deciduousTreeQuestions = ['Breaking leaf buds', 'Leaves', 'Increasing leaf size', 'Colored leaves', 'Falling leaves', 'Flowers or flower buds', 'Open flowers', 'Pollen release', 'Fruits', 'Ripe fruits', 'Recent fruit or seed drop'];
     vm.forbQuestions = ['Initial growth', 'Leaves', 'Flowers or flower buds', 'Open flowers', 'Fruits', 'Ripe fruits', 'Recent fruits or seed drop'];
@@ -18,6 +32,7 @@ myApp.controller('StudentController', ['UserService', '$mdDialog', '$mdSidenav',
     vm.mammalQuestions = ['Active individuals', 'Feeding', 'Young individuals', 'Dead individuals'];
 
     vm.showDialog = function($event) {
+        console.log('$event:', $event);
         // vm.currentSpecimenQuestions (assign questions based on species element clicked)
         $mdDialog.show({
             targetEvent: $event,

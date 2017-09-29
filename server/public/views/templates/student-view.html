@@ -53,12 +53,12 @@
   </md-sidenav>
   <md-content layout="column" layout-align="center center">
     <h2>Belwin Citizen Science</h2>
-    <p>Your are in: {{sc.class}}</p>
+    <p>You are in: {{sc.class}}</p>
 
     <div ng-show="bur_oak" class="speciesView" layout="column" layout-align="center center">
       <h1>Bur Oak</h1>
       <div layout="row" layout-align="center center">
-      <md-button>Bur Oak 1</md-button>  <md-button> Bur Oak 2</md-button>  <md-button>Bur Oak 3</md-button>
+      <md-button ng-click="sc.showDialog($event)">Bur Oak 1</md-button>  <md-button ng-click="sc.showDialog($event)"> Bur Oak 2</md-button>  <md-button ng-click="sc.showDialog($event)">Bur Oak 3</md-button>
       </div>
     </div>
 
