@@ -37,6 +37,14 @@ myApp.config(function($routeProvider, $locationProvider) {
           return UserService.getuser();
         }
       }
+    }).when('/info', {
+      templateUrl: '/views/templates/info.html',
+      controller: 'StudentController as sc',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
     })
     .otherwise({
       redirectTo: 'home'
