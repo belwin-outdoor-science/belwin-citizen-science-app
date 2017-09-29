@@ -11,10 +11,6 @@ myApp.service('StudentService', ['$http', function ($http) {
     // quaking_aspen
     // northern_red_oak
     // ruby_throated_hummingbird
-
-    //PROBLEM: how to handle errors with 10 simultaneous requests.
-    //IDEAS:
-    //1. Store 
     self.addBurOak = function (studentData) {
         
         $http.post('/student_data/bur_oak', card).then(function (response) {
