@@ -1,0 +1,24 @@
+<h1>Login</h1>
+
+<md-button ng-href="/#home" class="md-raised">
+    <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
+</md-button>
+<form ng-submit="lc.login()">
+    <md-content>
+        <div layout="row" layout-align="center center">
+            <md-input-container>
+                <label>Username</label>
+                <input aria-label="username" ng-model="lc.user.username">
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center">
+            <md-input-container>
+                <label>Password</label>
+                <input aria-label="password" type="password" ng-model="lc.user.password">
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center">
+            <md-button layout-align="center" class="md-raised md-primary" type="submit" ng-click="lc.login()">Login</md-button>
+        </div>
+    </md-content>
+</form>

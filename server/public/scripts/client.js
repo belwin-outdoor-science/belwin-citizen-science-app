@@ -13,6 +13,13 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
     })
+    .when('/login', {
+      templateUrl: '/views/templates/login.html',
+      controller: 'LoginController as lc'
+    })
+    .when('/dashboard', {
+      templateUrl: '/views/templates/dashboard.html'
+    })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
