@@ -22,28 +22,29 @@ myApp.service('StudentService', ['$http', function ($http) {
 
     //practice call
     let burOakData = {
-        class: 'class 1', 
-        breaking_leaf_buds: 'Yes', 
-        leaves: 'Yes', 
-        increasing_leaf_size: 'Yes', 
-        colored_leaves: 'Yes', 
-        falling_leaves: 'Yes', 
-        flowers_or_flower_buds: 'Yes' 
-        open_flowers: 'Yes', 
-        pollen_release: 'Yes', 
-        fruits: 'Yes', 
-        ripe_fruits: 'Yes', 
-        recent_fruit_or_seed_drop: 'Yes', 
-        notes: 'I\'m a bur oak I\'m a bur oak I\'m a bur oak I\'m a bur oak'  
+        class: 'class 1',
+        species_number: '1',
+        breaking_leaf_buds: 'Yes',
+        leaves: 'Yes',
+        increasing_leaf_size: 'Yes',
+        colored_leaves: 'Yes',
+        falling_leaves: 'Yes',
+        flowers_or_flower_buds: 'Yes', 
+        open_flowers: 'Yes',
+        pollen_release: 'Yes',
+        fruits: 'Yes',
+        ripe_fruits: 'Yes',
+        recent_fruit_or_seed_drop: 'Yes',
+        notes: 'I\'m a bur oak I\'m a bur oak I\'m a bur oak I\'m a bur oak'
     }
 
-    //self.addBurOak(burOakData);
-
     self.addBurOak = function (studentData) {
-        $http.post('/student_data/bur_oak', card).then(function (response) {
+        console.log('addBurOak called');
+
+        $http.post('/student_data/bur_oak', burOakData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addBurOak -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addBurOak error', response);
                 self.message = "Error adding bur_oak!!";
@@ -52,10 +53,10 @@ myApp.service('StudentService', ['$http', function ($http) {
     }
 
     self.addCommonBuckthorn = function (studentData) {
-        $http.post('/student_data/common_buckthorn', card).then(function (response) {
+        $http.post('/student_data/common_buckthorn', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addCommonBuckthorn -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addCommonBuckthorn error', response);
                 self.message = "Error adding common_buckthorn!!";
@@ -64,10 +65,10 @@ myApp.service('StudentService', ['$http', function ($http) {
     }
 
     self.addCommonMilkweed = function (studentData) {
-        $http.post('/student_data/common_milkweed', card).then(function (response) {
+        $http.post('/student_data/common_milkweed', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addCommonMilkweed -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addCommonMilkweed error', response);
                 self.message = "Error adding common_milkweed!!";
@@ -76,10 +77,10 @@ myApp.service('StudentService', ['$http', function ($http) {
     }
 
     self.addEasternBluebird = function (studentData) {
-        $http.post('/student_data/eastern_bluebird', card).then(function (response) {
+        $http.post('/student_data/eastern_bluebird', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addEasternBluebird -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addEasternBluebird error', response);
                 self.message = "Error adding eastern_bluebird!!";
@@ -88,10 +89,10 @@ myApp.service('StudentService', ['$http', function ($http) {
     }
 
     self.addGroundSquirrel = function (studentData) {
-        $http.post('/student_data/ground_squirrel', card).then(function (response) {
+        $http.post('/student_data/ground_squirrel', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addGroundSquirrel -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addGroundSquirrel error', response);
                 self.message = "Error adding ground_squirrel!!";
@@ -100,10 +101,10 @@ myApp.service('StudentService', ['$http', function ($http) {
     }
 
     self.addDarkEyedJunco = function (studentData) {
-        $http.post('/student_data/dark_eyed_junco', card).then(function (response) {
+        $http.post('/student_data/dark_eyed_junco', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addDarkEyedJunco -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addDarkEyedJunco error', response);
                 self.message = "Error adding dark_eyed_junco!!";
@@ -112,10 +113,10 @@ myApp.service('StudentService', ['$http', function ($http) {
     }
 
     self.addPaperBirch = function (studentData) {
-        $http.post('/student_data/paper_birch', card).then(function (response) {
+        $http.post('/student_data/paper_birch', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addPaperBirch -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addPaperBirch error', response);
                 self.message = "Error adding paper_birch!!";
@@ -124,10 +125,10 @@ myApp.service('StudentService', ['$http', function ($http) {
     }
 
     self.addQuakingAspen = function (studentData) {
-        $http.post('/student_data/quaking_aspen', card).then(function (response) {
+        $http.post('/student_data/quaking_aspen', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addQuakingAspen -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addQuakingAspen error', response);
                 self.message = "Error adding quaking_aspen!!";
@@ -138,10 +139,10 @@ myApp.service('StudentService', ['$http', function ($http) {
 
 
     self.addNorthernRedOak = function (studentData) {
-        $http.post('/student_data/northern_red_oak', card).then(function (response) {
+        $http.post('/student_data/northern_red_oak', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addNorthernRedOak -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addNorthernRedOak error', response);
                 self.message = "Error adding northern_red_oak!!";
@@ -150,17 +151,17 @@ myApp.service('StudentService', ['$http', function ($http) {
     }
 
     self.addrubyThroatedHummingbird = function (studentData) {
-        $http.post('/student_data/ruby_throated_hummingbird', card).then(function (response) {
+        $http.post('/student_data/ruby_throated_hummingbird', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addrubyThroatedHummingbird -- success: ', response.data);
-                
+
             } else {
                 console.log('student service addrubyThroatedHummingbird error', response);
                 self.message = "Error adding ruby_throated_hummingbird!!";
             }
         });
     }
-        // bur_oak
+    // bur_oak
     // common_buckthorn
     // common_milkweed
     // eastern_bluebird

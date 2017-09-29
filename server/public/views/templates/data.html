@@ -3,10 +3,26 @@
     <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
 </md-button>
 <h1>Class Data View (Staff)</h1>
-
-<div ng-repeat="data in vm.data.data" ng-if="data.class='1'">
-    <div >
-        <p>{{data.class}}</p>
-    </div>
-</div>
+<div ng-repeat="data in vm.data.data" ng-if="data.leaves == 'yes'">{{data.leaves.length}}</div>
+<table>
+    <thead>
+        <tr>
+            <th>Yes</th>
+            <th>No</th>
+            <th>?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td ng-if="data.leaves == 'yes'">{{data.leaves.length}}</td>
+        </tr>
+    </tbody>
+</table>
+<ul>
+    <li ng-repeat="data in vm.data.data">
+        <ng-show ng-if="data.class==1">
+            <p>{{data}}</p>
+        </ng-show>
+        </div>
+</ul>
 <!-- {{vm.data.data[0].class}} -->
