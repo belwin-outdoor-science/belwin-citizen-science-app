@@ -19,6 +19,12 @@ myApp.service('StudentService', ['$http', function ($http) {
     // with which tables had errors.
     //3. Somehow allow user to resubmit data only for tables that had problems.
     //Complication: what if it times out?  Will the errorHandling function run?
+
+    //practice call
+    let burOakData = {
+        
+    }
+    self.addBurOak();
     self.addBurOak = function (studentData) {
         $http.post('/student_data/bur_oak', card).then(function (response) {
             if (response.data) {
