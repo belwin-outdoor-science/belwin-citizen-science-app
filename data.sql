@@ -6,6 +6,8 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
+site INT,
+
 species_number: VARCHAR(80),
 
 breaking_leaf_buds VARCHAR(80),
