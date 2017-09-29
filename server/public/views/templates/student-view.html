@@ -35,10 +35,18 @@
     <md-button class="w3-white" ng-show="plant" ng-click="red_oak = !red_oak; 
     bur_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
       Red Oak</md-button>
-    <md-button class="w3-white" ng-show="plant">Quaking <br>Aspen</md-button>
-    <md-button class="w3-white" ng-show="plant">Common <br> Buck- <br>thorn</md-button>
-    <md-button class="w3-white" ng-show="plant">Paper <br> Birch</md-button>
-    <md-button class="w3-white" ng-show="plant">Common <br> Milkweed</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="quaking_aspen = !quaking_aspen; 
+    bur_oak = false; red_oak = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+      Quaking <br>Aspen</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="common_buckthorn = !common_buckthorn; 
+    bur_oak = false; red_oak = false; quaking_aspen = false; paper_birch = false; common_milkweed = false">
+      Common <br> Buck- <br>thorn</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="paper_birch = !paper_birch; 
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; common_milkweed = false">
+      Paper <br> Birch</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="common_milkweed = !common_milkweed; 
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false">
+      Common <br> Milkweed</md-button>
     <md-button class="w3-white" ng-show="mammal">Ground <br>Squirrel</md-button>
     <md-button class="w3-white" ng-show="bird">Ruby <br>Throated <br> Humming-<br>bird</md-button>
     <md-button class="w3-white" ng-show="bird">Dark-eyed <br> Junco</md-button>
