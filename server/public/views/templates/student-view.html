@@ -25,8 +25,12 @@
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
     <p>Type</p>
     <md-button class="typeButton w3-white" ng-click="plant = !plant; mammal = false; bird = false">Plants</md-button>
-    <md-button class="typeButton w3-white" ng-click="mammal = !mammal; plant = false; bird = false">Mammals</md-button>
-    <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false">Birds</md-button>
+    <md-button class="typeButton w3-white" ng-click="mammal = !mammal; plant = false; bird = false;
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+      Mammals</md-button>
+    <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false;
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+      Birds</md-button>
 
     <p>Species</p>
     <md-button class="w3-white" ng-show="plant" ng-click="bur_oak = !bur_oak; 
@@ -66,28 +70,55 @@
     <div ng-show="bur_oak" class="speciesView" layout="column" layout-align="center center">
       <h1>Bur Oak</h1>
       <div layout="row" layout-align="center center">
-      <md-button>Bur Oak 1</md-button>  <md-button> Bur Oak 2</md-button>  <md-button>Bur Oak 3</md-button>
+        <md-button>Bur Oak 1</md-button>
+        <md-button> Bur Oak 2</md-button>
+        <md-button>Bur Oak 3</md-button>
       </div>
     </div>
 
-    <div ng-show="red_oak" class="speciesView">
+    <div ng-show="red_oak" class="speciesView" layout="column" layout-align="center center">
       <h1>Red Oak</h1>
+      <div layout="row" layout-align="center center">
+        <md-button>Red Oak 1</md-button>
+        <md-button> Red Oak 2</md-button>
+        <md-button>Red Oak 3</md-button>
+      </div>
     </div>
 
-    <div ng-show="quaking_aspen" class="speciesView">
+    <div ng-show="quaking_aspen" class="speciesView" layout="column" layout-align="center center">
       <h1>Quaking Aspen</h1>
+      <div layout="row" layout-align="center center">
+        <md-button>Quaking Aspen 1</md-button>
+        <md-button>Quaking Aspen 2</md-button>
+        <md-button>Quaking Apsen 3</md-button>
+      </div>
     </div>
 
-    <div ng-show="common_buckthorn" class="speciesView">
+    <div ng-show="common_buckthorn" class="speciesView" layout="column" layout-align="center center">
       <h1>Common Buckthorn</h1>
+      <div layout="row" layout-align="center center">
+        <md-button>Common Buckthorn 1</md-button>
+        <md-button>Common Buckthorn 2</md-button>
+        <md-button>Common Buckthorn 3</md-button>
+      </div>
     </div>
 
-    <div ng-show="paper_birch" class="speciesView">
+    <div ng-show="paper_birch" class="speciesView" layout="column" layout-align="center center">
       <h1>Paper Birth</h1>
+      <div layout="row" layout-align="center center">
+        <md-button>Paper Birth 1</md-button>
+        <md-button>Paper Birth 2</md-button>
+        <md-button>Paper Birth 3</md-button>
+      </div>
     </div>
 
-    <div ng-show="common_milkweed" class="speciesView">
+    <div ng-show="common_milkweed" class="speciesView" layout="column" layout-align="center center">
       <h1>Common Milkweed</h1>
+      <div layout="row" layout-align="center center">
+        <md-button>Common Milkweed 1</md-button>
+        <md-button>Common Milkweed 2</md-button>
+        <md-button>Common Milkweed 3</md-button>
+      </div>
     </div>
 
 
