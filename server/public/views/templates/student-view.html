@@ -1,4 +1,24 @@
-<div layout="row" layout-align="start start">
+<!-- <div ng-include="'views/partials/nav.html'"></div> -->
+<div ng-show="sc.appSetup" class="container">
+  <div id="staffLoginLink"><md-button class="md-raised" href="/#home">Staff Login</md-button></div>
+
+  <div id="classSelect">
+      <p>Select a class to start exploring! Your teacher will tell you your class number</p>
+    <form ng-submit="sc.submit()">
+      
+      <md-radio-group ng-model="sc.class">
+        <md-radio-button value="Class 1">Class 1</md-radio-button>
+        <md-radio-button value="Class 2">Class 2</md-radio-button>
+        <md-radio-button value="Class 3">Class 3</md-radio-button>
+      </md-radio-group>
+
+      <md-button type="ng-submit" class="md-primary md-raised" >Done</md-button>
+
+    </form>
+  </div>
+</div>
+
+<div ng-show="!sc.appSetup" layout="row" layout-align="start start">
   
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout= "column" layout-align="start center">
     <p>Type</p>
@@ -27,6 +47,7 @@
   </md-sidenav>
   <md-content layout= "column" layout-align="center center">
     <h2>Belwin Citizen Science</h2>
+    <p>Your are in: {{sc.class}}</p>
   </md-content>
 
 </div>
