@@ -1,16 +1,17 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
 <h1>Dashboard</h1> 
-
+Welcome {{vm.data.userInfo[0].username}}!
 <md-content>
     <md-list>
         <md-list-item class="md-3-line"> <!-- ng-repeat goes into this opening tag -->
             <div class="md-list-item-text">
                 <h3>Class #1</h3>
             </div>
-            <md-button class="md-raised md-primary" ng-href="/#data">Details</md-button>
+            <md-button class="md-raised md-primary" ng-href="/#/data/classId">Details</md-button>
         </md-list-item>
     </md-list>
 </md-content>
 
-<md-button class="md-accent md-raised md-hue-1">View All Data Submitted</md-button>
+<md-button class="md-accent md-raised md-hue-1" ng-href="/#/data/">
+    View All Data Submitted</md-button>

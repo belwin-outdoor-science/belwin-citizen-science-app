@@ -1,7 +1,7 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 
 /// Routes ///
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function ($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config')
   $routeProvider
@@ -18,13 +18,28 @@ myApp.config(function($routeProvider, $locationProvider) {
       controller: 'LoginController as lc'
     })
     .when('/dashboard', {
-      templateUrl: '/views/templates/dashboard.html'
+      templateUrl: '/views/templates/dashboard.html',
+      controller: 'StaffController as vm',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
+    .when('/data', {
+      templateUrl: '/views/templates/data.html',
+      controller: 'DataController as vm',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
@@ -33,7 +48,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/student-view.html',
       controller: 'StudentController as sc',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
@@ -41,7 +56,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/info.html',
       controller: 'StudentController as sc',
       resolve: {
-        getuser : function(UserService){
+        getuser: function (UserService) {
           return UserService.getuser();
         }
       }
