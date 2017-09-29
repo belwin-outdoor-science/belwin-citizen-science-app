@@ -24,9 +24,18 @@
 
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
     <p>Type</p>
-    <md-button class="typeButton w3-white" ng-click="plant = !plant; mammal = false; bird = false">Plants</md-button>
-    <md-button class="typeButton w3-white" ng-click="mammal = !mammal; plant = false; bird = false">Mammals</md-button>
-    <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false">Birds</md-button>
+    <md-button class="typeButton w3-white" ng-click="plant = !plant; mammal = false; bird = false; 
+    ground_squirrel = false;
+    dark_eyed_junco = false; ruby_throated_hummingbird = false; eastern_bluebird = false">
+      Plants</md-button>
+    <md-button class="typeButton w3-white" ng-click="mammal = !mammal; plant = false; bird = false;
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
+    dark_eyed_junco = false; ruby_throated_hummingbird = false; eastern_bluebird = false">
+      Mammals</md-button>
+    <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false;
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
+    ground_squirrel = false;">
+      Birds</md-button>
 
     <p>Species</p>
     <md-button class="w3-white" ng-show="plant" ng-click="bur_oak = !bur_oak; 
@@ -35,14 +44,28 @@
     <md-button class="w3-white" ng-show="plant" ng-click="red_oak = !red_oak; 
     bur_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
       Red Oak</md-button>
-    <md-button class="w3-white" ng-show="plant">Quaking <br>Aspen</md-button>
-    <md-button class="w3-white" ng-show="plant">Common <br> Buck- <br>thorn</md-button>
-    <md-button class="w3-white" ng-show="plant">Paper <br> Birch</md-button>
-    <md-button class="w3-white" ng-show="plant">Common <br> Milkweed</md-button>
-    <md-button class="w3-white" ng-show="mammal">Ground <br>Squirrel</md-button>
-    <md-button class="w3-white" ng-show="bird">Ruby <br>Throated <br> Humming-<br>bird</md-button>
-    <md-button class="w3-white" ng-show="bird">Dark-eyed <br> Junco</md-button>
-    <md-button class="w3-white" ng-show="bird">Eastern <br> Bluebird</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="quaking_aspen = !quaking_aspen; 
+    bur_oak = false; red_oak = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+      Quaking<br>Aspen</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="common_buckthorn = !common_buckthorn; 
+    bur_oak = false; red_oak = false; quaking_aspen = false; paper_birch = false; common_milkweed = false">
+      Common<br>Buck-<br>thorn</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="paper_birch = !paper_birch; 
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; common_milkweed = false">
+      Paper<br>Birch</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="common_milkweed = !common_milkweed; 
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false">
+      Common<br>Milkweed</md-button>
+    <md-button class="w3-white" ng-show="mammal" ng-click="ground_squirrel = !ground_squirrel">Ground<br>Squirrel</md-button>
+    <md-button class="w3-white" ng-show="bird" ng-click="ruby_throated_hummingbird = !ruby_throated_hummingbird;
+    dark_eyed_junco = false; eastern_bluebird = false">
+      Ruby<br>Throated<br>Humming-<br>bird</md-button>
+    <md-button class="w3-white" ng-show="bird" ng-click="dark_eyed_junco = !dark_eyed_junco;
+    ruby_throated_hummingbird = false; eastern_bluebird = false">
+      Dark-eyed<br>Junco</md-button>
+    <md-button class="w3-white" ng-show="bird" ng-click="eastern_bluebird = !eastern_bluebird;
+    dark_eyed_junco = false; ruby_throated_hummingbird = false">
+      Eastern<br>Bluebird</md-button>
 
 
 
@@ -55,31 +78,97 @@
     <h2>Belwin Citizen Science</h2>
     <p>You are in: {{sc.class}}</p>
 
+    <!-- plants -->
     <div ng-show="bur_oak" class="speciesView" layout="column" layout-align="center center">
       <h1>Bur Oak</h1>
       <div layout="row" layout-align="center center">
-      <md-button ng-click="sc.showDialog($event)">Bur Oak 1</md-button>  <md-button ng-click="sc.showDialog($event)"> Bur Oak 2</md-button>  <md-button ng-click="sc.showDialog($event)">Bur Oak 3</md-button>
+        <md-button ng-click="sc.showDialog($event)" class="w3-border w3-border-blue">Bur Oak 1</md-button>
+        <md-button ng-click="sc.showDialog($event)" class="w3-border w3-border-blue"> Bur Oak 2</md-button>
+        <md-button ng-click="sc.showDialog($event)" class="w3-border w3-border-blue">Bur Oak 3</md-button>
       </div>
     </div>
 
-    <div ng-show="red_oak" class="speciesView">
+    <div ng-show="red_oak" class="speciesView" layout="column" layout-align="center center">
       <h1>Red Oak</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Red Oak 1</md-button>
+        <md-button class="w3-border w3-border-blue"> Red Oak 2</md-button>
+        <md-button class="w3-border w3-border-blue">Red Oak 3</md-button>
+      </div>
     </div>
 
-    <div ng-show="quaking_aspen" class="speciesView">
+    <div ng-show="quaking_aspen" class="speciesView" layout="column" layout-align="center center">
       <h1>Quaking Aspen</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Quaking<br>Aspen 1</md-button>
+        <md-button class="w3-border w3-border-blue">Quaking<br>Aspen 2</md-button>
+        <md-button class="w3-border w3-border-blue">Quaking<br>Apsen 3</md-button>
+      </div>
     </div>
 
-    <div ng-show="common_buckthorn" class="speciesView">
+    <div ng-show="common_buckthorn" class="speciesView" layout="column" layout-align="center center">
       <h1>Common Buckthorn</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Common<br>Buck-<br>thorn 1</md-button>
+        <md-button class="w3-border w3-border-blue">Common<br>Buck-<br>thorn 2</md-button>
+        <md-button class="w3-border w3-border-blue">Common<br>Buck-<br>thorn 3</md-button>
+      </div>
     </div>
 
-    <div ng-show="paper_birch" class="speciesView">
+    <div ng-show="paper_birch" class="speciesView" layout="column" layout-align="center center">
       <h1>Paper Birth</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Paper<br>Birth 1</md-button>
+        <md-button class="w3-border w3-border-blue">Paper<br>Birth 2</md-button>
+        <md-button class="w3-border w3-border-blue">Paper<br>Birth 3</md-button>
+      </div>
     </div>
 
-    <div ng-show="common_milkweed" class="speciesView">
+    <div ng-show="common_milkweed" class="speciesView" layout="column" layout-align="center center">
       <h1>Common Milkweed</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Common<br>Milk-<br>weed 1</md-button>
+        <md-button class="w3-border w3-border-blue">Common<br>Milk-<br>weed 2</md-button>
+        <md-button class="w3-border w3-border-blue">Common<br>Milk-<br>weed 3</md-button>
+      </div>
+    </div>
+
+    <!-- Mammals -->
+    <div ng-show="ground_squirrel" class="speciesView" layout="column" layout-align="center center">
+      <h1>Ground Squirrel</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Ground<br>Squirrel<br>1</md-button>
+        <md-button class="w3-border w3-border-blue">Ground<br>Squirrel<br>2</md-button>
+        <md-button class="w3-border w3-border-blue">Ground<br>Squirrel<br>3</md-button>
+      </div>
+    </div>
+
+    <!-- Birds -->
+    <div ng-show="ruby_throated_hummingbird" class="speciesView" layout="column" layout-align="center center">
+      <h1>Ruby-throated <br> Hummingbird</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Ruby<br>Throated<br>Humming-<br>bird 1</md-button>
+        <md-button class="w3-border w3-border-blue">Ruby<br>Throated<br>Humming-<br>bird 2</md-button>        
+        <md-button class="w3-border w3-border-blue">Ruby<br>Throated<br>Humming-<br>bird 3</md-button>
+      </div>
+    </div>
+
+    <div ng-show="dark_eyed_junco" class="speciesView" layout="column" layout-align="center center">
+      <h1>Dark-eyed Junco</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Dark-<br>eyed<br>Junco 1</md-button>
+        <md-button class="w3-border w3-border-blue">Dark-<br>eyed<br>Junco 2</md-button>
+        <md-button class="w3-border w3-border-blue">Dark-<br>eyed<br>Junco 3</md-button>
+      </div>
+    </div>
+
+    <div ng-show="eastern_bluebird" class="speciesView" layout="column" layout-align="center center">
+      <h1>Eastern Bluebird</h1>
+      <div layout="row" layout-align="center center">
+        <md-button class="w3-border w3-border-blue">Eastern<br>Bluebird<br>1</md-button>
+        <md-button class="w3-border w3-border-blue">Eastern<br>Bluebird<br>2</md-button>
+        <md-button class="w3-border w3-border-blue">Eastern<br>Bluebird<br>3</md-button>
+      </div>
     </div>
 
 

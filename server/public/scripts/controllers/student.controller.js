@@ -1,8 +1,9 @@
-myApp.controller('StudentController', ['UserService', '$mdDialog', '$mdSidenav', function (UserService, $mdDialog, $mdSidenav) {
+myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDialog', '$mdSidenav', function (StudentService, UserService, $mdDialog, $mdSidenav) {
     console.log('StudentController Loaded');
 
     var vm = this;
     vm.userService = UserService;
+    vm.studentService = StudentService;
     vm.userObject = UserService.userObject;
     vm.class = "";
     vm.appSetup = true;
