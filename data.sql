@@ -354,3 +354,9 @@ individuals_at_feeding_station VARCHAR(80),
 notes VARCHAR (250)
 
 );
+
+CREATE TABLE users (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(80) NOT NULL,
+	password VARCHAR(200) NOT NULL
+);
