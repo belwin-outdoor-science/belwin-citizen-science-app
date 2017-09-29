@@ -21,7 +21,7 @@
 </div>
 
 <div ng-show="!sc.appSetup" layout="row" layout-align="start start">
-  
+
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
     <p>Type</p>
     <md-button class="typeButton w3-white" ng-click="plant = !plant; mammal = false; bird = false">Plants</md-button>
@@ -29,9 +29,12 @@
     <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false">Birds</md-button>
 
     <p>Species</p>
-    <md-button class="w3-white" ng-show="plant" ng-click="bur_oak = !bur_oak; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+    <md-button class="w3-white" ng-show="plant" ng-click="bur_oak = !bur_oak; 
+    red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
       Bur Oak</md-button>
-    <md-button class="w3-white" ng-show="plant">Red Oak</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="red_oak = !red_oak; 
+    bur_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+      Red Oak</md-button>
     <md-button class="w3-white" ng-show="plant">Quaking <br>Aspen</md-button>
     <md-button class="w3-white" ng-show="plant">Common <br> Buck- <br>thorn</md-button>
     <md-button class="w3-white" ng-show="plant">Paper <br> Birch</md-button>
@@ -52,8 +55,11 @@
     <h2>Belwin Citizen Science</h2>
     <p>Your are in: {{sc.class}}</p>
 
-    <div ng-show="bur_oak" class="speciesView">
+    <div ng-show="bur_oak" class="speciesView" layout="column" layout-align="center center">
       <h1>Bur Oak</h1>
+      <div layout="row" layout-align="center center">
+      <md-button>Bur Oak 1</md-button>  <md-button> Bur Oak 2</md-button>  <md-button>Bur Oak 3</md-button>
+      </div>
     </div>
 
     <div ng-show="red_oak" class="speciesView">
