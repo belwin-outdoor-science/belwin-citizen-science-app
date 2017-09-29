@@ -6,6 +6,8 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
+species_number: VARCHAR(80),
+
 breaking_leaf_buds VARCHAR(80),
 
 leaves VARCHAR(80),
@@ -40,6 +42,8 @@ id SERIAL PRIMARY KEY,
 recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
+
+species_number: VARCHAR(80),
 
 breaking_leaf_buds VARCHAR(80),
 
@@ -76,6 +80,8 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
+species_number: VARCHAR(80),
+
 initial_growth VARCHAR(80),
 
 leaves VARCHAR(80),
@@ -102,6 +108,8 @@ id SERIAL PRIMARY KEY,
 recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
+
+species_number: VARCHAR(80),
 
 active_individuals VARCHAR(80),
 
@@ -148,6 +156,8 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
+species_number: VARCHAR(80),
+
 active_individuals VARCHAR(80),
 
 feeding VARCHAR(80),
@@ -168,6 +178,8 @@ id SERIAL PRIMARY KEY,
 recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
+
+species_number: VARCHAR(80),
 
 active_individuals VARCHAR(80),
 
@@ -214,6 +226,8 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
+species_number: VARCHAR(80),
+
 breaking_leaf_buds VARCHAR(80),
 
 leaves VARCHAR(80),
@@ -248,6 +262,8 @@ id SERIAL PRIMARY KEY,
 recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
+
+species_number: VARCHAR(80),
 
 breaking_leaf_buds VARCHAR(80),
 
@@ -284,6 +300,8 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
+species_number: VARCHAR(80),
+
 breaking_leaf_buds VARCHAR(80),
 
 leaves VARCHAR(80),
@@ -318,6 +336,8 @@ id SERIAL PRIMARY KEY,
 recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
+
+species_number: VARCHAR(80),
 
 active_individuals VARCHAR(80),
 

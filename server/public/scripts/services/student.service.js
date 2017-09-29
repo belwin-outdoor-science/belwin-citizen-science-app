@@ -22,9 +22,22 @@ myApp.service('StudentService', ['$http', function ($http) {
 
     //practice call
     let burOakData = {
-        
+        class: 'class 1', 
+        breaking_leaf_buds: 'Yes', 
+        leaves: 'Yes', 
+        increasing_leaf_size: 'Yes', 
+        colored_leaves: 'Yes', 
+        falling_leaves: 'Yes', 
+        flowers_or_flower_buds: 'Yes' 
+        open_flowers: 'Yes', 
+        pollen_release: 'Yes', 
+        fruits: 'Yes', 
+        ripe_fruits: 'Yes', 
+        recent_fruit_or_seed_drop: 'Yes', 
+        notes: 'I\'m a bur oak I\'m a bur oak I\'m a bur oak I\'m a bur oak'  
     }
-    self.addBurOak();
+
+    //self.addBurOak(burOakData);
     self.addBurOak = function (studentData) {
         $http.post('/student_data/bur_oak', card).then(function (response) {
             if (response.data) {
