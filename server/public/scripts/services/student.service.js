@@ -23,7 +23,7 @@ myApp.service('StudentService', ['$http', function ($http) {
     //practice call
     let burOakData = {
         class: 'class 1',
-        species_number: '1',
+        site: '1',
         breaking_leaf_buds: 'Yes',
         leaves: 'Yes',
         increasing_leaf_size: 'Yes',
