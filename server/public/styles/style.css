@@ -3,6 +3,7 @@ body, html {
   padding: 0;
   font-family: sans-serif;
   font-size: 14px;
+  
 }
 
 .instructions .container h1 {
@@ -80,5 +81,10 @@ li a:hover {
 }
 
 #studentNavBar {
-  background-color: #16BD88;
+  background-color: teal;
+  height:100%;
+  width: 20%;
+  position:absolute;
+  padding: 50px;
+  border: 3px solid black;
 }
