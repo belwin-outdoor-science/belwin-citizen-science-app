@@ -1,0 +1,56 @@
+<div layout="row" layout-align="start start">
+  
+  <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout= "column" layout-align="start center">
+    <p>Type</p>
+    <md-button class="typeButton w3-white" ng-click="plant = !plant; mammal = false; bird = false">Plants</md-button>
+    <md-button class="typeButton w3-white" ng-click="mammal = !mammal; plant = false; bird = false">Mammals</md-button>
+    <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false">Birds</md-button>
+
+    <p>Species</p>
+    <md-button class="w3-white" ng-show="plant">Bur Oak</md-button>
+    <md-button class="w3-white" ng-show="plant">Red Oak</md-button>
+    <md-button class="w3-white" ng-show="plant">Quaking <br>Aspen</md-button>
+    <md-button class="w3-white" ng-show="plant">Common <br> Buck- <br>thorn</md-button>
+    <md-button class="w3-white" ng-show="plant">Paper <br> Birch</md-button>
+    <md-button class="w3-white" ng-show="plant">Common <br> Milkweed</md-button>
+    <md-button class="w3-white" ng-show="mammal">Ground <br>Squirrel</md-button>
+    <md-button class="w3-white" ng-show="bird">Ruby <br>Throated <br> Humming-<br>bird</md-button>
+    <md-button class="w3-white" ng-show="bird">Dark-eyed <br> Junco</md-button>
+    <md-button class="w3-white" ng-show="bird">Eastern <br> Bluebird</md-button>
+
+
+
+
+  </md-sidenav>
+
+  <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
+  </md-sidenav>
+  <md-content layout= "column" layout-align="center center">
+    <h2>Belwin Citizen Science</h2>
+  </md-content>
+
+</div>
+
+
+
+
+
+
+<!-- this code for a more dymic nav -->
+
+
+<!-- <md-button ng-click="sc.openLeftMenu()">
+      Open Left Menu
+    </md-button> -->
+
+    <!-- <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
+        <form>
+          <md-input-container>
+            <label for="testInput">Test input</label>
+            <input id="testInput" type="text" ng-model="data" md-autofocus>
+          </md-input-container>
+        </form>
+      </md-sidenav>
+      <md-content>
+        <h4>Belwin Citizen Science</h4>
+      </md-content> -->
