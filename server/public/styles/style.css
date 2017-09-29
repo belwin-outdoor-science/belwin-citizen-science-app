@@ -78,3 +78,15 @@ li a:hover {
   text-decoration: underline;
   color: #eee;
 }
+
+md-dialog {
+  flex: 100%;
+  }
+
+#textarea {
+  width:100%;
+}
+
+#observationDataEntry {
+  font-size: 40px;
+}
