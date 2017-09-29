@@ -1,5 +1,27 @@
-<div layout="row" layout-align="start start">
+<!-- <div ng-include="'views/partials/nav.html'"></div> -->
+<div ng-show="sc.appSetup" class="container">
+  <div id="staffLoginLink">
+    <md-button class="md-raised" href="/#home">Staff Login</md-button>
+  </div>
 
+  <div id="classSelect">
+    <p>Select a class to start exploring! Your teacher will tell you your class number</p>
+    <form ng-submit="sc.submit()">
+
+      <md-radio-group ng-model="sc.class">
+        <md-radio-button value="Class 1">Class 1</md-radio-button>
+        <md-radio-button value="Class 2">Class 2</md-radio-button>
+        <md-radio-button value="Class 3">Class 3</md-radio-button>
+      </md-radio-group>
+
+      <md-button type="ng-submit" class="md-primary md-raised">Done</md-button>
+
+    </form>
+  </div>
+</div>
+
+<div ng-show="!sc.appSetup" layout="row" layout-align="start start">
+  
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
     <p>Type</p>
     <md-button class="typeButton w3-white" ng-click="plant = !plant; mammal = false; bird = false">Plants</md-button>
@@ -7,9 +29,8 @@
     <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false">Birds</md-button>
 
     <p>Species</p>
-    <md-button class="w3-white" ng-show="plant" 
-    ng-click="bur_oak = !bur_oak; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
-    Bur Oak</md-button>
+    <md-button class="w3-white" ng-show="plant" ng-click="bur_oak = !bur_oak; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+      Bur Oak</md-button>
     <md-button class="w3-white" ng-show="plant">Red Oak</md-button>
     <md-button class="w3-white" ng-show="plant">Quaking <br>Aspen</md-button>
     <md-button class="w3-white" ng-show="plant">Common <br> Buck- <br>thorn</md-button>
@@ -29,6 +50,7 @@
   </md-sidenav>
   <md-content layout="column" layout-align="center center">
     <h2>Belwin Citizen Science</h2>
+    <p>Your are in: {{sc.class}}</p>
 
     <div ng-show="bur_oak" class="speciesView">
       <h1>Bur Oak</h1>
@@ -53,6 +75,8 @@
     <div ng-show="common_milkweed" class="speciesView">
       <h1>Common Milkweed</h1>
     </div>
+
+
 
 
   </md-content>
