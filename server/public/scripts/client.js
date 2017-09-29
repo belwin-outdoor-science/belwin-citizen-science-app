@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -12,6 +12,13 @@ myApp.config(function($routeProvider, $locationProvider) {
     .when('/register', {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
+    })
+    .when('/login', {
+      templateUrl: '/views/templates/login.html',
+      controller: 'LoginController as lc'
+    })
+    .when('/dashboard', {
+      templateUrl: '/views/templates/dashboard.html'
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
