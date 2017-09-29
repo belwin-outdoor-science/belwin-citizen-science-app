@@ -20,6 +20,10 @@ myApp.config(function($routeProvider, $locationProvider) {
     .when('/dashboard', {
       templateUrl: '/views/templates/dashboard.html'
     })
+    .when('/student', {
+      templateUrl: '/views/partials/studentData.html',
+      controller: 'StudentController as sc'
+    })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',

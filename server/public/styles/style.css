@@ -80,6 +80,17 @@ li a:hover {
   color: #eee;
 }
 
+md-dialog {
+  flex: 100%;
+  }
+
+#textarea {
+  width:100%;
+}
+
+#observationDataEntry {
+  font-size: 30px;
+}
 #studentNavBar {
   background-color: teal;
   height:100%;

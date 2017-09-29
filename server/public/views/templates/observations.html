@@ -1,0 +1,20 @@
+<div id ="observationDataEntry">
+<md-radio-group>
+    <!-- replace deciduoustree below with currentSpecimenQuestions -->
+    <div ng-repeat="question in sc.deciduousTreeQuestions" class="row">
+      <div flex layout="row" layout-padding layout-align="start center" >
+        <div flex style="max-width:200px;">{{question}}</div>
+        <md-radio-button flex class="md-primary">Y</md-radio-button>
+        <md-radio-button flex class="md-primary">N</md-radio-button>
+        <md-radio-button flex class="md-primary">?</md-radio-button>
+      </div>
+    </div>
+  </md-radio-group>
+  <md-input-container id="textarea">
+    <label>Notes:</label>
+    <textarea></textarea>
+  </md-input-container>
+  </div>
+  <md-button>Reset</md-button>
+  <md-button>Save & Close</md-button>
+

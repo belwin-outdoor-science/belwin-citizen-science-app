@@ -8,8 +8,6 @@ class VARCHAR(80),
 
 site INT,
 
-species_number: VARCHAR(80),
-
 breaking_leaf_buds VARCHAR(80),
 
 leaves VARCHAR(80),
@@ -45,7 +43,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 breaking_leaf_buds VARCHAR(80),
 
@@ -82,7 +80,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 initial_growth VARCHAR(80),
 
@@ -111,7 +109,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 active_individuals VARCHAR(80),
 
@@ -158,7 +156,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 active_individuals VARCHAR(80),
 
@@ -181,7 +179,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 active_individuals VARCHAR(80),
 
@@ -228,7 +226,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 breaking_leaf_buds VARCHAR(80),
 
@@ -265,7 +263,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 breaking_leaf_buds VARCHAR(80),
 
@@ -302,7 +300,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 breaking_leaf_buds VARCHAR(80),
 
@@ -339,7 +337,7 @@ recorded TIMESTAMP DEFAULT current_date,
 
 class VARCHAR(80),
 
-species_number: VARCHAR(80),
+site INT,
 
 active_individuals VARCHAR(80),
 
