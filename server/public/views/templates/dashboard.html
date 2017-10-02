@@ -1,8 +1,8 @@
 <div ng-include="'views/partials/nav.html'"></div>
-
 <h1>Dashboard</h1>
 Welcome {{vm.user.userInfo[0].username}}!
 <p>{{vm.data.bur.info[0]}}</p>
+<md-button class="md-raised md-primary" ng-href="#register">Register New Admin</md-button>
 <md-content>
     <md-list>
         <md-list-item class="md-3-line">
@@ -15,7 +15,7 @@ Welcome {{vm.user.userInfo[0].username}}!
                     <md-button ng-click="classOne =! classOne" class="md-raised">
                         <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
                     </md-button>
-                    <div ng-repeat="bur in vm.data.bur" ng-if="bur.class == '1'">
+                    <div ng-repeat="bur in vm.data.bur.info" ng-if="bur.class == '1'">
                     <table class="mdl-data-table">
                             <tr>
                                 <th></th>
