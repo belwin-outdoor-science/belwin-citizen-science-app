@@ -749,4 +749,23 @@ myApp.service('StudentService', ['$http', function ($http) {
         ]
     };
 
+    self.selectedOrganism = {selectedOrganism: ""};
+    self.selectedOrganismText = {selectedOrganismText: ""};
+    self.class = { class: '' };
+
+
+    self.selectOrganism = function (organism, organismText) {
+        self.selectedOrganism.selectedOrganism = organism;
+        self.selectedOrganismText.selectedOrganismText = organismText;
+        console.log('select organism:', self.selectedOrganism)
+    }
+    self.setClass = function () {
+        
+
+        for (var organism in self.allData) {
+            self.allData[organism].map(function (object) {
+                object.class = self.class.class;
+            });
+        }
+    }
 }]);

@@ -5,11 +5,10 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     vm.userService = UserService;
     vm.studentService = StudentService;
     vm.userObject = UserService.userObject;
-    vm.class = "";
+    vm.class = { class: '' };
     vm.appSetup = true;
-
     vm.allData = StudentService.allData
-    
+
     vm.openLeftMenu = function () {
         $mdSidenav('left').toggle();
     };
@@ -43,52 +42,39 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         });
     }
 
-    vm.selectedOrganism = "";
-    vm.selectedOrganismText = "";
+    vm.selectedOrganism = StudentService.selectedOrganism;
+    vm.selectedOrganismText = StudentService.selectedOrganismText ;
 
 
 
-    vm.selectOrganism = function(organism, organismText){
-        vm.selectedOrganism = organism;
-        vm.selectedOrganismText = organismText;
-        console.log('select organism:', organism)
-    }
-      vm.submit = function () {
-        console.log('selected class is', vm.class)
-        vm.appSetup = false;
-       
-        for (var organism in vm.allData) { 
-          vm.allData[organism].map(function(object) {
-            object.class = vm.class;
-          });
-        }
-      }
+    vm.selectOrganism = StudentService.selectOrganism
+    vm.submit = StudentService.submit
 
-      //assign site number with an ng-click
+    //assign site number with an ng-click
 
-      //send dynamically information to the observation form
+    //send dynamically information to the observation form
 
-       vm.organisms = Object.keys(vm.allData);
-        
-        // ng-model names
-        vm.questionsByOrganism = {};
-        var questionArray = [];
-        for (var organism in vm.allData) {
-          questionArray = [];
-          for (var question in vm.allData[organism][0]) {
+    vm.organisms = Object.keys(vm.allData);
+
+    // ng-model names
+    vm.questionsByOrganism = {};
+    var questionArray = [];
+    for (var organism in vm.allData) {
+        questionArray = [];
+        for (var question in vm.allData[organism][0]) {
             var questionObj = {};
             if (question !== 'class' || question !== 'site_number') {
-              questionObj.property = question;
-              question = question.replace(/_/g, ' ');
-              question = question.charAt(0).toUpperCase() + question.slice(1);
-              questionObj.text = question;
-              questionArray.push(questionObj);
+                questionObj.property = question;
+                question = question.replace(/_/g, ' ');
+                question = question.charAt(0).toUpperCase() + question.slice(1);
+                questionObj.text = question;
+                questionArray.push(questionObj);
             }
-          }
-          vm.questionsByOrganism[organism] = questionArray;
         }
+        vm.questionsByOrganism[organism] = questionArray;
+    }
 
-   
+
 
     vm.submitData = function () {
         if (navigator.onLine) {
@@ -96,16 +82,27 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         } else {
             $mdDialog.show(
                 $mdDialog.alert()
-                    .parent(angular.element(document.querySelector('#popupContainer')))
-                    .clickOutsideToClose(true)
-                    .title('Device Offline')
-                    .textContent('Get closer to the building, then try again!')
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('Ok!')
-                    .openFrom('#left')
-                    //.targetEvent(ev)
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Device Offline')
+                .textContent('Get closer to the building, then try again!')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Ok!')
+                .openFrom('#left')
+                //.targetEvent(ev)
             )
         }
+    }
+
+    vm.site = "";
+    vm.setSite = function (site) {
+        console.log("site:", site, vm.allData);
+        vm.site = site;
+    }
+
+    vm.submit = function () {
+        console.log('selected class is', vm.class.class)
+        vm.appSetup = false;
     }
 
 }]);
