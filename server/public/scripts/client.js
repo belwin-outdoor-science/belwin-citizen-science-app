@@ -31,18 +31,14 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/data', {
+    .when('/data/:classNum', {
       templateUrl: '/views/templates/data.html',
-      controller: 'DataController as vm',
+      controller: 'DataController as dc',
       resolve: {
         getuser: function (UserService) {
           return UserService.getuser();
         }
       }
-    })
-    .when('/student', {
-      templateUrl: '/views/partials/studentData.html',
-      controller: 'StudentController as sc'
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',

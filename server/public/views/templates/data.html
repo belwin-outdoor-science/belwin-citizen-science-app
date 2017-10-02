@@ -3,6 +3,7 @@
     <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
 </md-button>
 <h1>Class Data View (Staff)</h1>
+<h2>Data for class {{dc.classNum}}</h2>
 <div ng-repeat="data in vm.data.data" ng-if="data.leaves == 'yes'">{{data.leaves.length}}</div>
 <table>
     <thead>

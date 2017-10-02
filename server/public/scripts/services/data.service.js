@@ -2,6 +2,8 @@ myApp.service('DataService', ['$http', function ($http) {
   console.log('DataService is loaded');
   var self = this;
   // self.data = { info: {}   }
+
+  
   self.bur = { info: {}};
   self.getBur = function () {
     $http.get('/dashboard/bur').then(function (response) {
@@ -76,4 +78,5 @@ myApp.service('DataService', ['$http', function ($http) {
   self.getRuby();
   
   // console.log('bur oak:', self.bur.info);
+
 }]);
