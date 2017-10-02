@@ -8,7 +8,7 @@ myApp.service('DataService', ['$http', function ($http) {
   self.getBur = function () {
     $http.get('/dashboard/bur').then(function (response) {
       self.bur.info = response.data;
-      // console.log('get route bur_oak: ', self.bur);
+      console.log('get route bur_oak: ', self.bur);
     });
   }
   self.getBuckthorn = function () {

@@ -4,7 +4,29 @@
 </md-button>
 <h1>Class Data View (Staff)</h1>
 <h2>Data for class {{dc.classNum}}</h2>
-<div ng-repeat="data in vm.data.data" ng-if="data.leaves == 'yes'">{{data.leaves.length}}</div>
+
+<div class="row">
+    <h3>Plants</h3>
+    <md-button ng-click="dc.getDetails()">Burr Oak</md-button>
+    <md-button>Red Oak</md-button>
+    <md-button>Quaking Aspen</md-button>
+    <md-button>Common Buckthorn</md-button>
+    <md-button>Paper Birch</md-button>
+    <md-button>Common Milkweed</md-button>
+</div>
+
+<div class="row">
+    <h3>Mammals</h3>
+    <md-button>Ground Squirrel</md-button>
+</div>
+
+<div class="row">
+    <h3>Birds</h3>
+    <md-button>Ruby Throated Hummingbird</md-button>
+    <md-button>Dark-eyed Junco</md-button>
+    <md-button>Eastern Bluebird</md-button>
+</div>
+<!-- <div ng-repeat="data in vm.data.data" ng-if="data.leaves == 'yes'">{{data.leaves.length}}</div>
 <table>
     <thead>
         <tr>
@@ -25,5 +47,5 @@
             <p>{{data}}</p>
         </ng-show>
         </div>
-</ul>
+</ul> -->
 <!-- {{vm.data.data[0].class}} -->
