@@ -86,6 +86,12 @@
         <md-button ng-click="sc.showDialog($event)" class="w3-border w3-border-blue"> Bur Oak 2</md-button>
         <md-button ng-click="sc.showDialog($event)" class="w3-border w3-border-blue">Bur Oak 3</md-button>
       </div>
+      <div layout="column" layout-align="start start">
+      <p>Did you see?</p>
+      <ul ng-repeat="question in sc.deciduousWithPollenQuestions">
+        <li>{{question}}</li>
+      </ul>
+      </div>
     </div>
 
     <div ng-show="red_oak" class="speciesView" layout="column" layout-align="center center">
