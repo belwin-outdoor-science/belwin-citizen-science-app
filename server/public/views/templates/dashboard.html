@@ -2,7 +2,7 @@
 
 <h1>Dashboard</h1>
 Welcome {{vm.user.userInfo[0].username}}!
-<p>{{vm.data.bur}}</p>
+<p>{{vm.data.bur.info[0]}}</p>
 <md-content>
     <md-list>
         <md-list-item class="md-3-line">
@@ -53,7 +53,7 @@ Welcome {{vm.user.userInfo[0].username}}!
             <tbody>
                 <tr>
                     <th>Breaking Leaf Buds</th>
-                    <td ng-repeat="bur in vm.data.bur" ng-if="bur.breaking_leaf_buds == 'yes'">{{bur.breaking_leaf_buds.length}}</td>
+                    <td ng-repeat="bur in vm.data.bur.info" ng-if="bur.breaking_leaf_buds == 'yes'">{{bur.breaking_leaf_buds.length}}</td>
                 </tr>
             </tbody>
         </table>

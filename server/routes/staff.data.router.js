@@ -21,7 +21,7 @@ router.get('/', function (req, res) { // GET for staff dashboard to staff data v
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -49,7 +49,7 @@ router.get('/bur', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -77,7 +77,7 @@ router.get('/buckthorn', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -105,7 +105,7 @@ router.get('/milkweed', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -133,7 +133,7 @@ router.get('/dark', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -161,7 +161,7 @@ router.get('/eastern', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -189,7 +189,7 @@ router.get('/ground', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -217,7 +217,7 @@ router.get('/northern', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -245,7 +245,7 @@ router.get('/paper', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -273,7 +273,7 @@ router.get('/quaking', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -301,7 +301,7 @@ router.get('/ruby', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        console.log('result.rows is: ', result.rows);
+                        // console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
