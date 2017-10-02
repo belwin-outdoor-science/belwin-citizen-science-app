@@ -3,11 +3,22 @@ myApp.service('DataService', ['$http', function ($http) {
   var self = this;
   // self.data = { info: {}   }
 
-  
-  self.bur = { info: {}};
+  self.bur = {data: []};
+  // self.getBuckthorn();
+  // self.getMilkweed();
+  // self.getDark();
+  // self.getEastern();
+  // self.getGround();
+  // self.getNorthern();
+  // self.getPaper();
+  // self.getQuaking();
+  // self.getRuby();
+
+ 
+
   self.getBur = function () {
     $http.get('/dashboard/bur').then(function (response) {
-      self.bur.info = response.data;
+      self.bur.data = response.data;
       console.log('get route bur_oak: ', self.bur);
     });
   }
@@ -66,16 +77,16 @@ myApp.service('DataService', ['$http', function ($http) {
     });
   }
 
-  self.getBur();
-  self.getBuckthorn();
-  self.getMilkweed();
-  self.getDark();
-  self.getEastern();
-  self.getGround();
-  self.getNorthern();
-  self.getPaper();
-  self.getQuaking();
-  self.getRuby();
+  // self.getBur();
+  // self.getBuckthorn();
+  // self.getMilkweed();
+  // self.getDark();
+  // self.getEastern();
+  // self.getGround();
+  // self.getNorthern();
+  // self.getPaper();
+  // self.getQuaking();
+  // self.getRuby();
   
   // console.log('bur oak:', self.bur.info);
 
