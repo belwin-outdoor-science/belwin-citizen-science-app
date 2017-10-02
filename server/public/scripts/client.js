@@ -71,7 +71,7 @@ myApp.config(function ($routeProvider, $locationProvider) {
       }
     })
     .otherwise({
-      redirectTo: 'student'
+      redirectTo: '/student'
     });
 });
 
