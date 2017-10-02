@@ -4,5 +4,9 @@ myApp.controller('StaffController', ['StaffService', 'DataService', '$routeParam
     vm.user = StaffService;
     vm.data = DataService;
     StaffService.getUserInfo();
-    DataService.getData();
+    // DataService.getData();
+    // DataService.getBuckthorn();
+    console.log('data:', vm.data);
+    
+    
 }])

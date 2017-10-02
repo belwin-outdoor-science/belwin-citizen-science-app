@@ -1,8 +1,8 @@
 myApp.controller('DataController', ['DataService', '$routeParams', function (DataService, $routeParams) {
     var vm = this;
-    vm.data = DataService;
+    // vm.data = DataService;
+    // vm.buckthorn = DataService;
 
-    console.log('$routeParams', $routeParams);
-
-    DataService.getData();
+    // DataService.getData();
+    // DataService.getBuckthorn();
 }]);

@@ -35,6 +35,10 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/student', {
+      templateUrl: '/views/partials/studentData.html',
+      controller: 'StudentController as sc'
+    })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',

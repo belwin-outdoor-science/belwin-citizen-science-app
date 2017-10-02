@@ -30,7 +30,7 @@ router.get('/', function (req, res) { // GET for staff dashboard to staff data v
     }
 });
 
-router.get('/bur', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/bur', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -43,7 +43,7 @@ router.get('/bur', function (req, res) { // GET for staff dashboard to staff dat
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM bur_oak;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM bur_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -58,7 +58,7 @@ router.get('/bur', function (req, res) { // GET for staff dashboard to staff dat
     }
 });
 
-router.get('/buckthorn', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/buckthorn', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -71,7 +71,7 @@ router.get('/buckthorn', function (req, res) { // GET for staff dashboard to sta
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM common_buckthorn;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM common_buckthorn WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -86,7 +86,7 @@ router.get('/buckthorn', function (req, res) { // GET for staff dashboard to sta
     }
 });
 
-router.get('/milkweed', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/milkweed', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -99,7 +99,7 @@ router.get('/milkweed', function (req, res) { // GET for staff dashboard to staf
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM common_milkweed;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM common_milkweed WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -114,7 +114,7 @@ router.get('/milkweed', function (req, res) { // GET for staff dashboard to staf
     }
 });
 
-router.get('/dark', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/dark', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -127,7 +127,7 @@ router.get('/dark', function (req, res) { // GET for staff dashboard to staff da
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM dark_eyed_junco;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM dark_eyed_junco WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -142,7 +142,7 @@ router.get('/dark', function (req, res) { // GET for staff dashboard to staff da
     }
 });
 
-router.get('/eastern', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/eastern', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -155,7 +155,7 @@ router.get('/eastern', function (req, res) { // GET for staff dashboard to staff
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM eastern_bluebird;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM eastern_bluebird WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -170,7 +170,7 @@ router.get('/eastern', function (req, res) { // GET for staff dashboard to staff
     }
 });
 
-router.get('/ground', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/ground', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -183,7 +183,7 @@ router.get('/ground', function (req, res) { // GET for staff dashboard to staff 
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM ground_squirrel;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM ground_squirrel WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -198,7 +198,7 @@ router.get('/ground', function (req, res) { // GET for staff dashboard to staff 
     }
 });
 
-router.get('/northern', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/northern', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -211,7 +211,7 @@ router.get('/northern', function (req, res) { // GET for staff dashboard to staf
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM northern_red_oak;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM northern_red_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -226,7 +226,7 @@ router.get('/northern', function (req, res) { // GET for staff dashboard to staf
     }
 });
 
-router.get('/paper', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/paper', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -239,7 +239,7 @@ router.get('/paper', function (req, res) { // GET for staff dashboard to staff d
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM paper_birch;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM paper_birch WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -254,7 +254,7 @@ router.get('/paper', function (req, res) { // GET for staff dashboard to staff d
     }
 });
 
-router.get('/quaking', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/quaking', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -267,7 +267,7 @@ router.get('/quaking', function (req, res) { // GET for staff dashboard to staff
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM quaking_aspen;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM quaking_aspen WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -282,7 +282,7 @@ router.get('/quaking', function (req, res) { // GET for staff dashboard to staff
     }
 });
 
-router.get('/ruby', function (req, res) { // GET for staff dashboard to staff data view
+router.get('/ruby', function (req, res) { 
     // Add a SELECT query
     if (req.isAuthenticated()) {
         var userInfo = {
@@ -295,7 +295,7 @@ router.get('/ruby', function (req, res) { // GET for staff dashboard to staff da
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT * FROM ruby_throated_hummingbird;', function (errorMakingQuery, result) {
+                client.query('SELECT * FROM ruby_throated_hummingbird WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
