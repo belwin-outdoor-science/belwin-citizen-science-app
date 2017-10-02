@@ -74,3 +74,13 @@ myApp.config(function ($routeProvider, $locationProvider) {
       redirectTo: 'home'
     });
 });
+
+onOffDetector = function() {
+  console.log('you went offline')
+}
+
+doNotReload = function() {
+  return "Dude, are you sure you want to leave? Think of the kittens!";
+}
+
+window.addEventListener("beforeunload", doNotReload);
