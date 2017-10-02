@@ -1,5 +1,7 @@
-<div class="container">
-  <h1 class="lead">Register User</h1>
+<div ng-include="'views/partials/header.html'"></div>
+<h1>Register</h1>
+<!-- <div class="container">
+  <h1 class="lead">Register New Staff</h1>
   <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
   <form ng-submit="lc.registerUser()">
     <div>
@@ -13,5 +15,29 @@
     <input class="btn btn-default" type="submit" name="submit" value="Register" />
     <a href="#home">Cancel</a>
   </form>
-
-</div>
+</div> -->
+<md-button ng-href="/#dashboard" class="md-raised">
+  <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
+</md-button>
+<h3 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h3>
+<form ng-submit="lc.registerUser()">
+  <md-content>
+      <div layout="row" layout-align="center center">
+          <md-input-container>
+              <label for "username">Username</label>
+              <input aria-label="username" ng-model="lc.user.username">
+          </md-input-container>
+      </div>
+      <div layout="row" layout-align="center center">
+          <md-input-container>
+              <label for "password">Password</label>
+              <input aria-label="password" type="password" ng-model="lc.user.password">
+          </md-input-container>
+      </div>
+      <div layout="row" layout-align="center center">
+          <md-input-container>
+            <input class="btn btn-default" type="submit" name="submit" value="Register" />
+          </md-input-container>
+      </div>
+  </md-content>
+</form>
