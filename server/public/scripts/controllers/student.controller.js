@@ -8,6 +8,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     vm.class = "";
     vm.appSetup = true;
 
+    vm.allData = StudentService.allData
+    
     vm.openLeftMenu = function () {
         $mdSidenav('left').toggle();
     };
@@ -41,12 +43,52 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         });
     }
 
+    vm.selectedOrganism = "";
+    vm.selectedOrganismText = "";
 
 
-    vm.submit = function () {
+
+    vm.selectOrganism = function(organism, organismText){
+        vm.selectedOrganism = organism;
+        vm.selectedOrganismText = organismText;
+        console.log('select organism:', organism)
+    }
+      vm.submit = function () {
         console.log('selected class is', vm.class)
         vm.appSetup = false;
-    }
+       
+        for (var organism in vm.allData) { 
+          vm.allData[organism].map(function(object) {
+            object.class = vm.class;
+          });
+        }
+      }
+
+      //assign site number with an ng-click
+
+      //send dynamically information to the observation form
+
+       vm.organisms = Object.keys(vm.allData);
+        
+        // ng-model names
+        vm.questionsByOrganism = {};
+        var questionArray = [];
+        for (var organism in vm.allData) {
+          questionArray = [];
+          for (var question in vm.allData[organism][0]) {
+            var questionObj = {};
+            if (question !== 'class' || question !== 'site_number') {
+              questionObj.property = question;
+              question = question.replace(/_/g, ' ');
+              question = question.charAt(0).toUpperCase() + question.slice(1);
+              questionObj.text = question;
+              questionArray.push(questionObj);
+            }
+          }
+          vm.questionsByOrganism[organism] = questionArray;
+        }
+
+   
 
     vm.submitData = function () {
         if (navigator.onLine) {

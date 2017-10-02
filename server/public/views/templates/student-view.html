@@ -1,7 +1,7 @@
 <!-- <div ng-include="'views/partials/nav.html'"></div> -->
 <div ng-show="sc.appSetup" class="container">
   <div id="staffLoginLink">
-    <md-button class="md-raised" href="/#home">Staff Login</md-button>
+    <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
 
   <div id="classSelect">
@@ -39,7 +39,8 @@
 
     <p>Species</p>
     <md-button class="w3-white" ng-show="plant" ng-click="bur_oak = !bur_oak; 
-    red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+    red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
+    sc.selectOrganism('bur_oak', 'Bur Oak')">
       Bur Oak</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="red_oak = !red_oak; 
     bur_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
@@ -79,15 +80,31 @@
     <h2>Belwin Citizen Science</h2>
     <p>You are in: {{sc.class}}</p>
 
+    <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
+2. n-show for buttons.  True only if organism from repeat == sc.selectedOrganism -->
+    <div ng-show="sc.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
+      <h1 >{{ sc.selectedOrganismText }}</h1>
+      <div ng-repeat="organism in sc.organisms" layout="row" layout-align="center center">
+        <div ng-repeat="site in [1, 2, 3]">
+          <md-button ng-show="sc.selectedOrganism == organism" ng-click="sc.allData[organism][$index - 1][site_number]">{{ sc.selectedOrganismText}} {{ $index + 1 }}</md-button>
+        </div>
+      </div>
+    </div>
+
     <!-- plants -->
-    <div ng-show="bur_oak" class="speciesView" layout="column" layout-align="center center">
+    <!-- <div ng-show="bur_oak" class="speciesView" layout="column" layout-align="center center">
       <h1>Bur Oak</h1>
       <div layout="row" layout-align="center center">
         <md-button ng-click="sc.showDialog($event)" class="w3-border w3-border-blue">Bur Oak 1</md-button>
         <md-button ng-click="sc.showDialog($event)" class="w3-border w3-border-blue"> Bur Oak 2</md-button>
         <md-button ng-click="sc.showDialog($event)" class="w3-border w3-border-blue">Bur Oak 3</md-button>
       </div>
-      <img src="assets/bur-oak.jpg" alt="Bur Oak Leaf">
+      <div layout="column" layout-align="start start">
+        <p>Did you see?</p>
+        <ul ng-repeat="question in sc.deciduousWithPollenQuestions">
+          <li>{{question}}</li>
+        </ul>
+      </div>
     </div>
 
     <div ng-show="red_oak" class="speciesView" layout="column" layout-align="center center">
@@ -137,8 +154,7 @@
         <md-button class="w3-border w3-border-blue">Common<br>Milk-<br>weed 2</md-button>
         <md-button class="w3-border w3-border-blue">Common<br>Milk-<br>weed 3</md-button>
       </div>
-      <img src="assets/common-milkweed.jpg" alt="Milkweed">
-    </div>
+    </div> -->
 
     <!-- Mammals -->
     <div ng-show="ground_squirrel" class="speciesView" layout="column" layout-align="center center">
@@ -156,7 +172,7 @@
       <h1>Ruby-throated <br> Hummingbird</h1>
       <div layout="row" layout-align="center center">
         <md-button class="w3-border w3-border-blue">Ruby<br>Throated<br>Humming-<br>bird 1</md-button>
-        <md-button class="w3-border w3-border-blue">Ruby<br>Throated<br>Humming-<br>bird 2</md-button>        
+        <md-button class="w3-border w3-border-blue">Ruby<br>Throated<br>Humming-<br>bird 2</md-button>
         <md-button class="w3-border w3-border-blue">Ruby<br>Throated<br>Humming-<br>bird 3</md-button>
       </div>
       <img src="assets/ruby-throated-hummingbird.jpg" alt="Ruby Throated Hummingbird">
