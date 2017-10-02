@@ -43,11 +43,13 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         });
     }
 
-    vm.selectedOrganism = ""
+    vm.selectedOrganism = "";
+    vm.selectedOrganismText = "";
 
 
-    vm.selectOrganism = function(organism){
+    vm.selectOrganism = function(organism, organismText){
         vm.selectedOrganism = organism;
+        vm.selectedOrganismText = organismText;
         console.log('select organism:', organism)
     }
       vm.submit = function () {

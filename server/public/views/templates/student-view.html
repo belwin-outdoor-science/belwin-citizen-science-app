@@ -40,7 +40,7 @@
     <p>Species</p>
     <md-button class="w3-white" ng-show="plant" ng-click="bur_oak = !bur_oak; 
     red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
-    sc.selectOrganism('bur_oak')">
+    sc.selectOrganism('bur_oak', 'Bur Oak')">
       Bur Oak</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="red_oak = !red_oak; 
     bur_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
@@ -82,10 +82,10 @@
     <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
 2. n-show for buttons.  True only if organism from repeat == sc.selectedOrganism -->
     <div ng-show="sc.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
-      <h1 >{{ sc.selectedOrganism }}</h1>
+      <h1 >{{ sc.selectedOrganismText }}</h1>
       <div ng-repeat="organism in sc.organisms" layout="row" layout-align="center center">
         <div ng-repeat="site in [1, 2, 3]">
-          <md-button ng-show="sc.selectedOrganism == organism" ng-click="sc.allData[organism][$index - 1][site_number]">{{ organism }} {{ $index + 1 }}</md-button>
+          <md-button ng-show="sc.selectedOrganism == organism" ng-click="sc.allData[organism][$index - 1][site_number]">{{ sc.selectedOrganismText}} {{ $index + 1 }}</md-button>
         </div>
       </div>
     </div>
