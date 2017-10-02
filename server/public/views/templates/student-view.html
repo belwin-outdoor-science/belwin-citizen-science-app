@@ -87,7 +87,7 @@
       <h1 >{{ sc.selectedOrganismText.selectedOrganismText }}</h1>
       <div ng-repeat="organism in sc.organisms" layout="row" layout-align="center center">
         <div ng-repeat="site in [1, 2, 3]">
-          <md-button ng-show="sc.selectedOrganism.selectedOrganism == organism" ng-click="sc.allData[organism][$index - 1][site_number] = site; sc.setSite(site); sc.showDialog($event)" >{{ sc.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
+          <md-button ng-show="sc.selectedOrganism.selectedOrganism == organism" ng-click="sc.allData[organism][$index - 1][site_number] = site; sc.studentService.setSite(site); sc.showDialog($event)" >{{ sc.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
         </div>
       </div>
     </div>

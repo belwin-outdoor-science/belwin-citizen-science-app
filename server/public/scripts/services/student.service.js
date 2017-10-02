@@ -100,7 +100,8 @@ myApp.service('StudentService', ['$http', function ($http) {
 
 
     self.postAllData = function (dataObject) {
-        addBurOak(dataObject);
+        console.log('submitted data: ');
+        console.log(self.allData)
         //call other add functions
     }
 
@@ -749,9 +750,15 @@ myApp.service('StudentService', ['$http', function ($http) {
         ]
     };
 
-    self.selectedOrganism = {selectedOrganism: ""};
-    self.selectedOrganismText = {selectedOrganismText: ""};
-    self.class = { class: '' };
+    self.selectedOrganism = {
+        selectedOrganism: ""
+    };
+    self.selectedOrganismText = {
+        selectedOrganismText: ""
+    };
+    self.class = {
+        class: ''
+    };
 
 
     self.selectOrganism = function (organism, organismText) {
@@ -760,12 +767,20 @@ myApp.service('StudentService', ['$http', function ($http) {
         console.log('select organism:', self.selectedOrganism)
     }
     self.setClass = function () {
-        
+
 
         for (var organism in self.allData) {
             self.allData[organism].map(function (object) {
                 object.class = self.class.class;
             });
         }
+    }
+
+    self.site = {
+        site: ""
+    };
+    self.setSite = function (site) {
+        console.log("site:", site, self.allData);
+        self.site.site = site;
     }
 }]);

@@ -94,11 +94,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         }
     }
 
-    vm.site = "";
-    vm.setSite = function (site) {
-        console.log("site:", site, vm.allData);
-        vm.site = site;
-    }
+
 
     vm.submit = function () {
         console.log('selected class is', vm.class.class)
