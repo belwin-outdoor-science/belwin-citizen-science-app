@@ -2,19 +2,37 @@
 
 <h1>Dashboard</h1>
 Welcome {{vm.user.userInfo[0].username}}!
+<p>{{vm.data.bur}}</p>
 <md-content>
     <md-list>
         <md-list-item class="md-3-line">
-            <!-- ng-repeat goes into this opening tag -->
             <div class="md-list-item-text">
                 <h3>Class #1</h3>
             </div>
-            <md-button class="md-raised md-primary">Details</md-button>
-            <!-- <div ng-show="class1">
-                <md-select>
-                <md-option></md-option>
-            </md-select>
-            </div> -->
+            <md-button class="md-raised md-primary" ng-click="classOne =! classOne">Details</md-button>
+            <div ng-show="classOne">
+                <div>
+                    <md-button ng-click="classOne =! classOne" class="md-raised">
+                        <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
+                    </md-button>
+                    <div ng-repeat="bur in vm.data.bur" ng-if="bur.class == '1'">
+                    <table class="mdl-data-table">
+                            <tr>
+                                <th></th>
+                                <th>Yes</th>
+                                <th>No</th>
+                                <th>?</th>
+                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th>Breaking Leaf Buds</th>
+                                    <td ng-if="bur.breaking_leaf_buds == 'yes'">{{bur.breaking_leaf_buds}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </md-list-item>
     </md-list>
 </md-content>
@@ -22,23 +40,12 @@ Welcome {{vm.user.userInfo[0].username}}!
 <md-button ng-click="allData =! allData" class="md-accent md-raised md-hue-1">
     View All Data Submitted</md-button>
 <div ng-show="allData">
-    <!-- <script>
-        for (var i = 0; i < vm.data.oak.length; i++) {
-            if (vm.data.oak.class == 1) {
-                
-            }
-            
-        }
-        </script> -->
-    <!-- <md-option>
-            <md-select></md-select>
-        </md-option> -->
-    <div ng-repeat="oak in vm.data.oak" ng-if="oak.class == 1">
-        {{oak}}
-        <!-- <div ng-if="oak.recorded | date == today | date"> -->
-        <p>{{oak.recorded | date}}</p>
-        <table>
+    {{vm.data.bur}}
+    <div>
+        <p>{{bur.breaking_leaf_buds}}</p>
+        <table class="mdl-data-table">
             <tr>
+                <th></th>
                 <th>Yes</th>
                 <th>No</th>
                 <th>?</th>
@@ -46,11 +53,10 @@ Welcome {{vm.user.userInfo[0].username}}!
             <tbody>
                 <tr>
                     <th>Breaking Leaf Buds</th>
-                    <td>{{oak.breaking_leaf_buds}}</td>
+                    <td ng-repeat="bur in vm.data.bur" ng-if="bur.breaking_leaf_buds == 'yes'">{{bur.breaking_leaf_buds.length}}</td>
                 </tr>
             </tbody>
         </table>
-
     </div>
 </div>
 </div>
