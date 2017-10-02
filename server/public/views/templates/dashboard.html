@@ -1,18 +1,62 @@
 <div ng-include="'views/partials/nav.html'"></div>
-
-<h1>Dashboard</h1> 
-
+<h1>Dashboard</h1>
+Welcome {{vm.user.userInfo[0].username}}!
+<p>{{vm.data.bur.info[0]}}</p>
 <md-button class="md-raised md-primary" ng-href="#register">Register New Admin</md-button>
-
 <md-content>
     <md-list>
-        <md-list-item class="md-3-line"> <!-- ng-repeat goes into this opening tag -->
+        <md-list-item class="md-3-line">
             <div class="md-list-item-text">
                 <h3>Class #1</h3>
             </div>
-            <md-button class="md-raised md-primary" ng-href="/#data">Details</md-button>
+            <md-button class="md-raised md-primary" ng-click="classOne =! classOne">Details</md-button>
+            <div ng-show="classOne">
+                <div>
+                    <md-button ng-click="classOne =! classOne" class="md-raised">
+                        <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
+                    </md-button>
+                    <div ng-repeat="bur in vm.data.bur.info" ng-if="bur.class == '1'">
+                    <table class="mdl-data-table">
+                            <tr>
+                                <th></th>
+                                <th>Yes</th>
+                                <th>No</th>
+                                <th>?</th>
+                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th>Breaking Leaf Buds</th>
+                                    <td ng-if="bur.breaking_leaf_buds == 'yes'">{{bur.breaking_leaf_buds}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </md-list-item>
     </md-list>
 </md-content>
-
-<md-button class="md-accent md-raised md-hue-1">View All Data Submitted</md-button>
+<!-- {{vm.data}} -->
+<md-button ng-click="allData =! allData" class="md-accent md-raised md-hue-1">
+    View All Data Submitted</md-button>
+<div ng-show="allData">
+    {{vm.data.bur}}
+    <div>
+        <p>{{bur.breaking_leaf_buds}}</p>
+        <table class="mdl-data-table">
+            <tr>
+                <th></th>
+                <th>Yes</th>
+                <th>No</th>
+                <th>?</th>
+            </tr>
+            <tbody>
+                <tr>
+                    <th>Breaking Leaf Buds</th>
+                    <td ng-repeat="bur in vm.data.bur.info" ng-if="bur.breaking_leaf_buds == 'yes'">{{bur.breaking_leaf_buds.length}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
