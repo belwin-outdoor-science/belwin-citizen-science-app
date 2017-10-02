@@ -781,6 +781,6 @@ myApp.service('StudentService', ['$http', function ($http) {
     };
     self.setSite = function (site) {
         console.log("site:", site, self.allData);
-        self.site.site = site;
+        self.site.site = parseInt(site) - 1;
     }
 }]);
