@@ -24,7 +24,7 @@ myApp.controller('LoginController', function($http, $location, UserService) {
           }
         }).catch(function(response){
           console.log('LoginController -- registerUser -- failure: ', response);
-          vm.message = "Wrong!!";
+          vm.message = "Incorrect username and password entered. Please try again.";
         });
       }
     };
