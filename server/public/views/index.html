@@ -51,7 +51,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body ng-app="myApp">
+<body ng-app="myApp" onoffline="onOffDetector()" beforeunload="return doNotReload()">
     <!-- <header ng-include="'/views/partials/header.html'"></header> -->
 
     <main ng-view></main>
