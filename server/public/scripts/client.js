@@ -40,10 +40,6 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/student', {
-      templateUrl: '/views/partials/studentData.html',
-      controller: 'StudentController as sc'
-    })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
@@ -55,13 +51,9 @@ myApp.config(function ($routeProvider, $locationProvider) {
     })
     .when('/student', {
       templateUrl: '/views/templates/student-view.html',
-      controller: 'StudentController as sc',
-      resolve: {
-        getuser: function (UserService) {
-          return UserService.getuser();
-        }
-      }
-    }).when('/info', {
+      controller: 'StudentController as sc'
+    })
+    .when('/info', {
       templateUrl: '/views/templates/info.html',
       controller: 'StudentController as sc',
       resolve: {
