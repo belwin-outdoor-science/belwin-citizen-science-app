@@ -17,6 +17,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     vm.selectOrganism = StudentService.selectOrganism
     vm.submit = StudentService.submit
 
+    vm.postAllData = StudentService.postAllData
+
     vm.organisms = Object.keys(vm.allData);
 
     vm.showDialog = function ($event) {
@@ -54,7 +56,9 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
 
     vm.submitData = function () {
         if (navigator.onLine) {
-            console.log('ok, we can send the data') //and then send it
+            console.log('ok, we can send the data')
+             //and then send it
+             vm.postAllData();
         } else {
             $mdDialog.show(
                 $mdDialog.alert()
@@ -69,11 +73,14 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             )
         }
     }
+
     vm.submit = function () {
         console.log('selected class is', vm.class.class)
         vm.appSetup = false;
     }
 
+
+    //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
     vm.imageArray = [{
             organismName: 'bur_oak',
             file: 'assets/bur-oak.jpg'
