@@ -79,9 +79,15 @@
         </div>
       </div>
     </div>
-{{sc.selectedOrganism.selectedOrganism}}
-  <div ng-if="sc.selectedOrganism.selectedOrganism == 'bur_oak'">
+
+  <!-- <div ng-if="sc.selectedOrganism.selectedOrganism == 'bur_oak'">
       <img src="assets/bur-oak.jpg" alt="Bur Oak">
+  </div> -->
+
+  <div ng-repeat="imageObject in sc.imageArray">
+      <div ng-if="sc.selectedOrganism.selectedOrganism == imageObject.organismName">
+          <img ng-src= "{{imageObject.file}}">
+      </div>
   </div>
 
     <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class - All Done!</md-button>

@@ -27,13 +27,13 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             controller: 'StudentController',
             controllerAs: 'sc',
             templateUrl: '/views/templates/observations.html'
-        });     
+        });
     }
-    vm.closeDialog = function() {
+    vm.closeDialog = function () {
         console.log('close button clicked')
         $mdDialog.hide();
     }
-  
+
     // ng-model names
     vm.questionsByOrganism = {};
     var questionArray = [];
@@ -51,7 +51,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         }
         vm.questionsByOrganism[organism] = questionArray;
     }
-    
+
     vm.submitData = function () {
         if (navigator.onLine) {
             console.log('ok, we can send the data') //and then send it
@@ -73,5 +73,47 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         console.log('selected class is', vm.class.class)
         vm.appSetup = false;
     }
+
+    vm.imageArray = [{
+            organismName: 'bur_oak',
+            file: 'assets/bur-oak.jpg'
+        },
+        {
+            organismName: 'common_buckthorn',
+            file: 'assets/common-buckthorn.jpg'
+        },
+        {
+            organismName: 'common_milkweed',
+            file: 'assets/common-milkweed.jpg'
+        },
+        {
+            organismName: 'dark_eyed_junco',
+            file: 'assets/dark-eyed-junco.jpg'
+        },
+        {
+            organismName: 'eastern_bluebird',
+            file: 'assets/eastern-bluebird.jpg'
+        }, 
+        {
+            organismName: 'ground_squirrel',
+            file: 'assets/ground-squirrel.jpg'
+        }, 
+        {
+            organismName: 'paper_birch',
+            file: 'assets/paper-birch.jpg'
+        },
+        {
+            organismName: 'quaking_aspen',
+            file: 'assets/quaking-aspen.jpg'
+        },
+        {
+            organismName: 'northern_red_oak',
+            file: 'assets/red-oak.jpg'
+        },
+        {
+            organismName: 'ruvy_throated_hummingbird',
+            file: 'assets/ruby-throated-hummingbird.jpg'
+        }
+    ]
 
 }]);
