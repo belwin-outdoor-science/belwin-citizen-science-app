@@ -1,5 +1,7 @@
 myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDialog', '$mdSidenav', function (StudentService, UserService, $mdDialog, $mdSidenav) {
     console.log('StudentController Loaded');
+   
+
 
     var vm = this;
     vm.userService = UserService;
@@ -10,6 +12,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     };
     vm.appSetup = true;
     vm.allData = StudentService.allData
+
+    console.log('All data:', vm.allData);
 
     vm.selectedOrganism = StudentService.selectedOrganism;
     vm.selectedOrganismText = StudentService.selectedOrganismText;
@@ -39,6 +43,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     // ng-model names
     vm.questionsByOrganism = {};
     var questionArray = [];
+
+    
     for (var organism in vm.allData) {
         questionArray = [];
         for (var question in vm.allData[organism][0]) {
