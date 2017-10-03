@@ -1,9 +1,12 @@
-myApp.controller('StaffController', ['StaffService', 'DataService', function (StaffService, DataService) {
+myApp.controller('StaffController', ['StaffService', 'DataService', 'UserService', function (StaffService, DataService, UserService) {
     console.log('Staff Controller is sourced in');
     var vm = this;
     vm.user = StaffService;
     vm.data = DataService;
+    vm.userService = UserService;
+    vm.userObject = UserService.userObject;
     StaffService.getUserInfo();
+
     // vm.data.getBur();
     // vm.data.getBuckthorn();
     // vm.data.getMilkweed();

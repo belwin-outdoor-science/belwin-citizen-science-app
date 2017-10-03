@@ -53,6 +53,7 @@ body, html {
   background-color: #333333;
   width: 100%;
   border-radius: 0px;
+  color: white;
 }
 
 ul {
@@ -74,11 +75,6 @@ li a {
   text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-  text-decoration: underline;
-  color: #eee;
-}
 
 md-dialog {
   flex: 100%;
@@ -119,3 +115,5 @@ md-dialog {
 img {
   width: 60%
 }
+
+
