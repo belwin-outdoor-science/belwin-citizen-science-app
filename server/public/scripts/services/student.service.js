@@ -119,7 +119,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         console.log('burOakPromise');
         console.log(burOakPromise);
     }
-    self.addBurOak(allBurOaksData);
+    
     self.addCommonBuckthorn = function (studentData) {
         commonBuckthornPromise = $http.post('/student_data/common_buckthorn', studentData).then(function (response) {
             if (response.data) {
