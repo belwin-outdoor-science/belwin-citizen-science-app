@@ -2,11 +2,24 @@ myApp.service('DataService', ['$http', function ($http) {
   console.log('DataService is loaded');
   var self = this;
   // self.data = { info: {}   }
-  self.bur = { info: {}};
-  self.getBur = function () {
-    $http.get('/dashboard/bur').then(function (response) {
-      self.bur.info = response.data;
-      // console.log('get route bur_oak: ', self.bur);
+
+  self.bur = {data: []};
+  // self.getBuckthorn();
+  // self.getMilkweed();
+  // self.getDark();
+  // self.getEastern();
+  // self.getGround();
+  // self.getNorthern();
+  // self.getPaper();
+  // self.getQuaking();
+  // self.getRuby();
+
+ 
+
+  self.getBur = function (classNum) {
+    $http.get('/dashboard/bur/' + classNum).then(function (response) {
+      self.bur.data = response.data;
+      console.log('get route bur_oak: ', self.bur);
     });
   }
   self.getBuckthorn = function () {
@@ -64,16 +77,17 @@ myApp.service('DataService', ['$http', function ($http) {
     });
   }
 
-  self.getBur();
-  self.getBuckthorn();
-  self.getMilkweed();
-  self.getDark();
-  self.getEastern();
-  self.getGround();
-  self.getNorthern();
-  self.getPaper();
-  self.getQuaking();
-  self.getRuby();
+  // self.getBur();
+  // self.getBuckthorn();
+  // self.getMilkweed();
+  // self.getDark();
+  // self.getEastern();
+  // self.getGround();
+  // self.getNorthern();
+  // self.getPaper();
+  // self.getQuaking();
+  // self.getRuby();
   
   // console.log('bur oak:', self.bur.info);
+
 }]);
