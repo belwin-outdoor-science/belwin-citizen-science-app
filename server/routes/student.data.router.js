@@ -7,7 +7,7 @@ var pool = require('../modules/pool.js');
 //Each request can post multiple rows to a table.
 router.post('/bur_oak', function (req, res) {
     //see buildStatement function explanation below
-    var query = buildStatement('INSERT INTO bur_oak (class, species_number, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO bur_oak (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -29,7 +29,7 @@ router.post('/bur_oak', function (req, res) {
 });
 
 router.post('/paper_birch', function (req, res) {
-    var query = buildStatement('INSERT INTO paper_birch (class, species_number, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO paper_birch (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -51,7 +51,7 @@ router.post('/paper_birch', function (req, res) {
 });
 
 router.post('/quaking_aspen', function (req, res) {
-    var query = buildStatement('INSERT INTO paper_birch (class, species_number, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO paper_birch (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -73,7 +73,7 @@ router.post('/quaking_aspen', function (req, res) {
 });
 
 router.post('/northern_red_oak', function (req, res) {
-    var query = buildStatement('INSERT INTO paper_birch (class, species_number, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO paper_birch (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -95,7 +95,7 @@ router.post('/northern_red_oak', function (req, res) {
 });
 
 router.post('/common_buckthorn', function (req, res) {
-    var query = buildStatement('INSERT INTO common_buckthorn (class, species_number, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO common_buckthorn (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -117,7 +117,7 @@ router.post('/common_buckthorn', function (req, res) {
 });
 
 router.post('/common_milkweed', function (req, res) {
-    var query = buildStatement('INSERT INTO common_milkweed (class, species_number, initial_growth, leaves, flowers_or_flower_buds, open_flowers, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO common_milkweed (class, site, initial_growth, leaves, flowers_or_flower_buds, open_flowers, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -141,7 +141,7 @@ router.post('/common_milkweed', function (req, res) {
 
 
 router.post('/ground_squirrel', function (req, res) {
-    var query = buildStatement('INSERT INTO ground_squirrel (class, species_number, active_individuals, feeding, young_individuals, dead_individuals, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO ground_squirrel (class, site, active_individuals, feeding, young_individuals, dead_individuals, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -163,7 +163,7 @@ router.post('/ground_squirrel', function (req, res) {
 });
 
 router.post('/eastern_bluebird', function (req, res) {
-    var query = buildStatement('INSERT INTO eastern_bluebird (class, species_number, active_individuals, feeding, fruit_seed_consumption, insect_consumption, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO eastern_bluebird (class, site, active_individuals, feeding, fruit_seed_consumption, insect_consumption, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -185,7 +185,7 @@ router.post('/eastern_bluebird', function (req, res) {
 });
 
 router.post('/dark_eyed_junco', function (req, res) {
-    var query = buildStatement('INSERT INTO dark_eyed_junco (class, species_number, active_individuals, feeding, fruit_seed_consumption, insect_consumption, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO dark_eyed_junco (class, site, active_individuals, feeding, fruit_seed_consumption, insect_consumption, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -207,7 +207,7 @@ router.post('/dark_eyed_junco', function (req, res) {
 });
 
 router.post('/ruby_throated_hummingbird', function (req, res) {
-    var query = buildStatement('INSERT INTO ruby_throated_hummingbird (class, species_number, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_bulding, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO ruby_throated_hummingbird (class, site, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_bulding, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
@@ -239,8 +239,25 @@ function buildStatement (insert, rows) {
     var params = [];
     var columns = [];
     rows.forEach(function(row) {
-      var valueClause = [];
-      Object.keys(row).forEach(function (property) {
+      var valueClause = []; //the bling list
+      Object.keys(row).forEach(function (property) {//row is an object of data for one site one organism
+        params.push(row[property])//property will be the property of the data object, such as breaking_leaf_buds
+        valueClause.push('$' + params.length)
+      });
+      columns.push('(' + valueClause.join(', ') + ')')
+    })
+    return {
+      text: insert + columns.join(', '),
+      values: params
+    }
+  }
+
+  function buildStatement (insert, rows) { 
+    var params = [];
+    var columns = [];
+    rows.forEach(function(row) { 
+      var valueClause = []; 
+      Object.keys(row).forEach(function (property) { 
         params.push(row[property])
         valueClause.push('$' + params.length)
       });
