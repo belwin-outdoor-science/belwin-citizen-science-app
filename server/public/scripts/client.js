@@ -31,9 +31,9 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/data', {
+    .when('/data/:classNum', {
       templateUrl: '/views/templates/data.html',
-      controller: 'DataController as vm',
+      controller: 'DataController as dc',
       resolve: {
         getuser: function (UserService) {
           return UserService.getuser();

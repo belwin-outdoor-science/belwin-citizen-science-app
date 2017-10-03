@@ -116,6 +116,10 @@ img {
   width: 60%
 }
 
+.speciesNumber {
+  border: solid;
+}
+
 .logo {
   width: 40%;
   margin: 0% 25%;
