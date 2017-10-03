@@ -20,7 +20,7 @@ myApp.factory('UserService', function($http, $location){
           }
       },function(response){
         console.log('UserService -- getuser -- failure: ', response);
-        $location.path("/home");
+        $location.path("/login");
       });
     },
 

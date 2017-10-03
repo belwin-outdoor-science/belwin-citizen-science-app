@@ -239,8 +239,25 @@ function buildStatement (insert, rows) {
     var params = [];
     var columns = [];
     rows.forEach(function(row) {
-      var valueClause = [];
-      Object.keys(row).forEach(function (property) {
+      var valueClause = []; //the bling list
+      Object.keys(row).forEach(function (property) {//row is an object of data for one site one organism
+        params.push(row[property])//property will be the property of the data object, such as breaking_leaf_buds
+        valueClause.push('$' + params.length)
+      });
+      columns.push('(' + valueClause.join(', ') + ')')
+    })
+    return {
+      text: insert + columns.join(', '),
+      values: params
+    }
+  }
+
+  function buildStatement (insert, rows) { 
+    var params = [];
+    var columns = [];
+    rows.forEach(function(row) { 
+      var valueClause = []; 
+      Object.keys(row).forEach(function (property) { 
         params.push(row[property])
         valueClause.push('$' + params.length)
       });
