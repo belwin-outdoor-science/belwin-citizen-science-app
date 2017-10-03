@@ -79,6 +79,10 @@
         </div>
       </div>
     </div>
+{{sc.selectedOrganism.selectedOrganism}}
+  <div ng-if="sc.selectedOrganism.selectedOrganism == 'bur_oak'">
+      <img src="assets/bur-oak.jpg" alt="Bur Oak">
+  </div>
 
     <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class - All Done!</md-button>
   </md-content>
