@@ -1,61 +1,14 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <h1>Dashboard</h1>
-Welcome {{vm.user.userInfo[0].username}}!
-<p>{{vm.data.bur.info[0]}}</p>
-<md-content>
-    <md-list>
-        <md-list-item class="md-3-line">
-            <div class="md-list-item-text">
-                <h3>Class #1</h3>
-            </div>
-            <md-button class="md-raised md-primary" ng-click="classOne =! classOne">Details</md-button>
-            <div ng-show="classOne">
-                <div>
-                    <md-button ng-click="classOne =! classOne" class="md-raised">
-                        <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
-                    </md-button>
-                    <div ng-repeat="bur in vm.data.bur.info" ng-if="bur.class == '1'">
-                    <table class="mdl-data-table">
-                            <tr>
-                                <th></th>
-                                <th>Yes</th>
-                                <th>No</th>
-                                <th>?</th>
-                            </tr>
-                            <tbody>
-                                <tr>
-                                    <th>Breaking Leaf Buds</th>
-                                    <td ng-if="bur.breaking_leaf_buds == 'yes'">{{bur.breaking_leaf_buds}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </md-list-item>
-    </md-list>
-</md-content>
-<!-- {{vm.data}} -->
-<md-button ng-click="allData =! allData" class="md-accent md-raised md-hue-1">
-    View All Data Submitted</md-button>
-<div ng-show="allData">
-    {{vm.data.bur}}
-    <div>
-        <p>{{bur.breaking_leaf_buds}}</p>
-        <table class="mdl-data-table">
-            <tr>
-                <th></th>
-                <th>Yes</th>
-                <th>No</th>
-                <th>?</th>
-            </tr>
-            <tbody>
-                <tr>
-                    <th>Breaking Leaf Buds</th>
-                    <td ng-repeat="bur in vm.data.bur.info" ng-if="bur.breaking_leaf_buds == 'yes'">{{bur.breaking_leaf_buds.length}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="container" ng-controller="UserController as uc">
+    <h2>Welcome, {{vm.user.userInfo[0].username}}!</h2>
 </div>
+
+<div class="row">
+    <md-button ng-href="#/data/1">Class 1 Data</md-button>
+    <md-button ng-href="#/data/2">Class 2 Data</md-button>
+    <md-button ng-href="#/data/3">Class 3 Data</md-button>
+    <md-button ng-href="#/data/4">Class 4 Data</md-button>
+    <md-button ng-href="#/data/5">Class 5 Data</md-button>
+    <md-button ng-href="#/data/">All Today's Data</md-button>
 </div>
