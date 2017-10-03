@@ -2,6 +2,7 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     var vm = this;
     vm.classNum = $routeParams.classNum;
     vm.bur = DataService.bur;
+    vm.buckthorn = DataService.buckthorn;
 
     // vm.data = DataService;
     // vm.buckthorn = DataService;
@@ -14,6 +15,9 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
         if (species == "Bur Oak") {
             DataService.getBur(vm.classNum);
             vm.showBurOak = true;
+        } else if (species == "Common Buckthorn") {
+            DataService.getBuckthorn(vm.classNum);
+            vm.showBuckthorn = true;
         }
     }
 }]);

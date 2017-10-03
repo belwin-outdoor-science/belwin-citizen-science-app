@@ -22,8 +22,8 @@ myApp.service('DataService', ['$http', function ($http) {
       console.log('get route bur_oak: ', self.bur);
     });
   }
-  self.getBuckthorn = function () {
-    $http.get('/dashboard/buckthorn').then(function (response) {
+  self.getBuckthorn = function (classNum) {
+    $http.get('/dashboard/buckthorn/' + classNum).then(function (response) {
       self.buckthorn = response.data;
       // console.log('get route common_buckthorn: ', self.buckthorn);
     });
