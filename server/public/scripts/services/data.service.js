@@ -22,14 +22,14 @@ myApp.service('DataService', ['$http', function ($http) {
       console.log('get route bur_oak: ', self.bur);
     });
   }
-  self.getBuckthorn = function () {
-    $http.get('/dashboard/buckthorn').then(function (response) {
+  self.getBuckthorn = function (classNum) {
+    $http.get('/dashboard/buckthorn/' + classNum).then(function (response) {
       self.buckthorn = response.data;
       // console.log('get route common_buckthorn: ', self.buckthorn);
     });
   }
-  self.getMilkweed = function () {
-    $http.get('/dashboard/milkweed').then(function (response) {
+  self.getMilkweed = function (classNum) {
+    $http.get('/dashboard/milkweed/' + classNum).then(function (response) {
       self.milkweed = response.data;
       // console.log('get route common_milkweed: ', self.milkweed);
     });
@@ -52,20 +52,20 @@ myApp.service('DataService', ['$http', function ($http) {
       // console.log('get route ground_squirrel: ', self.ground);
     });
   }
-  self.getNorthern = function () {
-    $http.get('/dashboard/northern').then(function (response) {
+  self.getNorthern = function (classNum) {
+    $http.get('/dashboard/northern/' + classNum).then(function (response) {
       self.northern = response.data;
       // console.log('get route northern_red_oak: ', self.northern);
     });
   }
-  self.getPaper = function () {
-    $http.get('/dashboard/paper').then(function (response) {
+  self.getPaper = function (classNum) {
+    $http.get('/dashboard/paper/' + classNum).then(function (response) {
       self.paper = response.data;
       // console.log('get route paper_birch: ', self.paper);
     });
   }
-  self.getQuaking = function () {
-    $http.get('/dashboard/quaking').then(function (response) {
+  self.getQuaking = function (classNum) {
+    $http.get('/dashboard/quaking/' + classNum).then(function (response) {
       self.quaking = response.data;
       // console.log('get route quaking_aspen: ', self.quaking);
     });
