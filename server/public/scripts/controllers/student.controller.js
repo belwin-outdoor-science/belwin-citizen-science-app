@@ -41,7 +41,11 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             controller: 'StudentController',
             controllerAs: 'sc',
             templateUrl: '/views/templates/observations.html'
-        });
+        });     
+    }
+    vm.closeDialog = function() {
+        console.log('close button clicked')
+        $mdDialog.hide();
     }
 
     vm.selectedOrganism = StudentService.selectedOrganism;
