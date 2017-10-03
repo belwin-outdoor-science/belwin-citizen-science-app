@@ -16,8 +16,8 @@ myApp.service('DataService', ['$http', function ($http) {
 
  
 
-  self.getBur = function () {
-    $http.get('/dashboard/bur').then(function (response) {
+  self.getBur = function (classNum) {
+    $http.get('/dashboard/bur/' + classNum).then(function (response) {
       self.bur.data = response.data;
       console.log('get route bur_oak: ', self.bur);
     });

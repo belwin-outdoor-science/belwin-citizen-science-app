@@ -12,7 +12,7 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.getDetails = function(species) {
         console.log('getting', species, 'data for class', vm.classNum)
         if (species == "Bur Oak") {
-            DataService.getBur();
+            DataService.getBur(vm.classNum);
         }
     }
 }]);
