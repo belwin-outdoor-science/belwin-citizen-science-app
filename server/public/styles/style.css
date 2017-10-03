@@ -119,3 +119,7 @@ md-dialog {
 img {
   width: 60%
 }
+
+.speciesNumber {
+  border: solid;
+}
