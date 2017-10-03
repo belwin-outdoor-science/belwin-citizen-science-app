@@ -50,10 +50,10 @@ body, html {
 }
 
 .navbar {
-  background-color: #333333;
   width: 100%;
   border-radius: 0px;
-  color: white;
+  color: black;
+  background-color: #D4CDAB
 }
 
 ul {
