@@ -1,12 +1,9 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <h1>Dashboard</h1>
 <div class="container" ng-controller="UserController as uc">
-    <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+    <h2>Welcome, {{vm.user.userInfo[0].username}}!</h2>
 </div>
 
-Welcome {{vm.user.userInfo[0].username}}!
-<p>{{vm.data.bur.info[0]}}</p>
-<md-button class="md-raised md-primary" ng-href="#register">Register New Staff</md-button>
 <div class="row">
     <md-button ng-href="#/data/1">Class 1 Data</md-button>
     <md-button ng-href="#/data/2">Class 2 Data</md-button>
