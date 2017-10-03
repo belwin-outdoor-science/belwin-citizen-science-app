@@ -12,7 +12,7 @@ body, html {
 }
 
 .instructions {
-  background-color: #333333;
+  background-color: #D4CDAB;
   color: #DDDDDD;
   padding: 15px;
 }
@@ -122,4 +122,9 @@ img {
 
 .speciesNumber {
   border: solid;
+}
+
+.logo {
+  width: 40%;
+  margin: 0% 25%;
 }
