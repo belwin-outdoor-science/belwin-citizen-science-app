@@ -28,8 +28,8 @@ myApp.service('DataService', ['$http', function ($http) {
       // console.log('get route common_buckthorn: ', self.buckthorn);
     });
   }
-  self.getMilkweed = function () {
-    $http.get('/dashboard/milkweed').then(function (response) {
+  self.getMilkweed = function (classNum) {
+    $http.get('/dashboard/milkweed/' + classNum).then(function (response) {
       self.milkweed = response.data;
       // console.log('get route common_milkweed: ', self.milkweed);
     });
@@ -59,13 +59,13 @@ myApp.service('DataService', ['$http', function ($http) {
     });
   }
   self.getPaper = function (classNum) {
-    $http.get('/dashboard/paper' + classNum).then(function (response) {
+    $http.get('/dashboard/paper/' + classNum).then(function (response) {
       self.paper = response.data;
       // console.log('get route paper_birch: ', self.paper);
     });
   }
-  self.getQuaking = function () {
-    $http.get('/dashboard/quaking').then(function (response) {
+  self.getQuaking = function (classNum) {
+    $http.get('/dashboard/quaking/' + classNum).then(function (response) {
       self.quaking = response.data;
       // console.log('get route quaking_aspen: ', self.quaking);
     });
