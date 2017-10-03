@@ -8,10 +8,10 @@
 <div class="row">
     Plants:
     <md-button ng-click="dc.getDetails('Bur Oak')">Bur Oak</md-button>
-    <md-button>Red Oak</md-button>
+    <md-button ng-click="dc.getDetails('Red Oak')">Red Oak</md-button>
     <md-button>Quaking Aspen</md-button>
     <md-button ng-click="dc.getDetails('Common Buckthorn')">Common Buckthorn</md-button>
-    <md-button>Paper Birch</md-button>
+    <md-button ng-click="dc.getDetails('Paper Birch')">Paper Birch</md-button>
     <md-button>Common Milkweed</md-button>
 </div>
 
@@ -28,5 +28,6 @@
 </div>
 
 
-<div ng-show="dc.showBurOak" ng-include="'views/partials/bur-oak-table.html'"></div>
-<div ng-show="dc.showBuckthorn" ng-include="'views/partials/common-buckthorn-table.html'"></div>
+<div ng-show="dc.showData" ng-include="'views/partials/' + dc.partial"></div>
+
+

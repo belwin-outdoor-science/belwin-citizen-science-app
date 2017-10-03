@@ -52,14 +52,14 @@ myApp.service('DataService', ['$http', function ($http) {
       // console.log('get route ground_squirrel: ', self.ground);
     });
   }
-  self.getNorthern = function () {
-    $http.get('/dashboard/northern').then(function (response) {
+  self.getNorthern = function (classNum) {
+    $http.get('/dashboard/northern/' + classNum).then(function (response) {
       self.northern = response.data;
       // console.log('get route northern_red_oak: ', self.northern);
     });
   }
-  self.getPaper = function () {
-    $http.get('/dashboard/paper').then(function (response) {
+  self.getPaper = function (classNum) {
+    $http.get('/dashboard/paper' + classNum).then(function (response) {
       self.paper = response.data;
       // console.log('get route paper_birch: ', self.paper);
     });
