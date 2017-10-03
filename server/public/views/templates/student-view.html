@@ -47,26 +47,34 @@
     sc.selectOrganism('northern_red_oak', 'Red Oak')">
       Red Oak</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="quaking_aspen = !quaking_aspen; 
-    bur_oak = false; red_oak = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+    bur_oak = false; red_oak = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
+    sc.selectOrganism('quaking_aspen', 'Quaking Aspen')">
       Quaking<br>Aspen</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="common_buckthorn = !common_buckthorn; 
-    bur_oak = false; red_oak = false; quaking_aspen = false; paper_birch = false; common_milkweed = false">
+    bur_oak = false; red_oak = false; quaking_aspen = false; paper_birch = false; common_milkweed = false;
+    sc.selectOrganism('common_buckthorn', 'Common Buckthorn')"> 
       Common<br>Buck-<br>thorn</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="paper_birch = !paper_birch; 
-    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; common_milkweed = false">
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; common_milkweed = false;
+    sc.selectOrganism('paper_birch', 'Paper Birch')">
       Paper<br>Birch</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="common_milkweed = !common_milkweed; 
-    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false">
+    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false;
+    sc.selectOrganism('common_milkweed', 'Common Milkweed')">
       Common<br>Milkweed</md-button>
-    <md-button class="w3-white" ng-show="mammal" ng-click="ground_squirrel = !ground_squirrel">Ground<br>Squirrel</md-button>
+    <md-button class="w3-white" ng-show="mammal" ng-click="ground_squirrel = !ground_squirrel; sc.selectOrganism('ground_squirrel', 'Ground Squirrel')">
+      Ground<br>Squirrel</md-button>
     <md-button class="w3-white" ng-show="bird" ng-click="ruby_throated_hummingbird = !ruby_throated_hummingbird;
-    dark_eyed_junco = false; eastern_bluebird = false">
+    dark_eyed_junco = false; eastern_bluebird = false;
+    sc.selectOrganism('ruby_throated_hummingbird', 'Ruby Throated Hummingbird')">
       Ruby<br>Throated<br>Humming-<br>bird</md-button>
     <md-button class="w3-white" ng-show="bird" ng-click="dark_eyed_junco = !dark_eyed_junco;
-    ruby_throated_hummingbird = false; eastern_bluebird = false">
+    ruby_throated_hummingbird = false; eastern_bluebird = false;
+    sc.selectOrganism('dark_eyed_junco', 'Dark-eyed Junco')">
       Dark-eyed<br>Junco</md-button>
     <md-button class="w3-white" ng-show="bird" ng-click="eastern_bluebird = !eastern_bluebird;
-    dark_eyed_junco = false; ruby_throated_hummingbird = false">
+    dark_eyed_junco = false; ruby_throated_hummingbird = false;
+    sc.selectOrganism('eastern_bluebird', 'Eastern Bluebird')">
       Eastern<br>Bluebird</md-button>
 
 
