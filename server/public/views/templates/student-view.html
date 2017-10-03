@@ -26,55 +26,43 @@
 
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
     <p>Type</p>
-    <md-button class="typeButton w3-white" ng-click="plant = !plant; mammal = false; bird = false; 
-    ground_squirrel = false;
-    dark_eyed_junco = false; ruby_throated_hummingbird = false; eastern_bluebird = false">
+    <md-button class="typeButton w3-white" ng-click="plant = !plant; mammal = false; bird = false">
       Plants</md-button>
-    <md-button class="typeButton w3-white" ng-click="mammal = !mammal; plant = false; bird = false;
-    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
-    dark_eyed_junco = false; ruby_throated_hummingbird = false; eastern_bluebird = false">
+    <md-button class="typeButton w3-white" ng-click="mammal = !mammal; plant = false; bird = false">
       Mammals</md-button>
-    <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false;
-    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
-    ground_squirrel = false;">
+    <md-button class="typeButton w3-white" ng-click="bird = !bird; mammal = false; plant = false;">
       Birds</md-button>
 
     <p>Species</p>
     <md-button class="w3-white" ng-show="plant" ng-click="bur_oak = !bur_oak; 
-    red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
     sc.selectOrganism('bur_oak', 'Bur Oak')">
       Bur Oak</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="red_oak = !red_oak; 
-    bur_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false; common_milkweed = false;
     sc.selectOrganism('northern_red_oak', 'Red Oak')">
       Red Oak</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="quaking_aspen = !quaking_aspen; 
-    bur_oak = false; red_oak = false; common_buckthorn = false; paper_birch = false; common_milkweed = false">
+    sc.selectOrganism('quaking_aspen', 'Quaking Aspen')">
       Quaking<br>Aspen</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="common_buckthorn = !common_buckthorn; 
-    bur_oak = false; red_oak = false; quaking_aspen = false; paper_birch = false; common_milkweed = false">
+    sc.selectOrganism('common_buckthorn', 'Common Buckthorn')">
       Common<br>Buck-<br>thorn</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="paper_birch = !paper_birch; 
-    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; common_milkweed = false">
+    sc.selectOrganism('paper_birch', 'Paper Birch')">
       Paper<br>Birch</md-button>
     <md-button class="w3-white" ng-show="plant" ng-click="common_milkweed = !common_milkweed; 
-    bur_oak = false; red_oak = false; quaking_aspen = false; common_buckthorn = false; paper_birch = false">
+    sc.selectOrganism('common_milkweed', 'Common Milkweed')">
       Common<br>Milkweed</md-button>
-    <md-button class="w3-white" ng-show="mammal" ng-click="ground_squirrel = !ground_squirrel">Ground<br>Squirrel</md-button>
+    <md-button class="w3-white" ng-show="mammal" ng-click="ground_squirrel = !ground_squirrel; sc.selectOrganism('ground_squirrel', 'Ground Squirrel')">
+      Ground<br>Squirrel</md-button>
     <md-button class="w3-white" ng-show="bird" ng-click="ruby_throated_hummingbird = !ruby_throated_hummingbird;
-    dark_eyed_junco = false; eastern_bluebird = false">
+    sc.selectOrganism('ruby_throated_hummingbird', 'Ruby Throated Hummingbird')">
       Ruby<br>Throated<br>Humming-<br>bird</md-button>
     <md-button class="w3-white" ng-show="bird" ng-click="dark_eyed_junco = !dark_eyed_junco;
-    ruby_throated_hummingbird = false; eastern_bluebird = false">
+    sc.selectOrganism('dark_eyed_junco', 'Dark-eyed Junco')">
       Dark-eyed<br>Junco</md-button>
     <md-button class="w3-white" ng-show="bird" ng-click="eastern_bluebird = !eastern_bluebird;
-    dark_eyed_junco = false; ruby_throated_hummingbird = false">
+    sc.selectOrganism('eastern_bluebird', 'Eastern Bluebird')">
       Eastern<br>Bluebird</md-button>
-
-
-
-  
-
   </md-sidenav>
 
   <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
@@ -86,13 +74,23 @@
     <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
 2. n-show for buttons.  True only if organism from repeat == sc.selectedOrganism -->
     <div ng-show="sc.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
-      <h1 >{{ sc.selectedOrganismText.selectedOrganismText }}</h1>
+      <h1>{{ sc.selectedOrganismText.selectedOrganismText }}</h1>
       <div ng-repeat="organism in sc.organisms" layout="row" layout-align="center center">
         <div ng-repeat="site in [1, 2, 3]">
-          <md-button ng-show="sc.selectedOrganism.selectedOrganism == organism" ng-click="sc.allData[organism][$index - 1][site_number] = site; sc.studentService.setSite(site); sc.showDialog($event)" >{{ sc.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
+          <md-button ng-show="sc.selectedOrganism.selectedOrganism == organism" ng-click="sc.allData[organism][$index - 1][site_number] = site; sc.studentService.setSite(site); sc.showDialog($event)">{{ sc.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
         </div>
       </div>
     </div>
+
+  <!-- <div ng-if="sc.selectedOrganism.selectedOrganism == 'bur_oak'">
+      <img src="assets/bur-oak.jpg" alt="Bur Oak">
+  </div> -->
+
+  <div ng-repeat="imageObject in sc.imageArray">
+      <div ng-if="sc.selectedOrganism.selectedOrganism == imageObject.organismName">
+          <img ng-src= "{{imageObject.file}}">
+      </div>
+  </div>
 
     <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class - All Done!</md-button>
   </md-content>

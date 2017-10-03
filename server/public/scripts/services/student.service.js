@@ -783,4 +783,12 @@ myApp.service('StudentService', ['$http', function ($http) {
         console.log("site:", site, self.allData);
         self.site.site = parseInt(site) - 1;
     }
+
+    self.resetForm = function(){
+        for (var question in self.allData[self.selectedOrganism.selectedOrganism][self.site.site]) {
+            if (question !== 'class' || question !== 'site') {
+              self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
+            }
+        }
+    }
 }]);
