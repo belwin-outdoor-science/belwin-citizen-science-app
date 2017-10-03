@@ -41,7 +41,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         questionArray = [];
         for (var question in vm.allData[organism][0]) {
             var questionObj = {};
-            if (question !== 'class' || question !== 'site_number') {
+            if (question !== 'class' && question !== 'site') {
                 questionObj.property = question;
                 question = question.replace(/_/g, ' ');
                 question = question.charAt(0).toUpperCase() + question.slice(1);
