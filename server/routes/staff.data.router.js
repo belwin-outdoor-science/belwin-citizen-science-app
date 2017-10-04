@@ -132,7 +132,7 @@ function buildGetEverything(row, organism) {
     });
     
     //take off last comma
-    sumStatements = sumStatements.substring(0, sumStatements.length - 1);;
+    sumStatements = sumStatements.substring(0, sumStatements.length - 1);
     // sumStatements += ' from ' + organism;
     sumStatements += ' WHERE recorded >= CURRENT_DATE GROUP BY site ORDER BY site ASC';
 

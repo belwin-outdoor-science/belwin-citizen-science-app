@@ -8,7 +8,7 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.paper = DataService.paper;
     vm.quaking = DataService.quaking;
     vm.milkweed = DataService.milkweed;
-
+    vm.all = DataService.all;
     // vm.data = DataService;
     // vm.buckthorn = DataService;
 
