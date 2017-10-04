@@ -1,5 +1,7 @@
 myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDialog', '$mdSidenav', function (StudentService, UserService, $mdDialog, $mdSidenav) {
     console.log('StudentController Loaded');
+   
+
 
     var vm = this;
     vm.userService = UserService;
@@ -11,11 +13,15 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     vm.appSetup = true;
     vm.allData = StudentService.allData
 
+    console.log('All data:', vm.allData);
+
     vm.selectedOrganism = StudentService.selectedOrganism;
     vm.selectedOrganismText = StudentService.selectedOrganismText;
 
     vm.selectOrganism = StudentService.selectOrganism
     vm.submit = StudentService.submit
+
+    vm.postAllData = StudentService.postAllData
 
     vm.organisms = Object.keys(vm.allData);
 
@@ -37,6 +43,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     // ng-model names
     vm.questionsByOrganism = {};
     var questionArray = [];
+
+    
     for (var organism in vm.allData) {
         questionArray = [];
         for (var question in vm.allData[organism][0]) {
@@ -54,7 +62,9 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
 
     vm.submitData = function () {
         if (navigator.onLine) {
-            console.log('ok, we can send the data') //and then send it
+            console.log('ok, we can send the data')
+             //and then send it
+             vm.postAllData();
         } else {
             $mdDialog.show(
                 $mdDialog.alert()
@@ -69,11 +79,14 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             )
         }
     }
+
     vm.submit = function () {
         console.log('selected class is', vm.class.class)
         vm.appSetup = false;
     }
 
+
+    //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
     vm.imageArray = [{
             organismName: 'bur_oak',
             file: 'assets/bur-oak.jpg'

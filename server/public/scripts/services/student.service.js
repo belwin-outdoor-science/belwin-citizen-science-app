@@ -32,84 +32,12 @@ myApp.service('StudentService', ['$http', function ($http) {
     //unsuccessful requests will be resent.
 
     // practice call
-    var burOakData = {
-        class: '1',
-        site: '1',
-        breaking_leaf_buds: 'yes',
-        leaves: 'yes',
-        increasing_leaf_size: 'yes',
-        colored_leaves: 'yes',
-        falling_leaves: 'yes',
-        flowers_or_flower_buds: 'yes',
-        open_flowers: 'yes',
-        pollen_release: 'yes',
-        fruits: 'yes',
-        ripe_fruits: 'yes',
-        recent_fruit_or_seed_drop: 'yes',
-        notes: ''
-    }
-
-    var allBurOaksData = [{
-        class: '1',
-        site: '1',
-        breaking_leaf_buds: 'yes',
-        leaves: 'yes',
-        increasing_leaf_size: 'yes',
-        colored_leaves: 'yes',
-        falling_leaves: 'yes',
-        flowers_or_flower_buds: 'yes',
-        open_flowers: 'yes',
-        pollen_release: 'yes',
-        fruits: 'yes',
-        ripe_fruits: 'no',
-        recent_fruit_or_seed_drop: 'no',
-        notes: 'imaburoak'
-    },
-    {
-        class: '1',
-        site: '1',
-        breaking_leaf_buds: 'yes',
-        leaves: 'yes',
-        increasing_leaf_size: 'yes',
-        colored_leaves: 'yes',
-        falling_leaves: 'yes',
-        flowers_or_flower_buds: 'yes',
-        open_flowers: 'yes',
-        pollen_release: 'yes',
-        fruits: 'yes',
-        ripe_fruits: 'no',
-        recent_fruit_or_seed_drop: 'no',
-        notes: 'imaburoak'
-    },
-    {
-        class: '1',
-        site: '1',
-        breaking_leaf_buds: 'yes',
-        leaves: 'yes',
-        increasing_leaf_size: 'yes',
-        colored_leaves: 'yes',
-        falling_leaves: 'yes',
-        flowers_or_flower_buds: 'yes',
-        open_flowers: 'yes',
-        pollen_release: 'yes',
-        fruits: 'yes',
-        ripe_fruits: 'no',
-        recent_fruit_or_seed_drop: 'no',
-        notes: 'imaburoak'
-    }
-    ];
 
 
-    self.postAllData = function (dataObject) {
-        console.log('submitted data: ');
-        console.log(self.allData)
-        //call other add functions
-    }
 
 
     self.addBurOak = function (studentData) {
         console.log('addBurOak called');
-
         burOakPromise = $http.post('/student_data/bur_oak', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addBurOak -- success: ', response.data);
@@ -123,7 +51,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         console.log('burOakPromise');
         console.log(burOakPromise);
     }
-    
+   
     self.addCommonBuckthorn = function (studentData) {
         commonBuckthornPromise = $http.post('/student_data/common_buckthorn', studentData).then(function (response) {
             if (response.data) {
@@ -253,6 +181,24 @@ myApp.service('StudentService', ['$http', function ($http) {
     console.log(allPromises);
 
 
+
+
+    self.postAllData = function () {
+        console.log('submitted data: ');
+        console.log(self.allData);
+
+        //call other add functions
+        self.addBurOak(self.allData.bur_oak);
+        self.addCommonBuckthorn(self.allData.common_buckthorn);
+        self.addCommonMilkweed(self.allData.common_milkweed);
+        self.addEasternBluebird(self.allData.eastern_bluebird);
+        self.addGroundSquirrel(self.allData.ground_squirrel);
+        self.addDarkEyedJunco(self.allData.dark_eyed_junco);
+        self.addPaperBirch(self.allData.paper_birch);
+        self.addQuakingAspen(self.allData.quaking_aspen);
+        self.addNorthernRedOak(self.allData.northern_red_oak);
+        self.addrubyThroatedHummingbird(self.allData.ruby_throated_hummingbird);
+    }
 
     //Charly's data solution
     self.allData = {
@@ -762,6 +708,8 @@ myApp.service('StudentService', ['$http', function ($http) {
         ]
     };
 
+
+    //data filling functions for student view
     self.selectedOrganism = {
         selectedOrganism: ""
     };
@@ -771,7 +719,6 @@ myApp.service('StudentService', ['$http', function ($http) {
     self.class = {
         class: ''
     };
-
 
     self.selectOrganism = function (organism, organismText) {
         self.selectedOrganism.selectedOrganism = organism;
@@ -796,10 +743,10 @@ myApp.service('StudentService', ['$http', function ($http) {
         self.site.site = parseInt(site) - 1;
     }
 
-    self.resetForm = function(){
+    self.resetForm = function () {
         for (var question in self.allData[self.selectedOrganism.selectedOrganism][self.site.site]) {
             if (question !== 'class' || question !== 'site') {
-              self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
+                self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
             }
         }
     }
