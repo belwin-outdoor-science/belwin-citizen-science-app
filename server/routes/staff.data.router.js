@@ -93,6 +93,7 @@ router.get('/bur/:classNum', function (req, res) {
         });
     }
 });
+
 //SELECT site, 
 function buildGet(row, organism) {
     console.log('buildGet called');
@@ -173,38 +174,6 @@ router.get('/allData', function (req, res) {
         });
     }
 });
-//JEN'S REQUEST
-// router.get('/bur/:classNum', function (req, res) {
-//     // Add a SELECT query
-//     if (req.isAuthenticated()) {
-//         var userInfo = {
-//             username: req.user.username
-//         };
-//         var classNum = req.params.classNum.toString();
-//         console.log('classNum:', classNum)
-//         pool.connect(function (err, client, done) {
-//             if (err) {
-//                 // when connecting to database failed
-//                 console.log('Error connecting to database', err);
-//                 res.sendStatus(500);
-//             } else {
-//                 // when connecting to database worked!
-//                 client.query("SELECT site, sum(case when breaking_leaf_buds  = 'yes' then 1 else 0 end) as breaking_leaf_buds_yes, sum(case when breaking_leaf_buds  = 'no' then 1 else 0 end) as breaking_leaf_buds_no, sum(case when breaking_leaf_buds  = 'maybe' then 1 else 0 end) as breaking_leaf_buds_maybe, sum(case when leaves  = 'yes' then 1 else 0 end) as leaves_yes, sum(case when leaves = 'no' then 1 else 0 end) as leaves_no, sum(case when leaves = 'maybe' then 1 else 0 end) as leaves_maybe, sum(case when increasing_leaf_size = 'yes' then 1 else 0 end) as increasing_leaf_size_yes, sum(case when increasing_leaf_size = 'no' then 1 else 0 end) as increasing_leaf_size_no, sum(case when increasing_leaf_size = 'maybe' then 1 else 0 end) as increasing_leaf_size_maybe, sum(case when colored_leaves = 'yes' then 1 else 0 end) as colored_leaves_yes,sum(case when colored_leaves = 'no' then 1 else 0 end) as colored_leaves_no, sum(case when colored_leaves = 'maybe' then 1 else 0 end) as colored_leaves_maybe, sum(case when falling_leaves = 'yes' then 1 else 0 end) as falling_leaves_yes, sum(case when falling_leaves = 'no' then 1 else 0 end) as falling_leaves_no, sum(case when falling_leaves = 'maybe' then 1 else 0 end) as falling_leaves_maybe, sum(case when flowers_or_flower_buds = 'yes' then 1 else 0 end) as flowers_or_flower_buds_yes, sum(case when flowers_or_flower_buds = 'no' then 1 else 0 end) as flowers_or_flower_buds_no, sum(case when flowers_or_flower_buds = 'maybe' then 1 else 0 end) as flowers_or_flower_buds_maybe, sum(case when open_flowers = 'yes' then 1 else 0 end) as open_flowers_yes, sum(case when open_flowers = 'no' then 1 else 0 end) as open_flowers_no, sum(case when open_flowers = 'maybe' then 1 else 0 end) as open_flowers_maybe, sum(case when pollen_release = 'yes' then 1 else 0 end) as pollen_release_yes, sum(case when pollen_release = 'no' then 1 else 0 end) as pollen_release_no, sum(case when pollen_release = 'maybe' then 1 else 0 end) as pollen_release_maybe, sum(case when fruits = 'yes' then 1 else 0 end) as fruits_yes, sum(case when fruits = 'no' then 1 else 0 end) as fruits_no, sum(case when fruits = 'maybe' then 1 else 0 end) as fruits_maybe, sum(case when ripe_fruits = 'yes' then 1 else 0 end) as ripe_fruits_yes, sum(case when ripe_fruits = 'no' then 1 else 0 end) as ripe_fruits_no, sum(case when ripe_fruits = 'maybe' then 1 else 0 end) as ripe_fruits_maybe, sum(case when recent_fruit_or_seed_drop = 'yes' then 1 else 0 end) as recent_fruit_or_seed_drop_yes,sum(case when recent_fruit_or_seed_drop = 'no' then 1 else 0 end) as recent_fruit_or_seed_drop_no,sum(case when recent_fruit_or_seed_drop = 'maybe' then 1 else 0 end) as recent_fruit_or_seed_drop_maybe from bur_oak WHERE recorded >= CURRENT_DATE AND class = $1 GROUP BY site ORDER BY site ASC", [classNum], function (errorMakingQuery, result) {
-
-
-//                     done();
-//                     if (errorMakingQuery) {
-//                         console.log('Error making database query', errorMakingQuery);
-//                         res.sendStatus(500);
-//                     } else {
-//                         // console.log('result.rows is: ', result.rows);
-//                         res.send(result.rows);
-//                     }
-//                 });
-//             }
-//         });
-//     }
-// });
 
 //leave this route to use for "view all classes"
 router.get('/buckthorn', function (req, res) {
@@ -235,8 +204,6 @@ router.get('/buckthorn', function (req, res) {
     }
 });
 
-
-
 router.get('/buckthorn/:classNum', function (req, res) {
     // Add a SELECT query
     if (req.isAuthenticated()) {
@@ -244,7 +211,11 @@ router.get('/buckthorn/:classNum', function (req, res) {
             username: req.user.username
         };
         var classNum = req.params.classNum.toString();
-       // console.log('classNum:', classNum)
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.common_buckthorn[0], 'common_buckthorn');
+        console.log('common buckthorn get query: ');
+        console.log(query);
+
         pool.connect(function (err, client, done) {
             if (err) {
                 // when connecting to database failed
@@ -252,13 +223,13 @@ router.get('/buckthorn/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query("SELECT site, sum(case when breaking_leaf_buds  = 'yes' then 1 else 0 end) as breaking_leaf_buds_yes, sum(case when breaking_leaf_buds  = 'no' then 1 else 0 end) as breaking_leaf_buds_no, sum(case when breaking_leaf_buds  = 'maybe' then 1 else 0 end) as breaking_leaf_buds_maybe, sum(case when leaves  = 'yes' then 1 else 0 end) as leaves_yes, sum(case when leaves = 'no' then 1 else 0 end) as leaves_no, sum(case when leaves = 'maybe' then 1 else 0 end) as leaves_maybe, sum(case when increasing_leaf_size = 'yes' then 1 else 0 end) as increasing_leaf_size_yes, sum(case when increasing_leaf_size = 'no' then 1 else 0 end) as increasing_leaf_size_no, sum(case when increasing_leaf_size = 'maybe' then 1 else 0 end) as increasing_leaf_size_maybe, sum(case when colored_leaves = 'yes' then 1 else 0 end) as colored_leaves_yes,sum(case when colored_leaves = 'no' then 1 else 0 end) as colored_leaves_no, sum(case when colored_leaves = 'maybe' then 1 else 0 end) as colored_leaves_maybe, sum(case when falling_leaves = 'yes' then 1 else 0 end) as falling_leaves_yes, sum(case when falling_leaves = 'no' then 1 else 0 end) as falling_leaves_no, sum(case when falling_leaves = 'maybe' then 1 else 0 end) as falling_leaves_maybe, sum(case when flowers_or_flower_buds = 'yes' then 1 else 0 end) as flowers_or_flower_buds_yes, sum(case when flowers_or_flower_buds = 'no' then 1 else 0 end) as flowers_or_flower_buds_no, sum(case when flowers_or_flower_buds = 'maybe' then 1 else 0 end) as flowers_or_flower_buds_maybe, sum(case when open_flowers = 'yes' then 1 else 0 end) as open_flowers_yes, sum(case when open_flowers = 'no' then 1 else 0 end) as open_flowers_no, sum(case when open_flowers = 'maybe' then 1 else 0 end) as open_flowers_maybe,  sum(case when fruits = 'yes' then 1 else 0 end) as fruits_yes, sum(case when fruits = 'no' then 1 else 0 end) as fruits_no, sum(case when fruits = 'maybe' then 1 else 0 end) as fruits_maybe, sum(case when ripe_fruits = 'yes' then 1 else 0 end) as ripe_fruits_yes, sum(case when ripe_fruits = 'no' then 1 else 0 end) as ripe_fruits_no, sum(case when ripe_fruits = 'maybe' then 1 else 0 end) as ripe_fruits_maybe, sum(case when recent_fruit_or_seed_drop = 'yes' then 1 else 0 end) as recent_fruit_or_seed_drop_yes, sum(case when recent_fruit_or_seed_drop = 'no' then 1 else 0 end) as recent_fruit_or_seed_drop_no, sum(case when recent_fruit_or_seed_drop = 'maybe' then 1 else 0 end) as recent_fruit_or_seed_drop_maybe from common_buckthorn WHERE recorded >= CURRENT_DATE AND class = $1 GROUP BY site ORDER BY site ASC", [classNum], function (errorMakingQuery, result) {
+                client.query(query, [classNum], function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        // console.log('result.rows is: ', result.rows);
+                        console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -266,10 +237,6 @@ router.get('/buckthorn/:classNum', function (req, res) {
         });
     }
 });
-
-
-
-
 
 //save for whole class data pull
 router.get('/milkweed', function (req, res) {
@@ -307,7 +274,11 @@ router.get('/milkweed/:classNum', function (req, res) {
             username: req.user.username
         };
         var classNum = req.params.classNum.toString();
-      //  console.log('classNum:', classNum)
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.common_milkweed[0], 'common_milkweed');
+        console.log('common milkweed get query: ');
+        console.log(query);
+
         pool.connect(function (err, client, done) {
             if (err) {
                 // when connecting to database failed
@@ -315,7 +286,7 @@ router.get('/milkweed/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query("SELECT site, sum(case when initial_growth = 'yes' then 1 else 0 end) as initial_growth_yes, sum(case when initial_growth = 'no' then 1 else 0 end) as initial_growth_no, sum(case when initial_growth  = 'maybe' then 1 else 0 end) as initial_growth_maybe, sum(case when leaves  = 'yes' then 1 else 0 end) as leaves_yes, sum(case when leaves = 'no' then 1 else 0 end) as leaves_no, sum(case when leaves = 'maybe' then 1 else 0 end) as leaves_maybe, sum(case when flowers_or_flower_buds = 'yes' then 1 else 0 end) as flowers_or_flower_buds_yes, sum(case when flowers_or_flower_buds = 'no' then 1 else 0 end) as flowers_or_flower_buds_no, sum(case when flowers_or_flower_buds = 'maybe' then 1 else 0 end) as flowers_or_flower_buds_maybe, sum(case when open_flowers = 'yes' then 1 else 0 end) as open_flowers_yes, sum(case when open_flowers = 'no' then 1 else 0 end) as open_flowers_no, sum(case when open_flowers = 'maybe' then 1 else 0 end) as open_flowers_maybe, sum(case when fruits = 'yes' then 1 else 0 end) as fruits_yes, sum(case when fruits = 'no' then 1 else 0 end) as fruits_no, sum(case when fruits = 'maybe' then 1 else 0 end) as fruits_maybe, sum(case when ripe_fruits = 'yes' then 1 else 0 end) as ripe_fruits_yes, sum(case when ripe_fruits = 'no' then 1 else 0 end) as ripe_fruits_no, sum(case when ripe_fruits = 'maybe' then 1 else 0 end) as ripe_fruits_maybe, sum(case when recent_fruit_or_seed_drop = 'yes' then 1 else 0 end) as recent_fruit_or_seed_drop_yes, sum(case when recent_fruit_or_seed_drop = 'no' then 1 else 0 end) as recent_fruit_or_seed_drop_no, sum(case when recent_fruit_or_seed_drop = 'maybe' then 1 else 0 end) as recent_fruit_or_seed_drop_maybe from common_milkweed WHERE recorded >= CURRENT_DATE AND class = $1 GROUP BY site ORDER BY site ASC", [classNum], function (errorMakingQuery, result) {
+                client.query(query, [classNum], function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -358,6 +329,41 @@ router.get('/dark', function (req, res) {
     }
 });
 
+router.get('/dark/:classNum', function (req, res) {
+    // Add a SELECT query
+    if (req.isAuthenticated()) {
+        var userInfo = {
+            username: req.user.username
+        };
+        var classNum = req.params.classNum.toString();
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.dark_eyed_junco[0], 'dark_eyed_junco');
+        console.log('dark eyed junco get query: ');
+        console.log(query);
+
+        pool.connect(function (err, client, done) {
+            if (err) {
+                // when connecting to database failed
+                console.log('Error connecting to database', err);
+                res.sendStatus(500);
+            } else {
+                // when connecting to database worked!
+                client.query(query, [classNum], function (errorMakingQuery, result) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('Error making database query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        // console.log('result.rows is: ', result.rows);
+                        res.send(result.rows);
+                    }
+                });
+            }
+        });
+    }
+});
+
+
 router.get('/eastern', function (req, res) {
     // Add a SELECT query
     if (req.isAuthenticated()) {
@@ -386,6 +392,41 @@ router.get('/eastern', function (req, res) {
     }
 });
 
+router.get('/eastern/:classNum', function (req, res) {
+    // Add a SELECT query
+    if (req.isAuthenticated()) {
+        var userInfo = {
+            username: req.user.username
+        };
+        var classNum = req.params.classNum.toString();
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.eastern_bluebird[0], 'eastern_bluebird');
+        console.log('eastern bluebird get query: ');
+        console.log(query);
+
+        pool.connect(function (err, client, done) {
+            if (err) {
+                // when connecting to database failed
+                console.log('Error connecting to database', err);
+                res.sendStatus(500);
+            } else {
+                // when connecting to database worked!
+                client.query(query, [classNum], function (errorMakingQuery, result) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('Error making database query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        // console.log('result.rows is: ', result.rows);
+                        res.send(result.rows);
+                    }
+                });
+            }
+        });
+    }
+});
+
+
 router.get('/ground', function (req, res) {
     // Add a SELECT query
     if (req.isAuthenticated()) {
@@ -400,6 +441,40 @@ router.get('/ground', function (req, res) {
             } else {
                 // when connecting to database worked!
                 client.query('SELECT * FROM ground_squirrel WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('Error making database query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        // console.log('result.rows is: ', result.rows);
+                        res.send(result.rows);
+                    }
+                });
+            }
+        });
+    }
+});
+
+router.get('/ground/:classNum', function (req, res) {
+    // Add a SELECT query
+    if (req.isAuthenticated()) {
+        var userInfo = {
+            username: req.user.username
+        };
+        var classNum = req.params.classNum.toString();
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.ground_squirrel[0], 'ground_squirrel');
+        console.log('ground squirrel get query: ');
+        console.log(query);
+
+        pool.connect(function (err, client, done) {
+            if (err) {
+                // when connecting to database failed
+                console.log('Error connecting to database', err);
+                res.sendStatus(500);
+            } else {
+                // when connecting to database worked!
+                client.query(query, [classNum], function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -449,7 +524,12 @@ router.get('/northern/:classNum', function (req, res) {
         var userInfo = {
             username: req.user.username
         };
-        var classNum = req.params.classNum.toString();        
+        var classNum = req.params.classNum.toString();
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.northern_red_oak[0], 'northern_red_oak');
+        console.log('northern red oak get query: ');
+        console.log(query);
+
         pool.connect(function (err, client, done) {
             if (err) {
                 // when connecting to database failed
@@ -457,7 +537,7 @@ router.get('/northern/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query("SELECT site, sum(case when breaking_leaf_buds  = 'yes' then 1 else 0 end) as breaking_leaf_buds_yes, sum(case when breaking_leaf_buds  = 'no' then 1 else 0 end) as breaking_leaf_buds_no, sum(case when breaking_leaf_buds  = 'maybe' then 1 else 0 end) as breaking_leaf_buds_maybe, sum(case when leaves  = 'yes' then 1 else 0 end) as leaves_yes, sum(case when leaves = 'no' then 1 else 0 end) as leaves_no, sum(case when leaves = 'maybe' then 1 else 0 end) as leaves_maybe, sum(case when increasing_leaf_size = 'yes' then 1 else 0 end) as increasing_leaf_size_yes, sum(case when increasing_leaf_size = 'no' then 1 else 0 end) as increasing_leaf_size_no, sum(case when increasing_leaf_size = 'maybe' then 1 else 0 end) as increasing_leaf_size_maybe, sum(case when colored_leaves = 'yes' then 1 else 0 end) as colored_leaves_yes,sum(case when colored_leaves = 'no' then 1 else 0 end) as colored_leaves_no, sum(case when colored_leaves = 'maybe' then 1 else 0 end) as colored_leaves_maybe, sum(case when falling_leaves = 'yes' then 1 else 0 end) as falling_leaves_yes, sum(case when falling_leaves = 'no' then 1 else 0 end) as falling_leaves_no, sum(case when falling_leaves = 'maybe' then 1 else 0 end) as falling_leaves_maybe, sum(case when flowers_or_flower_buds = 'yes' then 1 else 0 end) as flowers_or_flower_buds_yes, sum(case when flowers_or_flower_buds = 'no' then 1 else 0 end) as flowers_or_flower_buds_no, sum(case when flowers_or_flower_buds = 'maybe' then 1 else 0 end) as flowers_or_flower_buds_maybe, sum(case when open_flowers = 'yes' then 1 else 0 end) as open_flowers_yes, sum(case when open_flowers = 'no' then 1 else 0 end) as open_flowers_no, sum(case when open_flowers = 'maybe' then 1 else 0 end) as open_flowers_maybe, sum(case when pollen_release = 'yes' then 1 else 0 end) as pollen_release_yes, sum(case when pollen_release = 'no' then 1 else 0 end) as pollen_release_no, sum(case when pollen_release = 'maybe' then 1 else 0 end) as pollen_release_maybe, sum(case when fruits = 'yes' then 1 else 0 end) as fruits_yes, sum(case when fruits = 'no' then 1 else 0 end) as fruits_no, sum(case when fruits = 'maybe' then 1 else 0 end) as fruits_maybe, sum(case when ripe_fruits = 'yes' then 1 else 0 end) as ripe_fruits_yes, sum(case when ripe_fruits = 'no' then 1 else 0 end) as ripe_fruits_no, sum(case when ripe_fruits = 'maybe' then 1 else 0 end) as ripe_fruits_maybe, sum(case when recent_fruit_or_seed_drop = 'yes' then 1 else 0 end) as recent_fruit_or_seed_drop_yes, sum(case when recent_fruit_or_seed_drop = 'no' then 1 else 0 end) as recent_fruit_or_seed_drop_no, sum(case when recent_fruit_or_seed_drop = 'maybe' then 1 else 0 end) as recent_fruit_or_seed_drop_maybe from northern_red_oak WHERE recorded >= CURRENT_DATE AND class = $1 GROUP BY site ORDER BY site ASC", [classNum], function (errorMakingQuery, result) {
+                client.query(query, [classNum], function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -471,6 +551,7 @@ router.get('/northern/:classNum', function (req, res) {
         });
     }
 });
+
 
 //save for get all classes
 router.get('/paper', function (req, res) {
@@ -508,7 +589,11 @@ router.get('/paper/:classNum', function (req, res) {
             username: req.user.username
         };
         var classNum = req.params.classNum.toString();
-      //  console.log('classNum:', classNum)
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.paper_birch[0], 'paper_birch');
+        console.log('paper birch get query: ');
+        console.log(query);
+
         pool.connect(function (err, client, done) {
             if (err) {
                 // when connecting to database failed
@@ -516,9 +601,7 @@ router.get('/paper/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query("SELECT site, sum(case when breaking_leaf_buds  = 'yes' then 1 else 0 end) as breaking_leaf_buds_yes, sum(case when breaking_leaf_buds  = 'no' then 1 else 0 end) as breaking_leaf_buds_no, sum(case when breaking_leaf_buds  = 'maybe' then 1 else 0 end) as breaking_leaf_buds_maybe, sum(case when leaves  = 'yes' then 1 else 0 end) as leaves_yes, sum(case when leaves = 'no' then 1 else 0 end) as leaves_no, sum(case when leaves = 'maybe' then 1 else 0 end) as leaves_maybe, sum(case when increasing_leaf_size = 'yes' then 1 else 0 end) as increasing_leaf_size_yes, sum(case when increasing_leaf_size = 'no' then 1 else 0 end) as increasing_leaf_size_no, sum(case when increasing_leaf_size = 'maybe' then 1 else 0 end) as increasing_leaf_size_maybe, sum(case when colored_leaves = 'yes' then 1 else 0 end) as colored_leaves_yes,sum(case when colored_leaves = 'no' then 1 else 0 end) as colored_leaves_no, sum(case when colored_leaves = 'maybe' then 1 else 0 end) as colored_leaves_maybe, sum(case when falling_leaves = 'yes' then 1 else 0 end) as falling_leaves_yes, sum(case when falling_leaves = 'no' then 1 else 0 end) as falling_leaves_no, sum(case when falling_leaves = 'maybe' then 1 else 0 end) as falling_leaves_maybe, sum(case when flowers_or_flower_buds = 'yes' then 1 else 0 end) as flowers_or_flower_buds_yes, sum(case when flowers_or_flower_buds = 'no' then 1 else 0 end) as flowers_or_flower_buds_no, sum(case when flowers_or_flower_buds = 'maybe' then 1 else 0 end) as flowers_or_flower_buds_maybe, sum(case when open_flowers = 'yes' then 1 else 0 end) as open_flowers_yes, sum(case when open_flowers = 'no' then 1 else 0 end) as open_flowers_no, sum(case when open_flowers = 'maybe' then 1 else 0 end) as open_flowers_maybe, sum(case when pollen_release = 'yes' then 1 else 0 end) as pollen_release_yes, sum(case when pollen_release = 'no' then 1 else 0 end) as pollen_release_no, sum(case when pollen_release = 'maybe' then 1 else 0 end) as pollen_release_maybe, sum(case when fruits = 'yes' then 1 else 0 end) as fruits_yes, sum(case when fruits = 'no' then 1 else 0 end) as fruits_no, sum(case when fruits = 'maybe' then 1 else 0 end) as fruits_maybe, sum(case when ripe_fruits = 'yes' then 1 else 0 end) as ripe_fruits_yes, sum(case when ripe_fruits = 'no' then 1 else 0 end) as ripe_fruits_no, sum(case when ripe_fruits = 'maybe' then 1 else 0 end) as ripe_fruits_maybe, sum(case when recent_fruit_or_seed_drop = 'yes' then 1 else 0 end) as recent_fruit_or_seed_drop_yes, sum(case when recent_fruit_or_seed_drop = 'no' then 1 else 0 end) as recent_fruit_or_seed_drop_no, sum(case when recent_fruit_or_seed_drop = 'maybe' then 1 else 0 end) as recent_fruit_or_seed_drop_maybe from paper_birch WHERE recorded >= CURRENT_DATE AND class = $1 GROUP BY site ORDER BY site ASC", [classNum], function (errorMakingQuery, result) {
-
-
+                client.query(query, [classNum], function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -532,6 +615,7 @@ router.get('/paper/:classNum', function (req, res) {
         });
     }
 });
+
 
 //save for all class data pull
 router.get('/quaking', function (req, res) {
@@ -569,7 +653,11 @@ router.get('/quaking/:classNum', function (req, res) {
             username: req.user.username
         };
         var classNum = req.params.classNum.toString();
-      //  console.log('classNum:', classNum)
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.quaking_aspen[0], 'quaking_aspen');
+        console.log('quaking aspen get query: ');
+        console.log(query);
+
         pool.connect(function (err, client, done) {
             if (err) {
                 // when connecting to database failed
@@ -577,9 +665,7 @@ router.get('/quaking/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query("SELECT site, sum(case when breaking_leaf_buds  = 'yes' then 1 else 0 end) as breaking_leaf_buds_yes, sum(case when breaking_leaf_buds  = 'no' then 1 else 0 end) as breaking_leaf_buds_no, sum(case when breaking_leaf_buds  = 'maybe' then 1 else 0 end) as breaking_leaf_buds_maybe, sum(case when leaves  = 'yes' then 1 else 0 end) as leaves_yes, sum(case when leaves = 'no' then 1 else 0 end) as leaves_no, sum(case when leaves = 'maybe' then 1 else 0 end) as leaves_maybe, sum(case when increasing_leaf_size = 'yes' then 1 else 0 end) as increasing_leaf_size_yes, sum(case when increasing_leaf_size = 'no' then 1 else 0 end) as increasing_leaf_size_no, sum(case when increasing_leaf_size = 'maybe' then 1 else 0 end) as increasing_leaf_size_maybe, sum(case when colored_leaves = 'yes' then 1 else 0 end) as colored_leaves_yes,sum(case when colored_leaves = 'no' then 1 else 0 end) as colored_leaves_no, sum(case when colored_leaves = 'maybe' then 1 else 0 end) as colored_leaves_maybe, sum(case when falling_leaves = 'yes' then 1 else 0 end) as falling_leaves_yes, sum(case when falling_leaves = 'no' then 1 else 0 end) as falling_leaves_no, sum(case when falling_leaves = 'maybe' then 1 else 0 end) as falling_leaves_maybe, sum(case when flowers_or_flower_buds = 'yes' then 1 else 0 end) as flowers_or_flower_buds_yes, sum(case when flowers_or_flower_buds = 'no' then 1 else 0 end) as flowers_or_flower_buds_no, sum(case when flowers_or_flower_buds = 'maybe' then 1 else 0 end) as flowers_or_flower_buds_maybe, sum(case when open_flowers = 'yes' then 1 else 0 end) as open_flowers_yes, sum(case when open_flowers = 'no' then 1 else 0 end) as open_flowers_no, sum(case when open_flowers = 'maybe' then 1 else 0 end) as open_flowers_maybe, sum(case when pollen_release = 'yes' then 1 else 0 end) as pollen_release_yes, sum(case when pollen_release = 'no' then 1 else 0 end) as pollen_release_no, sum(case when pollen_release = 'maybe' then 1 else 0 end) as pollen_release_maybe, sum(case when fruits = 'yes' then 1 else 0 end) as fruits_yes, sum(case when fruits = 'no' then 1 else 0 end) as fruits_no, sum(case when fruits = 'maybe' then 1 else 0 end) as fruits_maybe, sum(case when ripe_fruits = 'yes' then 1 else 0 end) as ripe_fruits_yes, sum(case when ripe_fruits = 'no' then 1 else 0 end) as ripe_fruits_no, sum(case when ripe_fruits = 'maybe' then 1 else 0 end) as ripe_fruits_maybe, sum(case when recent_fruit_or_seed_drop = 'yes' then 1 else 0 end) as recent_fruit_or_seed_drop_yes, sum(case when recent_fruit_or_seed_drop = 'no' then 1 else 0 end) as recent_fruit_or_seed_drop_no, sum(case when recent_fruit_or_seed_drop = 'maybe' then 1 else 0 end) as recent_fruit_or_seed_drop_maybe from quaking_aspen WHERE recorded >= CURRENT_DATE AND class = $1 GROUP BY site ORDER BY site ASC", [classNum], function (errorMakingQuery, result) {
-
-
+                client.query(query, [classNum], function (errorMakingQuery, result) {
                     done();
                     if (errorMakingQuery) {
                         console.log('Error making database query', errorMakingQuery);
@@ -621,6 +707,67 @@ router.get('/ruby', function (req, res) {
         });
     }
 });
+
+router.get('/ruby/:classNum', function (req, res) {
+    // Add a SELECT query
+    if (req.isAuthenticated()) {
+        var userInfo = {
+            username: req.user.username
+        };
+        var classNum = req.params.classNum.toString();
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.ruby_throated_hummingbird[0], 'ruby_throated_hummingbird');
+        console.log('ruby throated hummingbird get query: ');
+        console.log(query);
+
+        pool.connect(function (err, client, done) {
+            if (err) {
+                // when connecting to database failed
+                console.log('Error connecting to database', err);
+                res.sendStatus(500);
+            } else {
+                // when connecting to database worked!
+                client.query(query, [classNum], function (errorMakingQuery, result) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('Error making database query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        // console.log('result.rows is: ', result.rows);
+                        res.send(result.rows);
+                    }
+                });
+            }
+        });
+    }
+});
+
+
+//SELECT site, 
+function buildGet(row, organism) {
+    console.log('buildGet called');
+
+    var sumStatements = 'SELECT site,';
+    var yesNoMaybe = ['yes', 'no', 'maybe'];
+    Object.keys(row).forEach(function (question, i) {
+        if (question !== 'class' && question !== 'site' && question !== 'notes') {
+            yesNoMaybe.forEach(function (word) {
+
+                sumStatements += ' sum(case when ' + question + ' = \'' + word + '\' then 1 else 0 end) as ' + question + '_' + word + ',';
+            });
+        }
+    });
+
+    //take off last comma
+    sumStatements = sumStatements.substring(0, sumStatements.length - 1);;
+    sumStatements += ' from ' + organism;
+    sumStatements += ' WHERE recorded >= CURRENT_DATE AND class = $1 GROUP BY site ORDER BY site ASC';
+
+    console.log('sum statements');
+    console.log(sumStatements);
+    return sumStatements;
+}
+
 
 var allData = {
     //plants
@@ -683,7 +830,6 @@ var allData = {
         falling_leaves: '',
         flowers_or_flower_buds: '',
         open_flowers: '',
-        pollen_release: '',
         fruits: '',
         ripe_fruits: '',
         recent_fruit_or_seed_drop: '',
@@ -699,7 +845,6 @@ var allData = {
         falling_leaves: '',
         flowers_or_flower_buds: '',
         open_flowers: '',
-        pollen_release: '',
         fruits: '',
         ripe_fruits: '',
         recent_fruit_or_seed_drop: '',
@@ -715,7 +860,6 @@ var allData = {
         falling_leaves: '',
         flowers_or_flower_buds: '',
         open_flowers: '',
-        pollen_release: '',
         fruits: '',
         ripe_fruits: '',
         recent_fruit_or_seed_drop: '',
@@ -952,7 +1096,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     },
@@ -973,7 +1117,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     },
@@ -994,7 +1138,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     }
@@ -1016,7 +1160,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     },
@@ -1037,7 +1181,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     },
@@ -1058,7 +1202,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     }
@@ -1069,7 +1213,7 @@ var allData = {
         active_individuals: '',
         feeding: '',
         insect_consumption: '',
-        flower_consumption: '',
+        flower_visitation: '',
         calls_or_song: '',
         singing_individuals: '',
         territorial_individuals: '',
@@ -1080,7 +1224,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     },
@@ -1090,7 +1234,7 @@ var allData = {
         active_individuals: '',
         feeding: '',
         insect_consumption: '',
-        flower_consumption: '',
+        flower_visitation: '',
         calls_or_song: '',
         singing_individuals: '',
         territorial_individuals: '',
@@ -1101,7 +1245,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     },
@@ -1111,7 +1255,7 @@ var allData = {
         active_individuals: '',
         feeding: '',
         insect_consumption: '',
-        flower_consumption: '',
+        flower_visitation: '',
         calls_or_song: '',
         singing_individuals: '',
         territorial_individuals: '',
@@ -1122,7 +1266,7 @@ var allData = {
         nestlings: '',
         fledged_young: '',
         dead_individuals: '',
-        dead_nestlings_or_fledlings: '',
+        dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
         notes: ''
     }
