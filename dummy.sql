@@ -66,5 +66,5 @@ VALUES (1, 1, ‘no’, ‘no’, ‘no’, ‘no’, ‘yes’, ‘no’, ‘ye
 INSERT INTO ruby_throated_hummingbird(class, site, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledglings, individuals_at_feeding_station, notes)
 VALUES (1, 2, ‘no’, ‘no’, ‘maybe’, ‘no’, ‘yes’, ‘no’, ‘yes’, ‘no’, ‘no’, ‘yes’, ‘yes’, ‘no’, ‘maybe’, ‘maybe’, ‘no’, ‘yes’, ‘no’);
 INSERT INTO ruby_throated_hummingbird(class, site, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledglings, individuals_at_feeding_station, notes)
-VALUES (1, 3, ‘yes’, ‘no’, ‘no’, ‘no’, ‘yes’, ‘no’, ‘yes’, ‘no’, ‘no’, ‘maybe’, ‘yes’, ‘no’, ‘no’, ‘maybe’, ‘no’, ‘no’, ‘no’);
+VALUES (1, 3, "yes", "no", "no", "no", "yes", "no", "yes", "no", "no", "maybe", "yes", "no", "no", "maybe", "no", "no", "no");
 
