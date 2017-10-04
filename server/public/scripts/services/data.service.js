@@ -76,12 +76,12 @@ myApp.service('DataService', ['$http', function ($http) {
       // console.log('get route ruby_throated_hummingbird: ', self.ruby);
     });
   }
-  self.getAllData = function () {
-    $http.get('/dashboard/allData').then(function (response) {
-      self.all = response.data;
-      console.log('get route allData: ', self.all);
-    });
-  }
+  // self.getAllData = function () {
+  //   $http.get('/dashboard/allData').then(function (response) {
+  //     self.all = response.data;
+  //     console.log('get route allData: ', self.all);
+  //   });
+  // }
 
 
 }]);

@@ -12,9 +12,8 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.ruby = DataService.ruby;
     vm.dark = DataService.dark;
     vm.eastern = DataService.eastern;
-    vm.all = DataService.all;
+    // vm.all = DataService.all;
     // vm.data = DataService;
-    // vm.buckthorn = DataService;
 
 
 

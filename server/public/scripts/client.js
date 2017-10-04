@@ -40,15 +40,15 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/data/', {
-      templateUrl: '/views/partials/all-data.html',
-      controller: 'DataController as dc',
-      resolve: {
-        getuser: function (UserService) {
-          return UserService.getuser();
-        }
-      }
-    })
+    // .when('/data/', {
+    //   templateUrl: '/views/partials/all-data.html',
+    //   controller: 'DataController as dc',
+    //   resolve: {
+    //     getuser: function (UserService) {
+    //       return UserService.getuser();
+    //     }
+    //   }
+    // })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',

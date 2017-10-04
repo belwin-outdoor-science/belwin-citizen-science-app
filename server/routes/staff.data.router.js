@@ -141,39 +141,39 @@ function buildGetEverything(row, organism) {
     console.log(sumStatements);
     return sumStatements;
 }
-router.get('/allData', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        // var classNum = req.params.classNum.toString();
-        // console.log('classNum:', classNum)
-        var query = buildGetEverything(allData, 'allData');
-        console.log('allData get query: ');
-        console.log(query);
+// router.get('/allData', function (req, res) {
+//     // Add a SELECT query
+//     if (req.isAuthenticated()) {
+//         var userInfo = {
+//             username: req.user.username
+//         };
+//         // var classNum = req.params.classNum.toString();
+//         // console.log('classNum:', classNum)
+//         var query = buildGetEverything(allData, 'allData');
+//         console.log('allData get query: ');
+//         console.log(query);
 
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
+//         pool.connect(function (err, client, done) {
+//             if (err) {
+//                 // when connecting to database failed
+//                 console.log('Error connecting to database', err);
+//                 res.sendStatus(500);
+//             } else {
+//                 // when connecting to database worked!
+//                 client.query(query, function (errorMakingQuery, result) {
+//                     done();
+//                     if (errorMakingQuery) {
+//                         console.log('Error making database query', errorMakingQuery);
+//                         res.sendStatus(500);
+//                     } else {
+//                         // console.log('result.rows is: ', result.rows);
+//                         res.send(result.rows);
+//                     }
+//                 });
+//             }
+//         });
+//     }
+// });
 
 //leave this route to use for "view all classes"
 router.get('/buckthorn', function (req, res) {
