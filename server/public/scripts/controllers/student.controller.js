@@ -32,7 +32,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             targetEvent: $event,
             controller: 'StudentController',
             controllerAs: 'sc',
-            templateUrl: '/views/templates/observations.html'
+            templateUrl: '/views/templates/observations.html',
+            clickOutsideToClose: true
         });
     }
     vm.closeDialog = function () {
@@ -124,7 +125,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             file: 'assets/red-oak.jpg'
         },
         {
-            organismName: 'ruvy_throated_hummingbird',
+            organismName: 'ruby_throated_hummingbird',
             file: 'assets/ruby-throated-hummingbird.jpg'
         }
     ]
