@@ -4,18 +4,6 @@ myApp.service('DataService', ['$http', function ($http) {
   // self.data = { info: {}   }
 
   self.bur = {data: []};
-<<<<<<< HEAD
-  // self.getBuckthorn();
-  // self.getMilkweed();
-  // self.getDark();
-  // self.getEastern();
-  // self.getGround();
-  // self.getNorthern();
-  // self.getPaper();
-  // self.getQuaking();
-  // self.getRuby();
-  self.all = {data: []};
-=======
   self.buckthorn = {data: []};
   self.milkweed = {data: []};
   self.dark = {data: []};
@@ -25,9 +13,8 @@ myApp.service('DataService', ['$http', function ($http) {
   self.paper= {data: []};
   self.quaking = {data: []};
   self.ruby = {data: []};
+  self.all = {data: []};
 
- 
->>>>>>> master
 
   self.getBur = function (classNum) {
     $http.get('/dashboard/bur/' + classNum).then(function (response) {
