@@ -85,7 +85,7 @@ md-dialog {
 }
 
 #observationDataEntry {
-  font-size: 30px;
+  font-size: 40px;
 }
 #studentNavBar {
   background-color: teal;
@@ -123,4 +123,12 @@ img {
 .logo {
   width: 40%;
   margin: 0% 25%;
+}
+
+#notes {
+  font-size: 30px;
+}
+
+.odd {
+  background-color: #f1f1f1;
 }
