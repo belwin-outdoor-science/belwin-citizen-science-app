@@ -1,19 +1,21 @@
 <div id="observationDataEntry">
   <!-- replace deciduoustree below with currentSpecimenQuestions -->
   <form ng-submit="sc.studentService.postAllData()">
-    <div>Question</div>
-    <div ng-repeat="question in sc.questionsByOrganism[sc.selectedOrganism.selectedOrganism]" class="row">
+    <br>
+    <h2>Do you see...</h2>
+    <br>
+    <div ng-repeat="question in sc.questionsByOrganism[sc.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="'odd'" ng-class-even="'even'">
       <div flex layout="row" layout-padding layout-align="start center">
-        <div ng-if="question.text != 'Notes' " flex style="max-width:200px;">{{question.text}}?</div>
-        <md-radio-group ng-if="question.text != 'Notes' " ng-model="sc.studentService.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">
+        <h2 ng-if="question.text != 'Notes' " flex style="max-width:300px; max-height: 300px; padding:15px;">{{question.text}}?</h2>
+        <md-radio-group flex layout="row" ng-if="question.text != 'Notes' " ng-model="sc.studentService.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">
           <md-radio-button value="y" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">Y</md-radio-button>
           <md-radio-button value="n" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">N</md-radio-button>
           <md-radio-button value="maybe" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">?</md-radio-button>
         </md-radio-group>
         <md-input-container ng-if="question.text == 'Notes' " id="textarea">
-            <label>Notes:</label>
-            <textarea ng-model="sc.allData[organism][sc.studentService.site][question.property]"></textarea>
-          </md-input-container>
+            <label id="notes">Notes:</label>
+            <textarea rows="3" cols="50" ng-model="sc.allData[organism][sc.studentService.site][question.property]"></textarea>
+        </md-input-container>
       </div>
     </div>
   </form>
