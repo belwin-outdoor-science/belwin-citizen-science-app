@@ -31,17 +31,13 @@ myApp.service('StudentService', ['$http', function ($http) {
     //so if there is an error, students can just hit the submit button again and only the
     //unsuccessful requests will be resent.
 
-    // practice call
-
-
-
-
     self.addBurOak = function (studentData) {
         console.log('addBurOak called');
         burOakPromise = $http.post('/student_data/bur_oak', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addBurOak -- success: ', response.data);
                 //clear out student data
+                clearAllData(bur_oak);  //function defined at bottom
                 return response;
             }
         }, function (err) {
@@ -51,11 +47,12 @@ myApp.service('StudentService', ['$http', function ($http) {
         console.log('burOakPromise');
         console.log(burOakPromise);
     }
-   
+
     self.addCommonBuckthorn = function (studentData) {
         commonBuckthornPromise = $http.post('/student_data/common_buckthorn', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addCommonBuckthorn -- success: ', response.data);
+                clearAllData(common_buckthorn);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addCommonBuckthorn error', err);
@@ -66,7 +63,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         commonMilkweedPromise = $http.post('/student_data/common_milkweed', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addCommonMilkweed -- success: ', response.data);
-
+                clearAllData(common_milkweed);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addCommonMilkweed error', err);
@@ -77,7 +74,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         easternBluebirdPromise = $http.post('/student_data/eastern_bluebird', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addEasternBluebird -- success: ', response.data);
-
+                clearAllData(eastern_bluebird);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addEasternBluebird error', err);
@@ -88,7 +85,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         groundSquirrelPromise = $http.post('/student_data/ground_squirrel', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addGroundSquirrel -- success: ', response.data);
-
+                clearAllData(ground_squirrel);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addGroundSquirrel error', err);
@@ -99,7 +96,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         darkEyedJuncoPromise = $http.post('/student_data/dark_eyed_junco', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addDarkEyedJunco -- success: ', response.data);
-
+                clearAllData(dark_eyed_junco);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addDarkEyedJunco error', err);
@@ -110,7 +107,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         paperBirchPromise = $http.post('/student_data/paper_birch', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addPaperBirch -- success: ', response.data);
-
+                clearAllData(paper_birch);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addPaperBirch error', err);
@@ -121,7 +118,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         quakingAspenPromise = $http.post('/student_data/quaking_aspen', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addQuakingAspen -- success: ', response.data);
-
+                clearAllData(quaking_aspen);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addQuakingAspen error', err);
@@ -132,7 +129,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         northernRedOakPromise = $http.post('/student_data/northern_red_oak', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addNorthernRedOak -- success: ', response.data);
-
+                clearAllData(northern_red_oak);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addNorthernRedOak error', err);
@@ -143,7 +140,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         rubyThroatedHummingbirdPromise = $http.post('/student_data/ruby_throated_hummingbird', studentData).then(function (response) {
             if (response.data) {
                 console.log('student service -- addrubyThroatedHummingbird -- success: ', response.data);
-
+                clearAllData(ruby_throated_hummingbird);  //function defined at bottom
             }
         }, function (err) {
             console.log('student service addrubyThroatedHummingbird error', err);
@@ -164,28 +161,27 @@ myApp.service('StudentService', ['$http', function ($http) {
     //post callback in services only.
 
     var allPromises = Promise.all([burOakPromise, commonBuckthornPromise])
-        .then(values => { 
+        .then(values => {
             console.log(values);
-          }, reason => {
+        }, reason => {
             console.log(reason)
-        //     function (values) {
-        //     console.log('promise.all values');
+            //     function (values) {
+            //     console.log('promise.all values');
 
-        //     console.log(values);
-        // }, function (reason) {
-        //     console.log('promise.all reason');
+            //     console.log(values);
+            // }, function (reason) {
+            //     console.log('promise.all reason');
 
-        //     console.log(reason)
+            //     console.log(reason)
         });
     console.log('promise.all ');
     console.log(allPromises);
 
-
-
-
     self.postAllData = function () {
         console.log('submitted data: ');
         console.log(self.allData);
+
+        
 
         //call other add functions
         self.addBurOak(self.allData.bur_oak);
@@ -198,6 +194,17 @@ myApp.service('StudentService', ['$http', function ($http) {
         self.addQuakingAspen(self.allData.quaking_aspen);
         self.addNorthernRedOak(self.allData.northern_red_oak);
         self.addrubyThroatedHummingbird(self.allData.ruby_throated_hummingbird);
+    }
+
+    //clears out self.allData except for site number
+    function clearAllData(organism) {
+        self.allData[organism].forEach(function (dataObj, i) {
+            for (var question in dataObj) {
+                if (question !== 'site') {
+                    self.allData[organism][i][question] = '';
+                }
+            }
+        });
     }
 
     //Charly's data solution
