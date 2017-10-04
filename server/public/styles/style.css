@@ -3,8 +3,10 @@ body, html {
   padding: 0;
   font-family: sans-serif;
   font-size: 14px;
-  
+  height: 100%;
+  position: absolute;
 }
+
 
 .instructions .container h1 {
   font-size: 32px;
@@ -23,6 +25,7 @@ body, html {
 
 #container {
   margin-top: 10px;
+  height: 100%
 }
 
 .container p{
@@ -88,12 +91,12 @@ md-dialog {
   font-size: 30px;
 }
 #studentNavBar {
-  background-color: teal;
+  background-color: #3E5622;
   height:100%;
   width: 20%;
   position:absolute;
   padding: 50px;
-  border: 3px solid black;
+  border: 5px solid #704E2E;
 }
 .typeButton {
   color : rgb(49, 46, 46);
@@ -123,4 +126,29 @@ img {
 .logo {
   width: 40%;
   margin: 0% 25%;
+}
+
+.md-sidenav-right{
+  height: 100%;
+  width: 20%;
+  position: absolute;
+}
+
+.studentBody{
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  padding-left: 20%;
+  background-color: #FFFCE8;
+  /* border: 10px solid #704E2E; */
+}
+
+.md-button.navButton{
+    background-color: #AF9164; /* Green */
+    color: white;
+}
+.md-button.siteButton{
+  background-color: #818D92;
+  color:white;
 }
