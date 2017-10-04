@@ -32,7 +32,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             targetEvent: $event,
             controller: 'StudentController',
             controllerAs: 'sc',
-            templateUrl: '/views/templates/observations.html'
+            templateUrl: '/views/templates/observations.html',
+            clickOutsideToClose: true
         });
     }
     vm.closeDialog = function () {

@@ -88,7 +88,7 @@ md-dialog {
 }
 
 #observationDataEntry {
-  font-size: 30px;
+  font-size: 40px;
 }
 #studentNavBar {
   background-color: #3E5622;
@@ -151,4 +151,12 @@ img {
 .md-button.siteButton{
   background-color: #818D92;
   color:white;
+}
+
+#notes {
+  font-size: 30px;
+}
+
+.odd {
+  background-color: #f1f1f1;
 }

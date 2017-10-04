@@ -59,8 +59,6 @@ flowers_or_flower_buds VARCHAR(80),
 
 open_flowers VARCHAR(80),
 
-pollen_release VARCHAR(80),
-
 fruits VARCHAR(80),
 
 ripe_fruits VARCHAR(80),
@@ -115,7 +113,7 @@ active_individuals VARCHAR(80),
 
 feeding VARCHAR(80),
 
-fruit_seed_consumption VARCHAR(80),
+fruit_or_seed_consumption VARCHAR(80),
 
 insect_consumption VARCHAR(80),
 
@@ -139,7 +137,7 @@ fledged_young VARCHAR(80),
 
 dead_individuals VARCHAR(80),
 
-dead_nestlings_or_fledlings VARCHAR(80),
+dead_nestlings_or_fledglings VARCHAR(80),
 
 individuals_at_feeding_station VARCHAR(80),
 
@@ -185,7 +183,7 @@ active_individuals VARCHAR(80),
 
 feeding VARCHAR(80),
 
-fruit_seed_consumption VARCHAR(80),
+fruit_or_seed_consumption VARCHAR(80),
 
 insect_consumption VARCHAR(80),
 
@@ -209,7 +207,7 @@ fledged_young VARCHAR(80),
 
 dead_individuals VARCHAR(80),
 
-dead_nestlings_or_fledlings VARCHAR(80),
+dead_nestlings_or_fledglings VARCHAR(80),
 
 individuals_at_feeding_station VARCHAR(80),
 
@@ -357,7 +355,7 @@ courtship VARCHAR(80),
 
 mating VARCHAR(80),
 
-nest_bulding VARCHAR(80),
+nest_building VARCHAR(80),
 
 occupied_nest VARCHAR(80),
 
@@ -367,7 +365,7 @@ fledged_young VARCHAR(80),
 
 dead_individuals VARCHAR(80),
 
-dead_nestlings_or_fledlings VARCHAR(80),
+dead_nestlings_or_fledglings VARCHAR(80),
 
 individuals_at_feeding_station VARCHAR(80),
 

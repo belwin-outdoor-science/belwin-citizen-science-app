@@ -8,14 +8,14 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.paper = DataService.paper;
     vm.quaking = DataService.quaking;
     vm.milkweed = DataService.milkweed;
+    vm.ground = DataService.ground;
+    vm.ruby = DataService.ruby;
+    vm.dark = DataService.dark;
+    vm.eastern = DataService.eastern;
 
-    // vm.data = DataService;
-    // vm.buckthorn = DataService;
 
-    // DataService.getData();
-    // DataService.getBuckthorn();
 
-    vm.getDetails = function(species) {
+    vm.getDetails = function (species) {
         vm.showData = true;
         console.log('getting', species, 'data for class', vm.classNum)
         if (species == "Bur Oak") {
@@ -35,7 +35,22 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
             vm.partial = "quaking-aspen-table.html"
         } else if (species == "Milkweed") {
             vm.partial = "common-milkweed-table.html"
+            DataService.getMilkweed(vm.classNum)
+        } else if (species == "Ground Squirrel") {
+            vm.partial = "ground-squirrel-table.html"
+            DataService.getGround(vm.classNum)
+        } else if (species == "Ruby Throated Hummingbird") {
+            vm.partial = "ruby-throated-hummingbird-table.html"
+            DataService.getRuby(vm.classNum)
+        } else if (species == "Dark-eyed Junco") {
+            vm.partial = "dark-eyed-junco-table.html"
+            DataService.getDark(vm.classNum)
+        } else if (species == "Eastern Bluebird") {
+            vm.partial = "eastern-bluebird-table.html"
+            DataService.getEastern(vm.classNum)
         }
     }
+
+
 }]);
 
