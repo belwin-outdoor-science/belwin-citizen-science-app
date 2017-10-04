@@ -125,7 +125,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             file: 'assets/red-oak.jpg'
         },
         {
-            organismName: 'ruvy_throated_hummingbird',
+            organismName: 'ruby_throated_hummingbird',
             file: 'assets/ruby-throated-hummingbird.jpg'
         }
     ]
