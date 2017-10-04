@@ -1,14 +1,14 @@
 <div id="observationDataEntry">
   <!-- replace deciduoustree below with currentSpecimenQuestions -->
-  {{sc.selectedOrganism.selectedOrganism}}
   <form ng-submit="sc.studentService.postAllData()">
+    <div>Question</div>
     <div ng-repeat="question in sc.questionsByOrganism[sc.selectedOrganism.selectedOrganism]" class="row">
       <div flex layout="row" layout-padding layout-align="start center">
-        <div ng-if="question.text != 'Notes' " flex style="max-width:200px;">question: {{question.property}}</div>
+        <div ng-if="question.text != 'Notes' " flex style="max-width:200px;">{{question.text}}?</div>
         <md-radio-group ng-if="question.text != 'Notes' " ng-model="sc.studentService.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">
           <md-radio-button value="y" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">Y</md-radio-button>
           <md-radio-button value="n" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">N</md-radio-button>
-          <md-radio-button value="?" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">?</md-radio-button>
+          <md-radio-button value="maybe" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">?</md-radio-button>
         </md-radio-group>
         <md-input-container ng-if="question.text == 'Notes' " id="textarea">
             <label>Notes:</label>
