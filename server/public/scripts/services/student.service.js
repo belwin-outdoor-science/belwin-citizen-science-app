@@ -174,16 +174,24 @@ myApp.service('StudentService', ['$http', function ($http) {
 
             //     console.log(reason)
         });
+
+        // swal(
+        //     'The Internet?',
+        //     'That thing is still around?',
+        //     'question'
+        //   )
+
     console.log('promise.all ');
     console.log(allPromises);
 
     self.postAllData = function () {
         console.log('submitted data: ');
         console.log(self.allData);
-
-        
-
-        //call other add functions
+        function myFunction() {
+            var txt;
+            if (confirm("Are you sure you want to submit your data now?  Make sure you are connected to wi-fi.") == true) {
+                
+                        //call other add functions
         self.addBurOak(self.allData.bur_oak);
         self.addCommonBuckthorn(self.allData.common_buckthorn);
         self.addCommonMilkweed(self.allData.common_milkweed);
@@ -194,6 +202,15 @@ myApp.service('StudentService', ['$http', function ($http) {
         self.addQuakingAspen(self.allData.quaking_aspen);
         self.addNorthernRedOak(self.allData.northern_red_oak);
         self.addrubyThroatedHummingbird(self.allData.ruby_throated_hummingbird);
+
+            } else {
+                //optional message to display on page.
+                //txt = "You pressed Cancel!";
+            }
+            //document.getElementById("messageToUser").innerHTML = txt;
+        }
+        
+
     }
 
     //clears out self.allData except for site number
