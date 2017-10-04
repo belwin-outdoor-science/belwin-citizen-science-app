@@ -6,16 +6,20 @@
       <div flex layout="row" layout-padding layout-align="start center">
         <div ng-if="question.text != 'Notes' " flex style="max-width:200px;">{{question.text}}?</div>
         <md-radio-group ng-if="question.text != 'Notes' " ng-model="sc.studentService.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">
-          <md-radio-button value="y" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">Y</md-radio-button>
-          <md-radio-button value="n" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">N</md-radio-button>
-          <md-radio-button value="maybe" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]" flex class="md-primary">?</md-radio-button>
+          <md-radio-button value="y" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]"
+            flex class="md-primary">Y</md-radio-button>
+          <md-radio-button value="n" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]"
+            flex class="md-primary">N</md-radio-button>
+          <md-radio-button value="maybe" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]"
+            flex class="md-primary">?</md-radio-button>
         </md-radio-group>
         <md-input-container ng-if="question.text == 'Notes' " id="textarea">
-            <label>Notes:</label>
-            <textarea ng-model="sc.allData[organism][sc.studentService.site.site][question.property]"></textarea>
-          </md-input-container>
+          <label>Notes:</label>
+          <textarea ng-model="sc.allData[organism][sc.studentService.site.site][question.property]"></textarea>
+        </md-input-container>
       </div>
     </div>
   </form>
   <md-button ng-click="sc.studentService.resetForm();">Reset</md-button>
   <md-button ng-click="sc.closeDialog()">Save and Close</md-button>
+</div>
