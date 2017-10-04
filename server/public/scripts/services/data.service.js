@@ -29,6 +29,12 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/bur/' + classNum).then(function (response) {
       self.bur.data = response.data;
      // console.log('get route bur_oak: ', self.bur);
+    }).then(function(){
+      //new get call to pull notes
+      $http.get('/dashboard/bur/notes/' + classNum).then(function (response) {
+        self.bur.notes = response.data;
+       // console.log('get route bur_oak: ', self.bur);
+      })
     });
   }
   self.getBuckthorn = function (classNum) {
