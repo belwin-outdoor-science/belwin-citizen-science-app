@@ -1,22 +1,22 @@
 <!-- <div ng-include="'views/partials/nav.html'"></div> -->
-<div ng-show="sc.appSetup" class="container">
+<div ng-show="sc.appSetup" class="container" layout="column" layout-align="start center">
   <div id="staffLoginLink">
     <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
 
   <div id="classSelect">
-    <p>Select a class to start exploring! Your teacher will tell you your class number</p>
+    <h3>Select a class to start exploring! <br> Your teacher will tell you your class number</h3>
     <form ng-submit="sc.submit(); sc.studentService.setClass();">
 
-      <md-radio-group ng-model="sc.class.class">
-        <md-radio-button value="Class 1">Class 1</md-radio-button>
-        <md-radio-button value="Class 2">Class 2</md-radio-button>
-        <md-radio-button value="Class 3">Class 3</md-radio-button>
-        <md-radio-button value="Class 4">Class 4</md-radio-button>
-        <md-radio-button value="Class 5">Class 5</md-radio-button>
+      <md-radio-group class="classButton" ng-model="sc.class.class">
+        <md-radio-button value="Class 1"><h2>Class 1</h2></md-radio-button>
+        <md-radio-button value="Class 2"><h2>Class 2</h2></md-radio-button>
+        <md-radio-button value="Class 3"><h2>Class 3</h2></md-radio-button>
+        <md-radio-button value="Class 4"><h2>Class 4</h2></md-radio-button>
+        <md-radio-button value="Class 5"><h2>Class 5</h2></md-radio-button>
       </md-radio-group>
 
-      <md-button type="ng-submit" class="md-primary md-raised">Done</md-button>
+      <md-button type="ng-submit" id="classSelectButton" class="md-primary md-raised; siteButton">Done</md-button>
 
     </form>
   </div>
