@@ -117,6 +117,29 @@ function buildGet(row, organism) {
     console.log(sumStatements);
     return sumStatements;
 }
+function buildGetEverything(row, organism) {
+    console.log('buildGetEverything called');
+
+    var sumStatements = 'SELECT site,';
+    var yesNoMaybe = ['yes', 'no', 'maybe'];
+    Object.keys(row).forEach(function (question, i) {
+        if (question !== 'site' && question !== 'notes') {
+            yesNoMaybe.forEach(function (word) {
+
+                sumStatements += ' sum(case when ' + question + ' = \'' + word + '\' then 1 else 0 end) as ' + question + '_' + word + ',';
+            });
+        }
+    });
+    
+    //take off last comma
+    sumStatements = sumStatements.substring(0, sumStatements.length - 1);;
+    // sumStatements += ' from ' + organism;
+    sumStatements += ' WHERE recorded >= CURRENT_DATE GROUP BY site ORDER BY site ASC';
+
+    console.log('sum statements');
+    console.log(sumStatements);
+    return sumStatements;
+}
 router.get('/allData', function (req, res) {
     // Add a SELECT query
     if (req.isAuthenticated()) {
@@ -125,7 +148,7 @@ router.get('/allData', function (req, res) {
         };
         // var classNum = req.params.classNum.toString();
         // console.log('classNum:', classNum)
-        var query = buildGet(allData, 'bur_oak');
+        var query = buildGetEverything(allData, 'allData');
         console.log('allData get query: ');
         console.log(query);
 
