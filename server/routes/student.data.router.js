@@ -207,7 +207,7 @@ router.post('/dark_eyed_junco', function (req, res) {
 });
 
 router.post('/ruby_throated_hummingbird', function (req, res) {
-    var query = buildStatement('INSERT INTO ruby_throated_hummingbird (class, site, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_bulding, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledglings, individuals_at_feeding_station, notes) VALUES ', req.body);
+    var query = buildStatement('INSERT INTO ruby_throated_hummingbird (class, site, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledglings, individuals_at_feeding_station, notes) VALUES ', req.body);
     console.log('ruby_throated_hummingbird router post called ');
     pool.connect(function (err, client, done) {
         if (err) {

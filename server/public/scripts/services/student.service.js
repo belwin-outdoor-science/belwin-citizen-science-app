@@ -146,7 +146,8 @@ myApp.service('StudentService', ['$http', function ($http) {
             console.log('student service addrubyThroatedHummingbird error', err);
         });
     }
-    var allPromises = [burOakPromise, commonBuckthornPromise, commonMilkweedPromise, easternBluebirdPromise,
+    var allPromises = [
+        burOakPromise, commonBuckthornPromise, commonMilkweedPromise, easternBluebirdPromise,
         groundSquirrelPromise, darkEyedJuncoPromise, paperBirchPromise, quakingAspenPromise,
         northernRedOakPromise, rubyThroatedHummingbirdPromise
     ];
@@ -154,16 +155,18 @@ myApp.service('StudentService', ['$http', function ($http) {
     console.log('burOakPromise');
     console.log(burOakPromise);
 
-
-    commonBuckthornPromise = 3;
     //Can't get promise.all to return the reason for an error when testing it with burOakPromise
     //and I purposely engineered a 500 error.  I get an error message from angular and from the
     //post callback in services only.
 
-    var allPromises = Promise.all([burOakPromise, commonBuckthornPromise])
+    var allPromises = Promise.all(allPromises)
         .then(values => {
+            console.log('values');
+
             console.log(values);
         }, reason => {
+            console.log('reason');
+
             console.log(reason)
             //     function (values) {
             //     console.log('promise.all values');
@@ -175,11 +178,11 @@ myApp.service('StudentService', ['$http', function ($http) {
             //     console.log(reason)
         });
 
-        // swal(
-        //     'The Internet?',
-        //     'That thing is still around?',
-        //     'question'
-        //   )
+    // swal(
+    //     'The Internet?',
+    //     'That thing is still around?',
+    //     'question'
+    //   )
 
     console.log('promise.all ');
     console.log(allPromises);
@@ -187,29 +190,29 @@ myApp.service('StudentService', ['$http', function ($http) {
     self.postAllData = function () {
         console.log('submitted data: ');
         console.log(self.allData);
-        function myFunction() {
-            var txt;
-            if (confirm("Are you sure you want to submit your data now?  Make sure you are connected to wi-fi.") == true) {
-                
-                        //call other add functions
-        self.addBurOak(self.allData.bur_oak);
-        self.addCommonBuckthorn(self.allData.common_buckthorn);
-        self.addCommonMilkweed(self.allData.common_milkweed);
-        self.addEasternBluebird(self.allData.eastern_bluebird);
-        self.addGroundSquirrel(self.allData.ground_squirrel);
-        self.addDarkEyedJunco(self.allData.dark_eyed_junco);
-        self.addPaperBirch(self.allData.paper_birch);
-        self.addQuakingAspen(self.allData.quaking_aspen);
-        self.addNorthernRedOak(self.allData.northern_red_oak);
-        self.addrubyThroatedHummingbird(self.allData.ruby_throated_hummingbird);
 
-            } else {
-                //optional message to display on page.
-                //txt = "You pressed Cancel!";
-            }
-            //document.getElementById("messageToUser").innerHTML = txt;
+        var txt;
+        if (confirm("Are you sure you want to submit your data now?  Make sure you are connected to wi-fi.") == true) {
+
+            //call other add functions
+            self.addBurOak(self.allData.bur_oak);
+            self.addCommonBuckthorn(self.allData.common_buckthorn);
+            self.addCommonMilkweed(self.allData.common_milkweed);
+            self.addEasternBluebird(self.allData.eastern_bluebird);
+            self.addGroundSquirrel(self.allData.ground_squirrel);
+            self.addDarkEyedJunco(self.allData.dark_eyed_junco);
+            self.addPaperBirch(self.allData.paper_birch);
+            self.addQuakingAspen(self.allData.quaking_aspen);
+            self.addNorthernRedOak(self.allData.northern_red_oak);
+            self.addrubyThroatedHummingbird(self.allData.ruby_throated_hummingbird);
+
+        } else {
+            //optional message to display on page.
+            //txt = "You pressed Cancel!";
         }
-        
+        //document.getElementById("messageToUser").innerHTML = txt;
+
+
 
     }
 
