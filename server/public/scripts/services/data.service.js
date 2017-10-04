@@ -13,7 +13,6 @@ myApp.service('DataService', ['$http', function ($http) {
   // self.getPaper();
   // self.getQuaking();
   // self.getRuby();
-
  
 
   self.getBur = function (classNum) {
@@ -76,7 +75,13 @@ myApp.service('DataService', ['$http', function ($http) {
       // console.log('get route ruby_throated_hummingbird: ', self.ruby);
     });
   }
-
+  self.getAllData = function () {
+    $http.get('/dashboard/allData').then(function (response) {
+      self.all = response.data;
+      console.log('get route allData: ', self.all);
+    });
+  }
+  self.getAllData();
   // self.getBur();
   // self.getBuckthorn();
   // self.getMilkweed();
