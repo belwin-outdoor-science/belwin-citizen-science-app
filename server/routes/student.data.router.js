@@ -30,7 +30,7 @@ router.post('/bur_oak', function (req, res) {
 
 router.post('/paper_birch', function (req, res) {
     var query = buildStatement('INSERT INTO paper_birch (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    console.log('paper_birch router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -51,8 +51,8 @@ router.post('/paper_birch', function (req, res) {
 });
 
 router.post('/quaking_aspen', function (req, res) {
-    var query = buildStatement('INSERT INTO paper_birch (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    var query = buildStatement('INSERT INTO quaking_aspen (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    console.log('quaking_aspen router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -61,7 +61,7 @@ router.post('/quaking_aspen', function (req, res) {
             client.query(query, function (err, result) {
                     done();
                     if (err) {
-                        console.log('Error making paper_birch post query: ', err);
+                        console.log('Error making quaking_aspen post query: ', err);
                         res.sendStatus(500);
                     } else {
                         res.sendStatus(201);
@@ -73,8 +73,8 @@ router.post('/quaking_aspen', function (req, res) {
 });
 
 router.post('/northern_red_oak', function (req, res) {
-    var query = buildStatement('INSERT INTO paper_birch (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    var query = buildStatement('INSERT INTO northern_red_oak (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    console.log('northern_red_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -83,7 +83,7 @@ router.post('/northern_red_oak', function (req, res) {
             client.query(query, function (err, result) {
                     done();
                     if (err) {
-                        console.log('Error making paper_birch post query: ', err);
+                        console.log('Error making northern_red_oak post query: ', err);
                         res.sendStatus(500);
                     } else {
                         res.sendStatus(201);
@@ -95,8 +95,8 @@ router.post('/northern_red_oak', function (req, res) {
 });
 
 router.post('/common_buckthorn', function (req, res) {
-    var query = buildStatement('INSERT INTO common_buckthorn (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    var query = buildStatement('INSERT INTO common_buckthorn (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    console.log('common_buckthorn router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -118,7 +118,7 @@ router.post('/common_buckthorn', function (req, res) {
 
 router.post('/common_milkweed', function (req, res) {
     var query = buildStatement('INSERT INTO common_milkweed (class, site, initial_growth, leaves, flowers_or_flower_buds, open_flowers, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    console.log('common_milkweed router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -142,7 +142,7 @@ router.post('/common_milkweed', function (req, res) {
 
 router.post('/ground_squirrel', function (req, res) {
     var query = buildStatement('INSERT INTO ground_squirrel (class, site, active_individuals, feeding, young_individuals, dead_individuals, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    console.log('ground_squirrel router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -163,8 +163,8 @@ router.post('/ground_squirrel', function (req, res) {
 });
 
 router.post('/eastern_bluebird', function (req, res) {
-    var query = buildStatement('INSERT INTO eastern_bluebird (class, site, active_individuals, feeding, fruit_seed_consumption, insect_consumption, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    var query = buildStatement('INSERT INTO eastern_bluebird (class, site, active_individuals, feeding, fruit_or_seed_consumption, insect_consumption, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledglings, individuals_at_feeding_station, notes) VALUES ', req.body);
+    console.log('eastern_bluebird router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -185,8 +185,8 @@ router.post('/eastern_bluebird', function (req, res) {
 });
 
 router.post('/dark_eyed_junco', function (req, res) {
-    var query = buildStatement('INSERT INTO dark_eyed_junco (class, site, active_individuals, feeding, fruit_seed_consumption, insect_consumption, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    var query = buildStatement('INSERT INTO dark_eyed_junco (class, site, active_individuals, feeding, fruit_or_seed_consumption, insect_consumption, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_building, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledglings, individuals_at_feeding_station, notes) VALUES ', req.body);
+    console.log('dark_eyed_junco router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -207,8 +207,8 @@ router.post('/dark_eyed_junco', function (req, res) {
 });
 
 router.post('/ruby_throated_hummingbird', function (req, res) {
-    var query = buildStatement('INSERT INTO ruby_throated_hummingbird (class, site, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_bulding, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledlings, individuals_at_feeding_station, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
+    var query = buildStatement('INSERT INTO ruby_throated_hummingbird (class, site, active_individuals, feeding, insect_consumption, flower_visitation, calls_or_song, singing_individuals, territorial_individuals, courtship, mating, nest_bulding, occupied_nest, nestlings, fledged_young, dead_individuals, dead_nestlings_or_fledglings, individuals_at_feeding_station, notes) VALUES ', req.body);
+    console.log('ruby_throated_hummingbird router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);

@@ -113,7 +113,7 @@ active_individuals VARCHAR(80),
 
 feeding VARCHAR(80),
 
-fruit_seed_consumption VARCHAR(80),
+fruit_or_seed_consumption VARCHAR(80),
 
 insect_consumption VARCHAR(80),
 
@@ -183,7 +183,7 @@ active_individuals VARCHAR(80),
 
 feeding VARCHAR(80),
 
-fruit_seed_consumption VARCHAR(80),
+fruit_or_seed_consumption VARCHAR(80),
 
 insect_consumption VARCHAR(80),
 
