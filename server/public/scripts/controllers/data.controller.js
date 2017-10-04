@@ -12,9 +12,19 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.ruby = DataService.ruby;
     vm.dark = DataService.dark;
     vm.eastern = DataService.eastern;
-    // vm.all = DataService.all;
+    vm.allBur = DataService.allBur;
+    vm.everything = DataService.everything;
     // vm.data = DataService;
-
+    vm.allBur = DataService.allBur;
+    vm.allBuckthorn = DataService.allBuckthorn;
+    vm.allDark = DataService.allDark;
+    vm.allEastern = DataService.allEastern;
+    vm.allGround = DataService.allGround;
+    vm.allMilkweed = DataService.allMilkweed;
+    vm.allNorthern = DataService.allNorthern;
+    vm.allPaper = DataService.allPaper;
+    vm.allQuaking = DataService.allQuaking;
+    vm.allRuby = DataService.allRuby;
 
 
     vm.getDetails = function (species) {
@@ -52,7 +62,6 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
             DataService.getEastern(vm.classNum)
         }
     }
-
 
 }]);
 
