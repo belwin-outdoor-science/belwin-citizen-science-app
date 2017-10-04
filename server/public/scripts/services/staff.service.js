@@ -10,7 +10,6 @@ myApp.service('StaffService', ['$http', function ($http) {
         // console.log('get route successful: ', self.userInfo);
       });
     }
-  
-  
+
   }]);
   
