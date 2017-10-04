@@ -12,8 +12,8 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.ruby = DataService.ruby;
     vm.dark = DataService.dark;
     vm.eastern = DataService.eastern;
+
     vm.allBur = DataService.allBur;
-    vm.everything = DataService.everything;
     // vm.data = DataService;
     vm.allBur = DataService.allBur;
     vm.allBuckthorn = DataService.allBuckthorn;
@@ -63,5 +63,39 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
         }
     }
 
+    vm.getAll = function (species) {
+        vm.showAll = true;
+        if (species == "Bur Oak") {
+            DataService.getAllBur();
+            vm.partial = "all-bur-oak-table.html"
+        } else if (species == "Common Buckthorn") {
+            DataService.getAllBuckthorn();
+            vm.partial = "all-common-buckthorn-table.html";
+        } else if (species == "Red Oak") {
+            DataService.getAllNorthern();
+            vm.partial = "all-northern-red-oak-table.html";
+        } else if (species == "Paper Birch") {
+            DataService.getAllPaper();
+            vm.partial = "all-paper-birch-table.html";
+        } else if (species == "Quaking Aspen") {
+            DataService.getAllQuaking()
+            vm.partial = "all-quaking-aspen-table.html"
+        } else if (species == "Milkweed") {
+            vm.partial = "all-common-milkweed-table.html"
+            DataService.getAllMilkweed()
+        } else if (species == "Ground Squirrel") {
+            vm.partial = "all-ground-squirrel-table.html"
+            DataService.getAllGround()
+        } else if (species == "Ruby Throated Hummingbird") {
+            vm.partial = "all-ruby-throated-hummingbird-table.html"
+            DataService.getAllRuby()
+        } else if (species == "Dark-eyed Junco") {
+            vm.partial = "all-dark-eyed-junco-table.html"
+            DataService.getAllDark()
+        } else if (species == "Eastern Bluebird") {
+            vm.partial = "all-eastern-bluebird-table.html"
+            DataService.getAllEastern()
+        }
+    }
 }]);
 
