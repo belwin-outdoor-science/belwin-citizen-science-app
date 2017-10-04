@@ -3,16 +3,16 @@ myApp.service('DataService', ['$http', function ($http) {
   var self = this;
   // self.data = { info: {}   }
 
-  self.bur = {data: []};
-  self.buckthorn = {data: []};
-  self.milkweed = {data: []};
-  self.dark = {data: []};
-  self.eastern = {data: []};
-  self.ground = {data: []};
-  self.northern = {data: []};
-  self.paper= {data: []};
-  self.quaking = {data: []};
-  self.ruby = {data: []};
+  self.bur = {data: [], notes: []};
+  self.buckthorn = {data: [], notes: []};
+  self.milkweed = {data: [], notes: []};
+  self.dark = {data: [], notes: []};
+  self.eastern = {data: [], notes: []};
+  self.ground = {data: [], notes: []};
+  self.northern = {data: [], notes: []};
+  self.paper= {data: [], notes: []};
+  self.quaking = {data: [], notes: []};
+  self.ruby = {data: [], notes: []};
 
  
 
@@ -20,6 +20,12 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/bur/' + classNum).then(function (response) {
       self.bur.data = response.data;
      // console.log('get route bur_oak: ', self.bur);
+    }).then(function(){
+      //new get call to pull notes
+      $http.get('/dashboard/bur/notes/' + classNum).then(function (response) {
+        self.bur.notes = response.data;
+       // console.log('get route bur_oak: ', self.bur);
+      })
     });
   }
   self.getBuckthorn = function (classNum) {
