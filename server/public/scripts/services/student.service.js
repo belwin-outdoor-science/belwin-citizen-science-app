@@ -211,31 +211,29 @@ myApp.service('StudentService', ['$http', function ($http) {
         } else {
             //optional message to display on page.
             //document.getElementById("messageToUser").innerHTML = txt;
-
         }
-
-
-
     }
 
     //this function is called in the success and fail parts of each post request
-    
+
     function checkIfAllPostsAreDoneAndErrorHandling() {
         //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
         //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == 10) {
             console.log('checking postCallbackMessages');
-            self.postCallbackMessages.forEach(function (message) {
+            for (var i = 0; i < self.postCallbackMessages.length; i++) {
                 //if 'error', alert the user so they can try to upload data again.
                 //data is cleared out in the success parts of the post, so they can just hit the submit button again.
+                var message = self.postCallbackMessages[i];
                 if (message == 'error') {
                     // swal(
                     //     'Error uploading data.  Try again.'
                     // );
                     alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
                     //to wifi and the sweet alert would break the app.
+                    self.postCallbackMessages = [];
                 }
-            });
+            }
         }
     }
     //clears out self.allData except for site number
