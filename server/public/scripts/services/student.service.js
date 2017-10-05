@@ -192,7 +192,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         // console.log('submitted data: ');
         // console.log(self.allData);
         if (confirm("Are you sure you want to submit your data now?  Make sure you are at Belwin Center.") == true) {
-
+            self.allData = StudentService.storage.getItem('allData');
             //call all post functions defined above
             self.addBurOak(self.allData.bur_oak);
             self.addCommonBuckthorn(self.allData.common_buckthorn);
@@ -245,6 +245,8 @@ myApp.service('StudentService', ['$http', function ($http) {
                 }
             }
         });
+        //clear local storage
+        self.storage.clear();
     }
 
     //Charly's data solution
@@ -752,6 +754,8 @@ myApp.service('StudentService', ['$http', function ($http) {
         ]
     };
 
+    self.storage = window.localStorage;
+
 
     //data filling functions for student view
     self.selectedOrganism = {
@@ -781,8 +785,6 @@ myApp.service('StudentService', ['$http', function ($http) {
         }
         console.log('class set');
         console.log(self.allData);
-
-
     }
 
     self.site = {
@@ -799,5 +801,7 @@ myApp.service('StudentService', ['$http', function ($http) {
                 self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
             }
         }
+        var allDataString = JSON.stringify(self.allData);
+        self.storage.setItem('allData', allDataString);
     }
 }]);
