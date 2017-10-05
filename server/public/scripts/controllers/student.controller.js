@@ -7,9 +7,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     vm.userService = UserService;
     vm.studentService = StudentService;
     vm.userObject = UserService.userObject;
-    vm.class = {
-        class: ''
-    };
+
     vm.appSetup = true;
     vm.allData = StudentService.allData
 
@@ -82,7 +80,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     }
 
     vm.submit = function () {
-        console.log('selected class is', vm.class.class)
+        console.log('selected class is', vm.studentService.class.class)
         vm.appSetup = false;
     }
 
