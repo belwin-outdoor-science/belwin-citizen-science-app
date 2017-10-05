@@ -6,13 +6,16 @@
 <div>
     <p>Plants</p>
     <md-button class="md-raised md-primary" ng-click="burData = ! burData">Bur Oak</md-button>
-    <md-button class="md-raised md-primary" ng-click="buckthornData = ! buckthornData">Common Buckthorn</md-button>
-    
+    <md-button class="md-raised md-primary" ng-click="buckthornData = ! buckthornData; ">Common Buckthorn</md-button>
+    <md-button class="md-raised md-primary" ng-click="milkweedData = ! milkweedData">Common Milkweed</md-button>
+    <md-button class="md-raised md-primary" ng-click="northernData = ! northernData">Northern Red Oak</md-button>
+    <md-button class="md-raised md-primary" ng-click="quakingData = ! quakingData">Quaking Aspen</md-button>
     <p>Mammals</p>
-    
+    <md-button class="md-raised md-primary" ng-click="groundData = ! groundData">Ground Squirrel</md-button>
     <p>Birds</p>
     <md-button class="md-raised md-primary" ng-click="darkData = ! darkData">Dark Eyed Junco</md-button>
     <md-button class="md-raised md-primary" ng-click="easternData = ! easternData">Eastern Bluebird</md-button>
+    <md-button class="md-raised md-primary" ng-click="rubyData = ! rubyData">Ruby Throated Hummingbird</md-button>
 </div>
 
 <div ng-show="burData">
@@ -178,7 +181,8 @@
     <ul ng-repeat="note in dc.allBur.notes">
         <li>{{note.notes}}</li>
     </ul>
-</div> <!-- End of Bur Oak table -->
+</div>
+<!-- End of Bur Oak table -->
 
 <div ng-show="buckthornData">
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
@@ -248,7 +252,7 @@
             <td>{{dc.allBuckthorn.data[2].colored_leaves_no}}</td>
             <td>{{dc.allBuckthorn.data[2].colored_leaves_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Falling Leaves</td>
             <td>{{dc.allBuckthorn.data[0].falling_leaves_yes}}</td>
@@ -261,7 +265,7 @@
             <td>{{dc.allBuckthorn.data[2].falling_leaves_no}}</td>
             <td>{{dc.allBuckthorn.data[2].falling_leaves_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Flowers or Flower Buds</td>
             <td>{{dc.allBuckthorn.data[0].flowers_or_flower_buds_yes}}</td>
@@ -274,7 +278,7 @@
             <td>{{dc.allBuckthorn.data[2].flowers_or_flower_buds_no}}</td>
             <td>{{dc.allBuckthorn.data[2].flowers_or_flower_buds_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Open Flowers</td>
             <td>{{dc.allBuckthorn.data[0].open_flowers_yes}}</td>
@@ -287,7 +291,7 @@
             <td>{{dc.allBuckthorn.data[2].open_flowers_no}}</td>
             <td>{{dc.allBuckthorn.data[2].open_flowers_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Fruits</td>
             <td>{{dc.allBuckthorn.data[0].fruits_yes}}</td>
@@ -300,7 +304,7 @@
             <td>{{dc.allBuckthorn.data[2].fruits_no}}</td>
             <td>{{dc.allBuckthorn.data[2].fruits_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Ripe Fruits</td>
             <td>{{dc.allBuckthorn.data[0].ripe_fruits_yes}}</td>
@@ -324,12 +328,13 @@
             <td>{{dc.allBuckthorn.data[2].recent_fruit_or_seed_drop_yes}}</td>
             <td>{{dc.allBuckthorn.data[2].recent_fruit_or_seed_drop_no}}</td>
             <td>{{dc.allBuckthorn.data[2].recent_fruit_or_seed_drop_maybe}}</td>
-        </tr>  
-    </table>  
-</div> <!-- End of Common Buckthorn table -->
+        </tr>
+    </table>
+</div>
+<!-- End of Common Buckthorn table -->
 
 <div ng-show="darkData">
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <tr>
             <th></th>
             <th class="speciesNumber" colspan="3">Dark Eyed Junco 1</th>
@@ -396,7 +401,7 @@
             <td>{{dc.allDark.data[2].insect_consumption_no}}</td>
             <td>{{dc.allDark.data[2].insect_consumption_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Calls or Songs</td>
             <td>{{dc.allDark.data[0].calls_or_song_yes}}</td>
@@ -409,7 +414,7 @@
             <td>{{dc.allDark.data[2].calls_or_song_no}}</td>
             <td>{{dc.allDark.data[2].calls_or_song_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Singing Individuals</td>
             <td>{{dc.allDark.data[0].singing_individuals_yes}}</td>
@@ -422,7 +427,7 @@
             <td>{{dc.allDark.data[2].singing_individuals_no}}</td>
             <td>{{dc.allDark.data[2].singing_individuals_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Territorial Individuals</td>
             <td>{{dc.allDark.data[0].territorial_individuals_yes}}</td>
@@ -435,7 +440,7 @@
             <td>{{dc.allDark.data[2].territorial_individuals_no}}</td>
             <td>{{dc.allDark.data[2].territorial_individuals_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Courtship</td>
             <td>{{dc.allDark.data[0].courtship_yes}}</td>
@@ -448,7 +453,7 @@
             <td>{{dc.allDark.data[2].courtship_no}}</td>
             <td>{{dc.allDark.data[2].courtship_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Mating</td>
             <td>{{dc.allDark.data[0].mating_yes}}</td>
@@ -461,7 +466,7 @@
             <td>{{dc.allDark.data[2].mating_no}}</td>
             <td>{{dc.allDark.data[2].mating_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Nest Building</td>
             <td>{{dc.allDark.data[0].nest_building_yes}}</td>
@@ -486,7 +491,7 @@
             <td>{{dc.allDark.data[2].occupied_nest_no}}</td>
             <td>{{dc.allDark.data[2].occupied_nest_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Nestlings</td>
             <td>{{dc.allDark.data[0].nestlings_yes}}</td>
@@ -499,7 +504,7 @@
             <td>{{dc.allDark.data[2].nestlings_no}}</td>
             <td>{{dc.allDark.data[2].nestlings_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Fledged Young</td>
             <td>{{dc.allDark.data[0].fledged_young_yes}}</td>
@@ -512,7 +517,7 @@
             <td>{{dc.allDark.data[2].fledged_young_no}}</td>
             <td>{{dc.allDark.data[2].fledged_young_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Dead Individuals</td>
             <td>{{dc.allDark.data[0].dead_individuals_yes}}</td>
@@ -525,7 +530,7 @@
             <td>{{dc.allDark.data[2].dead_individuals_no}}</td>
             <td>{{dc.allDark.data[2].dead_individuals_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Dead Nestlings of Fledglings</td>
             <td>{{dc.allDark.data[0].dead_nestlings_or_fledglings_yes}}</td>
@@ -538,7 +543,7 @@
             <td>{{dc.allDark.data[2].dead_nestlings_or_fledglings_no}}</td>
             <td>{{dc.allDark.data[2].dead_nestlings_or_fledglings_maybe}}</td>
         </tr>
-    
+
         <tr>
             <td>Individuals at Feeding Station</td>
             <td>{{dc.allDark.data[0].individuals_at_feeding_station_yes}}</td>
@@ -552,237 +557,1188 @@
             <td>{{dc.allDark.data[2].individuals_at_feeding_station_maybe}}</td>
         </tr>
     </table>
-</div> <!-- End of Dark Eyed Junco table -->
+</div>
+<!-- End of Dark Eyed Junco table -->
 
 <div ng-show="easternData">
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-                <tr>
-                    <th></th>
-                    <th class="speciesNumber" colspan="3">Eastern Bluebird 1</th>
-                    <th class="speciesNumber" colspan="3">Eastern Bluebird 2</th>
-                    <th class="speciesNumber" colspan="3">Eastern Bluebird 3</th>
-                </tr>
-                <tr>
-                    <th></th>
-                    <th>Y</th>
-                    <th>N</th>
-                    <th>?</th>
-                    <th>Y</th>
-                    <th>N</th>
-                    <th>?</th>
-                    <th>Y</th>
-                    <th>N</th>
-                    <th>?</th>
-                </tr>
-                <tr>
-                    <td>Active Individuals</td>
-                    <td>{{dc.allEastern.data[0].active_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[0].active_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[0].active_individuals_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].active_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[1].active_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[1].active_individuals_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].active_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[2].active_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[2].active_individuals_maybe}}</td>
-                </tr>
-                <tr>
-                    <td>Feeding</td>
-                    <td>{{dc.allEastern.data[0].feeding_yes}}</td>
-                    <td>{{dc.allEastern.data[0].feeding_no}}</td>
-                    <td>{{dc.allEastern.data[0].feeding_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].feeding_yes}}</td>
-                    <td>{{dc.allEastern.data[1].feeding_no}}</td>
-                    <td>{{dc.allEastern.data[1].feeding_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].feeding_yes}}</td>
-                    <td>{{dc.allEastern.data[2].feeding_no}}</td>
-                    <td>{{dc.allEastern.data[2].feeding_maybe}}</td>
-                </tr>
-                <tr>
-                    <td>Fruit/Seed Consumption</td>
-                    <td>{{dc.allEastern.data[0].fruit_or_seed_consumption_yes}}</td>
-                    <td>{{dc.allEastern.data[0].fruit_or_seed_consumption_no}}</td>
-                    <td>{{dc.allEastern.data[0].fruit_or_seed_consumption_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].fruit_or_seed_consumption_yes}}</td>
-                    <td>{{dc.allEastern.data[1].fruit_or_seed_consumption_no}}</td>
-                    <td>{{dc.allEastern.data[1].fruit_or_seed_consumption_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].fruit_or_seed_consumption_yes}}</td>
-                    <td>{{dc.allEastern.data[2].fruit_or_seed_consumption_no}}</td>
-                    <td>{{dc.allEastern.data[2].fruit_or_seed_consumption_maybe}}</td>
-                </tr>
-                <tr>
-                    <td>Insect Consumption</td>
-                    <td>{{dc.allEastern.data[0].insect_consumption_yes}}</td>
-                    <td>{{dc.allEastern.data[0].insect_consumption_no}}</td>
-                    <td>{{dc.allEastern.data[0].insect_consumption_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].insect_consumption_yes}}</td>
-                    <td>{{dc.allEastern.data[1].insect_consumption_no}}</td>
-                    <td>{{dc.allEastern.data[1].insect_consumption_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].insect_consumption_yes}}</td>
-                    <td>{{dc.allEastern.data[2].insect_consumption_no}}</td>
-                    <td>{{dc.allEastern.data[2].insect_consumption_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Calls or Songs</td>
-                    <td>{{dc.allEastern.data[0].calls_or_song_yes}}</td>
-                    <td>{{dc.allEastern.data[0].calls_or_song_no}}</td>
-                    <td>{{dc.allEastern.data[0].calls_or_song_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].calls_or_song_yes}}</td>
-                    <td>{{dc.allEastern.data[1].calls_or_song_no}}</td>
-                    <td>{{dc.allEastern.data[1].calls_or_song_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].calls_or_song_yes}}</td>
-                    <td>{{dc.allEastern.data[2].calls_or_song_no}}</td>
-                    <td>{{dc.allEastern.data[2].calls_or_song_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Singing Individuals</td>
-                    <td>{{dc.allEastern.data[0].singing_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[0].singing_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[0].singing_individuals_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].singing_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[1].singing_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[1].singing_individuals_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].singing_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[2].singing_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[2].singing_individuals_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Territorial Individuals</td>
-                    <td>{{dc.allEastern.data[0].territorial_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[0].territorial_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[0].territorial_individuals_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].territorial_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[1].territorial_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[1].territorial_individuals_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].territorial_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[2].territorial_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[2].territorial_individuals_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Courtship</td>
-                    <td>{{dc.allEastern.data[0].courtship_yes}}</td>
-                    <td>{{dc.allEastern.data[0].courtship_no}}</td>
-                    <td>{{dc.allEastern.data[0].courtship_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].courtship_yes}}</td>
-                    <td>{{dc.allEastern.data[1].courtship_no}}</td>
-                    <td>{{dc.allEastern.data[1].courtship_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].courtship_yes}}</td>
-                    <td>{{dc.allEastern.data[2].courtship_no}}</td>
-                    <td>{{dc.allEastern.data[2].courtship_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Mating</td>
-                    <td>{{dc.allEastern.data[0].mating_yes}}</td>
-                    <td>{{dc.allEastern.data[0].mating_no}}</td>
-                    <td>{{dc.allEastern.data[0].mating_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].mating_yes}}</td>
-                    <td>{{dc.allEastern.data[1].mating_no}}</td>
-                    <td>{{dc.allEastern.data[1].mating_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].mating_yes}}</td>
-                    <td>{{dc.allEastern.data[2].mating_no}}</td>
-                    <td>{{dc.allEastern.data[2].mating_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Nest Building</td>
-                    <td>{{dc.allEastern.data[0].nest_building_yes}}</td>
-                    <td>{{dc.allEastern.data[0].nest_building_no}}</td>
-                    <td>{{dc.allEastern.data[0].nest_building_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].nest_building_yes}}</td>
-                    <td>{{dc.allEastern.data[1].nest_building_no}}</td>
-                    <td>{{dc.allEastern.data[1].nest_building_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].nest_building_yes}}</td>
-                    <td>{{dc.allEastern.data[2].nest_building_no}}</td>
-                    <td>{{dc.allEastern.data[2].nest_building_maybe}}</td>
-                </tr>
-                <tr>
-                    <td>Occupied Nest</td>
-                    <td>{{dc.allEastern.data[0].occupied_nest_yes}}</td>
-                    <td>{{dc.allEastern.data[0].occupied_nest_no}}</td>
-                    <td>{{dc.allEastern.data[0].occupied_nest_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].occupied_nest_yes}}</td>
-                    <td>{{dc.allEastern.data[1].occupied_nest_no}}</td>
-                    <td>{{dc.allEastern.data[1].occupied_nest_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].occupied_nest_yes}}</td>
-                    <td>{{dc.allEastern.data[2].occupied_nest_no}}</td>
-                    <td>{{dc.allEastern.data[2].occupied_nest_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Nestlings</td>
-                    <td>{{dc.allEastern.data[0].nestlings_yes}}</td>
-                    <td>{{dc.allEastern.data[0].nestlings_no}}</td>
-                    <td>{{dc.allEastern.data[0].nestlings_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].nestlings_yes}}</td>
-                    <td>{{dc.allEastern.data[1].nestlings_no}}</td>
-                    <td>{{dc.allEastern.data[1].nestlings_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].nestlings_yes}}</td>
-                    <td>{{dc.allEastern.data[2].nestlings_no}}</td>
-                    <td>{{dc.allEastern.data[2].nestlings_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Fledged Young</td>
-                    <td>{{dc.allEastern.data[0].fledged_young_yes}}</td>
-                    <td>{{dc.allEastern.data[0].fledged_young_no}}</td>
-                    <td>{{dc.allEastern.data[0].fledged_young_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].fledged_young_yes}}</td>
-                    <td>{{dc.allEastern.data[1].fledged_young_no}}</td>
-                    <td>{{dc.allEastern.data[1].fledged_young_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].fledged_young_yes}}</td>
-                    <td>{{dc.allEastern.data[2].fledged_young_no}}</td>
-                    <td>{{dc.allEastern.data[2].fledged_young_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Dead Individuals</td>
-                    <td>{{dc.allEastern.data[0].dead_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[0].dead_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[0].dead_individuals_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].dead_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[1].dead_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[1].dead_individuals_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].dead_individuals_yes}}</td>
-                    <td>{{dc.allEastern.data[2].dead_individuals_no}}</td>
-                    <td>{{dc.allEastern.data[2].dead_individuals_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Dead Nestlings of Fledglings</td>
-                    <td>{{dc.allEastern.data[0].dead_nestlings_or_fledglings_yes}}</td>
-                    <td>{{dc.allEastern.data[0].dead_nestlings_or_fledglings_no}}</td>
-                    <td>{{dc.allEastern.data[0].dead_nestlings_or_fledglings_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].dead_nestlings_or_fledglings_yes}}</td>
-                    <td>{{dc.allEastern.data[1].dead_nestlings_or_fledglings_no}}</td>
-                    <td>{{dc.allEastern.data[1].dead_nestlings_or_fledglings_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].dead_nestlings_or_fledglings_yes}}</td>
-                    <td>{{dc.allEastern.data[2].dead_nestlings_or_fledglings_no}}</td>
-                    <td>{{dc.allEastern.data[2].dead_nestlings_or_fledglings_maybe}}</td>
-                </tr>
-            
-                <tr>
-                    <td>Individuals at Feeding Station</td>
-                    <td>{{dc.allEastern.data[0].individuals_at_feeding_station_yes}}</td>
-                    <td>{{dc.allEastern.data[0].individuals_at_feeding_station_no}}</td>
-                    <td>{{dc.allEastern.data[0].individuals_at_feeding_station_maybe}}</td>
-                    <td>{{dc.allEastern.data[1].individuals_at_feeding_station_yes}}</td>
-                    <td>{{dc.allEastern.data[1].individuals_at_feeding_station_no}}</td>
-                    <td>{{dc.allEastern.data[1].individuals_at_feeding_station_maybe}}</td>
-                    <td>{{dc.allEastern.data[2].individuals_at_feeding_station_yes}}</td>
-                    <td>{{dc.allEastern.data[2].individuals_at_feeding_station_no}}</td>
-                    <td>{{dc.allEastern.data[2].individuals_at_feeding_station_maybe}}</td>
-                </tr>
-            </table>
-            
-            <div class="classNotes">
-                allEastern Bluebird Notes
-                <ul ng-repeat="note in dc.allEastern.notes">
-                    <li>{{note.notes}}</li>
-                </ul>
-            </div>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <tr>
+            <th></th>
+            <th class="speciesNumber" colspan="3">Eastern Bluebird 1</th>
+            <th class="speciesNumber" colspan="3">Eastern Bluebird 2</th>
+            <th class="speciesNumber" colspan="3">Eastern Bluebird 3</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+        </tr>
+        <tr>
+            <td>Active Individuals</td>
+            <td>{{dc.allEastern.data[0].active_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[0].active_individuals_no}}</td>
+            <td>{{dc.allEastern.data[0].active_individuals_maybe}}</td>
+            <td>{{dc.allEastern.data[1].active_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[1].active_individuals_no}}</td>
+            <td>{{dc.allEastern.data[1].active_individuals_maybe}}</td>
+            <td>{{dc.allEastern.data[2].active_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[2].active_individuals_no}}</td>
+            <td>{{dc.allEastern.data[2].active_individuals_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Feeding</td>
+            <td>{{dc.allEastern.data[0].feeding_yes}}</td>
+            <td>{{dc.allEastern.data[0].feeding_no}}</td>
+            <td>{{dc.allEastern.data[0].feeding_maybe}}</td>
+            <td>{{dc.allEastern.data[1].feeding_yes}}</td>
+            <td>{{dc.allEastern.data[1].feeding_no}}</td>
+            <td>{{dc.allEastern.data[1].feeding_maybe}}</td>
+            <td>{{dc.allEastern.data[2].feeding_yes}}</td>
+            <td>{{dc.allEastern.data[2].feeding_no}}</td>
+            <td>{{dc.allEastern.data[2].feeding_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Fruit/Seed Consumption</td>
+            <td>{{dc.allEastern.data[0].fruit_or_seed_consumption_yes}}</td>
+            <td>{{dc.allEastern.data[0].fruit_or_seed_consumption_no}}</td>
+            <td>{{dc.allEastern.data[0].fruit_or_seed_consumption_maybe}}</td>
+            <td>{{dc.allEastern.data[1].fruit_or_seed_consumption_yes}}</td>
+            <td>{{dc.allEastern.data[1].fruit_or_seed_consumption_no}}</td>
+            <td>{{dc.allEastern.data[1].fruit_or_seed_consumption_maybe}}</td>
+            <td>{{dc.allEastern.data[2].fruit_or_seed_consumption_yes}}</td>
+            <td>{{dc.allEastern.data[2].fruit_or_seed_consumption_no}}</td>
+            <td>{{dc.allEastern.data[2].fruit_or_seed_consumption_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Insect Consumption</td>
+            <td>{{dc.allEastern.data[0].insect_consumption_yes}}</td>
+            <td>{{dc.allEastern.data[0].insect_consumption_no}}</td>
+            <td>{{dc.allEastern.data[0].insect_consumption_maybe}}</td>
+            <td>{{dc.allEastern.data[1].insect_consumption_yes}}</td>
+            <td>{{dc.allEastern.data[1].insect_consumption_no}}</td>
+            <td>{{dc.allEastern.data[1].insect_consumption_maybe}}</td>
+            <td>{{dc.allEastern.data[2].insect_consumption_yes}}</td>
+            <td>{{dc.allEastern.data[2].insect_consumption_no}}</td>
+            <td>{{dc.allEastern.data[2].insect_consumption_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Calls or Songs</td>
+            <td>{{dc.allEastern.data[0].calls_or_song_yes}}</td>
+            <td>{{dc.allEastern.data[0].calls_or_song_no}}</td>
+            <td>{{dc.allEastern.data[0].calls_or_song_maybe}}</td>
+            <td>{{dc.allEastern.data[1].calls_or_song_yes}}</td>
+            <td>{{dc.allEastern.data[1].calls_or_song_no}}</td>
+            <td>{{dc.allEastern.data[1].calls_or_song_maybe}}</td>
+            <td>{{dc.allEastern.data[2].calls_or_song_yes}}</td>
+            <td>{{dc.allEastern.data[2].calls_or_song_no}}</td>
+            <td>{{dc.allEastern.data[2].calls_or_song_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Singing Individuals</td>
+            <td>{{dc.allEastern.data[0].singing_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[0].singing_individuals_no}}</td>
+            <td>{{dc.allEastern.data[0].singing_individuals_maybe}}</td>
+            <td>{{dc.allEastern.data[1].singing_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[1].singing_individuals_no}}</td>
+            <td>{{dc.allEastern.data[1].singing_individuals_maybe}}</td>
+            <td>{{dc.allEastern.data[2].singing_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[2].singing_individuals_no}}</td>
+            <td>{{dc.allEastern.data[2].singing_individuals_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Territorial Individuals</td>
+            <td>{{dc.allEastern.data[0].territorial_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[0].territorial_individuals_no}}</td>
+            <td>{{dc.allEastern.data[0].territorial_individuals_maybe}}</td>
+            <td>{{dc.allEastern.data[1].territorial_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[1].territorial_individuals_no}}</td>
+            <td>{{dc.allEastern.data[1].territorial_individuals_maybe}}</td>
+            <td>{{dc.allEastern.data[2].territorial_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[2].territorial_individuals_no}}</td>
+            <td>{{dc.allEastern.data[2].territorial_individuals_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Courtship</td>
+            <td>{{dc.allEastern.data[0].courtship_yes}}</td>
+            <td>{{dc.allEastern.data[0].courtship_no}}</td>
+            <td>{{dc.allEastern.data[0].courtship_maybe}}</td>
+            <td>{{dc.allEastern.data[1].courtship_yes}}</td>
+            <td>{{dc.allEastern.data[1].courtship_no}}</td>
+            <td>{{dc.allEastern.data[1].courtship_maybe}}</td>
+            <td>{{dc.allEastern.data[2].courtship_yes}}</td>
+            <td>{{dc.allEastern.data[2].courtship_no}}</td>
+            <td>{{dc.allEastern.data[2].courtship_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Mating</td>
+            <td>{{dc.allEastern.data[0].mating_yes}}</td>
+            <td>{{dc.allEastern.data[0].mating_no}}</td>
+            <td>{{dc.allEastern.data[0].mating_maybe}}</td>
+            <td>{{dc.allEastern.data[1].mating_yes}}</td>
+            <td>{{dc.allEastern.data[1].mating_no}}</td>
+            <td>{{dc.allEastern.data[1].mating_maybe}}</td>
+            <td>{{dc.allEastern.data[2].mating_yes}}</td>
+            <td>{{dc.allEastern.data[2].mating_no}}</td>
+            <td>{{dc.allEastern.data[2].mating_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Nest Building</td>
+            <td>{{dc.allEastern.data[0].nest_building_yes}}</td>
+            <td>{{dc.allEastern.data[0].nest_building_no}}</td>
+            <td>{{dc.allEastern.data[0].nest_building_maybe}}</td>
+            <td>{{dc.allEastern.data[1].nest_building_yes}}</td>
+            <td>{{dc.allEastern.data[1].nest_building_no}}</td>
+            <td>{{dc.allEastern.data[1].nest_building_maybe}}</td>
+            <td>{{dc.allEastern.data[2].nest_building_yes}}</td>
+            <td>{{dc.allEastern.data[2].nest_building_no}}</td>
+            <td>{{dc.allEastern.data[2].nest_building_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Occupied Nest</td>
+            <td>{{dc.allEastern.data[0].occupied_nest_yes}}</td>
+            <td>{{dc.allEastern.data[0].occupied_nest_no}}</td>
+            <td>{{dc.allEastern.data[0].occupied_nest_maybe}}</td>
+            <td>{{dc.allEastern.data[1].occupied_nest_yes}}</td>
+            <td>{{dc.allEastern.data[1].occupied_nest_no}}</td>
+            <td>{{dc.allEastern.data[1].occupied_nest_maybe}}</td>
+            <td>{{dc.allEastern.data[2].occupied_nest_yes}}</td>
+            <td>{{dc.allEastern.data[2].occupied_nest_no}}</td>
+            <td>{{dc.allEastern.data[2].occupied_nest_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Nestlings</td>
+            <td>{{dc.allEastern.data[0].nestlings_yes}}</td>
+            <td>{{dc.allEastern.data[0].nestlings_no}}</td>
+            <td>{{dc.allEastern.data[0].nestlings_maybe}}</td>
+            <td>{{dc.allEastern.data[1].nestlings_yes}}</td>
+            <td>{{dc.allEastern.data[1].nestlings_no}}</td>
+            <td>{{dc.allEastern.data[1].nestlings_maybe}}</td>
+            <td>{{dc.allEastern.data[2].nestlings_yes}}</td>
+            <td>{{dc.allEastern.data[2].nestlings_no}}</td>
+            <td>{{dc.allEastern.data[2].nestlings_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Fledged Young</td>
+            <td>{{dc.allEastern.data[0].fledged_young_yes}}</td>
+            <td>{{dc.allEastern.data[0].fledged_young_no}}</td>
+            <td>{{dc.allEastern.data[0].fledged_young_maybe}}</td>
+            <td>{{dc.allEastern.data[1].fledged_young_yes}}</td>
+            <td>{{dc.allEastern.data[1].fledged_young_no}}</td>
+            <td>{{dc.allEastern.data[1].fledged_young_maybe}}</td>
+            <td>{{dc.allEastern.data[2].fledged_young_yes}}</td>
+            <td>{{dc.allEastern.data[2].fledged_young_no}}</td>
+            <td>{{dc.allEastern.data[2].fledged_young_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Dead Individuals</td>
+            <td>{{dc.allEastern.data[0].dead_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[0].dead_individuals_no}}</td>
+            <td>{{dc.allEastern.data[0].dead_individuals_maybe}}</td>
+            <td>{{dc.allEastern.data[1].dead_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[1].dead_individuals_no}}</td>
+            <td>{{dc.allEastern.data[1].dead_individuals_maybe}}</td>
+            <td>{{dc.allEastern.data[2].dead_individuals_yes}}</td>
+            <td>{{dc.allEastern.data[2].dead_individuals_no}}</td>
+            <td>{{dc.allEastern.data[2].dead_individuals_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Dead Nestlings of Fledglings</td>
+            <td>{{dc.allEastern.data[0].dead_nestlings_or_fledglings_yes}}</td>
+            <td>{{dc.allEastern.data[0].dead_nestlings_or_fledglings_no}}</td>
+            <td>{{dc.allEastern.data[0].dead_nestlings_or_fledglings_maybe}}</td>
+            <td>{{dc.allEastern.data[1].dead_nestlings_or_fledglings_yes}}</td>
+            <td>{{dc.allEastern.data[1].dead_nestlings_or_fledglings_no}}</td>
+            <td>{{dc.allEastern.data[1].dead_nestlings_or_fledglings_maybe}}</td>
+            <td>{{dc.allEastern.data[2].dead_nestlings_or_fledglings_yes}}</td>
+            <td>{{dc.allEastern.data[2].dead_nestlings_or_fledglings_no}}</td>
+            <td>{{dc.allEastern.data[2].dead_nestlings_or_fledglings_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Individuals at Feeding Station</td>
+            <td>{{dc.allEastern.data[0].individuals_at_feeding_station_yes}}</td>
+            <td>{{dc.allEastern.data[0].individuals_at_feeding_station_no}}</td>
+            <td>{{dc.allEastern.data[0].individuals_at_feeding_station_maybe}}</td>
+            <td>{{dc.allEastern.data[1].individuals_at_feeding_station_yes}}</td>
+            <td>{{dc.allEastern.data[1].individuals_at_feeding_station_no}}</td>
+            <td>{{dc.allEastern.data[1].individuals_at_feeding_station_maybe}}</td>
+            <td>{{dc.allEastern.data[2].individuals_at_feeding_station_yes}}</td>
+            <td>{{dc.allEastern.data[2].individuals_at_feeding_station_no}}</td>
+            <td>{{dc.allEastern.data[2].individuals_at_feeding_station_maybe}}</td>
+        </tr>
+    </table>
+
+    <div class="classNotes">
+        Eastern Bluebird Notes
+        <ul ng-repeat="note in dc.allEastern.notes">
+            <li>{{note.notes}}</li>
+        </ul>
+    </div>
+</div>
+<!-- End of Eastern Bluebird table -->
+
+<div ng-show="groundData">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <tr>
+            <th></th>
+            <th class="speciesNumber" colspan="3">Ground Squirrel 1</th>
+            <th class="speciesNumber" colspan="3">Ground Squirrel 2</th>
+            <th class="speciesNumber" colspan="3">Ground Squirrel 3</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+        </tr>
+        <tr>
+            <td>Active Individuals</td>
+            <td>{{dc.allGround.data[0].active_individuals_yes}}</td>
+            <td>{{dc.allGround.data[0].active_individuals_no}}</td>
+            <td>{{dc.allGround.data[0].active_individuals_maybe}}</td>
+            <td>{{dc.allGround.data[1].active_individuals_yes}}</td>
+            <td>{{dc.allGround.data[1].active_individuals_no}}</td>
+            <td>{{dc.allGround.data[1].active_individuals_maybe}}</td>
+            <td>{{dc.allGround.data[2].active_individuals_yes}}</td>
+            <td>{{dc.allGround.data[2].active_individuals_no}}</td>
+            <td>{{dc.allGround.data[2].active_individuals_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Feeding</td>
+            <td>{{dc.allGround.data[0].feeding_yes}}</td>
+            <td>{{dc.allGround.data[0].feeding_no}}</td>
+            <td>{{dc.allGround.data[0].feeding_maybe}}</td>
+            <td>{{dc.allGround.data[1].feeding_yes}}</td>
+            <td>{{dc.allGround.data[1].feeding_no}}</td>
+            <td>{{dc.allGround.data[1].feeding_maybe}}</td>
+            <td>{{dc.allGround.data[2].feeding_yes}}</td>
+            <td>{{dc.allGround.data[2].feeding_no}}</td>
+            <td>{{dc.allGround.data[2].feeding_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Young Individuals</td>
+            <td>{{dc.allGround.data[0].young_individuals_yes}}</td>
+            <td>{{dc.allGround.data[0].young_individuals_no}}</td>
+            <td>{{dc.allGround.data[0].young_individuals_maybe}}</td>
+            <td>{{dc.allGround.data[1].young_individuals_yes}}</td>
+            <td>{{dc.allGround.data[1].young_individuals_no}}</td>
+            <td>{{dc.allGround.data[1].young_individuals_maybe}}</td>
+            <td>{{dc.allGround.data[2].young_individuals_yes}}</td>
+            <td>{{dc.allGround.data[2].young_individuals_no}}</td>
+            <td>{{dc.allGround.data[2].young_individuals_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Dead Individuals</td>
+            <td>{{dc.allGround.data[0].dead_individuals_yes}}</td>
+            <td>{{dc.allGround.data[0].dead_individuals_no}}</td>
+            <td>{{dc.allGround.data[0].dead_individuals_maybe}}</td>
+            <td>{{dc.allGround.data[1].dead_individuals_yes}}</td>
+            <td>{{dc.allGround.data[1].dead_individuals_no}}</td>
+            <td>{{dc.allGround.data[1].dead_individuals_maybe}}</td>
+            <td>{{dc.allGround.data[2].dead_individuals_yes}}</td>
+            <td>{{dc.allGround.data[2].dead_individuals_no}}</td>
+            <td>{{dc.allGround.data[2].dead_individuals_maybe}}</td>
+        </tr>
+    </table>
+    <div class="classNotes">
+        Ground Squirrel Notes
+        <ul ng-repeat="note in dc.allGround.notes">
+            <li>{{note.notes}}</li>
+        </ul>
+    </div>
+</div>
+<!-- End of allGround Squirrel table  -->
+
+<div ng-show="milkweedData">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <tr>
+            <th></th>
+            <th class="speciesNumber" colspan="3">Common Milkweed 1</th>
+            <th class="speciesNumber" colspan="3">Common Milkweed 2</th>
+            <th class="speciesNumber" colspan="3">Common Milkweed 3</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+        </tr>
+        <tr>
+            <td>Breaking Leaf Buds</td>
+            <td>{{dc.allMilkweed.data[0].initial_growth_yes}}</td>
+            <td>{{dc.allMilkweed.data[0].initial_growth_no}}</td>
+            <td>{{dc.allMilkweed.data[0].initial_growth_maybe}}</td>
+            <td>{{dc.allMilkweed.data[1].initial_growth_yes}}</td>
+            <td>{{dc.allMilkweed.data[1].initial_growth_no}}</td>
+            <td>{{dc.allMilkweed.data[1].initial_growth_maybe}}</td>
+            <td>{{dc.allMilkweed.data[2].initial_growth_yes}}</td>
+            <td>{{dc.allMilkweed.data[2].initial_growth_no}}</td>
+            <td>{{dc.allMilkweed.data[2].initial_growth_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Leaves</td>
+            <td>{{dc.allMilkweed.data[0].leaves_yes}}</td>
+            <td>{{dc.allMilkweed.data[0].leaves_no}}</td>
+            <td>{{dc.allMilkweed.data[0].leaves_maybe}}</td>
+            <td>{{dc.allMilkweed.data[1].leaves_yes}}</td>
+            <td>{{dc.allMilkweed.data[1].leaves_no}}</td>
+            <td>{{dc.allMilkweed.data[1].leaves_maybe}}</td>
+            <td>{{dc.allMilkweed.data[2].leaves_yes}}</td>
+            <td>{{dc.allMilkweed.data[2].leaves_no}}</td>
+            <td>{{dc.allMilkweed.data[2].leaves_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Flowers or Flower Buds</td>
+            <td>{{dc.allMilkweed.data[0].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allMilkweed.data[0].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allMilkweed.data[0].flowers_or_flower_buds_maybe}}</td>
+            <td>{{dc.allMilkweed.data[1].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allMilkweed.data[1].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allMilkweed.data[1].flowers_or_flower_buds_maybe}}</td>
+            <td>{{dc.allMilkweed.data[2].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allMilkweed.data[2].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allMilkweed.data[2].flowers_or_flower_buds_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Open Flowers</td>
+            <td>{{dc.allMilkweed.data[0].open_flowers_yes}}</td>
+            <td>{{dc.allMilkweed.data[0].open_flowers_no}}</td>
+            <td>{{dc.allMilkweed.data[0].open_flowers_maybe}}</td>
+            <td>{{dc.allMilkweed.data[1].open_flowers_yes}}</td>
+            <td>{{dc.allMilkweed.data[1].open_flowers_no}}</td>
+            <td>{{dc.allMilkweed.data[1].open_flowers_maybe}}</td>
+            <td>{{dc.allMilkweed.data[2].open_flowers_yes}}</td>
+            <td>{{dc.allMilkweed.data[2].open_flowers_no}}</td>
+            <td>{{dc.allMilkweed.data[2].open_flowers_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Fruits</td>
+            <td>{{dc.allMilkweed.data[0].fruits_yes}}</td>
+            <td>{{dc.allMilkweed.data[0].fruits_no}}</td>
+            <td>{{dc.allMilkweed.data[0].fruits_maybe}}</td>
+            <td>{{dc.allMilkweed.data[1].fruits_yes}}</td>
+            <td>{{dc.allMilkweed.data[1].fruits_no}}</td>
+            <td>{{dc.allMilkweed.data[1].fruits_maybe}}</td>
+            <td>{{dc.allMilkweed.data[2].fruits_yes}}</td>
+            <td>{{dc.allMilkweed.data[2].fruits_no}}</td>
+            <td>{{dc.allMilkweed.data[2].fruits_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Ripe Fruits</td>
+            <td>{{dc.allMilkweed.data[0].ripe_fruits_yes}}</td>
+            <td>{{dc.allMilkweed.data[0].ripe_fruits_no}}</td>
+            <td>{{dc.allMilkweed.data[0].ripe_fruits_maybe}}</td>
+            <td>{{dc.allMilkweed.data[1].ripe_fruits_yes}}</td>
+            <td>{{dc.allMilkweed.data[1].ripe_fruits_no}}</td>
+            <td>{{dc.allMilkweed.data[1].ripe_fruits_maybe}}</td>
+            <td>{{dc.allMilkweed.data[2].ripe_fruits_yes}}</td>
+            <td>{{dc.allMilkweed.data[2].ripe_fruits_no}}</td>
+            <td>{{dc.allMilkweed.data[2].ripe_fruits_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Recent Fruit or Seed Drop</td>
+            <td>{{dc.allMilkweed.data[0].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allMilkweed.data[0].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allMilkweed.data[0].recent_fruit_or_seed_drop_maybe}}</td>
+            <td>{{dc.allMilkweed.data[1].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allMilkweed.data[1].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allMilkweed.data[1].recent_fruit_or_seed_drop_maybe}}</td>
+            <td>{{dc.allMilkweed.data[2].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allMilkweed.data[2].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allMilkweed.data[2].recent_fruit_or_seed_drop_maybe}}</td>
+        </tr>
+
+
+    </table>
+    <div class="classNotes">
+        Common Milkweed Notes
+        <ul ng-repeat="note in dc.allMilkweed.notes">
+            <li>{{note.notes}}</li>
+        </ul>
+    </div>
+</div>
+<!-- End of Common Milkweed table -->
+
+<div ng-show="northernData">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <tr>
+            <th></th>
+            <th class="speciesNumber" colspan="3">Northern Red Oak 1</th>
+            <th class="speciesNumber" colspan="3">Northern Red Oak 2</th>
+            <th class="speciesNumber" colspan="3">Northern Red Oak 3</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+        </tr>
+        <tr>
+            <td>Breaking Leaf Buds</td>
+            <td>{{dc.allNorthern.data[0].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allNorthern.data[0].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allNorthern.data[0].breaking_leaf_buds_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allNorthern.data[1].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allNorthern.data[1].breaking_leaf_buds_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allNorthern.data[2].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allNorthern.data[2].breaking_leaf_buds_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Leaves</td>
+            <td>{{dc.allNorthern.data[0].leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[0].leaves_no}}</td>
+            <td>{{dc.allNorthern.data[0].leaves_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[1].leaves_no}}</td>
+            <td>{{dc.allNorthern.data[1].leaves_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[2].leaves_no}}</td>
+            <td>{{dc.allNorthern.data[2].leaves_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Increasing Leaf Size</td>
+            <td>{{dc.allNorthern.data[0].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allNorthern.data[0].increasing_leaf_size_no}}</td>
+            <td>{{dc.allNorthern.data[0].increasing_leaf_size_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allNorthern.data[1].increasing_leaf_size_no}}</td>
+            <td>{{dc.allNorthern.data[1].increasing_leaf_size_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allNorthern.data[2].increasing_leaf_size_no}}</td>
+            <td>{{dc.allNorthern.data[2].increasing_leaf_size_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Colored Leaves</td>
+            <td>{{dc.allNorthern.data[0].colored_leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[0].colored_leaves_no}}</td>
+            <td>{{dc.allNorthern.data[0].colored_leaves_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].colored_leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[1].colored_leaves_no}}</td>
+            <td>{{dc.allNorthern.data[1].colored_leaves_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].colored_leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[2].colored_leaves_no}}</td>
+            <td>{{dc.allNorthern.data[2].colored_leaves_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Falling Leaves</td>
+            <td>{{dc.allNorthern.data[0].falling_leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[0].falling_leaves_no}}</td>
+            <td>{{dc.allNorthern.data[0].falling_leaves_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].falling_leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[1].falling_leaves_no}}</td>
+            <td>{{dc.allNorthern.data[1].falling_leaves_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].falling_leaves_yes}}</td>
+            <td>{{dc.allNorthern.data[2].falling_leaves_no}}</td>
+            <td>{{dc.allNorthern.data[2].falling_leaves_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Flowers or Flower Buds</td>
+            <td>{{dc.allNorthern.data[0].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allNorthern.data[0].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allNorthern.data[0].flowers_or_flower_buds_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allNorthern.data[1].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allNorthern.data[1].flowers_or_flower_buds_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allNorthern.data[2].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allNorthern.data[2].flowers_or_flower_buds_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Open Flowers</td>
+            <td>{{dc.allNorthern.data[0].open_flowers_yes}}</td>
+            <td>{{dc.allNorthern.data[0].open_flowers_no}}</td>
+            <td>{{dc.allNorthern.data[0].open_flowers_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].open_flowers_yes}}</td>
+            <td>{{dc.allNorthern.data[1].open_flowers_no}}</td>
+            <td>{{dc.allNorthern.data[1].open_flowers_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].open_flowers_yes}}</td>
+            <td>{{dc.allNorthern.data[2].open_flowers_no}}</td>
+            <td>{{dc.allNorthern.data[2].open_flowers_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Pollen Release</td>
+            <td>{{dc.allNorthern.data[0].pollen_release_yes}}</td>
+            <td>{{dc.allNorthern.data[0].pollen_release_no}}</td>
+            <td>{{dc.allNorthern.data[0].pollen_release_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].pollen_release_yes}}</td>
+            <td>{{dc.allNorthern.data[1].pollen_release_no}}</td>
+            <td>{{dc.allNorthern.data[1].pollen_release_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].pollen_release_yes}}</td>
+            <td>{{dc.allNorthern.data[2].pollen_release_no}}</td>
+            <td>{{dc.allNorthern.data[2].pollen_release_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Fruits</td>
+            <td>{{dc.allNorthern.data[0].fruits_yes}}</td>
+            <td>{{dc.allNorthern.data[0].fruits_no}}</td>
+            <td>{{dc.allNorthern.data[0].fruits_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].fruits_yes}}</td>
+            <td>{{dc.allNorthern.data[1].fruits_no}}</td>
+            <td>{{dc.allNorthern.data[1].fruits_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].fruits_yes}}</td>
+            <td>{{dc.allNorthern.data[2].fruits_no}}</td>
+            <td>{{dc.allNorthern.data[2].fruits_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Ripe Fruits</td>
+            <td>{{dc.allNorthern.data[0].ripe_fruits_yes}}</td>
+            <td>{{dc.allNorthern.data[0].ripe_fruits_no}}</td>
+            <td>{{dc.allNorthern.data[0].ripe_fruits_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].ripe_fruits_yes}}</td>
+            <td>{{dc.allNorthern.data[1].ripe_fruits_no}}</td>
+            <td>{{dc.allNorthern.data[1].ripe_fruits_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].ripe_fruits_yes}}</td>
+            <td>{{dc.allNorthern.data[2].ripe_fruits_no}}</td>
+            <td>{{dc.allNorthern.data[2].ripe_fruits_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Recent Fruit or Seed Drop</td>
+            <td>{{dc.allNorthern.data[0].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allNorthern.data[0].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allNorthern.data[0].recent_fruit_or_seed_drop_maybe}}</td>
+            <td>{{dc.allNorthern.data[1].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allNorthern.data[1].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allNorthern.data[1].recent_fruit_or_seed_drop_maybe}}</td>
+            <td>{{dc.allNorthern.data[2].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allNorthern.data[2].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allNorthern.data[2].recent_fruit_or_seed_drop_maybe}}</td>
+        </tr>
+
+
+    </table>
+    <div class="classNotes">
+        Northern Red Oak Notes
+        <ul ng-repeat="note in dc.allNorthern.notes">
+            <li>{{note.notes}}</li>
+        </ul>
+
+    </div>
+</div>
+<!-- End of Northern Red Oak table -->
+
+<div ng-show="paperData">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <tr>
+            <th></th>
+            <th class="speciesNumber" colspan="3">Paper Birch 1</th>
+            <th class="speciesNumber" colspan="3">Paper Birch 2</th>
+            <th class="speciesNumber" colspan="3">Paper Birch 3</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+        </tr>
+        <tr>
+            <td>Breaking Leaf Buds</td>
+            <td>{{dc.allPaper.data[0].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allPaper.data[0].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allPaper.data[0].breaking_leaf_buds_maybe}}</td>
+            <td>{{dc.allPaper.data[1].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allPaper.data[1].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allPaper.data[1].breaking_leaf_buds_maybe}}</td>
+            <td>{{dc.allPaper.data[2].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allPaper.data[2].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allPaper.data[2].breaking_leaf_buds_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Leaves</td>
+            <td>{{dc.allPaper.data[0].leaves_yes}}</td>
+            <td>{{dc.allPaper.data[0].leaves_no}}</td>
+            <td>{{dc.allPaper.data[0].leaves_maybe}}</td>
+            <td>{{dc.allPaper.data[1].leaves_yes}}</td>
+            <td>{{dc.allPaper.data[1].leaves_no}}</td>
+            <td>{{dc.allPaper.data[1].leaves_maybe}}</td>
+            <td>{{dc.allPaper.data[2].leaves_yes}}</td>
+            <td>{{dc.allPaper.data[2].leaves_no}}</td>
+            <td>{{dc.allPaper.data[2].leaves_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Increasing Leaf Size</td>
+            <td>{{dc.allPaper.data[0].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allPaper.data[0].increasing_leaf_size_no}}</td>
+            <td>{{dc.allPaper.data[0].increasing_leaf_size_maybe}}</td>
+            <td>{{dc.allPaper.data[1].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allPaper.data[1].increasing_leaf_size_no}}</td>
+            <td>{{dc.allPaper.data[1].increasing_leaf_size_maybe}}</td>
+            <td>{{dc.allPaper.data[2].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allPaper.data[2].increasing_leaf_size_no}}</td>
+            <td>{{dc.allPaper.data[2].increasing_leaf_size_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Colored Leaves</td>
+            <td>{{dc.allPaper.data[0].colored_leaves_yes}}</td>
+            <td>{{dc.allPaper.data[0].colored_leaves_no}}</td>
+            <td>{{dc.allPaper.data[0].colored_leaves_maybe}}</td>
+            <td>{{dc.allPaper.data[1].colored_leaves_yes}}</td>
+            <td>{{dc.allPaper.data[1].colored_leaves_no}}</td>
+            <td>{{dc.allPaper.data[1].colored_leaves_maybe}}</td>
+            <td>{{dc.allPaper.data[2].colored_leaves_yes}}</td>
+            <td>{{dc.allPaper.data[2].colored_leaves_no}}</td>
+            <td>{{dc.allPaper.data[2].colored_leaves_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Falling Leaves</td>
+            <td>{{dc.allPaper.data[0].falling_leaves_yes}}</td>
+            <td>{{dc.allPaper.data[0].falling_leaves_no}}</td>
+            <td>{{dc.allPaper.data[0].falling_leaves_maybe}}</td>
+            <td>{{dc.allPaper.data[1].falling_leaves_yes}}</td>
+            <td>{{dc.allPaper.data[1].falling_leaves_no}}</td>
+            <td>{{dc.allPaper.data[1].falling_leaves_maybe}}</td>
+            <td>{{dc.allPaper.data[2].falling_leaves_yes}}</td>
+            <td>{{dc.allPaper.data[2].falling_leaves_no}}</td>
+            <td>{{dc.allPaper.data[2].falling_leaves_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Flowers or Flower Buds</td>
+            <td>{{dc.allPaper.data[0].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allPaper.data[0].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allPaper.data[0].flowers_or_flower_buds_maybe}}</td>
+            <td>{{dc.allPaper.data[1].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allPaper.data[1].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allPaper.data[1].flowers_or_flower_buds_maybe}}</td>
+            <td>{{dc.allPaper.data[2].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allPaper.data[2].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allPaper.data[2].flowers_or_flower_buds_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Open Flowers</td>
+            <td>{{dc.allPaper.data[0].open_flowers_yes}}</td>
+            <td>{{dc.allPaper.data[0].open_flowers_no}}</td>
+            <td>{{dc.allPaper.data[0].open_flowers_maybe}}</td>
+            <td>{{dc.allPaper.data[1].open_flowers_yes}}</td>
+            <td>{{dc.allPaper.data[1].open_flowers_no}}</td>
+            <td>{{dc.allPaper.data[1].open_flowers_maybe}}</td>
+            <td>{{dc.allPaper.data[2].open_flowers_yes}}</td>
+            <td>{{dc.allPaper.data[2].open_flowers_no}}</td>
+            <td>{{dc.allPaper.data[2].open_flowers_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Pollen Release</td>
+            <td>{{dc.allPaper.data[0].pollen_release_yes}}</td>
+            <td>{{dc.allPaper.data[0].pollen_release_no}}</td>
+            <td>{{dc.allPaper.data[0].pollen_release_maybe}}</td>
+            <td>{{dc.allPaper.data[1].pollen_release_yes}}</td>
+            <td>{{dc.allPaper.data[1].pollen_release_no}}</td>
+            <td>{{dc.allPaper.data[1].pollen_release_maybe}}</td>
+            <td>{{dc.allPaper.data[2].pollen_release_yes}}</td>
+            <td>{{dc.allPaper.data[2].pollen_release_no}}</td>
+            <td>{{dc.allPaper.data[2].pollen_release_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Fruits</td>
+            <td>{{dc.allPaper.data[0].fruits_yes}}</td>
+            <td>{{dc.allPaper.data[0].fruits_no}}</td>
+            <td>{{dc.allPaper.data[0].fruits_maybe}}</td>
+            <td>{{dc.allPaper.data[1].fruits_yes}}</td>
+            <td>{{dc.allPaper.data[1].fruits_no}}</td>
+            <td>{{dc.allPaper.data[1].fruits_maybe}}</td>
+            <td>{{dc.allPaper.data[2].fruits_yes}}</td>
+            <td>{{dc.allPaper.data[2].fruits_no}}</td>
+            <td>{{dc.allPaper.data[2].fruits_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Ripe Fruits</td>
+            <td>{{dc.allPaper.data[0].ripe_fruits_yes}}</td>
+            <td>{{dc.allPaper.data[0].ripe_fruits_no}}</td>
+            <td>{{dc.allPaper.data[0].ripe_fruits_maybe}}</td>
+            <td>{{dc.allPaper.data[1].ripe_fruits_yes}}</td>
+            <td>{{dc.allPaper.data[1].ripe_fruits_no}}</td>
+            <td>{{dc.allPaper.data[1].ripe_fruits_maybe}}</td>
+            <td>{{dc.allPaper.data[2].ripe_fruits_yes}}</td>
+            <td>{{dc.allPaper.data[2].ripe_fruits_no}}</td>
+            <td>{{dc.allPaper.data[2].ripe_fruits_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Recent Fruit or Seed Drop</td>
+            <td>{{dc.allPaper.data[0].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allPaper.data[0].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allPaper.data[0].recent_fruit_or_seed_drop_maybe}}</td>
+            <td>{{dc.allPaper.data[1].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allPaper.data[1].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allPaper.data[1].recent_fruit_or_seed_drop_maybe}}</td>
+            <td>{{dc.allPaper.data[2].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allPaper.data[2].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allPaper.data[2].recent_fruit_or_seed_drop_maybe}}</td>
+        </tr>
+
+
+    </table>
+
+    <div class="classNotes">
+        Paper Birch Notes
+        <ul ng-repeat="note in dc.allPaper.notes">
+            <li>{{note.notes}}</li>
+        </ul>
+    </div>
+</div>
+<!-- End of Paper Birch table -->
+
+<div ng-show="quakingData">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <tr>
+            <th></th>
+            <th class="speciesNumber" colspan="3">Quaking Aspen 1</th>
+            <th class="speciesNumber" colspan="3">Quaking Aspen 2</th>
+            <th class="speciesNumber" colspan="3">Quaking Aspen 3</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+        </tr>
+        <tr>
+            <td>Breaking Leaf Buds</td>
+            <td>{{dc.allQuaking.data[0].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allQuaking.data[0].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allQuaking.data[0].breaking_leaf_buds_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allQuaking.data[1].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allQuaking.data[1].breaking_leaf_buds_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].breaking_leaf_buds_yes}}</td>
+            <td>{{dc.allQuaking.data[2].breaking_leaf_buds_no}}</td>
+            <td>{{dc.allQuaking.data[2].breaking_leaf_buds_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Leaves</td>
+            <td>{{dc.allQuaking.data[0].leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[0].leaves_no}}</td>
+            <td>{{dc.allQuaking.data[0].leaves_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[1].leaves_no}}</td>
+            <td>{{dc.allQuaking.data[1].leaves_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[2].leaves_no}}</td>
+            <td>{{dc.allQuaking.data[2].leaves_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Increasing Leaf Size</td>
+            <td>{{dc.allQuaking.data[0].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allQuaking.data[0].increasing_leaf_size_no}}</td>
+            <td>{{dc.allQuaking.data[0].increasing_leaf_size_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allQuaking.data[1].increasing_leaf_size_no}}</td>
+            <td>{{dc.allQuaking.data[1].increasing_leaf_size_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].increasing_leaf_size_yes}}</td>
+            <td>{{dc.allQuaking.data[2].increasing_leaf_size_no}}</td>
+            <td>{{dc.allQuaking.data[2].increasing_leaf_size_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Colored Leaves</td>
+            <td>{{dc.allQuaking.data[0].colored_leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[0].colored_leaves_no}}</td>
+            <td>{{dc.allQuaking.data[0].colored_leaves_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].colored_leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[1].colored_leaves_no}}</td>
+            <td>{{dc.allQuaking.data[1].colored_leaves_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].colored_leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[2].colored_leaves_no}}</td>
+            <td>{{dc.allQuaking.data[2].colored_leaves_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Falling Leaves</td>
+            <td>{{dc.allQuaking.data[0].falling_leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[0].falling_leaves_no}}</td>
+            <td>{{dc.allQuaking.data[0].falling_leaves_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].falling_leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[1].falling_leaves_no}}</td>
+            <td>{{dc.allQuaking.data[1].falling_leaves_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].falling_leaves_yes}}</td>
+            <td>{{dc.allQuaking.data[2].falling_leaves_no}}</td>
+            <td>{{dc.allQuaking.data[2].falling_leaves_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Flowers or Flower Buds</td>
+            <td>{{dc.allQuaking.data[0].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allQuaking.data[0].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allQuaking.data[0].flowers_or_flower_buds_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allQuaking.data[1].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allQuaking.data[1].flowers_or_flower_buds_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].flowers_or_flower_buds_yes}}</td>
+            <td>{{dc.allQuaking.data[2].flowers_or_flower_buds_no}}</td>
+            <td>{{dc.allQuaking.data[2].flowers_or_flower_buds_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Open Flowers</td>
+            <td>{{dc.allQuaking.data[0].open_flowers_yes}}</td>
+            <td>{{dc.allQuaking.data[0].open_flowers_no}}</td>
+            <td>{{dc.allQuaking.data[0].open_flowers_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].open_flowers_yes}}</td>
+            <td>{{dc.allQuaking.data[1].open_flowers_no}}</td>
+            <td>{{dc.allQuaking.data[1].open_flowers_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].open_flowers_yes}}</td>
+            <td>{{dc.allQuaking.data[2].open_flowers_no}}</td>
+            <td>{{dc.allQuaking.data[2].open_flowers_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Pollen Release</td>
+            <td>{{dc.allQuaking.data[0].pollen_release_yes}}</td>
+            <td>{{dc.allQuaking.data[0].pollen_release_no}}</td>
+            <td>{{dc.allQuaking.data[0].pollen_release_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].pollen_release_yes}}</td>
+            <td>{{dc.allQuaking.data[1].pollen_release_no}}</td>
+            <td>{{dc.allQuaking.data[1].pollen_release_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].pollen_release_yes}}</td>
+            <td>{{dc.allQuaking.data[2].pollen_release_no}}</td>
+            <td>{{dc.allQuaking.data[2].pollen_release_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Fruits</td>
+            <td>{{dc.allQuaking.data[0].fruits_yes}}</td>
+            <td>{{dc.allQuaking.data[0].fruits_no}}</td>
+            <td>{{dc.allQuaking.data[0].fruits_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].fruits_yes}}</td>
+            <td>{{dc.allQuaking.data[1].fruits_no}}</td>
+            <td>{{dc.allQuaking.data[1].fruits_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].fruits_yes}}</td>
+            <td>{{dc.allQuaking.data[2].fruits_no}}</td>
+            <td>{{dc.allQuaking.data[2].fruits_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Ripe Fruits</td>
+            <td>{{dc.allQuaking.data[0].ripe_fruits_yes}}</td>
+            <td>{{dc.allQuaking.data[0].ripe_fruits_no}}</td>
+            <td>{{dc.allQuaking.data[0].ripe_fruits_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].ripe_fruits_yes}}</td>
+            <td>{{dc.allQuaking.data[1].ripe_fruits_no}}</td>
+            <td>{{dc.allQuaking.data[1].ripe_fruits_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].ripe_fruits_yes}}</td>
+            <td>{{dc.allQuaking.data[2].ripe_fruits_no}}</td>
+            <td>{{dc.allQuaking.data[2].ripe_fruits_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Recent Fruit or Seed Drop</td>
+            <td>{{dc.allQuaking.data[0].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allQuaking.data[0].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allQuaking.data[0].recent_fruit_or_seed_drop_maybe}}</td>
+            <td>{{dc.allQuaking.data[1].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allQuaking.data[1].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allQuaking.data[1].recent_fruit_or_seed_drop_maybe}}</td>
+            <td>{{dc.allQuaking.data[2].recent_fruit_or_seed_drop_yes}}</td>
+            <td>{{dc.allQuaking.data[2].recent_fruit_or_seed_drop_no}}</td>
+            <td>{{dc.allQuaking.data[2].recent_fruit_or_seed_drop_maybe}}</td>
+        </tr>
+
+
+    </table>
+
+    <div class="classNotes">
+        Quaking Aspen Notes
+        <ul ng-repeat="note in dc.allQuaking.notes">
+            <li>{{note.notes}}</li>
+        </ul>
+
+    </div>
+</div>
+<!-- End of Quaking Aspen table -->
+<div ng-show="rubyData">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <tr>
+            <th></th>
+            <th class="speciesNumber" colspan="3">Ruby Throated Hummingbird 1</th>
+            <th class="speciesNumber" colspan="3">Ruby Throated Hummingbird 2</th>
+            <th class="speciesNumber" colspan="3">Ruby Throated Hummingbird 3</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+            <th>Y</th>
+            <th>N</th>
+            <th>?</th>
+        </tr>
+        <tr>
+            <td>Active Individuals</td>
+            <td>{{dc.allRuby.data[0].active_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[0].active_individuals_no}}</td>
+            <td>{{dc.allRuby.data[0].active_individuals_maybe}}</td>
+            <td>{{dc.allRuby.data[1].active_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[1].active_individuals_no}}</td>
+            <td>{{dc.allRuby.data[1].active_individuals_maybe}}</td>
+            <td>{{dc.allRuby.data[2].active_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[2].active_individuals_no}}</td>
+            <td>{{dc.allRuby.data[2].active_individuals_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Feeding</td>
+            <td>{{dc.allRuby.data[0].feeding_yes}}</td>
+            <td>{{dc.allRuby.data[0].feeding_no}}</td>
+            <td>{{dc.allRuby.data[0].feeding_maybe}}</td>
+            <td>{{dc.allRuby.data[1].feeding_yes}}</td>
+            <td>{{dc.allRuby.data[1].feeding_no}}</td>
+            <td>{{dc.allRuby.data[1].feeding_maybe}}</td>
+            <td>{{dc.allRuby.data[2].feeding_yes}}</td>
+            <td>{{dc.allRuby.data[2].feeding_no}}</td>
+            <td>{{dc.allRuby.data[2].feeding_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Insect Consumption</td>
+            <td>{{dc.allRuby.data[0].insect_consumption_yes}}</td>
+            <td>{{dc.allRuby.data[0].insect_consumption_no}}</td>
+            <td>{{dc.allRuby.data[0].insect_consumption_maybe}}</td>
+            <td>{{dc.allRuby.data[1].insect_consumption_yes}}</td>
+            <td>{{dc.allRuby.data[1].insect_consumption_no}}</td>
+            <td>{{dc.allRuby.data[1].insect_consumption_maybe}}</td>
+            <td>{{dc.allRuby.data[2].insect_consumption_yes}}</td>
+            <td>{{dc.allRuby.data[2].insect_consumption_no}}</td>
+            <td>{{dc.allRuby.data[2].insect_consumption_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Flower Visitation</td>
+            <td>{{dc.allRuby.data[0].flower_visitation_yes}}</td>
+            <td>{{dc.allRuby.data[0].flower_visitation_no}}</td>
+            <td>{{dc.allRuby.data[0].flower_visitation_maybe}}</td>
+            <td>{{dc.allRuby.data[1].flower_visitation_yes}}</td>
+            <td>{{dc.allRuby.data[1].flower_visitation_no}}</td>
+            <td>{{dc.allRuby.data[1].flower_visitation_maybe}}</td>
+            <td>{{dc.allRuby.data[2].flower_visitation_yes}}</td>
+            <td>{{dc.allRuby.data[2].flower_visitation_no}}</td>
+            <td>{{dc.allRuby.data[2].flower_visitation_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Calls or Songs</td>
+            <td>{{dc.allRuby.data[0].calls_or_song_yes}}</td>
+            <td>{{dc.allRuby.data[0].calls_or_song_no}}</td>
+            <td>{{dc.allRuby.data[0].calls_or_song_maybe}}</td>
+            <td>{{dc.allRuby.data[1].calls_or_song_yes}}</td>
+            <td>{{dc.allRuby.data[1].calls_or_song_no}}</td>
+            <td>{{dc.allRuby.data[1].calls_or_song_maybe}}</td>
+            <td>{{dc.allRuby.data[2].calls_or_song_yes}}</td>
+            <td>{{dc.allRuby.data[2].calls_or_song_no}}</td>
+            <td>{{dc.allRuby.data[2].calls_or_song_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Singing Individuals</td>
+            <td>{{dc.allRuby.data[0].singing_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[0].singing_individuals_no}}</td>
+            <td>{{dc.allRuby.data[0].singing_individuals_maybe}}</td>
+            <td>{{dc.allRuby.data[1].singing_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[1].singing_individuals_no}}</td>
+            <td>{{dc.allRuby.data[1].singing_individuals_maybe}}</td>
+            <td>{{dc.allRuby.data[2].singing_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[2].singing_individuals_no}}</td>
+            <td>{{dc.allRuby.data[2].singing_individuals_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Territorial Individuals</td>
+            <td>{{dc.allRuby.data[0].territorial_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[0].territorial_individuals_no}}</td>
+            <td>{{dc.allRuby.data[0].territorial_individuals_maybe}}</td>
+            <td>{{dc.allRuby.data[1].territorial_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[1].territorial_individuals_no}}</td>
+            <td>{{dc.allRuby.data[1].territorial_individuals_maybe}}</td>
+            <td>{{dc.allRuby.data[2].territorial_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[2].territorial_individuals_no}}</td>
+            <td>{{dc.allRuby.data[2].territorial_individuals_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Courtship</td>
+            <td>{{dc.allRuby.data[0].courtship_yes}}</td>
+            <td>{{dc.allRuby.data[0].courtship_no}}</td>
+            <td>{{dc.allRuby.data[0].courtship_maybe}}</td>
+            <td>{{dc.allRuby.data[1].courtship_yes}}</td>
+            <td>{{dc.allRuby.data[1].courtship_no}}</td>
+            <td>{{dc.allRuby.data[1].courtship_maybe}}</td>
+            <td>{{dc.allRuby.data[2].courtship_yes}}</td>
+            <td>{{dc.allRuby.data[2].courtship_no}}</td>
+            <td>{{dc.allRuby.data[2].courtship_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Mating</td>
+            <td>{{dc.allRuby.data[0].mating_yes}}</td>
+            <td>{{dc.allRuby.data[0].mating_no}}</td>
+            <td>{{dc.allRuby.data[0].mating_maybe}}</td>
+            <td>{{dc.allRuby.data[1].mating_yes}}</td>
+            <td>{{dc.allRuby.data[1].mating_no}}</td>
+            <td>{{dc.allRuby.data[1].mating_maybe}}</td>
+            <td>{{dc.allRuby.data[2].mating_yes}}</td>
+            <td>{{dc.allRuby.data[2].mating_no}}</td>
+            <td>{{dc.allRuby.data[2].mating_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Nest Building</td>
+            <td>{{dc.allRuby.data[0].nest_building_yes}}</td>
+            <td>{{dc.allRuby.data[0].nest_building_no}}</td>
+            <td>{{dc.allRuby.data[0].nest_building_maybe}}</td>
+            <td>{{dc.allRuby.data[1].nest_building_yes}}</td>
+            <td>{{dc.allRuby.data[1].nest_building_no}}</td>
+            <td>{{dc.allRuby.data[1].nest_building_maybe}}</td>
+            <td>{{dc.allRuby.data[2].nest_building_yes}}</td>
+            <td>{{dc.allRuby.data[2].nest_building_no}}</td>
+            <td>{{dc.allRuby.data[2].nest_building_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Occupied Nest</td>
+            <td>{{dc.allRuby.data[0].occupied_nest_yes}}</td>
+            <td>{{dc.allRuby.data[0].occupied_nest_no}}</td>
+            <td>{{dc.allRuby.data[0].occupied_nest_maybe}}</td>
+            <td>{{dc.allRuby.data[1].occupied_nest_yes}}</td>
+            <td>{{dc.allRuby.data[1].occupied_nest_no}}</td>
+            <td>{{dc.allRuby.data[1].occupied_nest_maybe}}</td>
+            <td>{{dc.allRuby.data[2].occupied_nest_yes}}</td>
+            <td>{{dc.allRuby.data[2].occupied_nest_no}}</td>
+            <td>{{dc.allRuby.data[2].occupied_nest_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Nestlings</td>
+            <td>{{dc.allRuby.data[0].nestlings_yes}}</td>
+            <td>{{dc.allRuby.data[0].nestlings_no}}</td>
+            <td>{{dc.allRuby.data[0].nestlings_maybe}}</td>
+            <td>{{dc.allRuby.data[1].nestlings_yes}}</td>
+            <td>{{dc.allRuby.data[1].nestlings_no}}</td>
+            <td>{{dc.allRuby.data[1].nestlings_maybe}}</td>
+            <td>{{dc.allRuby.data[2].nestlings_yes}}</td>
+            <td>{{dc.allRuby.data[2].nestlings_no}}</td>
+            <td>{{dc.allRuby.data[2].nestlings_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Fledged Young</td>
+            <td>{{dc.allRuby.data[0].fledged_young_yes}}</td>
+            <td>{{dc.allRuby.data[0].fledged_young_no}}</td>
+            <td>{{dc.allRuby.data[0].fledged_young_maybe}}</td>
+            <td>{{dc.allRuby.data[1].fledged_young_yes}}</td>
+            <td>{{dc.allRuby.data[1].fledged_young_no}}</td>
+            <td>{{dc.allRuby.data[1].fledged_young_maybe}}</td>
+            <td>{{dc.allRuby.data[2].fledged_young_yes}}</td>
+            <td>{{dc.allRuby.data[2].fledged_young_no}}</td>
+            <td>{{dc.allRuby.data[2].fledged_young_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Dead Individuals</td>
+            <td>{{dc.allRuby.data[0].dead_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[0].dead_individuals_no}}</td>
+            <td>{{dc.allRuby.data[0].dead_individuals_maybe}}</td>
+            <td>{{dc.allRuby.data[1].dead_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[1].dead_individuals_no}}</td>
+            <td>{{dc.allRuby.data[1].dead_individuals_maybe}}</td>
+            <td>{{dc.allRuby.data[2].dead_individuals_yes}}</td>
+            <td>{{dc.allRuby.data[2].dead_individuals_no}}</td>
+            <td>{{dc.allRuby.data[2].dead_individuals_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Dead Nestlings of Fledglings</td>
+            <td>{{dc.allRuby.data[0].dead_nestlings_or_fledglings_yes}}</td>
+            <td>{{dc.allRuby.data[0].dead_nestlings_or_fledglings_no}}</td>
+            <td>{{dc.allRuby.data[0].dead_nestlings_or_fledglings_maybe}}</td>
+            <td>{{dc.allRuby.data[1].dead_nestlings_or_fledglings_yes}}</td>
+            <td>{{dc.allRuby.data[1].dead_nestlings_or_fledglings_no}}</td>
+            <td>{{dc.allRuby.data[1].dead_nestlings_or_fledglings_maybe}}</td>
+            <td>{{dc.allRuby.data[2].dead_nestlings_or_fledglings_yes}}</td>
+            <td>{{dc.allRuby.data[2].dead_nestlings_or_fledglings_no}}</td>
+            <td>{{dc.allRuby.data[2].dead_nestlings_or_fledglings_maybe}}</td>
+        </tr>
+
+        <tr>
+            <td>Individuals at Feeding Station</td>
+            <td>{{dc.allRuby.data[0].individuals_at_feeding_station_yes}}</td>
+            <td>{{dc.allRuby.data[0].individuals_at_feeding_station_no}}</td>
+            <td>{{dc.allRuby.data[0].individuals_at_feeding_station_maybe}}</td>
+            <td>{{dc.allRuby.data[1].individuals_at_feeding_station_yes}}</td>
+            <td>{{dc.allRuby.data[1].individuals_at_feeding_station_no}}</td>
+            <td>{{dc.allRuby.data[1].individuals_at_feeding_station_maybe}}</td>
+            <td>{{dc.allRuby.data[2].individuals_at_feeding_station_yes}}</td>
+            <td>{{dc.allRuby.data[2].individuals_at_feeding_station_no}}</td>
+            <td>{{dc.allRuby.data[2].individuals_at_feeding_station_maybe}}</td>
+        </tr>
+    </table>
+
+    <div class="classNotes">
+        Ruby Throated Hummingbird Notes
+        <ul ng-repeat="note in dc.allRuby.notes">
+            <li>{{note.notes}}</li>
+        </ul>
+
+    </div>
 </div>

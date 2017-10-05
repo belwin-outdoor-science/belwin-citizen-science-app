@@ -196,14 +196,9 @@ myApp.service('DataService', ['$http', function ($http) {
       // console.log('all ruby: ', self.allRuby); 
     })
   }
-  // self.getAllBur();
-  // self.getAllBuckthorn();
-  // self.getAllMilkweed();
-  // self.getAllDark();
-  // self.getAllEastern();
-  // self.getAllGround();
-  // self.getAllNorthern();
-  // self.getAllPaper();
-  // self.getAllQuaking();
-  // self.getAllRuby();
+  self.selectTable = function (table, tableName) {
+    self.selectTable.selectTable = table;
+    self.selectTableName.selectTableName = tableName;
+    console.log('select table:', self.selectTable)
+}
 }]);
