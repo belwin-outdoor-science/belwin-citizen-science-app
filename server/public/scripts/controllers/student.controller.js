@@ -33,6 +33,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             template: '<div id="observationDataEntry">' +
                 '<form ng-submit="sc.studentService.postAllData()">' +
                 '<br>' +
+                '<h2>{{sc.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
                 '<h2>Do you see...</h2> ' +
                 '<br>' +
                 '<div ng-repeat="question in sc.questionsByOrganism[sc.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
