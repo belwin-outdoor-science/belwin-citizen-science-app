@@ -1,5 +1,5 @@
 <!-- <div ng-include="'views/partials/nav.html'"></div> -->
-<div ng-show="sc.appSetup" class="container" layout="column" layout-align="start center">
+<div ng-show="sc.appSetup" class="classSelectView" layout="column" layout-align="start center">
   <div id="staffLoginLink">
     <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
@@ -16,10 +16,11 @@
         <md-radio-button value="5"><h2>Class 5</h2></md-radio-button>
       </md-radio-group>
 
-      <md-button type="ng-submit" id="classSelectButton" class="md-primary md-raised; siteButton">Done</md-button>
+      <md-button type="ng-submit"  class="md-primary md-raised; continueButton">Done</md-button>
 
     </form>
   </div>
+  <br>
 </div>
 
 <div ng-show="!sc.appSetup" layout="row" layout-align="start start">
@@ -63,6 +64,11 @@
     <md-button class="navButton" ng-show="bird" ng-click="eastern_bluebird = !eastern_bluebird;
     sc.selectOrganism('eastern_bluebird', 'Eastern Bluebird')">
       Eastern<br>Bluebird</md-button>
+
+      <div layout="column" layout-align="end center" class="buttomButton">
+        <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class <br> All Done!</md-button>
+      </div>
+
   </md-sidenav>
 
   <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
@@ -87,13 +93,11 @@
     <br>
 
     <div ng-repeat="imageObject in sc.imageArray">
-      <div ng-if="sc.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="center center">
+      <div ng-show="sc.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="center center">
         <img ng-src="{{imageObject.file}}">
       </div>
     </div>
+    
 
-    <div layout="column" layout-align="end center">
-      <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class - All Done!</md-button>
-    </div>
-  </div>
+
 </div>
