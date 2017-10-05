@@ -6,6 +6,9 @@ var pool = require('../modules/pool.js');
 //post requests for student data.  
 //Each request can post multiple rows to a table.
 router.post('/bur_oak', function (req, res) {
+    console.log('bur oak post');
+    console.log(req.body);
+    
     //see buildStatement function explanation below
     var query = buildStatement('INSERT INTO bur_oak (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
     console.log('bur_oak router post called ');

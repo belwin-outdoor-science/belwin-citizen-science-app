@@ -7,9 +7,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     vm.userService = UserService;
     vm.studentService = StudentService;
     vm.userObject = UserService.userObject;
-    vm.class = {
-        class: ''
-    };
+
     vm.appSetup = true;
     vm.allData = StudentService.allData
 
@@ -37,21 +35,18 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
                 '<br>' +
                 '<h2>Do you see...</h2> ' +
                 '<br>' +
-                '<div ng-repeat="question in sc.questionsByOrganism[sc.selectedOrganism.selectedOrganism]" class="row" ng-class-odd= "\'odd\'"' +
+                '<div ng-repeat="question in sc.questionsByOrganism[sc.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
                 'ng-class-even="\'even\'">' +
                 '<div flex layout="row" layout-padding layout-align="start center">' +
                 '<h2 ng-if="question.text != \'Notes\' " flex style="max-width:300px; max-height: 300px; padding:15px;">{{question.text}}?</h2>' +
                 '<md-radio-group flex layout="row" ng-if="question.text != \'Notes\' " ng-model="sc.studentService.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">' +
-                '<md-radio-button value="yes" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]"' +
-                'flex class="md-primary">Y</md-radio-button>' +
-                '<md-radio-button value="no" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]"' +
-                'flex class="md-primary">N</md-radio-button>' +
-                '<md-radio-button value="maybe" ng-model="sc.studentService.allData[organism][sc.studentService.site.site][question.property]"' +
-                'flex class="md-primary">?</md-radio-button>' +
+                '<md-radio-button value="yes" flex class="md-primary">Y</md-radio-button>' +
+                '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
+                '<md-radio-button value="maybe"  flex class="md-primary">?</md-radio-button>' +
                 '</md-radio-group>' +
                 '<md-input-container ng-if="question.text == \'Notes\' " id="textarea">' +
                 '<label id="notes">Notes:</label>' +
-                '<textarea rows="3" cols="50" ng-model="sc.allData[organism][sc.studentService.site.site][question.property]"></textarea>' +
+                '<textarea rows="3" cols="50" ng-model="sc.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
                 '</md-input-container>' +
                 '</div>' +
                 '</div>' +
@@ -108,7 +103,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     }
 
     vm.submit = function () {
-        console.log('selected class is', vm.class.class)
+        console.log('selected class is', vm.studentService.class.class)
         vm.appSetup = false;
     }
 
