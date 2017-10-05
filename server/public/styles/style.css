@@ -124,7 +124,7 @@ img {
 
 .logo {
   width: 40%;
-  margin: 0% 25%;
+  margin: 3% 25%;
 }
 
 .md-sidenav-right{
@@ -148,9 +148,18 @@ img {
     color: white;
 }
 .md-button.siteButton{
-  background-color: #818D92;
+  background-color: #586164;
+  font-size: 15px;
   color:white;
+  max-width: 175px;
+  min-height: 150px;
+  min-width: 175px;
+  font-weight: bold;
+  overflow: initial;
+  white-space: normal;
+  font-size: 20px;
 }
+
 
 #notes {
   font-size: 30px;
@@ -165,7 +174,7 @@ img {
 }
 
 .md-button.continueButton{
-  background-color: #818D92;
+  background-color: #586164;
   color:white;
   padding: 0 15px 0 15px;
   margin: 15px 20px 15px 20px;
@@ -182,7 +191,9 @@ img {
 }
 .buttomButton{
   position:absolute;
-  bottom:0;
+  bottom: 0.5%;
+  background-color: #586164;
+  color: white;
 }
 .md-button#classSelectButton{
   width: 70px;

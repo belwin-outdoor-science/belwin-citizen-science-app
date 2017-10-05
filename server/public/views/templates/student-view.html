@@ -3,7 +3,6 @@
   <div id="staffLoginLink">
     <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
-
   <div id="classSelect">
     <h3>Select a class to start exploring! <br> Your teacher will tell you your class number</h3>
     <form ng-submit="sc.submit(); sc.studentService.setClass();">
@@ -56,7 +55,7 @@
     <md-button class="navButton" ng-show="mammal" ng-click="ground_squirrel = !ground_squirrel; sc.selectOrganism('ground_squirrel', 'Ground Squirrel')">
       Ground<br>Squirrel</md-button>
     <md-button class="navButton" ng-show="bird" ng-click="ruby_throated_hummingbird = !ruby_throated_hummingbird;
-    sc.selectOrganism('ruby_throated_hummingbird', 'Ruby Hummingbird')">
+    sc.selectOrganism('ruby_throated_hummingbird', 'Ruby Throated Hummingbird')">
       Ruby<br>Throated<br>Humming-<br>bird</md-button>
     <md-button class="navButton" ng-show="bird" ng-click="dark_eyed_junco = !dark_eyed_junco;
     sc.selectOrganism('dark_eyed_junco', 'Dark-eyed Junco')">
@@ -66,7 +65,7 @@
       Eastern<br>Bluebird</md-button>
 
       <div layout="column" layout-align="end center" class="buttomButton">
-        <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class <br> All Done!</md-button>
+        <md-button class="" ng-click="sc.submitData()">Back at Class <br> All Done!</md-button>
       </div>
 
   </md-sidenav>
