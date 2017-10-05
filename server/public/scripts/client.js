@@ -70,6 +70,10 @@ myApp.config(function ($routeProvider, $locationProvider) {
           return UserService.getuser();
         }
       }
+    })    
+    .when('/student', {
+      templateUrl: '/views/templates/start-page.html',
+      controller: 'StartController as sc'
     })
     .otherwise({
       redirectTo: '/student'
