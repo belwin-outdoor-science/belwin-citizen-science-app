@@ -186,15 +186,14 @@ myApp.service('StudentService', ['$http', function ($http) {
     //Can't get promise.all to return the reason for an error when testing it with burOakPromise
     //and I purposely engineered a 500 error.  I get an error message from angular and from the
     //post callback in services only.
-   
 
+    //posts all student data stored in self.allData
     self.postAllData = function () {
-        console.log('submitted data: ');
-        console.log(self.allData);
-
+        // console.log('submitted data: ');
+        // console.log(self.allData);
         if (confirm("Are you sure you want to submit your data now?  Make sure you are at Belwin Center.") == true) {
 
-            //call other add functions
+            //call all post functions defined above
             self.addBurOak(self.allData.bur_oak);
             self.addCommonBuckthorn(self.allData.common_buckthorn);
             self.addCommonMilkweed(self.allData.common_milkweed);
@@ -211,7 +210,6 @@ myApp.service('StudentService', ['$http', function ($http) {
             //   )
         } else {
             //optional message to display on page.
-
             //document.getElementById("messageToUser").innerHTML = txt;
 
         }
@@ -219,12 +217,17 @@ myApp.service('StudentService', ['$http', function ($http) {
 
 
     }
+
+    //this function is called in the success and fail parts of each post request
+    
     function checkIfAllPostsAreDoneAndErrorHandling() {
+        //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
+        //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == 10) {
             console.log('checking postCallbackMessages');
             self.postCallbackMessages.forEach(function (message) {
-
-
+                //if 'error', alert the user so they can try to upload data again.
+                //data is cleared out in the success parts of the post, so they can just hit the submit button again.
                 if (message == 'error') {
                     // swal(
                     //     'Error uploading data.  Try again.'
