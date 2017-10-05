@@ -23,9 +23,8 @@ body, html {
   margin-top: 14px;
 }
 
-#container {
-  margin-top: 10px;
-  height: 100%
+.classSelectView {
+  background-color: #FFFCE8;
 }
 
 .container p{
@@ -181,4 +180,7 @@ img {
   outline: none;
   
 }
-
+.buttomButton{
+  position:absolute;
+  bottom:0;
+}

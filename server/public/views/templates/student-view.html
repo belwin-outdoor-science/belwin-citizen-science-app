@@ -1,5 +1,5 @@
 <!-- <div ng-include="'views/partials/nav.html'"></div> -->
-<div ng-show="sc.appSetup" class="container" layout="column" layout-align="start center">
+<div ng-show="sc.appSetup" class="classSelectView" layout="column" layout-align="start center">
   <div id="staffLoginLink">
     <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
@@ -20,6 +20,7 @@
 
     </form>
   </div>
+  <br>
 </div>
 
 <div ng-show="!sc.appSetup" layout="row" layout-align="start start">
@@ -63,6 +64,11 @@
     <md-button class="navButton" ng-show="bird" ng-click="eastern_bluebird = !eastern_bluebird;
     sc.selectOrganism('eastern_bluebird', 'Eastern Bluebird')">
       Eastern<br>Bluebird</md-button>
+
+      <div layout="column" layout-align="end center" class="buttomButton">
+        <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class <br> All Done!</md-button>
+      </div>
+
   </md-sidenav>
 
   <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
@@ -92,8 +98,5 @@
       </div>
     </div>
 
-    <div layout="column" layout-align="end center">
-      <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class - All Done!</md-button>
-    </div>
-  </div>
+
 </div>
