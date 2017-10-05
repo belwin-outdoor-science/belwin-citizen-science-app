@@ -1,6 +1,6 @@
 myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDialog', '$mdSidenav', function (StudentService, UserService, $mdDialog, $mdSidenav) {
     console.log('StudentController Loaded');
-   
+
 
 
     var vm = this;
@@ -30,7 +30,30 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             targetEvent: $event,
             controller: 'StudentController',
             controllerAs: 'sc',
-            templateUrl: '/views/templates/observations.html',
+            template: '<div id="observationDataEntry">' +
+                '<form ng-submit="sc.studentService.postAllData()">' +
+                '<br>' +
+                '<h2>Do you see...</h2> ' +
+                '<br>' +
+                '<div ng-repeat="question in sc.questionsByOrganism[sc.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
+                'ng-class-even="\'even\'">' +
+                '<div flex layout="row" layout-padding layout-align="start center">' +
+                '<h2 ng-if="question.text != \'Notes\' " flex style="max-width:300px; max-height: 300px; padding:15px;">{{question.text}}?</h2>' +
+                '<md-radio-group flex layout="row" ng-if="question.text != \'Notes\' " ng-model="sc.studentService.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">' +
+                '<md-radio-button value="yes" flex class="md-primary">Y</md-radio-button>' +
+                '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
+                '<md-radio-button value="maybe"  flex class="md-primary">?</md-radio-button>' +
+                '</md-radio-group>' +
+                '<md-input-container ng-if="question.text == \'Notes\' " id="textarea">' +
+                '<label id="notes">Notes:</label>' +
+                '<textarea rows="3" cols="50" ng-model="sc.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
+                '</md-input-container>' +
+                '</div>' +
+                '</div>' +
+                '</form>' +
+                '<md-button ng-click="sc.studentService.resetForm();">Reset</md-button>' +
+                '<md-button ng-click="sc.closeDialog()">Save and Close</md-button>' +
+                '</div>',
             clickOutsideToClose: true
         });
     }
@@ -43,7 +66,7 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     vm.questionsByOrganism = {};
     var questionArray = [];
 
-    
+
     for (var organism in vm.allData) {
         questionArray = [];
         for (var question in vm.allData[organism][0]) {
@@ -62,8 +85,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     vm.submitData = function () {
         if (navigator.onLine) {
             console.log('ok, we can send the data')
-             //and then send it
-             vm.postAllData();
+            //and then send it
+            vm.postAllData();
         } else {
             $mdDialog.show(
                 $mdDialog.alert()
@@ -105,11 +128,11 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         {
             organismName: 'eastern_bluebird',
             file: 'assets/eastern-bluebird.jpg'
-        }, 
+        },
         {
             organismName: 'ground_squirrel',
             file: 'assets/ground-squirrel.jpg'
-        }, 
+        },
         {
             organismName: 'paper_birch',
             file: 'assets/paper-birch.jpg'
