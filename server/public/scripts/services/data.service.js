@@ -13,13 +13,28 @@ myApp.service('DataService', ['$http', function ($http) {
   self.paper= {data: []};
   self.quaking = {data: []};
   self.ruby = {data: []};
-
- 
+  // self.all = {data: []};
+  self.allBur = {data: []};
+  self.allBuckthorn = {data: []};
+  self.allDark = {data: []};
+  self.allEastern = {data: []};
+  self.allGround = {data: []};
+  self.allMilkweed = {data: []};
+  self.allNorthern = {data: []};
+  self.allPaper = {data: []};
+  self.allQuaking = {data: []};
+  self.allRuby = {data: []};
 
   self.getBur = function (classNum) {
     $http.get('/dashboard/bur/' + classNum).then(function (response) {
       self.bur.data = response.data;
      // console.log('get route bur_oak: ', self.bur);
+    }).then(function(){
+      //new get call to pull notes
+      $http.get('/dashboard/bur/notes/' + classNum).then(function (response) {
+        self.bur.notes = response.data;
+       // console.log('get route bur_oak: ', self.bur);
+      })
     });
   }
   self.getBuckthorn = function (classNum) {
@@ -77,5 +92,65 @@ myApp.service('DataService', ['$http', function ($http) {
     });
   }
 
+  self.getAllBur = function () {
+    $http.get('/dashboard/allBur').then(function (response) {
+      self.allBur = response.data;
+      // console.log('all bur: ', self.allBur); 
+    })
+  }
+  self.getAllBuckthorn = function () {
+    $http.get('/dashboard/allBuckthorn').then(function (response) {
+      self.allBuckthorn = response.data;
+      // console.log('all buckthorn: ', self.allBuckthorn); 
+    })
+  }
+  self.getAllMilkweed = function () {
+    $http.get('/dashboard/allMilkweed').then(function (response) {
+      self.allMilkweed = response.data;
+      // console.log('all milkweed: ', self.allMilkweed); 
+    })
+  }
+  self.getAllDark = function () {
+    $http.get('/dashboard/allDark').then(function (response) {
+      self.allDark = response.data;
+      // console.log('all dark: ', self.allDark); 
+    })
+  }
+  self.getAllEastern = function () {
+    $http.get('/dashboard/allEastern').then(function (response) {
+      self.allEastern = response.data;
+      // console.log('all eastern: ', self.allEastern); 
+    })
+  }
+  self.getAllGround = function () {
+    $http.get('/dashboard/allGround').then(function (response) {
+      self.allGround = response.data;
+      // console.log('all ground: ', self.allGround); 
+    })
+  }
+  self.getAllNorthern = function () {
+    $http.get('/dashboard/allNorthern').then(function (response) {
+      self.allNorthern = response.data;
+      // console.log('all northern: ', self.allNorthern); 
+    })
+  }
+  self.getAllPaper = function () {
+    $http.get('/dashboard/allPaper').then(function (response) {
+      self.allPaper = response.data;
+      // console.log('all paper: ', self.allPaper); 
+    })
+  }
+  self.getAllQuaking = function () {
+    $http.get('/dashboard/allQuaking').then(function (response) {
+      self.allQuaking = response.data;
+      // console.log('all quaking: ', self.allQuaking); 
+    })
+  }
+  self.getAllRuby = function () {
+    $http.get('/dashboard/allRuby').then(function (response) {
+      self.allRuby = response.data;
+      // console.log('all ruby: ', self.allRuby); 
+    })
+  }
 
 }]);
