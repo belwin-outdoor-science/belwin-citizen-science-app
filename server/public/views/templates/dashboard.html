@@ -1,6 +1,6 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container" ng-controller="UserController as uc">
-    <h2>Welcome, {{vm.user.userInfo[0].username}}!</h2>
+    <h2>Welcome, {{vm.userService.userObject.userName}}!</h2>
 </div>
 <div class="row">
     <md-button ng-href="#/data/1">Class 1 Data</md-button>
