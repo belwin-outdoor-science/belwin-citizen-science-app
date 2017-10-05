@@ -93,10 +93,11 @@
     <br>
 
     <div ng-repeat="imageObject in sc.imageArray">
-      <div ng-if="sc.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="center center">
+      <div ng-show="sc.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="center center">
         <img ng-src="{{imageObject.file}}">
       </div>
     </div>
+    
 
 
 </div>
