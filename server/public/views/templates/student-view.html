@@ -1,5 +1,5 @@
 <!-- <div ng-include="'views/partials/nav.html'"></div> -->
-<div ng-show="sc.appSetup" class="container" layout="column" layout-align="start center">
+<div ng-show="sc.appSetup" class="classSelectView" layout="column" layout-align="start center">
   <div id="staffLoginLink">
     <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
@@ -9,17 +9,18 @@
     <form ng-submit="sc.submit(); sc.studentService.setClass();">
 
       <md-radio-group class="classButton" ng-model="sc.class.class">
-        <md-radio-button value="Class 1"><h2>Class 1</h2></md-radio-button>
-        <md-radio-button value="Class 2"><h2>Class 2</h2></md-radio-button>
-        <md-radio-button value="Class 3"><h2>Class 3</h2></md-radio-button>
-        <md-radio-button value="Class 4"><h2>Class 4</h2></md-radio-button>
-        <md-radio-button value="Class 5"><h2>Class 5</h2></md-radio-button>
+        <md-radio-button value="Class 1"><h3>Class 1</h3></md-radio-button>
+        <md-radio-button value="Class 2"><h3>Class 2</h3></md-radio-button>
+        <md-radio-button value="Class 3"><h3>Class 3</h3></md-radio-button>
+        <md-radio-button value="Class 4"><h3>Class 4</h3></md-radio-button>
+        <md-radio-button value="Class 5"><h3>Class 5</h3></md-radio-button>
       </md-radio-group>
 
-      <md-button type="ng-submit" id="classSelectButton" class="md-primary md-raised; siteButton">Done</md-button>
+      <md-button type="ng-submit"  class="md-primary md-raised; continueButton">Done</md-button>
 
     </form>
   </div>
+  <br>
 </div>
 
 <div ng-show="!sc.appSetup" layout="row" layout-align="start start">
@@ -63,6 +64,11 @@
     <md-button class="navButton" ng-show="bird" ng-click="eastern_bluebird = !eastern_bluebird;
     sc.selectOrganism('eastern_bluebird', 'Eastern Bluebird')">
       Eastern<br>Bluebird</md-button>
+
+      <div layout="column" layout-align="end center" class="buttomButton">
+        <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class <br> All Done!</md-button>
+      </div>
+
   </md-sidenav>
 
   <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
@@ -92,8 +98,5 @@
       </div>
     </div>
 
-    <div layout="column" layout-align="end center">
-      <md-button class="md-primary md-raised" ng-click="sc.submitData()">Back at Class - All Done!</md-button>
-    </div>
-  </div>
+
 </div>
