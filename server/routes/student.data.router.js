@@ -17,7 +17,7 @@ router.post('/bur_oak', function (req, res) {
             console.log('Error connecting to database', err);
             res.sendStatus(500);
         } else {
-            client.query(query, function (err, result) {
+            client.query('bob', function (err, result) {
                     done();
                     if (err) {
                         console.log('Error making bur_oak post query: ', err);
@@ -39,7 +39,7 @@ router.post('/paper_birch', function (req, res) {
             console.log('Error connecting to database', err);
             res.sendStatus(500);
         } else {
-            client.query(query, function (err, result) {
+            client.query('bob', function (err, result) {
                     done();
                     if (err) {
                         console.log('Error making paper_birch post query: ', err);

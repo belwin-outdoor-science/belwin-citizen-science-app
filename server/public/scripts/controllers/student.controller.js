@@ -56,10 +56,23 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
                 '<md-button ng-click="sc.closeDialog()">Save and Close</md-button>' +
                 '</div>',
             clickOutsideToClose: true
+        })  .finally(function() {
+            console.log('I get called on escape and clickoutside');
+            //add data to local storage on close of the dialog
+            var allDataString = JSON.stringify(StudentService.allData);
+            StudentService.storage.setItem('allData', allDataString);
+            var test = StudentService.storage.getItem('allData');
+            console.log('local storage data: ');
+            console.log(test);
+            
+            
         });
     }
-    vm.closeDialog = function () {
+    vm.closeDialog = function () { //this is the save and close button on the student data dialog
         console.log('close button clicked')
+        //save data to local storage
+        var allDataString = JSON.stringify(self.allData);
+        StudentService.storage.setItem('allData', allDataString);
         $mdDialog.hide();
     }
 
