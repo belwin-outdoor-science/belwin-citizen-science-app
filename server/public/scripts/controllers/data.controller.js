@@ -16,9 +16,16 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     // vm.data = DataService;
 
     DataService.getAllBur();
+    DataService.getAllBuckthorn();
+    DataService.getAllDark();
+    DataService.getAllEastern();
+    DataService.getAllGround();
+    DataService.getAllMilkweed();
+    DataService.getAllNorthern();
+    DataService.getAllPaper();
+    DataService.getAllQuaking();
+    DataService.getAllRuby();
     vm.allBur = DataService.allBur;
-    console.log('vm.allBur: ', vm.allBur);
-    
     vm.allBuckthorn = DataService.allBuckthorn;
     vm.allDark = DataService.allDark;
     vm.allEastern = DataService.allEastern;
