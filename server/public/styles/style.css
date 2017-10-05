@@ -119,9 +119,7 @@ img {
   width: 60%
 }
 
-.speciesNumber {
-  border: solid;
-}
+
 
 .logo {
   width: 40%;
@@ -169,3 +167,20 @@ img {
   height: 30px
 }
 
+#backButton {
+  float: right;
+}
+
+.speciesNumber {
+  /* border-right: solid; */
+  margin: auto;
+}
+
+.siteDataBreak {
+  border-right: solid;
+}
+
+
+#headerWithLogo {
+  max-height: 120px;
+}
