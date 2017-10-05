@@ -1,4 +1,3 @@
-
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <tr>
         <th></th>
@@ -222,3 +221,10 @@
         <td>{{dc.dark.data[2].individuals_at_feeding_station_maybe}}</td>
     </tr>
 </table>
+<div class="classNotes">
+    Dark Eyed Junco Notes
+    <ul ng-repeat="note in dc.dark.notes">
+        <li>{{note.notes}}</li>
+    </ul>
+
+</div>
