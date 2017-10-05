@@ -50,7 +50,7 @@ router.get('/bur', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        // console.log('result.rows is: ', result.rows);
+                        console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -85,7 +85,7 @@ router.get('/bur/:classNum', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        // console.log('result.rows is: ', result.rows);
+                        console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
@@ -116,7 +116,7 @@ router.get('/bur/notes/:classNum', function (req, res) {
                         console.log('Error making database query', errorMakingQuery);
                         res.sendStatus(500);
                     } else {
-                        // console.log('result.rows is: ', result.rows);
+                        console.log('result.rows is: ', result.rows);
                         res.send(result.rows);
                     }
                 });
