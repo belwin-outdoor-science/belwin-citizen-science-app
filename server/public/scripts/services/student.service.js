@@ -1,4 +1,4 @@
-myApp.service('StudentService', ['$http', function ($http) {
+myApp.service('StudentService', ['$http', '$location', function ($http, $location) {
     console.log('StudentService loaded');
     var self = this;
     self.postCallbackMessages = [];
@@ -204,7 +204,7 @@ myApp.service('StudentService', ['$http', function ($http) {
 
     //posts all student data stored in self.allData
     self.postAllData = function () {
-//need to figure out why local storage isn't working here
+        //need to figure out why local storage isn't working here
         if (confirm("Are you sure you want to submit your data now?  Make sure you are at Belwin Center.") == true) {
             self.allData = JSON.parse(self.storage.getItem('allData'));
             //call all post functions defined above
@@ -245,6 +245,8 @@ myApp.service('StudentService', ['$http', function ($http) {
                     alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
                     //to wifi and the sweet alert would break the app.
                     self.postCallbackMessages = [];
+                } else {
+                    $location.path('/success');
                 }
             }
         }
@@ -271,11 +273,11 @@ myApp.service('StudentService', ['$http', function ($http) {
         // if (confirm("Are you .") == true) {
         self.storage.clear();
     }
-//start.page.html: variable disables continue button if true
-self.isThereLocalStorage = false;
-if (self.storage.getItem('allData')) {
-    self.isThereLocalStorage = true;
-}
+    //start.page.html: variable disables continue button if true
+    self.isThereLocalStorage = false;
+    if (self.storage.getItem('allData')) {
+        self.isThereLocalStorage = true;
+    }
 
     //student-view.html on clicking species name, calls this function
     self.selectOrganism = function (organism, organismText) {
