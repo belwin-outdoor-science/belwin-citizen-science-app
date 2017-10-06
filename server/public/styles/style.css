@@ -29,6 +29,9 @@ body, html {
   width: 100%;
   padding: 5%;
   position: absolute;
+#container {
+  margin-top: 10px;
+  height: 100%
 }
 
 .container p{
@@ -119,9 +122,7 @@ img {
   width: 60%
 }
 
-.speciesNumber {
-  border: solid;
-}
+
 
 .logo {
   width: 40%;
@@ -232,4 +233,37 @@ img {
   font-weight: bold;
   font-size: 25px;
 
+}
+#backButton {
+  float: left;
+}
+
+#classDataHeader {
+  margin: auto;
+}
+
+
+.siteDataBreak {
+  border-right: solid;
+}
+
+.dataTableHeader {
+  border-bottom: solid;
+}
+
+
+.speciesNotesCard {
+  max-width: 600px;
+}
+
+.speciesNotesTitle {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
+  margin-top: -5px;
+  margin-bottom: -10px;
+}
+
+.speciesNotesList {
+  margin-left: 10px;
 }
