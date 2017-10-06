@@ -1,3 +1,4 @@
+
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <tr>
         <th>Common Milkweed</th>
@@ -115,8 +116,10 @@
 
 </table>
 <md-card class="speciesNotesCard">
-    <h3 class="speciesNotesTitle">Notes</h3>
-    <ul ng-repeat="note in dc.milkweed.notes">
+    <h3 class="speciesNotesTitle">Notes</h3>    
+    <ul class="speciesNotesList" ng-repeat="note in dc.milkweed.notes">
         <li>{{note.notes}}</li>
     </ul>
 </md-card>
+
+
