@@ -23,6 +23,11 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
 
     vm.organisms = Object.keys(vm.allData);
 
+
+    //This is calls all the questions that are displayed in the $mdDialog
+    vm.questionsByOrganism = StudentService.questionsByOrganism.questions;
+    StudentService.questionCreator();
+
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
         // vm.currentSpecimenQuestions (assign questions based on species element clicked)
@@ -77,24 +82,24 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
     }
 
     // ng-model names
-    vm.questionsByOrganism = {};
-    var questionArray = [];
+    // vm.questionsByOrganism = {};
+    // var questionArray = [];
 
 
-    for (var organism in vm.allData) {
-        questionArray = [];
-        for (var question in vm.allData[organism][0]) {
-            var questionObj = {};
-            if (question !== 'class' && question !== 'site') {
-                questionObj.property = question;
-                question = question.replace(/_/g, ' ');
-                question = question.charAt(0).toUpperCase() + question.slice(1);
-                questionObj.text = question;
-                questionArray.push(questionObj);
-            }
-        }
-        vm.questionsByOrganism[organism] = questionArray;
-    }
+    // for (var organism in vm.allData) {
+    //     questionArray = [];
+    //     for (var question in vm.allData[organism][0]) {
+    //         var questionObj = {};
+    //         if (question !== 'class' && question !== 'site') {
+    //             questionObj.property = question;
+    //             question = question.replace(/_/g, ' ');
+    //             question = question.charAt(0).toUpperCase() + question.slice(1);
+    //             questionObj.text = question;
+    //             questionArray.push(questionObj);
+    //         }
+    //     }
+    //     vm.questionsByOrganism[organism] = questionArray;
+    // }
 
     vm.submitData = function () {
         if (navigator.onLine) {
@@ -116,6 +121,8 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         }
     }
 
+
+    //test function
     vm.submit = function () {
         console.log('selected class is', vm.studentService.class.class)
         vm.appSetup = false;
