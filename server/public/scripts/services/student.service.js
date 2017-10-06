@@ -2,7 +2,18 @@ myApp.service('StudentService', ['$http', function ($http) {
     console.log('StudentService loaded');
     var self = this;
     self.postCallbackMessages = [];
-
+    self.selectedOrganism = {
+        selectedOrganism: ""
+    };
+    self.selectedOrganismText = {
+        selectedOrganismText: ""
+    };
+    self.class = {
+        class: ''
+    };
+    self.site = {
+        site: ""
+    };
     // bur_oak
     // common_buckthorn
     // common_milkweed
@@ -33,12 +44,16 @@ myApp.service('StudentService', ['$http', function ($http) {
                 //console.log('student service -- addBurOak -- success: ', response.data);
                 //clear out student data
                 clearAllData("bur_oak");  //function defined at bottom
+                //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
                 self.postCallbackMessages.push('success');
+                //needs to be called in every success/err callback because it needs to run after all 10
+                //posts have finished.
                 checkIfAllPostsAreDoneAndErrorHandling();
                 return response;
             }
         }, function (err) {
             console.log('student service addBurOak error', err);
+            //store 'error' in self.postCallbackMessages for error handling in checkIfAllPostsAreDoneErrorHandling
             self.postCallbackMessages.push('error');
             console.log(self.postCallbackMessages);
             checkIfAllPostsAreDoneAndErrorHandling();
@@ -186,15 +201,13 @@ myApp.service('StudentService', ['$http', function ($http) {
     //Can't get promise.all to return the reason for an error when testing it with burOakPromise
     //and I purposely engineered a 500 error.  I get an error message from angular and from the
     //post callback in services only.
-   
 
+    //posts all student data stored in self.allData
     self.postAllData = function () {
-        console.log('submitted data: ');
-        console.log(self.allData);
-
+//need to figure out why local storage isn't working here
         if (confirm("Are you sure you want to submit your data now?  Make sure you are at Belwin Center.") == true) {
-
-            //call other add functions
+            self.allData = JSON.parse(self.storage.getItem('allData'));
+            //call all post functions defined above
             self.addBurOak(self.allData.bur_oak);
             self.addCommonBuckthorn(self.allData.common_buckthorn);
             self.addCommonMilkweed(self.allData.common_milkweed);
@@ -211,28 +224,29 @@ myApp.service('StudentService', ['$http', function ($http) {
             //   )
         } else {
             //optional message to display on page.
-
             //document.getElementById("messageToUser").innerHTML = txt;
-
         }
-
-
-
     }
+
+    //this function is called in the success and fail parts of each post request
     function checkIfAllPostsAreDoneAndErrorHandling() {
+        //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
+        //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == 10) {
             console.log('checking postCallbackMessages');
-            self.postCallbackMessages.forEach(function (message) {
-
-
+            for (var i = 0; i < self.postCallbackMessages.length; i++) {
+                //if 'error', alert the user so they can try to upload data again.
+                //data is cleared out in the success parts of the post, so they can just hit the submit button again.
+                var message = self.postCallbackMessages[i];
                 if (message == 'error') {
                     // swal(
                     //     'Error uploading data.  Try again.'
                     // );
                     alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
                     //to wifi and the sweet alert would break the app.
+                    self.postCallbackMessages = [];
                 }
-            });
+            }
         }
     }
     //clears out self.allData except for site number
@@ -244,9 +258,70 @@ myApp.service('StudentService', ['$http', function ($http) {
                 }
             }
         });
+        //clear local storage
+        self.storage.clear();
     }
 
-    //Charly's data solution
+
+    self.storage = window.localStorage;
+    //functions from start.page.html
+    //start.page.html: on clicking start, clears local storage
+    self.clearLocalStorage = function () {
+        // add alert that you will clear data?
+        // if (confirm("Are you .") == true) {
+        self.storage.clear();
+    }
+//start.page.html: variable disables continue button if true
+self.isThereLocalStorage = false;
+if (self.storage.getItem('allData')) {
+    self.isThereLocalStorage = true;
+}
+
+    //student-view.html on clicking species name, calls this function
+    self.selectOrganism = function (organism, organismText) {
+        //student-view on clicking the species name, set the selected organism variable name for use in ng-repeats
+        self.selectedOrganism.selectedOrganism = organism;
+        //student-view on clicking the species name, set the selected organism variable text for displaying on dom
+        self.selectedOrganismText.selectedOrganismText = organismText;
+        console.log('select organism:', self.selectedOrganism)
+    }
+
+    self.setClass = function () {
+        for (var organism in self.allData) {
+            console.log('self.class.class', self.class.class);
+
+            self.allData[organism].map(function (object) {
+                object.class = self.class.class;
+                return object;
+            });
+        }
+        console.log('class set');
+        console.log(self.allData);
+    }
+
+    //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
+    self.setSite = function (site) {
+        console.log("site:", site, self.allData);
+        //sets site to zero index for use in ng-repeats on student-view;
+        self.site.site = parseInt(site) - 1;
+    }
+
+    //student-view > md-dialog observations: on clicking reset button:
+    self.resetForm = function () {
+        //loops through self.allData and resets all variables except class and site.
+        //can't reset class because they may return to this table and enter data and class is set only at the 
+        //ver start of the session.
+        for (var question in self.allData[self.selectedOrganism.selectedOrganism][self.site.site]) {
+            if (question !== 'class' || question !== 'site') {
+                self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
+            }
+        }
+        //store in local storage
+        var allDataString = JSON.stringify(self.allData);
+        self.storage.setItem('allData', allDataString);
+    }
+
+    //all student data
     self.allData = {
         //plants
         bur_oak: [{
@@ -752,51 +827,4 @@ myApp.service('StudentService', ['$http', function ($http) {
     };
 
 
-    //data filling functions for student view
-    self.selectedOrganism = {
-        selectedOrganism: ""
-    };
-    self.selectedOrganismText = {
-        selectedOrganismText: ""
-    };
-
-    self.selectOrganism = function (organism, organismText) {
-        self.selectedOrganism.selectedOrganism = organism;
-        self.selectedOrganismText.selectedOrganismText = organismText;
-        console.log('select organism:', self.selectedOrganism)
-    }
-    self.class = {
-        class: ''
-    };
-
-    self.setClass = function () {
-        for (var organism in self.allData) {
-            console.log('self.class.class', self.class.class);
-
-            self.allData[organism].map(function (object) {
-                object.class = self.class.class;
-                return object;
-            });
-        }
-        console.log('class set');
-        console.log(self.allData);
-
-
-    }
-
-    self.site = {
-        site: ""
-    };
-    self.setSite = function (site) {
-        console.log("site:", site, self.allData);
-        self.site.site = parseInt(site) - 1;
-    }
-
-    self.resetForm = function () {
-        for (var question in self.allData[self.selectedOrganism.selectedOrganism][self.site.site]) {
-            if (question !== 'class' || question !== 'site') {
-                self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
-            }
-        }
-    }
 }]);
