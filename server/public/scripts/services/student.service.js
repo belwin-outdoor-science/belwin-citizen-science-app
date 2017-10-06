@@ -1,4 +1,4 @@
-myApp.service('StudentService', ['$http', function ($http) {
+myApp.service('StudentService', ['$http', '$location', '$mdDialog', function ($http, $location, $mdDialog) {
     console.log('StudentService loaded');
     var self = this;
     self.postCallbackMessages = [];
@@ -14,510 +14,521 @@ myApp.service('StudentService', ['$http', function ($http) {
     self.site = {
         site: ""
     };
-
     self.allData = {
         //plants
         bur_oak: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            }
         ],
         common_buckthorn: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            }
         ],
         northern_red_oak: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            }
         ],
         common_milkweed: [{
-            class: '',
-            site: '1',
-            initial_growth: '',
-            leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            initial_growth: '',
-            leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            initial_growth: '',
-            leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                initial_growth: '',
+                leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                initial_growth: '',
+                leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                initial_growth: '',
+                leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            }
         ],
         paper_birch: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            }
         ],
         quaking_aspen: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                breaking_leaf_buds: '',
+                leaves: '',
+                increasing_leaf_size: '',
+                colored_leaves: '',
+                falling_leaves: '',
+                flowers_or_flower_buds: '',
+                open_flowers: '',
+                pollen_release: '',
+                fruits: '',
+                ripe_fruits: '',
+                recent_fruit_or_seed_drop: '',
+                notes: ''
+            }
         ],
         //mammals
         ground_squirrel: [{
-            class: '',
-            site: '1',
-            active_individuals: '',
-            feeding: '',
-            young_individuals: '',
-            dead_individuals: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            active_individuals: '',
-            feeding: '',
-            young_individuals: '',
-            dead_individuals: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            active_individuals: '',
-            feeding: '',
-            young_individuals: '',
-            dead_individuals: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                active_individuals: '',
+                feeding: '',
+                young_individuals: '',
+                dead_individuals: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                active_individuals: '',
+                feeding: '',
+                young_individuals: '',
+                dead_individuals: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                active_individuals: '',
+                feeding: '',
+                young_individuals: '',
+                dead_individuals: '',
+                notes: ''
+            }
         ],
         eastern_bluebird: [{
-            class: '',
-            site: '1',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                active_individuals: '',
+                feeding: '',
+                fruit_or_seed_consumption: '',
+                insect_consumption: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                active_individuals: '',
+                feeding: '',
+                fruit_or_seed_consumption: '',
+                insect_consumption: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                active_individuals: '',
+                feeding: '',
+                fruit_or_seed_consumption: '',
+                insect_consumption: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            }
         ],
         dark_eyed_junco: [{
-            class: '',
-            site: '1',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                active_individuals: '',
+                feeding: '',
+                fruit_or_seed_consumption: '',
+                insect_consumption: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                active_individuals: '',
+                feeding: '',
+                fruit_or_seed_consumption: '',
+                insect_consumption: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                active_individuals: '',
+                feeding: '',
+                fruit_or_seed_consumption: '',
+                insect_consumption: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            }
         ],
         ruby_throated_hummingbird: [{
-            class: '',
-            site: '1',
-            active_individuals: '',
-            feeding: '',
-            insect_consumption: '',
-            flower_visitation: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            active_individuals: '',
-            feeding: '',
-            insect_consumption: '',
-            flower_visitation: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            active_individuals: '',
-            feeding: '',
-            insect_consumption: '',
-            flower_visitation: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        }
+                class: '',
+                site: '1',
+                active_individuals: '',
+                feeding: '',
+                insect_consumption: '',
+                flower_visitation: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '2',
+                active_individuals: '',
+                feeding: '',
+                insect_consumption: '',
+                flower_visitation: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            },
+            {
+                class: '',
+                site: '3',
+                active_individuals: '',
+                feeding: '',
+                insect_consumption: '',
+                flower_visitation: '',
+                calls_or_song: '',
+                singing_individuals: '',
+                territorial_individuals: '',
+                courtship: '',
+                mating: '',
+                nest_building: '',
+                occupied_nest: '',
+                nestlings: '',
+                fledged_young: '',
+                dead_individuals: '',
+                dead_nestlings_or_fledglings: '',
+                individuals_at_feeding_station: '',
+                notes: ''
+            }
         ]
     };
+
+    //PROBLEM: how to handle errors with 10 simultaneous requests.
+    //Luke's reccomendation: 
+    //1. save a promise from each $http request in a variable.
+    //http://www.dwmkerr.com/promises-in-angularjs-the-definitive-guide/
+    //2. Promise.all will handle all errors.  If there is an error, Promise.all
+    //will return { <state>: "rejected", <reason>: something } for the reason that the
+    //first error ocurred.
+    //3. What do we do if some requests fail and others don't? 
+    //Values for the student data will be cleared out in the success "if" of the request,
+    //so if there is an error, students can just hit the submit button again and only the
+    //unsuccessful requests will be resent.
 
     var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird'];
     //PROBLEM: how to handle errors with 10 simultaneous requests.
@@ -659,6 +670,51 @@ myApp.service('StudentService', ['$http', function ($http) {
         console.log('select organism:', self.selectedOrganism)
     }
 
+    //CR: Adding old controller elements here for now
+    self.questionsByOrganism = {
+        questions: {}
+    };
+    var questionArray = [];
+
+    self.questionCreator = function () {
+        for (var organism in self.allData) {
+            questionArray = [];
+            for (var question in self.allData[organism][0]) {
+                var questionObj = {};
+                if (question !== 'class' && question !== 'site') {
+                    questionObj.property = question;
+                    question = question.replace(/_/g, ' ');
+                    question = question.charAt(0).toUpperCase() + question.slice(1);
+                    questionObj.text = question;
+                    questionArray.push(questionObj);
+                }
+            }
+            self.questionsByOrganism.questions[organism] = questionArray;
+        }
+    }
+
+    self.submitData = function () {
+        if (navigator.onLine) {
+            console.log('ok, we can send the data')
+            //and then send it
+            self.postAllData();
+        } else {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Device Offline')
+                .textContent('Get closer to the building, then try again!')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Ok!')
+                .openFrom('#left')
+                //.targetEvent(ev)
+            )
+        }
+    }
+
+    //this sets the class
+>>>>>>> master
     self.setClass = function () {
         for (var organism in self.allData) {
             console.log('self.class.class', self.class.class);
@@ -668,9 +724,8 @@ myApp.service('StudentService', ['$http', function ($http) {
                 return object;
             });
         }
-        console.log('class set');
-        console.log(self.allData);
     }
+
 
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
     self.setSite = function (site) {
@@ -692,5 +747,12 @@ myApp.service('StudentService', ['$http', function ($http) {
         //store in local storage
         var allDataString = JSON.stringify(self.allData);
         self.storage.setItem('allData', allDataString);
+    }
+
+    //shows the main student view after the class is set
+    self.appSetup = true;
+    self.submit = function () {
+        console.log('selected class is', self.class.class)
+        self.appSetup = false;
     }
 }]);

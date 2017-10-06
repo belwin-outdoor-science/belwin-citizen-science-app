@@ -13,30 +13,7 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.dark = DataService.dark;
     vm.eastern = DataService.eastern;
 
-    // vm.data = DataService;
 
-    DataService.getAllBur();
-    DataService.getAllBuckthorn();
-    DataService.getAllDark();
-    DataService.getAllEastern();
-    DataService.getAllGround();
-    DataService.getAllMilkweed();
-    DataService.getAllNorthern();
-    DataService.getAllPaper();
-    DataService.getAllQuaking();
-    DataService.getAllRuby();
-    vm.allBur = DataService.allBur;
-    vm.allBuckthorn = DataService.allBuckthorn;
-    vm.allDark = DataService.allDark;
-    vm.allEastern = DataService.allEastern;
-    vm.allGround = DataService.allGround;
-    vm.allMilkweed = DataService.allMilkweed;
-    vm.allNorthern = DataService.allNorthern;
-    vm.allPaper = DataService.allPaper;
-    vm.allQuaking = DataService.allQuaking;
-    vm.allRuby = DataService.allRuby;
-
-    console.log('vm.allBur:', vm.allBur);
     
     vm.getDetails = function (species) {
         vm.showData = true;
