@@ -1,11 +1,13 @@
-myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDialog', '$mdSidenav', function (StudentService, UserService, $mdDialog, $mdSidenav) {
+myApp.controller('StudentController', ['StudentService', 'StudentDataService','UserService', '$mdDialog', '$mdSidenav', function (StudentService, StudentDataService, UserService, $mdDialog, $mdSidenav) {
     console.log('StudentController Loaded');
 
     var vm = this;
     //services intialize on page load
     vm.userService = UserService;
-    vm.studentService = StudentService;
     vm.userObject = UserService.userObject;
+    vm.studentService = StudentService;
+    vm.studentDataService = StudentDataService;
+
     
     //main data object. accounts for all 10 species types
     vm.allData = StudentService.allData

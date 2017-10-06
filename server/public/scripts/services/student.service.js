@@ -289,10 +289,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', function ($h
     }
 
 
-    
 
 
-  
+
+
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
     self.setSite = function (site) {
         console.log("site:", site, self.allData);
@@ -821,7 +821,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', function ($h
     };
 
 
-    //CR: Adding controller elements here fo now
+    //CR: Adding old controller elements here for now
     self.questionsByOrganism = {
         questions: {}
     };
@@ -864,8 +864,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', function ($h
         }
     }
 
-      //this sets the class
-      self.setClass = function () {
+    //this sets the class
+    self.setClass = function () {
         for (var organism in self.allData) {
             console.log('self.class.class', self.class.class);
 
@@ -878,13 +878,13 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', function ($h
         console.log('class set');
         console.log(self.allData);
     }
-    
-     //shows the main student view after the class is set
-     self.appSetup = true;
-     self.submit = function () {
-         console.log('selected class is', self.class.class)
-         self.appSetup = false;
-     }
+
+    //shows the main student view after the class is set
+    self.appSetup = true;
+    self.submit = function () {
+        console.log('selected class is', self.class.class)
+        self.appSetup = false;
+    }
 
 
 }]);
