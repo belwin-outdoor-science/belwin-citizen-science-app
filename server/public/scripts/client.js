@@ -54,6 +54,10 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/success', {
+      templateUrl: '/views/templates/success.html',
+      controller: 'StudentController as sc'
+    }) 
     .when('/student', {
       templateUrl: '/views/templates/student-view.html',
       controller: 'StudentController as sc'
