@@ -1,4 +1,4 @@
-myApp.service('StudentService', ['$http', function ($http) {
+myApp.service('StudentService', ['$http', '$location', function ($http, $location) {
     console.log('StudentService loaded');
     var self = this;
     self.postCallbackMessages = [];
@@ -245,6 +245,8 @@ myApp.service('StudentService', ['$http', function ($http) {
                     alert('Error uploading data. Try again'); //I was worried they might try to upload data while not connected
                     //to wifi and the sweet alert would break the app.
                     self.postCallbackMessages = [];
+                } else {
+                    $location.path('/success');
                 }
             }
         }
