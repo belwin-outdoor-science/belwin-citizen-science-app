@@ -1,7 +1,7 @@
 <!-- stat controller as sc -->
 <div layout="row" layout-align="center center">
     <md-button ng-href="#/student" class="md-primary md-raised" ng-click="sc.studentService.clearLocalStorage();">Start</md-button>
-    <md-button ng-disabled="" class="md-primary md-raised">Continue</md-button>
+    <md-button ng-href="#/student" ng-disabled="sc.studentService.isThereLocalStorage == false" class="md-primary md-raised" >Continue</md-button>
     <!-- add toggle class disabled if local storage is empty to continue button 
 ng-disabled="true/false"
         ng-class="{'md-primary' : vm.cardService.myCards}

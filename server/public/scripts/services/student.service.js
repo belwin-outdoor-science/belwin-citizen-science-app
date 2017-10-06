@@ -265,10 +265,17 @@ myApp.service('StudentService', ['$http', function ($http) {
 
     self.storage = window.localStorage;
     //functions from start.page.html
-    //clears local storage
+    //start.page.html: on clicking start, clears local storage
     self.clearLocalStorage = function () {
+        // add alert that you will clear data?
+        // if (confirm("Are you .") == true) {
         self.storage.clear();
     }
+//start.page.html: variable disables continue button if true
+self.isThereLocalStorage = false;
+if (self.storage.getItem('allData')) {
+    self.isThereLocalStorage = true;
+}
 
     //student-view.html on clicking species name, calls this function
     self.selectOrganism = function (organism, organismText) {
