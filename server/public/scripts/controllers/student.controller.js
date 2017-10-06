@@ -1,32 +1,20 @@
-myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDialog', '$mdSidenav', function (StudentService, UserService, $mdDialog, $mdSidenav) {
+myApp.controller('StudentController', ['StudentService', 'StudentDataService','UserService', '$mdDialog', '$mdSidenav', function (StudentService, StudentDataService, UserService, $mdDialog, $mdSidenav) {
     console.log('StudentController Loaded');
 
-
-
     var vm = this;
+    //services intialize on page load
     vm.userService = UserService;
-    vm.studentService = StudentService;
     vm.userObject = UserService.userObject;
+    vm.studentService = StudentService;
+    vm.studentDataService = StudentDataService;
 
-    vm.appSetup = true;
-    vm.allData = StudentService.allData
-
-    console.log('All data:', vm.allData);
-
-    vm.selectedOrganism = StudentService.selectedOrganism;
-    vm.selectedOrganismText = StudentService.selectedOrganismText;
-
-    vm.selectOrganism = StudentService.selectOrganism
-    vm.submit = StudentService.submit
-
-    vm.postAllData = StudentService.postAllData
-
-    vm.organisms = Object.keys(vm.allData);
-
-
-    //This is calls all the questions that are displayed in the $mdDialog
-    vm.questionsByOrganism = StudentService.questionsByOrganism.questions;
+    //This is creates all the questions that are displayed in the $mdDialog
     StudentService.questionCreator();
+
+    //adds contents of $mdDialog form to allData object. Updates only sspecific species and relative site
+
+    //account for all species arrays in allData object
+    vm.organisms = Object.keys(StudentService.allData);
 
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
@@ -38,21 +26,21 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             template: '<div id="observationDataEntry">' +
                 '<form ng-submit="sc.studentService.postAllData()">' +
                 '<br>' +
-                '<h2>{{sc.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
+                '<h2>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
                 '<h2>Do you see...</h2> ' +
                 '<br>' +
-                '<div ng-repeat="question in sc.questionsByOrganism[sc.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
+                '<div ng-repeat="question in sc.studentService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
                 'ng-class-even="\'even\'">' +
                 '<div flex layout="row" layout-padding layout-align="start center">' +
                 '<h2 ng-if="question.text != \'Notes\' " flex style="max-width:300px; max-height: 300px; padding:15px;">{{question.text}}?</h2>' +
-                '<md-radio-group flex layout="row" ng-if="question.text != \'Notes\' " ng-model="sc.studentService.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">' +
+                '<md-radio-group flex layout="row" ng-if="question.text != \'Notes\' " ng-model="sc.studentService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">' +
                 '<md-radio-button value="yes" flex class="md-primary">Y</md-radio-button>' +
                 '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
                 '<md-radio-button value="maybe"  flex class="md-primary">?</md-radio-button>' +
                 '</md-radio-group>' +
                 '<md-input-container ng-if="question.text == \'Notes\' " id="textarea">' +
                 '<label id="notes">Notes:</label>' +
-                '<textarea rows="3" cols="50" ng-model="sc.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
+                '<textarea rows="3" cols="50" ng-model="sc.studentService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
                 '</md-input-container>' +
                 '</div>' +
                 '</div>' +
@@ -67,115 +55,14 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             var allDataString = JSON.stringify(StudentService.allData);
             StudentService.storage.setItem('allData', allDataString);
             var test = StudentService.storage.getItem('allData');
-            console.log('local storage data: ');
-            console.log(test);
-            
-            
         });
     }
     vm.closeDialog = function () { //this is the save and close button on the student data dialog
         console.log('close button clicked')
         //save data to local storage
-        var allDataString = JSON.stringify(self.allData);
+        var allDataString = JSON.stringify(StudentService.allData);
         StudentService.storage.setItem('allData', allDataString);
         $mdDialog.hide();
     }
 
-    // ng-model names
-    // vm.questionsByOrganism = {};
-    // var questionArray = [];
-
-
-    // for (var organism in vm.allData) {
-    //     questionArray = [];
-    //     for (var question in vm.allData[organism][0]) {
-    //         var questionObj = {};
-    //         if (question !== 'class' && question !== 'site') {
-    //             questionObj.property = question;
-    //             question = question.replace(/_/g, ' ');
-    //             question = question.charAt(0).toUpperCase() + question.slice(1);
-    //             questionObj.text = question;
-    //             questionArray.push(questionObj);
-    //         }
-    //     }
-    //     vm.questionsByOrganism[organism] = questionArray;
-    // }
-
-    vm.submitData = function () {
-        if (navigator.onLine) {
-            console.log('ok, we can send the data')
-            //and then send it
-            vm.postAllData();
-        } else {
-            $mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('Device Offline')
-                .textContent('Get closer to the building, then try again!')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Ok!')
-                .openFrom('#left')
-                //.targetEvent(ev)
-            )
-        }
-    }
-
-
-    //test function
-    vm.submit = function () {
-        console.log('selected class is', vm.studentService.class.class)
-        vm.appSetup = false;
-    }
-
-
-    //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
-    vm.imageArray = [{
-            organismName: 'bur_oak',
-            file: 'assets/bur-oak.jpg'
-        },
-        {
-            organismName: 'common_buckthorn',
-            file: 'assets/common-buckthorn.jpg'
-        },
-        {
-            organismName: 'common_milkweed',
-            file: 'assets/common-milkweed.jpg'
-        },
-        {
-            organismName: 'dark_eyed_junco',
-            file: 'assets/dark-eyed-junco.jpg'
-        },
-        {
-            organismName: 'eastern_bluebird',
-            file: 'assets/eastern-bluebird.jpg'
-        },
-        {
-            organismName: 'ground_squirrel',
-            file: 'assets/ground-squirrel.jpg'
-        },
-        {
-            organismName: 'paper_birch',
-            file: 'assets/paper-birch.jpg'
-        },
-        {
-            organismName: 'quaking_aspen',
-            file: 'assets/quaking-aspen.jpg'
-        },
-        {
-            organismName: 'northern_red_oak',
-            file: 'assets/red-oak.jpg'
-        },
-        {
-            organismName: 'ruby_throated_hummingbird',
-            file: 'assets/ruby-throated-hummingbird.jpg'
-        }
-    ]
-
-    // checks if user is logged in on the student views, not completely working yet 
-    // if (vm.userObject.userName){ 
-    //     console.log('user is logged in as:', vm.userObject.userName);
-    // } else {
-    //     console.log('user is NOT logged in');
-    // }
 }]);

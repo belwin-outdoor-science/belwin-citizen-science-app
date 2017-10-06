@@ -1,4 +1,4 @@
-myApp.service('StudentService', ['$http', '$location', function ($http, $location) {
+myApp.service('StudentService', ['$http', '$location', '$mdDialog', function ($http, $location, $mdDialog) {
     console.log('StudentService loaded');
     var self = this;
     self.postCallbackMessages = [];
@@ -288,18 +288,10 @@ myApp.service('StudentService', ['$http', '$location', function ($http, $locatio
         console.log('select organism:', self.selectedOrganism)
     }
 
-    self.setClass = function () {
-        for (var organism in self.allData) {
-            console.log('self.class.class', self.class.class);
 
-            self.allData[organism].map(function (object) {
-                object.class = self.class.class;
-                return object;
-            });
-        }
-        console.log('class set');
-        console.log(self.allData);
-    }
+
+
+
 
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
     self.setSite = function (site) {
@@ -829,7 +821,7 @@ myApp.service('StudentService', ['$http', '$location', function ($http, $locatio
     };
 
 
-    //CR: Adding controller elements here fo now
+    //CR: Adding old controller elements here for now
     self.questionsByOrganism = {
         questions: {}
     };
@@ -851,5 +843,48 @@ myApp.service('StudentService', ['$http', '$location', function ($http, $locatio
             self.questionsByOrganism.questions[organism] = questionArray;
         }
     }
+
+    self.submitData = function () {
+        if (navigator.onLine) {
+            console.log('ok, we can send the data')
+            //and then send it
+            self.postAllData();
+        } else {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Device Offline')
+                .textContent('Get closer to the building, then try again!')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Ok!')
+                .openFrom('#left')
+                //.targetEvent(ev)
+            )
+        }
+    }
+
+    //this sets the class
+    self.setClass = function () {
+        for (var organism in self.allData) {
+            console.log('self.class.class', self.class.class);
+
+            self.allData[organism].map(function (object) {
+                object.class = self.class.class;
+                return object;
+            });
+        }
+
+        console.log('class set');
+        console.log(self.allData);
+    }
+
+    //shows the main student view after the class is set
+    self.appSetup = true;
+    self.submit = function () {
+        console.log('selected class is', self.class.class)
+        self.appSetup = false;
+    }
+
 
 }]);
