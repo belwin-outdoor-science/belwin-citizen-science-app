@@ -30,35 +30,6 @@ router.get('/', function (req, res) { // GET for staff dashboard to staff data v
     }
 });
 
-//leave this route to use for "view all classes"
-router.get('/bur', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query('SELECT * FROM bur_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
 //pulls y/n/? totals for all 3 bur oaks matching today's date and the selected class number
 router.get('/bur/:classNum', function (req, res) {
     // Add a SELECT query
@@ -68,7 +39,7 @@ router.get('/bur/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.bur_oak[0], 'bur_oak');
+        var query = buildGet(allData.bur_oak[0], 'bur_oak', classNum);
         console.log('bur oak get query: ');
         console.log(query);
 
@@ -79,16 +50,29 @@ router.get('/bur/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -110,16 +94,29 @@ router.get('/bur/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -133,7 +130,7 @@ router.get('/buckthorn/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.common_buckthorn[0], 'common_buckthorn');
+        var query = buildGet(allData.common_buckthorn[0], 'common_buckthorn', classNum);
         console.log('common buckthorn get query: ');
         console.log(query);
 
@@ -144,16 +141,29 @@ router.get('/buckthorn/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -175,16 +185,29 @@ router.get('/buckthorn/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM common_buckthorn WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM common_buckthorn WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM common_buckthorn WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -198,7 +221,7 @@ router.get('/milkweed/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.common_milkweed[0], 'common_milkweed');
+        var query = buildGet(allData.common_milkweed[0], 'common_milkweed', classNum);
         console.log('common milkweed get query: ');
         console.log(query);
 
@@ -209,16 +232,29 @@ router.get('/milkweed/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -240,16 +276,29 @@ router.get('/milkweed/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM common_milkweed WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM common_milkweed WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM common_milkweed WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -265,7 +314,7 @@ router.get('/dark/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.dark_eyed_junco[0], 'dark_eyed_junco');
+        var query = buildGet(allData.dark_eyed_junco[0], 'dark_eyed_junco', classNum);
         console.log('dark eyed junco get query: ');
         console.log(query);
 
@@ -276,16 +325,29 @@ router.get('/dark/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -307,16 +369,29 @@ router.get('/dark/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM dark_eyed_junco WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM dark_eyed_junco WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM dark_eyed_junco WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -331,7 +406,7 @@ router.get('/eastern/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.eastern_bluebird[0], 'eastern_bluebird');
+        var query = buildGet(allData.eastern_bluebird[0], 'eastern_bluebird', classNum);
         console.log('eastern bluebird get query: ');
         console.log(query);
 
@@ -342,16 +417,29 @@ router.get('/eastern/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -373,16 +461,29 @@ router.get('/eastern/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM eastern_bluebird WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM eastern_bluebird WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM eastern_bluebird WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -396,7 +497,7 @@ router.get('/ground/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.ground_squirrel[0], 'ground_squirrel');
+        var query = buildGet(allData.ground_squirrel[0], 'ground_squirrel', classNum);
         console.log('ground squirrel get query: ');
         console.log(query);
 
@@ -407,16 +508,29 @@ router.get('/ground/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -438,16 +552,29 @@ router.get('/ground/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM ground_squirrel WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM ground_squirrel WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM ground_squirrel WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -462,7 +589,7 @@ router.get('/northern/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.northern_red_oak[0], 'northern_red_oak');
+        var query = buildGet(allData.northern_red_oak[0], 'northern_red_oak', classNum);
         console.log('northern red oak get query: ');
         console.log(query);
 
@@ -473,16 +600,29 @@ router.get('/northern/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -504,16 +644,29 @@ router.get('/northern/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM northern_red_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -527,7 +680,7 @@ router.get('/paper/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.paper_birch[0], 'paper_birch');
+        var query = buildGet(allData.paper_birch[0], 'paper_birch', classNum);
         console.log('paper birch get query: ');
         console.log(query);
 
@@ -538,16 +691,29 @@ router.get('/paper/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -569,16 +735,29 @@ router.get('/paper/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM paper_birch WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM paper_birch WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM paper_birch WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -592,7 +771,7 @@ router.get('/quaking/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.quaking_aspen[0], 'quaking_aspen');
+        var query = buildGet(allData.quaking_aspen[0], 'quaking_aspen', classNum);
         console.log('quaking aspen get query: ');
         console.log(query);
 
@@ -603,16 +782,29 @@ router.get('/quaking/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -634,16 +826,29 @@ router.get('/quaking/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM quaking_aspen WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM quaking_aspen WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM quaking_aspen WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
@@ -658,7 +863,7 @@ router.get('/ruby/:classNum', function (req, res) {
         };
         var classNum = req.params.classNum.toString();
         console.log('classNum:', classNum)
-        var query = buildGet(allData.ruby_throated_hummingbird[0], 'ruby_throated_hummingbird');
+        var query = buildGet(allData.ruby_throated_hummingbird[0], 'ruby_throated_hummingbird', classNum);
         console.log('ruby throated hummingbird get query: ');
         console.log(query);
 
@@ -669,16 +874,29 @@ router.get('/ruby/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query(query, [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
             }
         });
     }
@@ -700,338 +918,36 @@ router.get('/ruby/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
-                client.query('SELECT notes FROM ruby_throated_hummingbird WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM ruby_throated_hummingbird WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM ruby_throated_hummingbird WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
             }
         });
     }
 });
 
-
-//save for all class data pull
-router.get('/allDark', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.dark_eyed_junco[0], 'dark_eyed_junco');
-        // console.log('allDark get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-//save for get all classes
-router.get('/allGround', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.ground_squirrel[0], 'ground_squirrel');
-        // console.log('allGround get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-//use for all class data
-router.get('/allQuaking', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.quaking_aspen[0], 'quaking_aspen');
-        // console.log('allQuaking get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-router.get('/allPaper', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.paper_birch[0], 'paper_birch');
-        // console.log('allPaper get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-router.get('/allMilkweed', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.common_milkweed[0], 'common_milkweed');
-        // console.log('allMilkweed get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-//save for whole class data pull
-router.get('/allNorthern', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.northern_red_oak[0], 'northern_red_oak');
-        // console.log('allNorthern get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-//leave this route to use for "view all classes"
-router.get('/allBuckthorn', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.common_buckthorn[0], 'common_buckthorn');
-        // console.log('allBuckthorn get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-router.get('/allBur', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.bur_oak[0], 'bur_oak');
-        // console.log('allBur get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-router.get('/allEastern', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.eastern_bluebird[0], 'eastern_bluebird');
-        // console.log('allEastern get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
-
-router.get('/allRuby', function (req, res) {
-    // Add a SELECT query
-    if (req.isAuthenticated()) {
-        var userInfo = {
-            username: req.user.username
-        };
-        var query = buildGetEverything(allData.ruby_throated_hummingbird[0], 'ruby_throated_hummingbird');
-        // console.log('allRuby get query: ');
-        // console.log(query);
-        pool.connect(function (err, client, done) {
-            if (err) {
-                // when connecting to database failed
-                console.log('Error connecting to database', err);
-                res.sendStatus(500);
-            } else {
-                // when connecting to database worked!
-                client.query(query, function (errorMakingQuery, result) {
-                    done();
-                    if (errorMakingQuery) {
-                        console.log('Error making database query', errorMakingQuery);
-                        res.sendStatus(500);
-                    } else {
-                        // console.log('result.rows is: ', result.rows);
-                        res.send(result.rows);
-                    }
-                });
-            }
-        });
-    }
-});
 //SELECT site, 
-function buildGet(row, organism) {
+function buildGet(row, organism, classNum) {
     // console.log('buildGet called');
 
     var sumStatements = 'SELECT site,';
@@ -1048,36 +964,40 @@ function buildGet(row, organism) {
     //take off last comma
     sumStatements = sumStatements.substring(0, sumStatements.length - 1);;
     sumStatements += ' from ' + organism;
-    sumStatements += ' WHERE recorded >= CURRENT_DATE AND class = $1 GROUP BY site ORDER BY site ASC';
+    sumStatements += ' WHERE recorded >= CURRENT_DATE'
+    if (classNum != "0") {
+        sumStatements += ' AND class = $1'
+    } 
+    sumStatements += ' GROUP BY site ORDER BY site ASC';
 
     // console.log('sum statements');
-    // console.log(sumStatements);
+     console.log('sum statements', sumStatements);
     return sumStatements;
 }
 
-function buildGetEverything(row, organism) {
-    // console.log('buildGetEverything called');
+// function buildGetEverything(row, organism) {
+//     // console.log('buildGetEverything called');
 
-    var sumStatements = 'SELECT site,';
-    var yesNoMaybe = ['yes', 'no', 'maybe'];
-    Object.keys(row).forEach(function (question) {
-        if (question !== 'class' && question !== 'site' && question !== 'notes') {
-            yesNoMaybe.forEach(function (word) {
+//     var sumStatements = 'SELECT site,';
+//     var yesNoMaybe = ['yes', 'no', 'maybe'];
+//     Object.keys(row).forEach(function (question) {
+//         if (question !== 'class' && question !== 'site' && question !== 'notes') {
+//             yesNoMaybe.forEach(function (word) {
 
-                sumStatements += ' sum(case when ' + question + ' = \'' + word + '\' then 1 else 0 end) as ' + question + '_' + word + ',';
-            });
-        }
-    });
+//                 sumStatements += ' sum(case when ' + question + ' = \'' + word + '\' then 1 else 0 end) as ' + question + '_' + word + ',';
+//             });
+//         }
+//     });
 
-    //take off last comma
-    sumStatements = sumStatements.substring(0, sumStatements.length - 1);;
-    sumStatements += ' from ' + organism;
-    sumStatements += ' WHERE recorded >= CURRENT_DATE GROUP BY site ORDER BY site ASC';
+//     //take off last comma
+//     sumStatements = sumStatements.substring(0, sumStatements.length - 1);;
+//     sumStatements += ' from ' + organism;
+//     sumStatements += ' WHERE recorded >= CURRENT_DATE GROUP BY site ORDER BY site ASC';
 
-    // console.log('sum statements');
-    // console.log(sumStatements);
-    return sumStatements;
-}
+//     // console.log('sum statements');
+//     // console.log(sumStatements);
+//     return sumStatements;
+// }
 
 var allData = {
     //plants
