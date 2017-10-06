@@ -73,5 +73,21 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
             DataService.getEastern(vm.classNum)
         }
     }
+
+
+    vm.showSpeciesButtons = function (type) {
+        vm.partial = "placeholder-table.html"
+        vm.showPlants = false;
+        vm.showMammals = false;
+        vm.showBirds = false;
+        if (type == "Plants") {
+            vm.showPlants = true;
+        } else if (type == "Mammals") {
+            vm.showMammals = true;
+        } else if (type == "Birds") {
+            vm.showBirds = true;
+        }
+    }
+
 }]);
 
