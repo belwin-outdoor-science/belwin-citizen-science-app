@@ -1,8 +1,8 @@
 myApp.service('DataService', ['$http', function ($http) {
   console.log('DataService is loaded');
   var self = this;
-  // self.data = { info: {}   }
 
+  //data for individual classes
   self.bur = { data: [], notes: [] };
   self.buckthorn = { data: [], notes: [] };
   self.milkweed = { data: [], notes: [] };
@@ -13,17 +13,7 @@ myApp.service('DataService', ['$http', function ($http) {
   self.paper = { data: [], notes: [] };
   self.quaking = { data: [], notes: [] };
   self.ruby = { data: [], notes: [] };
-  // self.all = {data: []};
-  self.allBur = { data: [] };
-  self.allBuckthorn = { data: [] };
-  self.allDark = { data: [] };
-  self.allEastern = { data: [] };
-  self.allGround = { data: [] };
-  self.allMilkweed = { data: [] };
-  self.allNorthern = { data: [] };
-  self.allPaper = { data: [] };
-  self.allQuaking = { data: [] };
-  self.allRuby = { data: [] };
+
 
   self.getBur = function (classNum) {
     $http.get('/dashboard/bur/' + classNum).then(function (response) {
@@ -62,7 +52,7 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/dark/' + classNum).then(function (response) {
       self.dark.data = response.data;
       // console.log('get route dark_eyed_junco: ', self.dark);
-    }).then(function(){
+    }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/dark/notes/' + classNum).then(function (response) {
         self.dark.notes = response.data;
@@ -73,7 +63,7 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/eastern/' + classNum).then(function (response) {
       self.eastern.data = response.data;
       // console.log('get route eastern_bluebird: ', self.eastern);
-    }).then(function(){
+    }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/eastern/notes/' + classNum).then(function (response) {
         self.bur.notes = response.data;
@@ -84,7 +74,7 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/ground/' + classNum).then(function (response) {
       self.ground.data = response.data;
       // console.log('get route ground_squirrel: ', self.ground);
-    }).then(function(){
+    }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/ground/notes/' + classNum).then(function (response) {
         self.ground.notes = response.data;
@@ -95,7 +85,7 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/northern/' + classNum).then(function (response) {
       self.northern.data = response.data;
       // console.log('get route northern_red_oak: ', self.northern);
-    }).then(function(){
+    }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/northern/notes/' + classNum).then(function (response) {
         self.northern.notes = response.data;
@@ -106,7 +96,7 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/paper/' + classNum).then(function (response) {
       self.paper.data = response.data;
       // console.log('get route paper_birch: ', self.paper);
-    }).then(function(){
+    }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/paper/notes/' + classNum).then(function (response) {
         self.paper.notes = response.data;
@@ -117,7 +107,7 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/quaking/' + classNum).then(function (response) {
       self.quaking.data = response.data;
       // console.log('get route quaking_aspen: ', self.quaking);
-    }).then(function(){
+    }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/quaking/notes/' + classNum).then(function (response) {
         self.quaking.notes = response.data;
@@ -128,7 +118,7 @@ myApp.service('DataService', ['$http', function ($http) {
     $http.get('/dashboard/ruby/' + classNum).then(function (response) {
       self.ruby.data = response.data;
       // console.log('get route ruby_throated_hummingbird: ', self.ruby);
-    }).then(function(){
+    }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/ruby/notes/' + classNum).then(function (response) {
         self.ruby.notes = response.data;
@@ -136,69 +126,9 @@ myApp.service('DataService', ['$http', function ($http) {
     });;
   }
 
-  self.getAllBur = function () {
-    $http.get('/dashboard/allBur').then(function (response) {
-      self.allBur.data = response.data;
-      console.log('all bur: ', self.allBur); 
-    })
-  }
-  self.getAllBuckthorn = function () {
-    $http.get('/dashboard/allBuckthorn').then(function (response) {
-      self.allBuckthorn.data = response.data;
-      // console.log('all buckthorn: ', self.allBuckthorn); 
-    })
-  }
-  self.getAllMilkweed = function () {
-    $http.get('/dashboard/allMilkweed').then(function (response) {
-      self.allMilkweed.data = response.data;
-      // console.log('all milkweed: ', self.allMilkweed); 
-    })
-  }
-  self.getAllDark = function () {
-    $http.get('/dashboard/allDark').then(function (response) {
-      self.allDark.data = response.data;
-      // console.log('all dark: ', self.allDark); 
-    })
-  }
-  self.getAllEastern = function () {
-    $http.get('/dashboard/allEastern').then(function (response) {
-      self.allEastern.data = response.data;
-      // console.log('all eastern: ', self.allEastern); 
-    })
-  }
-  self.getAllGround = function () {
-    $http.get('/dashboard/allGround').then(function (response) {
-      self.allGround.data = response.data;
-      // console.log('all ground: ', self.allGround); 
-    })
-  }
-  self.getAllNorthern = function () {
-    $http.get('/dashboard/allNorthern').then(function (response) {
-      self.allNorthern.data = response.data;
-      // console.log('all northern: ', self.allNorthern); 
-    })
-  }
-  self.getAllPaper = function () {
-    $http.get('/dashboard/allPaper').then(function (response) {
-      self.allPaper.data = response.data;
-      // console.log('all paper: ', self.allPaper); 
-    })
-  }
-  self.getAllQuaking = function () {
-    $http.get('/dashboard/allQuaking').then(function (response) {
-      self.allQuaking.data = response.data;
-      // console.log('all quaking: ', self.allQuaking); 
-    })
-  }
-  self.getAllRuby = function () {
-    $http.get('/dashboard/allRuby').then(function (response) {
-      self.allRuby.data = response.data;
-      // console.log('all ruby: ', self.allRuby); 
-    })
-  }
   self.selectTable = function (table, tableName) {
     self.selectTable.selectTable = table;
     self.selectTableName.selectTableName = tableName;
     console.log('select table:', self.selectTable)
-}
+  }
 }]);
