@@ -23,8 +23,9 @@ body, html {
   margin-top: 14px;
 }
 
-.classSelectView {
-  background-color: #FFFCE8;
+#container {
+  margin-top: 10px;
+  height: 100%
 }
 
 .container p{
@@ -161,34 +162,17 @@ img {
 .md-radio-button.classButton{
   font-size: 50px;
 }
-
-.md-button.continueButton{
-  background-color: #818D92;
-  color:white;
-  padding: 0 15px 0 15px;
-  margin: 15px 20px 15px 20px;
-  min-width: 200px;
-  min-height: 100px;
-  border-radius: 3px;
-  font-size: 20px;
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration:none;
-  border: none;
-  outline: none;
-  
-}
-.buttomButton{
-  position:absolute;
-  bottom:0;
-}
 .md-button#classSelectButton{
   width: 70px;
   height: 30px
 }
 
 #backButton {
-  float: right;
+  float: left;
+}
+
+#classDataHeader {
+  margin: auto;
 }
 
 .speciesNumber {
@@ -200,7 +184,14 @@ img {
   border-right: solid;
 }
 
+.dataTableHeader {
+  border-bottom: solid;
+}
 
-#headerWithLogo {
-  max-height: 120px;
+.speciesNumber {
+  text-align: center;
+}
+
+th [colspan="3"] {
+  text-align: center;
 }
