@@ -204,10 +204,9 @@ myApp.service('StudentService', ['$http', function ($http) {
 
     //posts all student data stored in self.allData
     self.postAllData = function () {
-        // console.log('submitted data: ');
-        // console.log(self.allData);
+//need to figure out why local storage isn't working here
         if (confirm("Are you sure you want to submit your data now?  Make sure you are at Belwin Center.") == true) {
-            self.allData = StudentService.storage.getItem('allData');
+            self.allData = JSON.parse(self.storage.getItem('allData'));
             //call all post functions defined above
             self.addBurOak(self.allData.bur_oak);
             self.addCommonBuckthorn(self.allData.common_buckthorn);
