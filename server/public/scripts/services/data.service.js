@@ -3,7 +3,7 @@ myApp.service('DataService', ['$http', function ($http) {
   var self = this;
 
   //data for individual classes
-  self.bur = { data: [], notes: []};
+  self.bur = { data: [], notes: [] };
   self.buckthorn = { data: [], notes: [] };
   self.milkweed = { data: [], notes: [] };
   self.dark = { data: [], notes: [] };
@@ -17,15 +17,18 @@ myApp.service('DataService', ['$http', function ($http) {
 
   self.getBur = function (classNum) {
     $http.get('/dashboard/bur/' + classNum).then(function (response) {
-     // self.bur.data = response.data;
-     // console.log('get route bur_oak: ', self.bur);
-     console.log('response.data is', response.data);
-     console.log('response.data.length', response.data.length)
+      self.bur.data = response.data;
+      // console.log('get route bur_oak: ', self.bur);
+      console.log('response.data is', response.data);
+      console.log('response.data.length', response.data.length)
       for (i = 0; i < response.data.length; i++) {
         console.log('looping response.data', response.data[i]);
         console.log('data position', i, 'is site', response.data[i].site)
-        // if (response.data[i].site = i+1) {
-        //   console.log('data site', i, 'is', response.data[i].site)
+        if (response.data[i].site == i + 1) {
+          self.bur.data[i] = response.data[i]
+        } else {
+          self.bur.data[i] = {}
+        }
         // }
       }
     }).then(function () {
