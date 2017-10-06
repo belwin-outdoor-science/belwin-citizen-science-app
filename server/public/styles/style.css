@@ -25,11 +25,21 @@ body, html {
 
 .classSelectView {
   background-color: #FFFCE8;
+  height: 100%;
+  width: 100%;
+  padding: 5%;
+  position: absolute;
+}
+
+#container {
+  margin-top: 10px;
+  height: 100%
 }
 
 .container p{
   margin-top : 14px;
 }
+
 
 .message {
   padding: 10px 0;
@@ -90,9 +100,9 @@ md-dialog {
   font-size: 40px;
 }
 #studentNavBar {
-  background-color: #3E5622;
+  background-color: #BDD09F;
   height:100%;
-  width: 20%;
+  width: 25%;
   position:absolute;
   padding: 50px;
   border: 5px solid #704E2E;
@@ -104,11 +114,7 @@ md-dialog {
   font-size: 16px;
 }
 
-#classSelect {
-  margin: auto;
-  max-width: 300px;
-  margin-top: 50px;
-}
+
 
 #staffLoginLink {
   float: right;
@@ -118,13 +124,11 @@ img {
   width: 60%
 }
 
-.speciesNumber {
-  border: solid;
-}
+
 
 .logo {
   width: 40%;
-  margin: 0% 25%;
+  margin: 3% 25%;
 }
 
 .md-sidenav-right{
@@ -138,19 +142,45 @@ img {
   height: 100%;
   width: 100%;
   position: absolute;
-  padding-left: 20%;
+  padding-left: 25%;
   background-color: #FFFCE8;
   /* border: 10px solid #704E2E; */
 }
 
 .md-button.navButton{
-    background-color: #AF9164; /* Green */
+    background-color: #4E6172; /* Green */
     color: white;
+    min-width: 120px;
+    white-space: normal;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    text-shadow: 0 -1px 0 #000;
+    box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+    cursor: pointer;
+}
+.md-button.navButton:focus {     
+  background-color:#4E6172;    
 }
 .md-button.siteButton{
-  background-color: #818D92;
+  background-color: #8F3B1B;
+  font-size: 15px;
   color:white;
+  max-width: 175px;
+  min-height: 150px;
+  min-width: 175px;
+  font-weight: bold;
+  overflow: initial;
+  white-space: normal;
+  font-size: 20px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  text-shadow: 0 -1px 0 #000;
+	box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+	cursor: pointer;
 }
+
 
 #notes {
   font-size: 30px;
@@ -165,27 +195,77 @@ img {
 }
 
 .md-button.continueButton{
-  background-color: #818D92;
+  background-color: #586164;
   color:white;
   padding: 0 15px 0 15px;
   margin: 15px 20px 15px 20px;
-  min-width: 200px;
+  min-width: 500px;
   min-height: 100px;
   border-radius: 3px;
-  font-size: 20px;
+  font-size: 28px;
   text-align: center;
   text-transform: uppercase;
   text-decoration:none;
   border: none;
   outline: none;
+  text-shadow: 0 -1px 0 #000;
+	box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+	cursor: pointer;
   
 }
 .buttomButton{
   position:absolute;
-  bottom:0;
-}
-.md-button#classSelectButton{
-  width: 70px;
-  height: 30px
+  bottom: 0.5%;
 }
 
+.md-button.classSelectButton{
+  width: 70px;
+  height: 30px;
+  background-color: #4E6172;
+  border: none;
+  outline: none;
+  text-shadow: 0 -1px 0 #000;
+	box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+	cursor: pointer;
+  
+}
+
+.navText{
+  color: #8F3B1B;
+  font-weight: bold;
+  font-size: 25px;
+
+}
+#backButton {
+  float: left;
+}
+
+#classDataHeader {
+  margin: auto;
+}
+
+
+.siteDataBreak {
+  border-right: solid;
+}
+
+.dataTableHeader {
+  border-bottom: solid;
+}
+
+
+.speciesNotesCard {
+  max-width: 600px;
+}
+
+.speciesNotesTitle {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
+  margin-top: -5px;
+  margin-bottom: -10px;
+}
+
+.speciesNotesList {
+  margin-left: 10px;
+}
