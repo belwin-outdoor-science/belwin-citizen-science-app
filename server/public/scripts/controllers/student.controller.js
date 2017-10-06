@@ -62,10 +62,6 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
             var allDataString = JSON.stringify(StudentService.allData);
             StudentService.storage.setItem('allData', allDataString);
             var test = StudentService.storage.getItem('allData');
-            console.log('local storage data: ');
-            console.log(test);
-            
-            
         });
     }
     vm.closeDialog = function () { //this is the save and close button on the student data dialog
