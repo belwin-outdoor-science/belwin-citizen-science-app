@@ -1,5 +1,5 @@
 <!-- <div ng-include="'views/partials/nav.html'"></div> -->
-<div ng-show="sc.appSetup" class="classSelectView" layout="column" layout-align="start start">
+<div ng-show="sc.studentService.appSetup" class="classSelectView" layout="column" layout-align="start start">
   <div id="staffLoginLink" layout= 'row' layout-align= "end start">
     <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
@@ -8,7 +8,7 @@
   </div>
   <div id="classSelect">
     <h3 class="md-display-1">Select a class to start exploring! <br> Your teacher will tell you your class number.</h3>
-    <form ng-submit="sc.submit(); sc.studentService.setClass();">
+    <form ng-submit="sc.studentService.submit(); sc.studentService.setClass();">
 
       <md-radio-group class="classButton" ng-model="sc.studentService.class.class">
         <md-radio-button value="1">
@@ -37,7 +37,7 @@
   <br>
 </div>
 
-<div ng-show="!sc.appSetup">
+<div ng-show="!sc.studentService.appSetup">
 
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
     <p class="navText">Type</p>
@@ -84,7 +84,7 @@
       Eastern Bluebird</md-button>
 
     <div layout="column" layout-align="end center" class="buttomButton">
-      <md-button class="navButton" ng-click="sc.submitData()">Back at Class <br> All Done!</md-button>
+      <md-button class="navButton" ng-click="sc.studentService.submitData()">Back at Class <br> All Done!</md-button>
     </div>
 
   </md-sidenav>
