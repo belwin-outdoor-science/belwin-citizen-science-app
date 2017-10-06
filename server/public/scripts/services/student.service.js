@@ -265,8 +265,8 @@ myApp.service('StudentService', ['$http', function ($http) {
 
 
     self.storage = window.localStorage;
-//functions from start.page.html
-//clears local storage
+    //functions from start.page.html
+    //clears local storage
     self.clearLocalStorage = function () {
         self.storage.clear();
     }
@@ -279,7 +279,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         self.selectedOrganismText.selectedOrganismText = organismText;
         console.log('select organism:', self.selectedOrganism)
     }
-    
+
     self.setClass = function () {
         for (var organism in self.allData) {
             console.log('self.class.class', self.class.class);
@@ -293,7 +293,7 @@ myApp.service('StudentService', ['$http', function ($http) {
         console.log(self.allData);
     }
 
-//student-view: on clicking organism site number button "bur oak 1" for example, call setSite
+    //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
     self.setSite = function (site) {
         console.log("site:", site, self.allData);
         //sets site to zero index for use in ng-repeats on student-view;
