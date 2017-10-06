@@ -1,13 +1,14 @@
 <!-- <div ng-include="'views/partials/nav.html'"></div> -->
 <div ng-show="sc.appSetup" class="classSelectView" layout="column" layout-align="start start">
-  <div id="staffLoginLink" layout= 'row' layout-align= "end start">
+  <div id="staffLoginLink" layout='row' layout-align="end start">
     <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
   <div class="container">
     <img class="logo" src="assets/Belwin-Logo-2.png">
   </div>
   <div id="classSelect">
-    <h3 class="md-display-1">Select a class to start exploring! <br> Your teacher will tell you your class number.</h3>
+    <h3 class="md-display-1">Select a class to start exploring!
+      <br> Your teacher will tell you your class number.</h3>
     <form ng-submit="sc.submit(); sc.studentService.setClass();">
 
       <md-radio-group class="classButton" ng-model="sc.studentService.class.class">
@@ -28,8 +29,8 @@
         </md-radio-button>
       </md-radio-group>
 
-      <div layout="row" layout-align= "center end">
-      <md-button type="ng-submit" class="md-primary md-raised; continueButton">Continue</md-button>
+      <div layout="row" layout-align="center end">
+        <md-button type="ng-submit" class="md-primary md-raised; continueButton">Continue</md-button>
       </div>
 
     </form>
@@ -84,7 +85,8 @@
       Eastern Bluebird</md-button>
 
     <div layout="column" layout-align="end center" class="buttomButton">
-      <md-button class="navButton" ng-click="sc.submitData()">Back at Class <br> All Done!</md-button>
+      <md-button class="navButton" ng-click="sc.submitData()">Back at Class
+        <br> All Done!</md-button>
     </div>
 
   </md-sidenav>
@@ -97,6 +99,10 @@
     </div>
     <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
 2. n-show for buttons.  True only if organism from repeat == sc.selectedOrganism -->
+    <div ng-hide="sc.selectedOrganism.selectedOrganism">
+      <h3>1. Select the type of organism</h3>
+      <h3>2. Select the species of organism</h3>
+    </div>
     <div ng-show="sc.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
       <h3 class="h3 ">{{ sc.selectedOrganismText.selectedOrganismText }}</h3>
       <div ng-repeat="organism in sc.organisms" layout="row" layout-align="center center">
