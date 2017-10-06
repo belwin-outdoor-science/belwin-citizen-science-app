@@ -29,6 +29,8 @@ body, html {
   width: 100%;
   padding: 5%;
   position: absolute;
+}
+
 #container {
   margin-top: 10px;
   height: 100%
