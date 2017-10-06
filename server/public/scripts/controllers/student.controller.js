@@ -165,9 +165,10 @@ myApp.controller('StudentController', ['StudentService', 'UserService', '$mdDial
         }
     ]
 
-    if (vm.userObject.userName){
-        console.log('user is logged in as:', vm.userObject.userName);
-    } else {
-        console.log('user is NOT logged in');
-    }
+    // checks if user is logged in on the student views, not completely working yet 
+    // if (vm.userObject.userName){ 
+    //     console.log('user is logged in as:', vm.userObject.userName);
+    // } else {
+    //     console.log('user is NOT logged in');
+    // }
 }]);
