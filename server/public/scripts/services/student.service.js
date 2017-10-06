@@ -552,171 +552,6 @@ myApp.service('StudentService', ['$http', function ($http) {
         });
     }
 
-    self.addBurOak = function (studentData) {
-        console.log('addBurOak called');
-        burOakPromise = $http.post('/student_data/bur_oak', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addBurOak -- success: ', response.data);
-                //clear out student data
-                clearAllData("bur_oak");  //function defined at bottom
-                //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
-                self.postCallbackMessages.push('success');
-                //needs to be called in every success/err callback because it needs to run after all 10
-                //posts have finished.
-                checkIfAllPostsAreDoneAndErrorHandling();
-                return response;
-            }
-        }, function (err) {
-            console.log('student service addBurOak error', err);
-            //store 'error' in self.postCallbackMessages for error handling in checkIfAllPostsAreDoneErrorHandling
-            self.postCallbackMessages.push('error');
-            console.log(self.postCallbackMessages);
-            checkIfAllPostsAreDoneAndErrorHandling();
-            return err;
-        });
-    }
-
-    self.addCommonBuckthorn = function (studentData) {
-        commonBuckthornPromise = $http.post('/student_data/common_buckthorn', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addCommonBuckthorn -- success: ', response.data);
-                clearAllData("common_buckthorn");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addCommonBuckthorn error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addCommonMilkweed = function (studentData) {
-        commonMilkweedPromise = $http.post('/student_data/common_milkweed', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addCommonMilkweed -- success: ', response.data);
-                clearAllData("common_milkweed");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addCommonMilkweed error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addEasternBluebird = function (studentData) {
-        easternBluebirdPromise = $http.post('/student_data/eastern_bluebird', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addEasternBluebird -- success: ', response.data);
-                clearAllData("eastern_bluebird");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addEasternBluebird error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addGroundSquirrel = function (studentData) {
-        groundSquirrelPromise = $http.post('/student_data/ground_squirrel', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addGroundSquirrel -- success: ', response.data);
-                clearAllData("ground_squirrel");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addGroundSquirrel error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addDarkEyedJunco = function (studentData) {
-        darkEyedJuncoPromise = $http.post('/student_data/dark_eyed_junco', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addDarkEyedJunco -- success: ', response.data);
-                clearAllData("dark_eyed_junco");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addDarkEyedJunco error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addPaperBirch = function (studentData) {
-        paperBirchPromise = $http.post('/student_data/paper_birch', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addPaperBirch -- success: ', response.data);
-                clearAllData("paper_birch");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addPaperBirch error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addQuakingAspen = function (studentData) {
-        quakingAspenPromise = $http.post('/student_data/quaking_aspen', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addQuakingAspen -- success: ', response.data);
-                clearAllData("quaking_aspen");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addQuakingAspen error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addNorthernRedOak = function (studentData) {
-        northernRedOakPromise = $http.post('/student_data/northern_red_oak', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addNorthernRedOak -- success: ', response.data);
-                clearAllData("northern_red_oak");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addNorthernRedOak error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addrubyThroatedHummingbird = function (studentData) {
-        rubyThroatedHummingbirdPromise = $http.post('/student_data/ruby_throated_hummingbird', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addrubyThroatedHummingbird -- success: ', response.data);
-                clearAllData("ruby_throated_hummingbird");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addrubyThroatedHummingbird error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
-
-    //Can't get promise.all to return the reason for an error when testing it with burOakPromise
-    //and I purposely engineered a 500 error.  I get an error message from angular and from the
-    //post callback in services only.
-
     //posts all student data stored in self.allData
     self.postAllData = function () {
         //need to figure out why local storage isn't working here
@@ -801,7 +636,6 @@ myApp.service('StudentService', ['$http', function ($http) {
         self.storage.clear();
     }
 
-
     self.storage = window.localStorage;
     //functions from start.page.html
     //start.page.html: on clicking start, clears local storage
@@ -859,9 +693,4 @@ myApp.service('StudentService', ['$http', function ($http) {
         var allDataString = JSON.stringify(self.allData);
         self.storage.setItem('allData', allDataString);
     }
-
-    //all student data
-
-
-
 }]);
