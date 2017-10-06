@@ -40,7 +40,7 @@
         <td>{{dc.quaking.data[0].leaves_yes}}</td>
         <td>{{dc.quaking.data[0].leaves_no}}</td>
         <td class="siteDataBreak">{{dc.quaking.data[0].leaves_maybe}}</td>
-        <td >{{dc.quaking.data[1].leaves_yes}}</td>
+        <td>{{dc.quaking.data[1].leaves_yes}}</td>
         <td>{{dc.quaking.data[1].leaves_no}}</td>
         <td class="siteDataBreak">{{dc.quaking.data[1].leaves_maybe}}</td>
         <td>{{dc.quaking.data[2].leaves_yes}}</td>
@@ -165,10 +165,9 @@
 
 </table>
 
-<div class="classNotes">
-    Quaking Aspen Notes
+<md-card class="speciesNotesCard">
+    <h3 class="speciesNotesTitle">Notes</h3>
     <ul ng-repeat="note in dc.quaking.notes">
         <li>{{note.notes}}</li>
     </ul>
-
-</div>
+</md-card>

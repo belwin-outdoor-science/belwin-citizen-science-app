@@ -175,10 +175,6 @@ img {
   margin: auto;
 }
 
-.speciesNumber {
-  /* border-right: solid; */
-  margin: auto;
-}
 
 .siteDataBreak {
   border-right: solid;
@@ -188,10 +184,13 @@ img {
   border-bottom: solid;
 }
 
-.speciesNumber {
-  text-align: center;
+
+.speciesNotesCard {
+  max-width: 600px;
 }
 
-th [colspan="3"] {
-  text-align: center;
+.speciesNotesTitle {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
 }
