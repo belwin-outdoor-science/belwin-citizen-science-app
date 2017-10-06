@@ -3,7 +3,7 @@
     <md-button id="backButton" ng-href="/#dashboard" class="md-raised">
         <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
     </md-button>
-    <h4 id="classDataHeader">Data for Class {{dc.classNum}}</h4>
+    <h4 ng-if="!dc.allClasses" id="classDataHeader">Data for Class {{dc.classNum}}</h4>
 </div>
 
 
