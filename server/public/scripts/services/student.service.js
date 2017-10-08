@@ -15,14 +15,12 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.site = {
         site: ""
     };
-
+    self.storage = window.localStorage;
     self.studentDataService.getTableColumns();
     self.allData = self.studentDataService.allData;
-
     var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird'];
     //************TO DO**************
     //recreate self.allData after posting in clearAllData function
-    //get site recorded correctly somehow
     function postOneOrganism(organismUnderscored, studentData) {
         organisms.forEach
         $http.post('/student_data/' + organismUnderscored, studentData).then(function (response) {
@@ -48,39 +46,35 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.postAllData = function () {
         //need to figure out why local storage isn't working here
         // var studentDataArray = [self.allData.bur_oak, self.allData.common_buckthorn, self.allData.common_milkweed, self.allData.eastern_bluebird, self.allData.ground_squirrel, self.allData.dark_eyed_junco, self.allData.paper_birch, self.allData.quaking_aspen, self.allData.northern_red_oak, self.allData.ruby_throated_hummingbird];
-        var allDataFiltered = [];
+        var allDataFiltered = {};
         if (confirm("Are you sure you want to submit your data now?  Make sure you are at Belwin Center.") == true) {
-            self.allData = JSON.parse(self.storage.getItem('allData'));
-            //remove any empty data objects.
-            organisms.forEach(function (organism, i) {
-                //var numThingsDeleted = 0;
-                //**********Note to self: I don't like this.  Rewrite to store in an object like self.allData
-                var oneOrganismFiltered = self.allData[organism].filter(function (object, i) {
-                    var theresData = checkForData(object);
-                    // console.log('theresData');
-                    // console.log(theresData, "organism: ", organism);
-
-                    return theresData;
+            //finally realized I can't redefine self.allData here.  For some reason, it will just
+            //be an empty object like it's defined initially in studentDataService, so I used 
+            //var allData
+            var allData = JSON.parse(self.storage.getItem('allData'));
+            if (allData == undefined) {
+                alert('No data to send');
+            } else {
+                //remove any empty data objects.
+                organisms.forEach(function (organism, i) {
+                    if (allData[organism] != undefined) {
+                        allDataFiltered[organism] = allData[organism].filter(function (object, i) {
+                            var theresData = checkForData(object);
+                            return theresData;
+                        });
+                    }
                 });
-                allDataFiltered.push(oneOrganismFiltered);
-            });
-            console.log(' data array after splicing');
-
-            console.log(allDataFiltered);
-            //post requests
-            organisms.forEach(function (organism, i) {
-                console.log('organism: ', organism);
-                console.log(allDataFiltered[i]);
-
-                if (allDataFiltered[i].length > 0) {
-                    console.log('this is what we are sending ' + organism);
-                    console.log(allDataFiltered[i]);
-                    postOneOrganism(organism, allDataFiltered[i]);
+                //post requests
+                for (organism in allDataFiltered) {
+                    if (allDataFiltered[organism].length > 0) {
+                        postOneOrganism(organism, allDataFiltered[organism]);
+                    }
                 }
-            });
+            }
         } else {
             //optional message to display on page.
-            //document.getElementById("messageToUser").innerHTML = txt;
+            //var txt = 'No data to send';
+            //document.getElementById("message").innerHTML = txt;
         }
     }
 
@@ -100,7 +94,6 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
         //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == 10) {
-            console.log('checking postCallbackMessages');
             for (var i = 0; i < self.postCallbackMessages.length; i++) {
                 //if 'error', alert the user so they can try to upload data again.
                 //data is cleared out in the success parts of the post, so they can just hit the submit button again.
@@ -127,9 +120,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         });
         //clear local storage
         self.storage.clear();
+        self.allData = StudentDataService.allData;
     }
-
-    self.storage = window.localStorage;
     //functions from start.page.html
     //start.page.html: on clicking start, clears local storage
     self.clearLocalStorage = function () {
@@ -177,7 +169,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     self.submitData = function () {
         if (navigator.onLine) {
-            console.log('ok, we can send the data')
+            //console.log('ok, we can send the data')
             //and then send it
             self.postAllData();
         } else {
@@ -208,15 +200,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         }
     }
 
-
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
     self.setSite = function (site) {
-        console.log("site and allData:", site, self.allData);
         //sets site to zero index for use in ng-repeats on student-view;
         self.site.site = parseInt(site) - 1;
-        console.log('self.allData');
-        console.log(self.allData);
-        
     }
 
     //student-view > md-dialog observations: on clicking reset button:
@@ -230,7 +217,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             }
         }
         //store in local storage
-        var allDataString = JSON.stringify(self.allData);
+        var allDataString = JSON.stringify(StudentDataService.allData);
         self.storage.setItem('allData', allDataString);
     }
 
