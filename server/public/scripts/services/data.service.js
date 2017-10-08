@@ -52,7 +52,7 @@ self.dataInit = function() {
     }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/buckthorn/notes/' + classNum).then(function (response) {
-        self.bur.notes = response.data;
+        self.buckthorn.notes = response.data;
       })
     });
   }
@@ -94,7 +94,7 @@ self.dataInit = function() {
     }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/eastern/notes/' + classNum).then(function (response) {
-        self.bur.notes = response.data;
+        self.eastern.notes = response.data;
       })
     });
   }
@@ -122,7 +122,9 @@ self.dataInit = function() {
     }).then(function () {
       //new get call to pull notes
       $http.get('/dashboard/northern/notes/' + classNum).then(function (response) {
+        console.log('response.data', response.data)
         self.northern.notes = response.data;
+        console.log('get northern notes', self.northern.notes)
       })
     });
   }
@@ -176,12 +178,11 @@ self.dataInit = function() {
   }
 
   self.sortData = function (array) {
-    console.log('in self.sortData, array is', array)
+    // console.log('in self.sortData, array is', array)
     var i = 0;
     var j = 0;
     var array = array;
     var sortedArray = [];
-
     for (i = 0; i < 3; i++) { //assigns data to each table column
       tableCol = i + 1; //col is 1 indexed
       for (j = 0; j < array.length; j++) { //loop through responses to find site to col match      
