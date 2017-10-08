@@ -18,30 +18,11 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     self.studentDataService.getTableColumns();
     self.allData = self.studentDataService.allData;
-    //PROBLEM: how to handle errors with 10 simultaneous requests.
-    //Luke's reccomendation: 
-    //1. save a promise from each $http request in a variable.
-    //http://www.dwmkerr.com/promises-in-angularjs-the-definitive-guide/
-    //2. Promise.all will handle all errors.  If there is an error, Promise.all
-    //will return { <state>: "rejected", <reason>: something } for the reason that the
-    //first error ocurred.
-    //3. What do we do if some requests fail and others don't? 
-    //Values for the student data will be cleared out in the success "if" of the request,
-    //so if there is an error, students can just hit the submit button again and only the
-    //unsuccessful requests will be resent.
 
     var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird'];
-    //PROBLEM: how to handle errors with 10 simultaneous requests.
-    //Luke's reccomendation: 
-    //1. save a promise from each $http request in a variable.
-    //http://www.dwmkerr.com/promises-in-angularjs-the-definitive-guide/
-    //2. Promise.all will handle all errors.  If there is an error, Promise.all
-    //will return { <state>: "rejected", <reason>: something } for the reason that the
-    //first error ocurred.
-    //3. What do we do if some requests fail and others don't? 
-    //Values for the student data will be cleared out in the success "if" of the request,
-    //so if there is an error, students can just hit the submit button again and only the
-    //unsuccessful requests will be resent.
+    //************TO DO**************
+    //recreate self.allData after posting in clearAllData function
+    //get site recorded correctly somehow
     function postOneOrganism(organismUnderscored, studentData) {
         organisms.forEach
         $http.post('/student_data/' + organismUnderscored, studentData).then(function (response) {
@@ -73,14 +54,11 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             //remove any empty data objects.
             organisms.forEach(function (organism, i) {
                 //var numThingsDeleted = 0;
-                console.log('self.allData');
-                console.log(self.allData);
-
-
+                //**********Note to self: I don't like this.  Rewrite to store in an object like self.allData
                 var oneOrganismFiltered = self.allData[organism].filter(function (object, i) {
                     var theresData = checkForData(object);
-                    console.log('theresData');
-                    console.log(theresData, "organism: ", organism);
+                    // console.log('theresData');
+                    // console.log(theresData, "organism: ", organism);
 
                     return theresData;
                 });
@@ -220,9 +198,9 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     //this sets the class
     self.setClass = function () {
         for (var organism in self.allData) {
-            console.log('self.class.class', self.class.class);
-            console.log('self.allData');
-            console.log(self.allData);
+            // console.log('self.class.class', self.class.class);
+            // console.log('self.allData');
+            // console.log(self.allData);
             self.allData[organism].map(function (object) {
                 object.class = self.class.class;
                 return object;
@@ -233,12 +211,11 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
     self.setSite = function (site) {
-        console.log("site:", site, self.allData);
+        console.log("site and allData:", site, self.allData);
         //sets site to zero index for use in ng-repeats on student-view;
         self.site.site = parseInt(site) - 1;
         console.log('self.allData');
         console.log(self.allData);
-        
         
     }
 

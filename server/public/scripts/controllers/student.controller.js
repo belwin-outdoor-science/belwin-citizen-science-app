@@ -11,11 +11,6 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService','U
     //This is creates all the questions that are displayed in the $mdDialog
     StudentService.questionCreator();
 
-    //adds contents of $mdDialog form to allData object. Updates only sspecific species and relative site
-
-    //account for all species arrays in allData object
-    vm.organisms = Object.keys(StudentService.allData);
-
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
         // vm.currentSpecimenQuestions (assign questions based on species element clicked)

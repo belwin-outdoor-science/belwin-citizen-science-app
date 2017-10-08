@@ -47,62 +47,57 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     }
     ];
 
+    self.organismsArray = [];
+    self.representativeOrganisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'ground_squirrel', 'eastern_bluebird', 'ruby_throated_hummingbird'];
+    //getTableNames generates an array of table names for the organisms from the database.
+    self.getTableNames = function () {
+        $http.get('/data/table_names').then(function (response) {
+            if (response.data) {
+                response.data.forEach(function (tableNameObject) {
+                    self.organismsArray.push(tableNameObject.table_name);
+                    self.allData[tableNameObject.table_name] = [{}, {}, {}];
+                });
+                self.getTableColumns();
 
-    var representativeOrganisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'ground_squirrel', 'eastern_bluebird', 'ruby_throated_hummingbird'];
+            }
+        }, function (err) {
+            console.log('get table names error: ', err);
+        });
+    }
+    //caled inside getTableNames because it uses the table names.
     self.getTableColumns = function () {
-        representativeOrganisms.forEach(function (organism) {
-            getRequest(organism);
+        $http.get('/data/columns').then(function (response) {
+            if (response.data) {
+                console.log('table columns get: ');
+                console.log(response.data);
+
+                processTableColumnsData(response.data);
+            }
+        }, function (err) {
+            console.log('getTableColumns error: ', err);
+
         });
     }
 
-    function getRequest(organism) {
-        $http.get('/data/' + organism).then(function (response) {
-            self.allData[organism] = [];
-            var organismObject = {};
-            response.data.forEach(function (question) {
-                if (question.column_name != 'id' && question.column_name != 'recorded') {
-                    organismObject[question.column_name] = '';
-                console.log('table column get, question: ');        
-                console.log(question.column_name);
-                     
+    function processTableColumnsData(data) {
+        self.organismsArray.forEach(function (organism) {
+            data.forEach(function (object) {
+                if (object.table_name == organism) {
+                    self.allData[organism].forEach(function (_, i) {
+                        if (object.column_name == 'site') {
+                            self.allData[organism][i].site = (i + 1).toString(10);
+                        } else {
+                            self.allData[organism][i][object.column_name] = '';
+                        }
+                    });
                 }
             });
-            
-            for (var i = 0; i < NUM_SITES; i++) {
-                organismObject.site = (i + 1).toString(10);
-                self.allData[organism].push(organismObject);
-                console.log('organismObject');
-                console.log(organismObject);
-            }
-            //organisms grouped by same questions:
-            // bur_oak, paper_birch, northern_red_oak, 
-            //common_buckthorn, 
-            // common_milkweed
-            // ground_squirrel
-            // eastern_bluebird, dark_eyed_junco
-            // ruby_throated_hummingbird
-            if (organism == 'bur_oak') {
-                var similarToBur_oak = ['paper_birch', 'northern_red_oak'];
-                similarToBur_oak.forEach(function (species) {
-                    self.allData[species] = [];
-                    for (var i = 0; i < NUM_SITES; i++) {
-                        self.allData[species].push(organismObject);
-                    }
-                });
-            }
-            if (organism == 'eastern_bluebird') {
-
-                self.allData['dark_eyed_junco'] = [];
-                for (var i = 0; i < NUM_SITES; i++) {
-                    self.allData['dark_eyed_junco'].push(organismObject);
-                }
-            }
-
-            //self.allData[organism] = response.data;
-            // console.log('get route successful: ', self.userInfo);
         });
+        console.log('allData');
+        console.log(self.allData);
     }
 
+    self.getTableNames();
 
     // self.allData = {
     //     //plants
