@@ -10,8 +10,8 @@
     <h3 class="md-display-1">Select a class to start exploring!
       <br> Your teacher will tell you your class number.</h3>
     <form ng-submit="sc.studentService.submit(); sc.studentService.setClass();">
-
-      <md-radio-group class="classButton" ng-model="sc.studentService.class.class">
+Class: {{sc.studentDataService.allData.bur_oak[0].class}}
+      <md-radio-group class="classButton" ng-model="sc.studentDataService.allData.bur_oak[0].class">
         <md-radio-button value="1">
           <h3 class="md-display-1">Class 1</h3>
         </md-radio-button>

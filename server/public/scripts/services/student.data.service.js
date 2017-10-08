@@ -4,6 +4,7 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     var self = this;
     self.allData = {};
     var NUM_SITES = 3;
+    self.localStorage = false;
     //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
     self.imageArray = [{
         organismName: 'bur_oak',
@@ -50,15 +51,25 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     self.organismsArray = [];
     self.representativeOrganisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'ground_squirrel', 'eastern_bluebird', 'ruby_throated_hummingbird'];
     //getTableNames generates an array of table names for the organisms from the database.
-    self.getTableNames = function () {
+    self.getTableNames = function (lastSession) {
         $http.get('/data/table_names').then(function (response) {
             if (response.data) {
                 response.data.forEach(function (tableNameObject) {
                     self.organismsArray.push(tableNameObject.table_name);
                     self.allData[tableNameObject.table_name] = [{}, {}, {}];
                 });
-                self.getTableColumns();
-
+                console.log('lastSession');
+                console.log(lastSession);
+                
+                if (lastSession == undefined) {
+                    self.getTableColumns();
+                } else {    
+                        self.allData = lastSession;
+                        console.log('self.allData in getTableNames function');
+                        console.log(self.allData);
+                        
+                        
+                }
             }
         }, function (err) {
             console.log('get table names error: ', err);
@@ -97,7 +108,6 @@ myApp.service('StudentDataService', ['$http', function ($http) {
         console.log(self.allData);
     }
 
-    self.getTableNames();
 
     // self.allData = {
     //     //plants
