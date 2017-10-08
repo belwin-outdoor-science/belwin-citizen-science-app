@@ -2,6 +2,8 @@ myApp.service('DataService', ['$http', function ($http) {
   console.log('DataService is loaded');
   var self = this;
 
+  self.allClasses = false;
+  
   // data for individual classes
   self.bur = { data: [], notes: [] };
   self.buckthorn = { data: [], notes: [] };
