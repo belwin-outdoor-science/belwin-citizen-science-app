@@ -114,7 +114,7 @@
       <h3 class="h3 ">{{ sc.selectedOrganismText.selectedOrganismText }}</h3>
       <div ng-repeat="organism in sc.organisms" layout="row" layout-align="center center">
         <div ng-repeat="site in [1, 2, 3]">
-          <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.allData[organism][$index].site = site; sc.studentService.setSite(site); sc.showDialog($event)">{{ sc.studentService.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
+          <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentDataService.allData[organism][$index].site = site; sc.studentService.setSite(site); sc.showDialog($event)">{{ sc.studentService.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
         </div>
       </div>
     </div>

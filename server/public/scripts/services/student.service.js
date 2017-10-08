@@ -15,8 +15,9 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.site = {
         site: ""
     };
-    self.allData = self.studentDataService.allData;
 
+    self.studentDataService.getTableColumns();
+    self.allData = self.studentDataService.allData;
     //PROBLEM: how to handle errors with 10 simultaneous requests.
     //Luke's reccomendation: 
     //1. save a promise from each $http request in a variable.
@@ -72,6 +73,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             //remove any empty data objects.
             organisms.forEach(function (organism, i) {
                 //var numThingsDeleted = 0;
+                console.log('self.allData');
+                console.log(self.allData);
+
+
                 var oneOrganismFiltered = self.allData[organism].filter(function (object, i) {
                     var theresData = checkForData(object);
                     console.log('theresData');
@@ -88,7 +93,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             organisms.forEach(function (organism, i) {
                 console.log('organism: ', organism);
                 console.log(allDataFiltered[i]);
-                
+
                 if (allDataFiltered[i].length > 0) {
                     console.log('this is what we are sending ' + organism);
                     console.log(allDataFiltered[i]);
@@ -200,13 +205,13 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         } else {
             $mdDialog.show(
                 $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('Device Offline')
-                .textContent('Get closer to the building, then try again!')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Ok!')
-                .openFrom('#left')
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Device Offline')
+                    .textContent('Get closer to the building, then try again!')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Ok!')
+                    .openFrom('#left')
                 //.targetEvent(ev)
             )
         }
@@ -216,7 +221,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.setClass = function () {
         for (var organism in self.allData) {
             console.log('self.class.class', self.class.class);
-
+            console.log('self.allData');
+            console.log(self.allData);
             self.allData[organism].map(function (object) {
                 object.class = self.class.class;
                 return object;
@@ -230,6 +236,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         console.log("site:", site, self.allData);
         //sets site to zero index for use in ng-repeats on student-view;
         self.site.site = parseInt(site) - 1;
+        console.log('self.allData');
+        console.log(self.allData);
+        
+        
     }
 
     //student-view > md-dialog observations: on clicking reset button:
@@ -237,7 +247,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         //loops through self.allData and resets all variables except class and site.
         //can't reset class because they may return to this table and enter data and class is set only at the 
         //ver start of the session.
-        for (var question in self.allData[self.selectedOrganism.selectedOrganism][self.site.site]) {
+        for (var question in self.studentDataService.allData[self.selectedOrganism.selectedOrganism][self.site.site]) {
             if (question !== 'class' || question !== 'site') {
                 self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
             }

@@ -11,7 +11,7 @@ var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
 var studentDataRouter = require('./routes/student.data.router');
 var staffDataRouter = require('./routes/staff.data.router');
-
+var dataRouter = require('./routes/data.router');
 var port = process.env.PORT || 5000;
 
 // Body parser middleware
@@ -33,6 +33,7 @@ app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/student_data', studentDataRouter);
 app.use('/dashboard', staffDataRouter);
+app.use('/data', dataRouter);
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);
