@@ -31,27 +31,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.continueSession = function () {
         var lastSession = JSON.parse(self.storage.getItem('allData'));
         StudentDataService.getTableNames(lastSession);
-    }
-
-    function postOneOrganism(organismUnderscored, studentData) {
-        organisms.forEach
-        $http.post('/student_data/' + organismUnderscored, studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addBurOak -- success: ', response.data);
-                //clear out student data
-                clearAllData(organismUnderscored);  //function defined at bottom
-                //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
-                self.postCallbackMessages.push('success');
-                //needs to be called in every success/err callback because it needs to run after all 10
-                //posts have finished.
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            console.log('student service ' + organismUnderscored + ' error', err);
-            //store 'error' in self.postCallbackMessages for error handling in checkIfAllPostsAreDoneErrorHandling
-            self.postCallbackMessages.push('error');
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
+        console.log('local storage: ');
+        console.log(lastSession);
     }
 
     //posts all student data stored in self.allData
@@ -64,15 +45,15 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             //be an empty object like it's defined initially in studentDataService, so I used 
             //var allData
             var allData = JSON.parse(self.storage.getItem('allData'));
-            self.storage
-            console.log('were sending something, allData: ');
-            console.log(allData);
-
             //remove any empty data objects.
+            var numberOfOrganisms = 0;
             organisms.forEach(function (organism, i) {
                 if (allData[organism] != undefined) {
                     allDataFiltered[organism] = allData[organism].filter(function (object, i) {
                         var theresData = checkForData(object);
+                        if (theresData) {
+                            numberOfOrganisms ++;
+                        }
                         return theresData;
                     });
                 }
@@ -83,10 +64,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             var i = 0;
             for (organism in allDataFiltered) {
                 if (allDataFiltered[organism].length > 0) {
-                    postOneOrganism(organism, allDataFiltered[organism]);
+                    postOneOrganism(organism, allDataFiltered[organism], numberOfOrganisms);
                 } else {
                     i++;
-                    if (i > 8) {
+                    if (i > 9) {
                         alert('There\'s no data to send');
                     }
                 }
@@ -106,27 +87,43 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         }
         return false;
     }
+    function postOneOrganism(organismUnderscored, studentData, numberOfOrganisms) {
+        organisms.forEach
+        $http.post('/student_data/' + organismUnderscored, studentData).then(function (response) {
+            if (response.data) {
+                //console.log('student service -- addBurOak -- success: ', response.data);
+                //clear out student data
+                clearAllData(organismUnderscored);  //function defined at bottom
+                //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
+                self.postCallbackMessages.push('success');
+                //needs to be called in every success/err callback because it needs to run after all 10
+                //posts have finished.
+                checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms);
+            }
+        }, function (err) {
+            console.log('student service ' + organismUnderscored + ' error', err);
+            //store 'error' in self.postCallbackMessages for error handling in checkIfAllPostsAreDoneErrorHandling
+            self.postCallbackMessages.push('error');
+            checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms);
+        });
+    }
     //this function is called in the success and fail parts of each post request
-    function checkIfAllPostsAreDoneAndErrorHandling() {
+    function checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms) {
         //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
         //it is checked for any 'error' logs.
-        if (self.postCallbackMessages.length == 10) {
-            for (var i = 0; i < self.postCallbackMessages.length; i++) {
-                //if 'error', alert the user so they can try to upload data again.
-                //data is cleared out in the success parts of the post, so they can just hit the submit button again.
-                var message = self.postCallbackMessages[i];
-                if (message == 'error') {
-                    // swal(
-                    //     'Error uploading data.  Try again.'
-                    // );
-                    alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
-                    //to wifi and the sweet alert would break the app.
-                    self.postCallbackMessages = [];
-                }
+        if (self.postCallbackMessages.length == numberOfOrganisms) {
+            if (self.postCallbackMessages.indexOf('error') >= 0) {
+                alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
+                //to wifi and the sweet alert would break the app.
+                self.postCallbackMessages = [];
+            } else {
+                //clear local storage and allData
+                self.storage.clear();
+                self.allData = {};
+                console.log('post successful');
+                
+                $location.path('/success');
             }
-            //clear local storage and allData
-            self.storage.clear();
-            self.allData = {};
         }
     }
     //clears out self.allData except for site number
@@ -145,100 +142,76 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //start.page.html: variable disables continue button if true
     self.isThereLocalStorage = false;
-if (self.storage.getItem('allData')) {
-    self.isThereLocalStorage = true;
-}
+    if (self.storage.getItem('allData')) {
+        self.isThereLocalStorage = true;
+    }
 
-//student-view.html on clicking species name, calls this function
-self.selectOrganism = function (organism, organismText) {
-    //student-view on clicking the species name, set the selected organism variable name for use in ng-repeats
-    self.selectedOrganism.selectedOrganism = organism;
-    //student-view on clicking the species name, set the selected organism variable text for displaying on dom
-    self.selectedOrganismText.selectedOrganismText = organismText;
-    console.log('select organism:', self.selectedOrganism)
-}
+    //student-view.html on clicking species name, calls this function
+    self.selectOrganism = function (organism, organismText) {
+        //student-view on clicking the species name, set the selected organism variable name for use in ng-repeats
+        self.selectedOrganism.selectedOrganism = organism;
+        //student-view on clicking the species name, set the selected organism variable text for displaying on dom
+        self.selectedOrganismText.selectedOrganismText = organismText;
+        console.log('select organism:', self.selectedOrganism)
+    }
 
-//CR: Adding old controller elements here for now
-self.questionsByOrganism = {
-    questions: {}
-};
-var questionArray = [];
+    //CR: Adding old controller elements here for now
 
-self.questionCreator = function () {
-    for (var organism in self.allData) {
-        questionArray = [];
-        for (var question in self.allData[organism][0]) {
-            var questionObj = {};
-            if (question !== 'class' && question !== 'site') {
-                questionObj.property = question;
-                question = question.replace(/_/g, ' ');
-                question = question.charAt(0).toUpperCase() + question.slice(1);
-                questionObj.text = question;
-                questionArray.push(questionObj);
+    var questionArray = [];
+
+    self.submitData = function () {
+        if (navigator.onLine) {
+            //console.log('ok, we can send the data')
+            //and then send it
+            self.postAllData();
+        } else {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Device Offline')
+                    .textContent('Get closer to the building, then try again!')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Ok!')
+                    .openFrom('#left')
+                //.targetEvent(ev)
+            )
+        }
+    }
+
+    self.classSelected = false;
+    //this sets the class
+    self.setClass = function () {
+        for (var organism in self.allData) {
+            self.classSelected = true;
+            self.allData[organism].map(function (object) {
+                object.class = StudentDataService.allData.bur_oak[0].class;
+                return object;
+            });
+        }
+    }
+
+    //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
+    self.setSite = function (site) {
+        //sets site to zero index for use in ng-repeats on student-view;
+        self.site.site = parseInt(site) - 1;
+    }
+
+    //student-view > md-dialog observations: on clicking reset button:
+    self.resetForm = function () {
+        //loops through self.allData and resets all variables except class and site.
+        //can't reset class because they may return to this table and enter data and class is set only at the 
+        //ver start of the session.
+        for (var question in self.allData[self.selectedOrganism.selectedOrganism][self.site.site]) {
+            if (question !== 'class' || question !== 'site') {
+                self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
             }
         }
-        self.questionsByOrganism.questions[organism] = questionArray;
+        //store in local storage
+        var allDataString = JSON.stringify(StudentDataService.allData);
+        self.storage.setItem('allData', allDataString);
     }
-}
 
-self.submitData = function () {
-    if (navigator.onLine) {
-        //console.log('ok, we can send the data')
-        //and then send it
-        self.postAllData();
-    } else {
-        $mdDialog.show(
-            $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('Device Offline')
-                .textContent('Get closer to the building, then try again!')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Ok!')
-                .openFrom('#left')
-            //.targetEvent(ev)
-        )
-    }
-}
+    //shows the main student view after the class is set
 
-//this sets the class
-self.setClass = function () {
-    for (var organism in self.allData) {
-        // console.log('self.class.class', self.class.class);
-        // console.log('self.allData');
-        // console.log(self.allData);
-        self.allData[organism].map(function (object) {
-            object.class = self.class.class;
-            return object;
-        });
-    }
-}
-
-//student-view: on clicking organism site number button "bur oak 1" for example, call setSite
-self.setSite = function (site) {
-    //sets site to zero index for use in ng-repeats on student-view;
-    self.site.site = parseInt(site) - 1;
-}
-
-//student-view > md-dialog observations: on clicking reset button:
-self.resetForm = function () {
-    //loops through self.allData and resets all variables except class and site.
-    //can't reset class because they may return to this table and enter data and class is set only at the 
-    //ver start of the session.
-    for (var question in self.allData[self.selectedOrganism.selectedOrganism][self.site.site]) {
-        if (question !== 'class' || question !== 'site') {
-            self.allData[self.selectedOrganism.selectedOrganism][self.site.site][question] = "";
-        }
-    }
-    //store in local storage
-    var allDataString = JSON.stringify(StudentDataService.allData);
-    self.storage.setItem('allData', allDataString);
-}
-
-//shows the main student view after the class is set
-self.appSetup = true;
-self.submit = function () {
-    console.log('selected class is', self.class.class)
-    self.appSetup = false;
-}
 }]);

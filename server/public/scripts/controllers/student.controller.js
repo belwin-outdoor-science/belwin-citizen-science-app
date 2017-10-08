@@ -8,9 +8,6 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     vm.studentService = StudentService;
     vm.studentDataService = StudentDataService;
 
-    //This is creates all the questions that are displayed in the $mdDialog
-    StudentService.questionCreator();
-
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
         // vm.currentSpecimenQuestions (assign questions based on species element clicked)
@@ -24,7 +21,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<h2>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
             '<h2>Do you see...</h2> ' +
             '<br>' +
-            '<div ng-repeat="question in sc.studentService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
+            '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
             'ng-class-even="\'even\'">' +
             '<div flex layout="row" layout-padding layout-align="start center">' +
             '<h2 ng-if="question.text != \'Notes\' " flex style="max-width:300px; max-height: 300px; padding:15px;">{{question.text}}?</h2>' +

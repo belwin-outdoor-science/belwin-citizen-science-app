@@ -5,6 +5,9 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     self.allData = {};
     var NUM_SITES = 3;
     self.localStorage = false;
+    self.questionsByOrganism = {
+        questions: {}
+    };
     //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
     self.imageArray = [{
         organismName: 'bur_oak',
@@ -48,8 +51,26 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     }
     ];
 
+    function questionCreator() {
+        for (var organism in self.allData) {
+            questionArray = [];
+            for (var question in self.allData[organism][0]) {
+                var questionObj = {};
+                if (question !== 'class' && question !== 'site') {
+                    questionObj.property = question;
+                    question = question.replace(/_/g, ' ');
+                    question = question.charAt(0).toUpperCase() + question.slice(1);
+                    questionObj.text = question;
+                    questionArray.push(questionObj);
+                }
+            }
+            self.questionsByOrganism.questions[organism] = questionArray;
+        }
+    }
+
     self.organismsArray = [];
     self.representativeOrganisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'ground_squirrel', 'eastern_bluebird', 'ruby_throated_hummingbird'];
+
     //getTableNames generates an array of table names for the organisms from the database.
     self.getTableNames = function (lastSession) {
         $http.get('/data/table_names').then(function (response) {
@@ -60,15 +81,14 @@ myApp.service('StudentDataService', ['$http', function ($http) {
                 });
                 console.log('lastSession');
                 console.log(lastSession);
-                
+
                 if (lastSession == undefined) {
                     self.getTableColumns();
-                } else {    
-                        self.allData = lastSession;
-                        console.log('self.allData in getTableNames function');
-                        console.log(self.allData);
-                        
-                        
+                } else {
+                    self.allData = lastSession;
+                    console.log('self.allData in getTableNames function');
+                    console.log(self.allData);
+                    questionCreator();
                 }
             }
         }, function (err) {
@@ -106,6 +126,8 @@ myApp.service('StudentDataService', ['$http', function ($http) {
         });
         console.log('allData');
         console.log(self.allData);
+        //
+        questionCreator();
     }
 
 
