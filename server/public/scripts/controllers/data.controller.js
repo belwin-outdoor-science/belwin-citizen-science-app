@@ -13,7 +13,7 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.dark = DataService.dark;
     vm.eastern = DataService.eastern;
 
-
+    // DataService.dataInit();
     
     vm.getDetails = function (species) {
         vm.showData = true;
@@ -66,5 +66,6 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
         }
     }
 
+    
 }]);
 
