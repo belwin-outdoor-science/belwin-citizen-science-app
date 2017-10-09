@@ -2,6 +2,8 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     var vm = this;
     vm.partial = "placeholder-table.html";
     vm.classNum = $routeParams.classNum;
+    vm.allClasses = DataService.allClasses;
+
     vm.bur = DataService.bur;
     vm.buckthorn = DataService.buckthorn;
     vm.northern = DataService.northern;
@@ -13,7 +15,17 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.dark = DataService.dark;
     vm.eastern = DataService.eastern;
 
+    // DataService.dataInit();
 
+    vm.classNumToggle = function(classNum) {
+        console.log(classNum)
+        if (classNum == "all") {
+            DataService.allClasses = true;
+        } else {
+            DataService.allClasses = false;
+        }
+        console.log('vm.allClasses = ', vm.allClasses)
+    }
     
     vm.getDetails = function (species) {
         vm.showData = true;
@@ -66,5 +78,6 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
         }
     }
 
+    
 }]);
 

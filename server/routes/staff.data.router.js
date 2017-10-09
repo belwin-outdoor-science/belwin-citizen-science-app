@@ -645,7 +645,7 @@ router.get('/northern/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM northern_red_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -656,7 +656,7 @@ router.get('/northern/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM northern_red_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
