@@ -9,9 +9,8 @@ myApp.controller('UserController', ['UserService', 'StaffService', '$routeParams
 
   StaffService.getUsers();
 
-  vm.deleteUser = function () {
-    console.log('userId:', $routeParams.id);
-    StaffService.deleteUser($routeParams.id);
+  vm.deleteUser = function (userId) {
+    StaffService.deleteUser(userId);
   };
 
 }]);

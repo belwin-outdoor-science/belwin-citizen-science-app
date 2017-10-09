@@ -9,7 +9,7 @@
     <tbody>
         <tr ng-repeat="user in uc.StaffService.users">
             <td> {{user.username}} </td>
-            <td><md-button ng-click="uc.deleteUser(uc.userId)">Delete</md-button></td>
+            <td><md-button ng-click="uc.deleteUser(user.id)">Delete</md-button></td>
         </tr>
     </tbody>
 </table>
