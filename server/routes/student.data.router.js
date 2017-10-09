@@ -142,7 +142,6 @@ router.post('/common_milkweed', function (req, res) {
 });
 
 
-
 router.post('/ground_squirrel', function (req, res) {
     var query = buildStatement('INSERT INTO ground_squirrel (class, site, active_individuals, feeding, young_individuals, dead_individuals, notes) VALUES ', req.body);
     console.log('ground_squirrel router post called ');
