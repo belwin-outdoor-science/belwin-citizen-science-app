@@ -9,7 +9,9 @@
     <tbody>
         <tr ng-repeat="user in uc.StaffService.users">
             <td> {{user.username}} </td>
-            <td><md-button ng-click="uc.deleteUser(user.id)">Delete</md-button></td>
+            <!-- <td><md-button ng-click="uc.deleteUser(user.id)">Delete</md-button></td> -->
+            <!-- ng-click="mc.showConfirm($event)" -->
+            <td><md-button ng-click="uc.showConfirm($event, user)">Delete</md-button></td>
         </tr>
     </tbody>
 </table>

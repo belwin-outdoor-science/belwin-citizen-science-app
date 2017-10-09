@@ -1,4 +1,4 @@
-myApp.controller('UserController', ['UserService', 'StaffService', '$routeParams', function (UserService, StaffService, $routeParams) {
+myApp.controller('UserController', ['UserService', 'StaffService', '$routeParams', '$mdDialog', function (UserService, StaffService, $routeParams, $mdDialog) {
   console.log('UserController created');
   var vm = this;
   vm.userService = UserService;
@@ -12,5 +12,22 @@ myApp.controller('UserController', ['UserService', 'StaffService', '$routeParams
   vm.deleteUser = function (userId) {
     StaffService.deleteUser(userId);
   };
+
+  vm.status = '  ';
+    vm.showConfirm = function(ev, user) {
+      console.log('user: ', user);
+        var confirm = $mdDialog.confirm()
+        .title('ARE YOU SURE YOU WANT TO DELETE THIS USER?')
+        .targetEvent(ev)
+        .ok('Yep!')
+        .cancel('Nevermind');
+        $mdDialog.show(confirm).then(function() {
+            // vm.status = 'Deleted!';
+            console.log('ev: ', ev);
+            vm.deleteUser(user.id);
+          }, function() {
+            vm.status = 'Okay lets leave it there';
+          });
+    };
 
 }]);
