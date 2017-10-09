@@ -1,78 +1,84 @@
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-    <tr>
-        <th>Ground Squirrel</th>
-        <th></th>
-        <th class="speciesNumber">1</th>
-        <th></th>
-        <th></th>
-        <th class="speciesNumber">2</th>
-        <th></th>
-        <th></th>
-        <th class="speciesNumber">3</th>
-        <th></th>
-    </tr>
-    <tr>
-        <th></th>
-        <th class="dataTableHeader">Y</th>
-        <th class="dataTableHeader">N</th>
-        <th class="siteDataBreak dataTableHeader">?</th>
-        <th class="dataTableHeader">Y</th>
-        <th class="dataTableHeader">N</th>
-        <th class="siteDataBreak dataTableHeader">?</th>
-        <th class="dataTableHeader">Y</th>
-        <th class="dataTableHeader">N</th>
-        <th class="dataTableHeader">?</th>
-    </tr>
-    <tr>
-        <td>Active Individuals</td>
-        <td>{{dc.ground.data[0].active_individuals_yes}}</td>
-        <td>{{dc.ground.data[0].active_individuals_no}}</td>
-        <td class="siteDataBreak">{{dc.ground.data[0].active_individuals_maybe}}</td>
-        <td>{{dc.ground.data[1].active_individuals_yes}}</td>
-        <td>{{dc.ground.data[1].active_individuals_no}}</td>
-        <td class="siteDataBreak">{{dc.ground.data[1].active_individuals_maybe}}</td>
-        <td>{{dc.ground.data[2].active_individuals_yes}}</td>
-        <td>{{dc.ground.data[2].active_individuals_no}}</td>
-        <td>{{dc.ground.data[2].active_individuals_maybe}}</td>
-    </tr>
-    <tr>
-        <td>Feeding</td>
-        <td>{{dc.ground.data[0].feeding_yes}}</td>
-        <td>{{dc.ground.data[0].feeding_no}}</td>
-        <td class="siteDataBreak">{{dc.ground.data[0].feeding_maybe}}</td>
-        <td>{{dc.ground.data[1].feeding_yes}}</td>
-        <td>{{dc.ground.data[1].feeding_no}}</td>
-        <td class="siteDataBreak">{{dc.ground.data[1].feeding_maybe}}</td>
-        <td>{{dc.ground.data[2].feeding_yes}}</td>
-        <td>{{dc.ground.data[2].feeding_no}}</td>
-        <td>{{dc.ground.data[2].feeding_maybe}}</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>Ground Squirrel</th>
+            <th></th>
+            <th class="speciesNumber">1</th>
+            <th></th>
+            <th></th>
+            <th class="speciesNumber">2</th>
+            <th></th>
+            <th></th>
+            <th class="speciesNumber">3</th>
+            <th></th>
+        </tr>
+        <tr>
+            <th></th>
+            <th class="dataTableHeader">Y</th>
+            <th class="dataTableHeader">N</th>
+            <th class="siteDataBreak dataTableHeader">?</th>
+            <th class="dataTableHeader">Y</th>
+            <th class="dataTableHeader">N</th>
+            <th class="siteDataBreak dataTableHeader">?</th>
+            <th class="dataTableHeader">Y</th>
+            <th class="dataTableHeader">N</th>
+            <th class="dataTableHeader">?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Active Individuals</td>
+            <td>{{dc.ground.data[0].active_individuals_yes}}</td>
+            <td>{{dc.ground.data[0].active_individuals_no}}</td>
+            <td class="siteDataBreak">{{dc.ground.data[0].active_individuals_maybe}}</td>
+            <td>{{dc.ground.data[1].active_individuals_yes}}</td>
+            <td>{{dc.ground.data[1].active_individuals_no}}</td>
+            <td class="siteDataBreak">{{dc.ground.data[1].active_individuals_maybe}}</td>
+            <td>{{dc.ground.data[2].active_individuals_yes}}</td>
+            <td>{{dc.ground.data[2].active_individuals_no}}</td>
+            <td>{{dc.ground.data[2].active_individuals_maybe}}</td>
+        </tr>
+        <tr>
+            <td>Feeding</td>
+            <td>{{dc.ground.data[0].feeding_yes}}</td>
+            <td>{{dc.ground.data[0].feeding_no}}</td>
+            <td class="siteDataBreak">{{dc.ground.data[0].feeding_maybe}}</td>
+            <td>{{dc.ground.data[1].feeding_yes}}</td>
+            <td>{{dc.ground.data[1].feeding_no}}</td>
+            <td class="siteDataBreak">{{dc.ground.data[1].feeding_maybe}}</td>
+            <td>{{dc.ground.data[2].feeding_yes}}</td>
+            <td>{{dc.ground.data[2].feeding_no}}</td>
+            <td>{{dc.ground.data[2].feeding_maybe}}</td>
+        </tr>
 
-    <tr>
-        <td>Young Individuals</td>
-        <td>{{dc.ground.data[0].young_individuals_yes}}</td>
-        <td>{{dc.ground.data[0].young_individuals_no}}</td>
-        <td class="siteDataBreak">{{dc.ground.data[0].young_individuals_maybe}}</td>
-        <td>{{dc.ground.data[1].young_individuals_yes}}</td>
-        <td>{{dc.ground.data[1].young_individuals_no}}</td>
-        <td class="siteDataBreak">{{dc.ground.data[1].young_individuals_maybe}}</td>
-        <td>{{dc.ground.data[2].young_individuals_yes}}</td>
-        <td>{{dc.ground.data[2].young_individuals_no}}</td>
-        <td>{{dc.ground.data[2].young_individuals_maybe}}</td>
-    </tr>
+        <tr>
+            <td>Young Individuals</td>
+            <td>{{dc.ground.data[0].young_individuals_yes}}</td>
+            <td>{{dc.ground.data[0].young_individuals_no}}</td>
+            <td class="siteDataBreak">{{dc.ground.data[0].young_individuals_maybe}}</td>
+            <td>{{dc.ground.data[1].young_individuals_yes}}</td>
+            <td>{{dc.ground.data[1].young_individuals_no}}</td>
+            <td class="siteDataBreak">{{dc.ground.data[1].young_individuals_maybe}}</td>
+            <td>{{dc.ground.data[2].young_individuals_yes}}</td>
+            <td>{{dc.ground.data[2].young_individuals_no}}</td>
+            <td>{{dc.ground.data[2].young_individuals_maybe}}</td>
+        </tr>
 
-    <tr>
-        <td>Dead Individuals</td>
-        <td>{{dc.ground.data[0].dead_individuals_yes}}</td>
-        <td>{{dc.ground.data[0].dead_individuals_no}}</td>
-        <td class="siteDataBreak">{{dc.ground.data[0].dead_individuals_maybe}}</td>
-        <td>{{dc.ground.data[1].dead_individuals_yes}}</td>
-        <td>{{dc.ground.data[1].dead_individuals_no}}</td>
-        <td class="siteDataBreak">{{dc.ground.data[1].dead_individuals_maybe}}</td>
-        <td>{{dc.ground.data[2].dead_individuals_yes}}</td>
-        <td>{{dc.ground.data[2].dead_individuals_no}}</td>
-        <td>{{dc.ground.data[2].dead_individuals_maybe}}</td>
-    </tr>
+        <tr>
+            <td>Dead Individuals</td>
+            <td>{{dc.ground.data[0].dead_individuals_yes}}</td>
+            <td>{{dc.ground.data[0].dead_individuals_no}}</td>
+            <td class="siteDataBreak">{{dc.ground.data[0].dead_individuals_maybe}}</td>
+            <td>{{dc.ground.data[1].dead_individuals_yes}}</td>
+            <td>{{dc.ground.data[1].dead_individuals_no}}</td>
+            <td class="siteDataBreak">{{dc.ground.data[1].dead_individuals_maybe}}</td>
+            <td>{{dc.ground.data[2].dead_individuals_yes}}</td>
+            <td>{{dc.ground.data[2].dead_individuals_no}}</td>
+            <td>{{dc.ground.data[2].dead_individuals_maybe}}</td>
+        </tr>
+    </tbody>
+
+
 
 
 
