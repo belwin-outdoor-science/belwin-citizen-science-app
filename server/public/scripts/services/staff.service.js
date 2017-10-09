@@ -19,5 +19,15 @@ myApp.service('StaffService', ['$http', function ($http) {
       });
     }
 
+    self.deleteUser = function (userId) {
+      console.log('delete clicked', userId);
+      $http({
+          method: 'DELETE',
+          url: '/user/' + userId
+      }).then(function(response){
+          self.getUsers();
+      })
+  }
+
   }]);
   
