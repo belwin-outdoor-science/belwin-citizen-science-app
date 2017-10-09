@@ -42,16 +42,16 @@
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
     <p class="navText">Type</p>
     <div layout="column" layout-align="start center">
-      <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false">
+      <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false; species = !species">
         Plants</md-button>
-      <md-button class="navButton" ng-click="mammal = !mammal; plant = false; bird = false">
+      <md-button class="navButton" ng-click="mammal = !mammal; plant = false; bird = false; species = !species">
         Mammals</md-button>
-      <md-button class="navButton" ng-click="bird = !bird; mammal = false; plant = false;">
+      <md-button class="navButton" ng-click="bird = !bird; mammal = false; plant = false; species = !species">
         Birds</md-button>
     </div>
     <br>
     <div layout="column" layout-align="center center">
-      <div class="navText">Species</div>
+      <div ng-show="species" class="navText">Species</div>
     </div>
     <md-button class="navButton" ng-show="plant" ng-click="bur_oak = !bur_oak; 
     sc.studentService.selectOrganism('bur_oak', 'Bur Oak')">
@@ -111,6 +111,7 @@
     </div>
     <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
       <h3 class="h3 ">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
+      <br>
       <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="center center">
         <div ng-repeat="site in [1, 2, 3]">
           <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.setSite(site); sc.showDialog($event);">{{ sc.studentService.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
