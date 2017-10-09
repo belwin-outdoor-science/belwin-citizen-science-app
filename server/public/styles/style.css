@@ -159,9 +159,7 @@ img {
     box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
     cursor: pointer;
 }
-.md-button.navButton:focus {     
-  background-color:#4E6172;    
-}
+
 .md-button.siteButton{
   background-color: #8F3B1B;
   font-size: 15px;
@@ -268,4 +266,8 @@ img {
 
 .speciesNotesList {
   margin-left: 10px;
+}
+
+@media (min-width: 1024px) {
+  
 }

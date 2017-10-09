@@ -1,6 +1,7 @@
-myApp.service('StudentService', ['$http', '$location', function ($http, $location) {
+myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentDataService', function ($http, $location, $mdDialog, StudentDataService) {
     console.log('StudentService loaded');
     var self = this;
+    self.studentDataService = StudentDataService;
     self.postCallbackMessages = [];
     self.selectedOrganism = {
         selectedOrganism: ""
@@ -14,240 +15,114 @@ myApp.service('StudentService', ['$http', '$location', function ($http, $locatio
     self.site = {
         site: ""
     };
-    // bur_oak
-    // common_buckthorn
-    // common_milkweed
-    // eastern_bluebird
-    // ground_squirrel
-    // dark_eyed_junco
-    // paper_birch
-    // quaking_aspen
-    // northern_red_oak
-    // ruby_throated_hummingbird
-
-    //PROBLEM: how to handle errors with 10 simultaneous requests.
-    //Luke's reccomendation: 
-    //1. save a promise from each $http request in a variable.
-    //http://www.dwmkerr.com/promises-in-angularjs-the-definitive-guide/
-    //2. Promise.all will handle all errors.  If there is an error, Promise.all
-    //will return { <state>: "rejected", <reason>: something } for the reason that the
-    //first error ocurred.
-    //3. What do we do if some requests fail and others don't? 
-    //Values for the student data will be cleared out in the success "if" of the request,
-    //so if there is an error, students can just hit the submit button again and only the
-    //unsuccessful requests will be resent.
-
-    self.addBurOak = function (studentData) {
-        console.log('addBurOak called');
-        burOakPromise = $http.post('/student_data/bur_oak', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addBurOak -- success: ', response.data);
-                //clear out student data
-                clearAllData("bur_oak");  //function defined at bottom
-                //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
-                self.postCallbackMessages.push('success');
-                //needs to be called in every success/err callback because it needs to run after all 10
-                //posts have finished.
-                checkIfAllPostsAreDoneAndErrorHandling();
-                return response;
-            }
-        }, function (err) {
-            console.log('student service addBurOak error', err);
-            //store 'error' in self.postCallbackMessages for error handling in checkIfAllPostsAreDoneErrorHandling
-            self.postCallbackMessages.push('error');
-            console.log(self.postCallbackMessages);
-            checkIfAllPostsAreDoneAndErrorHandling();
-            return err;
-        });
+    self.storage = window.localStorage;
+    self.allData = self.studentDataService.allData;
+    var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird'];
+    //if there's no local storage, initialize allData and store table names in student data service.
+    //functions from start.page.html
+    //start.page.html: on clicking start, clears local storage
+    self.clearLocalStorage = function () {
+        // add alert that you will clear data?
+        // if (confirm("Are you .") == true) {
+        self.storage.clear();
+        StudentDataService.getTableNames();
     }
 
-    self.addCommonBuckthorn = function (studentData) {
-        commonBuckthornPromise = $http.post('/student_data/common_buckthorn', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addCommonBuckthorn -- success: ', response.data);
-                clearAllData("common_buckthorn");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addCommonBuckthorn error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
+    self.continueSession = function () {
+        var lastSession = JSON.parse(self.storage.getItem('allData'));
+        StudentDataService.getTableNames(lastSession);
+        console.log('local storage: ');
+        console.log(lastSession);
     }
-
-    self.addCommonMilkweed = function (studentData) {
-        commonMilkweedPromise = $http.post('/student_data/common_milkweed', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addCommonMilkweed -- success: ', response.data);
-                clearAllData("common_milkweed");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addCommonMilkweed error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addEasternBluebird = function (studentData) {
-        easternBluebirdPromise = $http.post('/student_data/eastern_bluebird', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addEasternBluebird -- success: ', response.data);
-                clearAllData("eastern_bluebird");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addEasternBluebird error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addGroundSquirrel = function (studentData) {
-        groundSquirrelPromise = $http.post('/student_data/ground_squirrel', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addGroundSquirrel -- success: ', response.data);
-                clearAllData("ground_squirrel");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addGroundSquirrel error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addDarkEyedJunco = function (studentData) {
-        darkEyedJuncoPromise = $http.post('/student_data/dark_eyed_junco', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addDarkEyedJunco -- success: ', response.data);
-                clearAllData("dark_eyed_junco");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addDarkEyedJunco error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addPaperBirch = function (studentData) {
-        paperBirchPromise = $http.post('/student_data/paper_birch', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addPaperBirch -- success: ', response.data);
-                clearAllData("paper_birch");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addPaperBirch error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addQuakingAspen = function (studentData) {
-        quakingAspenPromise = $http.post('/student_data/quaking_aspen', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addQuakingAspen -- success: ', response.data);
-                clearAllData("quaking_aspen");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addQuakingAspen error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addNorthernRedOak = function (studentData) {
-        northernRedOakPromise = $http.post('/student_data/northern_red_oak', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addNorthernRedOak -- success: ', response.data);
-                clearAllData("northern_red_oak");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addNorthernRedOak error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    self.addrubyThroatedHummingbird = function (studentData) {
-        rubyThroatedHummingbirdPromise = $http.post('/student_data/ruby_throated_hummingbird', studentData).then(function (response) {
-            if (response.data) {
-                //console.log('student service -- addrubyThroatedHummingbird -- success: ', response.data);
-                clearAllData("ruby_throated_hummingbird");  //function defined at bottom
-                self.postCallbackMessages.push('success');
-                checkIfAllPostsAreDoneAndErrorHandling();
-            }
-        }, function (err) {
-            self.postCallbackMessages.push('error');
-            console.log('student service addrubyThroatedHummingbird error', err);
-            checkIfAllPostsAreDoneAndErrorHandling();
-        });
-    }
-
-    //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
-
-    //Can't get promise.all to return the reason for an error when testing it with burOakPromise
-    //and I purposely engineered a 500 error.  I get an error message from angular and from the
-    //post callback in services only.
 
     //posts all student data stored in self.allData
     self.postAllData = function () {
         //need to figure out why local storage isn't working here
+        // var studentDataArray = [self.allData.bur_oak, self.allData.common_buckthorn, self.allData.common_milkweed, self.allData.eastern_bluebird, self.allData.ground_squirrel, self.allData.dark_eyed_junco, self.allData.paper_birch, self.allData.quaking_aspen, self.allData.northern_red_oak, self.allData.ruby_throated_hummingbird];
+        var allDataFiltered = {};
         if (confirm("Are you sure you want to submit your data now?  Make sure you are at Belwin Center.") == true) {
-            self.allData = JSON.parse(self.storage.getItem('allData'));
-            //call all post functions defined above
-            self.addBurOak(self.allData.bur_oak);
-            self.addCommonBuckthorn(self.allData.common_buckthorn);
-            self.addCommonMilkweed(self.allData.common_milkweed);
-            self.addEasternBluebird(self.allData.eastern_bluebird);
-            self.addGroundSquirrel(self.allData.ground_squirrel);
-            self.addDarkEyedJunco(self.allData.dark_eyed_junco);
-            self.addPaperBirch(self.allData.paper_birch);
-            self.addQuakingAspen(self.allData.quaking_aspen);
-            self.addNorthernRedOak(self.allData.northern_red_oak);
-            self.addrubyThroatedHummingbird(self.allData.ruby_throated_hummingbird);
-            //if successful
-            // swal(
-            //     'Your data was uploaded successfully.'
-            //   )
-        } else {
-            //optional message to display on page.
-            //document.getElementById("messageToUser").innerHTML = txt;
+            //finally realized I can't redefine self.allData here.  For some reason, it will just
+            //be an empty object like it's defined initially in studentDataService, so I used 
+            //var allData
+            var allData = JSON.parse(self.storage.getItem('allData'));
+            //remove any empty data objects.
+            var numberOfOrganisms = 0;
+            organisms.forEach(function (organism, i) {
+                if (allData[organism] != undefined) {
+                    allDataFiltered[organism] = allData[organism].filter(function (object, i) {
+                        var theresData = checkForData(object);
+                        if (theresData) {
+                            numberOfOrganisms ++;
+                        }
+                        return theresData;
+                    });
+                }
+            });
+            //post requests
+            console.log('allDataFiltered: ');
+            console.log(allDataFiltered);
+            var i = 0;
+            for (organism in allDataFiltered) {
+                if (allDataFiltered[organism].length > 0) {
+                    postOneOrganism(organism, allDataFiltered[organism], numberOfOrganisms);
+                } else {
+                    i++;
+                    if (i > 9) {
+                        alert('There\'s no data to send');
+                    }
+                }
+            }
+
         }
     }
 
+    function checkForData(object) {
+        for (var property in object) {
+            if (property !== 'class' &&
+                property !== 'site' &&
+                object[property] !== '') {
+                //there's at least one data entry
+                return true;
+            }
+        }
+        return false;
+    }
+    function postOneOrganism(organismUnderscored, studentData, numberOfOrganisms) {
+        organisms.forEach
+        $http.post('/student_data/' + organismUnderscored, studentData).then(function (response) {
+            if (response.data) {
+                //console.log('student service -- addBurOak -- success: ', response.data);
+                //clear out student data
+                clearAllData(organismUnderscored);  //function defined at bottom
+                //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
+                self.postCallbackMessages.push('success');
+                //needs to be called in every success/err callback because it needs to run after all 10
+                //posts have finished.
+                checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms);
+            }
+        }, function (err) {
+            console.log('student service ' + organismUnderscored + ' error', err);
+            //store 'error' in self.postCallbackMessages for error handling in checkIfAllPostsAreDoneErrorHandling
+            self.postCallbackMessages.push('error');
+            checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms);
+        });
+    }
     //this function is called in the success and fail parts of each post request
-    function checkIfAllPostsAreDoneAndErrorHandling() {
+    function checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms) {
         //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
         //it is checked for any 'error' logs.
-        if (self.postCallbackMessages.length == 10) {
-            console.log('checking postCallbackMessages');
-            for (var i = 0; i < self.postCallbackMessages.length; i++) {
-                //if 'error', alert the user so they can try to upload data again.
-                //data is cleared out in the success parts of the post, so they can just hit the submit button again.
-                var message = self.postCallbackMessages[i];
-                if (message == 'error') {
-                    // swal(
-                    //     'Error uploading data.  Try again.'
-                    // );
-                    alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
-                    //to wifi and the sweet alert would break the app.
-                    self.postCallbackMessages = [];
-                } else {
-                    $location.path('/success');
-                }
+        if (self.postCallbackMessages.length == numberOfOrganisms) {
+            if (self.postCallbackMessages.indexOf('error') >= 0) {
+                alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
+                //to wifi and the sweet alert would break the app.
+                self.postCallbackMessages = [];
+            } else {
+                //clear local storage and allData
+                self.storage.clear();
+                self.allData = {};
+                console.log('post successful');
+                
+                $location.path('/success');
             }
         }
     }
@@ -262,17 +137,9 @@ myApp.service('StudentService', ['$http', '$location', function ($http, $locatio
         });
         //clear local storage
         self.storage.clear();
+        self.allData = StudentDataService.allData;
     }
 
-
-    self.storage = window.localStorage;
-    //functions from start.page.html
-    //start.page.html: on clicking start, clears local storage
-    self.clearLocalStorage = function () {
-        // add alert that you will clear data?
-        // if (confirm("Are you .") == true) {
-        self.storage.clear();
-    }
     //start.page.html: variable disables continue button if true
     self.isThereLocalStorage = false;
     if (self.storage.getItem('allData')) {
@@ -288,22 +155,44 @@ myApp.service('StudentService', ['$http', '$location', function ($http, $locatio
         console.log('select organism:', self.selectedOrganism)
     }
 
+    //CR: Adding old controller elements here for now
+
+    var questionArray = [];
+
+    self.submitData = function () {
+        if (navigator.onLine) {
+            //console.log('ok, we can send the data')
+            //and then send it
+            self.postAllData();
+        } else {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Device Offline')
+                    .textContent('Get closer to the building, then try again!')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Ok!')
+                    .openFrom('#left')
+                //.targetEvent(ev)
+            )
+        }
+    }
+
+    self.classSelected = false;
+    //this sets the class
     self.setClass = function () {
         for (var organism in self.allData) {
-            console.log('self.class.class', self.class.class);
-
+            self.classSelected = true;
             self.allData[organism].map(function (object) {
-                object.class = self.class.class;
+                object.class = StudentDataService.allData.bur_oak[0].class;
                 return object;
             });
         }
-        console.log('class set');
-        console.log(self.allData);
     }
 
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
     self.setSite = function (site) {
-        console.log("site:", site, self.allData);
         //sets site to zero index for use in ng-repeats on student-view;
         self.site.site = parseInt(site) - 1;
     }
@@ -319,514 +208,10 @@ myApp.service('StudentService', ['$http', '$location', function ($http, $locatio
             }
         }
         //store in local storage
-        var allDataString = JSON.stringify(self.allData);
+        var allDataString = JSON.stringify(StudentDataService.allData);
         self.storage.setItem('allData', allDataString);
     }
 
-    //all student data
-    self.allData = {
-        //plants
-        bur_oak: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
-        ],
-        common_buckthorn: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
-        ],
-        northern_red_oak: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
-        ],
-        common_milkweed: [{
-            class: '',
-            site: '1',
-            initial_growth: '',
-            leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            initial_growth: '',
-            leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            initial_growth: '',
-            leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
-        ],
-        paper_birch: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
-        ],
-        quaking_aspen: [{
-            class: '',
-            site: '1',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            breaking_leaf_buds: '',
-            leaves: '',
-            increasing_leaf_size: '',
-            colored_leaves: '',
-            falling_leaves: '',
-            flowers_or_flower_buds: '',
-            open_flowers: '',
-            pollen_release: '',
-            fruits: '',
-            ripe_fruits: '',
-            recent_fruit_or_seed_drop: '',
-            notes: ''
-        }
-        ],
-        //mammals
-        ground_squirrel: [{
-            class: '',
-            site: '1',
-            active_individuals: '',
-            feeding: '',
-            young_individuals: '',
-            dead_individuals: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            active_individuals: '',
-            feeding: '',
-            young_individuals: '',
-            dead_individuals: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            active_individuals: '',
-            feeding: '',
-            young_individuals: '',
-            dead_individuals: '',
-            notes: ''
-        }
-        ],
-        eastern_bluebird: [{
-            class: '',
-            site: '1',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        }
-        ],
-        dark_eyed_junco: [{
-            class: '',
-            site: '1',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            active_individuals: '',
-            feeding: '',
-            fruit_or_seed_consumption: '',
-            insect_consumption: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        }
-        ],
-        ruby_throated_hummingbird: [{
-            class: '',
-            site: '1',
-            active_individuals: '',
-            feeding: '',
-            insect_consumption: '',
-            flower_visitation: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '2',
-            active_individuals: '',
-            feeding: '',
-            insect_consumption: '',
-            flower_visitation: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        },
-        {
-            class: '',
-            site: '3',
-            active_individuals: '',
-            feeding: '',
-            insect_consumption: '',
-            flower_visitation: '',
-            calls_or_song: '',
-            singing_individuals: '',
-            territorial_individuals: '',
-            courtship: '',
-            mating: '',
-            nest_building: '',
-            occupied_nest: '',
-            nestlings: '',
-            fledged_young: '',
-            dead_individuals: '',
-            dead_nestlings_or_fledglings: '',
-            individuals_at_feeding_station: '',
-            notes: ''
-        }
-        ]
-    };
-
+    //shows the main student view after the class is set
 
 }]);
