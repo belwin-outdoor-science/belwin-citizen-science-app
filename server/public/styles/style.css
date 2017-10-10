@@ -272,3 +272,12 @@ img {
 @media (min-width: 1024px) {
   
 }
+
+.md-button.staffStudentButtonLogout {
+  display: table-cell;
+  background-color: #704E2E;
+  color: white;
+}
+.md-button.staffStudentButtonDashboard {
+  display: table-cell;
+}

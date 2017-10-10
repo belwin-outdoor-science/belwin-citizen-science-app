@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/header.html'"></div>
 <h1>Login</h1>
 
-<md-button ng-href="/#student" class="md-raised">
+<md-button ng-click="sc.studentService.clearLocalStorage()" ng-href="#/" class="md-raised">
     <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
 </md-button>
 <h3 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h3>
