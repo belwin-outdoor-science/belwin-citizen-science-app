@@ -8,7 +8,7 @@
 
     </div>
 </div>
-{{sc.studentDataService.questionsByOrganism}}
+
 selected category: {{sc.studentDataDisplayService.selectedCategory.selectedCategory}}
 <div layout="row">
     <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'plants' " ng-repeat="organism in sc.studentDataDisplayService.organisms.plants">
@@ -56,14 +56,19 @@ selected category: {{sc.studentDataDisplayService.selectedCategory.selectedCateg
 
         <!-- question -->
         <!-- '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' + -->
-        {{sc.studentDataService.questionsByOrganism.questions}}
-        <thead ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentDataDisplayService.selectedOrganism.selectedOrganism]">
+      {{sc.studentDataDisplayService.submittedData}}
+        <thead ng-repeat="question in sc.studentDataDisplayService.questionsByOrganism.questions[sc.studentDataDisplayService.selectedOrganism.selectedOrganism]">
             <!-- site -->
-            <tr>
+            <tr ng-repeat="site in [1, 2, 3]">
 
-                <td>
-{{question}}
-                </td>
+                <!-- <td>
+{{question.text}}
+                </td> -->
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+
+                
             </tr>
         </thead>
         <!-- <tbody>
