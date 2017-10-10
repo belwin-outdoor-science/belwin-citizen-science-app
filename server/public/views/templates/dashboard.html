@@ -2,11 +2,14 @@
 <div class="staffBody" ng-controller="UserController as uc" layout="column" layout-align="start center">
     <p>User logged in: {{vm.userService.userObject.userName}}</p>
 
+
+    <h3 class="md-display-3">Select Class To View</h3>
+
     <div ng-controller="DataController as dc"> 
-        
         <md-button class="classToggleButton" ng-click="dc.classNumToggle('1')" ng-href="#/data/1">Class 1 Data</md-button>
         <md-button class="classToggleButton" ng-click="dc.classNumToggle('2')" ng-href="#/data/2">Class 2 Data</md-button>
         <md-button class="classToggleButton" ng-click="dc.classNumToggle('3')" ng-href="#/data/3">Class 3 Data</md-button>
+        <br>
         <br>
         <md-button class="classToggleButton" ng-click="dc.classNumToggle('4')" ng-href="#/data/4">Class 4 Data</md-button>
         <md-button class="classToggleButton" ng-click="dc.classNumToggle('5')" ng-href="#/data/5">Class 5 Data</md-button>
