@@ -29,6 +29,7 @@ body, html {
   width: 100%;
   padding: 5%;
   position: absolute;
+  overflow-y: scroll;
 }
 
 #container {
