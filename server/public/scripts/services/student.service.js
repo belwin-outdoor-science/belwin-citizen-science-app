@@ -25,22 +25,27 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     console.log('self.lastSession: ');
     console.log(self.lastSession);
 
+    //START NEW
+    //called from student-view.html.  
+    self.clearLocalStorage = function () {
+        // add alert that you will clear data?
+        // if (confirm("Are you .") == true) {
+        console.log('clearLocalStorageCalled');
+
+        self.showStartContinue.showStartContinue = false;
+        self.storage.clear();
+        StudentDataService.getTableNames('undefined');
+        console.log('clearLocalStorage called.');
+
+    }
 
     //if there's no local storage, cascades events that will build up StudentDataService.allData
     if (self.lastSession == null || self.lastSession == undefined) {
         self.showStartContinue.showStartContinue = false;
-        clearLocalStorage();
+        self.clearLocalStorage();
     }
-    //START NEW
-    //called from student-view.html.  
 
-    function clearLocalStorage() {
-        // add alert that you will clear data?
-        // if (confirm("Are you .") == true) {
-        self.showStartContinue.showStartContinue = false;
-        self.storage.clear();
-        StudentDataService.getTableNames('undefined');
-    }
+
 
     //CONTINUE
     //called from student-view.html.  Continue button.
