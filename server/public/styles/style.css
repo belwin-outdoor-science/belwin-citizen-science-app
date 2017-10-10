@@ -332,6 +332,7 @@ md-input-container.loginInput{
   min-height: 75px;
   min-width: 140px;
   white-space: normal;
+  font-weight: bold;
   border-radius: 5px;
   border: none;
   outline: none;

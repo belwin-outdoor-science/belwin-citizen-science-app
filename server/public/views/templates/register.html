@@ -1,27 +1,31 @@
-<div ng-include="'views/partials/nav.html'"></div>
-<h1>Register</h1>
-<md-button ng-href="/#dashboard" class="md-raised">
-  <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
-</md-button>
-<h3 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h3>
-<form ng-submit="lc.registerUser()">
-  <md-content>
-      <div layout="row" layout-align="center center">
-          <md-input-container>
-              <label for "username">Username</label>
-              <input aria-label="username" ng-model="lc.user.username">
-          </md-input-container>
-      </div>
-      <div layout="row" layout-align="center center">
-          <md-input-container>
-              <label for "password">Password</label>
-              <input aria-label="password" type="password" ng-model="lc.user.password">
-          </md-input-container>
-      </div>
-      <div layout="row" layout-align="center center">
-          <md-input-container>
-            <input aria-label="submit" class="btn btn-default" type="submit" name="submit" value="Register" />
-          </md-input-container>
-      </div>
-  </md-content>
-</form>
+<div class="staffBody"layout= "column" layout-align= "start center">
+    <div ng-include="'views/partials/nav.html'"></div>
+    <h3 class="md-display-3">Register Staff</h3>
+
+    <md-button ng-href="/#dashboard" class="md-raised">
+        <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
+    </md-button>
+    <br>
+    <h3 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h3>
+    <form ng-submit="lc.registerUser()">
+        <md-content>
+            <div class="loginContainer" layout="row" layout-align="center center">
+                <md-input-container class="loginInput">
+                    <label for "username">Username</label>
+                    <input aria-label="username" ng-model="lc.user.username">
+                </md-input-container>
+            </div>
+            <div class="loginContainer" layout="row" layout-align="center center">
+                <md-input-container class="loginInput">
+                    <label for "password">Password</label>
+                    <input aria-label="password" type="password" ng-model="lc.user.password">
+                </md-input-container>
+            </div>
+            <div class= "loginContainer" layout="row" layout-align="center center">
+                
+                    <md-button aria-label="submit" class="continueButton" type="submit" name="submit">Register</md-button>
+                
+            </div>
+        </md-content>
+    </form>
+</div>
