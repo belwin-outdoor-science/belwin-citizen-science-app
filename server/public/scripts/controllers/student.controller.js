@@ -1,4 +1,4 @@
-myApp.controller('StudentController', ['StudentService', 'StudentDataService', 'UserService', '$mdDialog', '$mdSidenav', function (StudentService, StudentDataService, UserService, $mdDialog, $mdSidenav) {
+myApp.controller('StudentController', ['StudentService', 'StudentDataService', 'UserService', '$mdDialog', '$mdSidenav', '$location', function (StudentService, StudentDataService, UserService, $mdDialog, $mdSidenav, $location) {
     console.log('StudentController Loaded');
 
     var vm = this;
@@ -81,4 +81,10 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         }
     }
 
+
+    // for back button to re-set class selection
+    vm.resetClassSelection = function (){
+        location.reload();
+        $location.path('#/');
+    };
 }]);
