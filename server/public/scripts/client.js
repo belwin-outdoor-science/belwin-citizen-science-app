@@ -63,8 +63,8 @@ myApp.config(function ($routeProvider, $locationProvider) {
       controller: 'StudentController as sc'
     }) 
     .when('/', {
-      templateUrl: '/views/templates/start-page.html',
-      controller: 'StartController as sc'
+      templateUrl: '/views/templates/student-view.html',
+      controller: 'StudentController as sc'
     })
     .otherwise({
       redirectTo: '/student'

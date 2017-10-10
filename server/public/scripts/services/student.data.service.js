@@ -4,7 +4,6 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     var self = this;
     self.allData = {};
     var NUM_SITES = 3;
-    self.localStorage = false;
     self.questionsByOrganism = {
         questions: {}
     };
@@ -69,9 +68,10 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     }
 
     self.organismsArray = [];
-    self.representativeOrganisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'ground_squirrel', 'eastern_bluebird', 'ruby_throated_hummingbird'];
+    //self.representativeOrganisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'ground_squirrel', 'eastern_bluebird', 'ruby_throated_hummingbird'];
 
     //getTableNames generates an array of table names for the organisms from the database.
+    //self.getTableNames gets called when you click start
     self.getTableNames = function (lastSession) {
         $http.get('/data/table_names').then(function (response) {
             if (response.data) {
@@ -82,8 +82,10 @@ myApp.service('StudentDataService', ['$http', function ($http) {
                 console.log('lastSession');
                 console.log(lastSession);
 
-                if (lastSession == undefined) {
+                if (lastSession == 'undefined') {
                     self.getTableColumns();
+                    console.log('getTableNames, lastSession = undefined');
+                    
                 } else {
                     self.allData = lastSession;
                     console.log('self.allData in getTableNames function');
@@ -95,7 +97,7 @@ myApp.service('StudentDataService', ['$http', function ($http) {
             console.log('get table names error: ', err);
         });
     }
-    //caled inside getTableNames because it uses the table names.
+    //caled inside getTableNames because it uses the table names stored in self.organismsArray.
     self.getTableColumns = function () {
         $http.get('/data/columns').then(function (response) {
             if (response.data) {
@@ -111,14 +113,20 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     }
 
     function processTableColumnsData(data) {
-        self.organismsArray.forEach(function (organism) {
-            data.forEach(function (object) {
-                if (object.table_name == organism) {
-                    self.allData[organism].forEach(function (_, i) {
-                        if (object.column_name == 'site') {
+        //data = [{table_name: 'bur_oak', column_name = 'class'}, {table_name: 'bur_oak', column_name', 'breaking_leaf_buds'...]
+        self.organismsArray.forEach(function (organism) { //organism = self.organismsArray[i]
+            //{bur_oak: [{question: '' }, ]}
+            data.forEach(function (tableColumnObject) { //object = data[i]
+                //data = see comment on first line of this function
+                if (tableColumnObject.table_name == organism) {
+                    self.allData[organism].forEach(function (_, i) { // _ = self.allData[organism][i], i
+                        //loops from i = 0 to i = 2 because there are three empty objects in each arrray.
+                        //self.allData = { bur_oak: [{}, {}, {}], quaking_aspen: [{}, {}, {}] ... } three objects for three sites
+                        if (tableColumnObject.column_name == 'site') {
+                            //site: 1, 2, 3 for each
                             self.allData[organism][i].site = (i + 1).toString(10);
                         } else {
-                            self.allData[organism][i][object.column_name] = '';
+                            self.allData[organism][i][tableColumnObject.column_name] = '';
                         }
                     });
                 }
