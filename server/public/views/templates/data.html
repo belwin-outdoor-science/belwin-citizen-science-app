@@ -10,27 +10,28 @@
 
 <div id="dataNavButtons">
     <div>
-        <md-button ng-click="dc.showSpeciesButtons('Plants')">Plants</md-button>
-        <md-button ng-click="dc.showSpeciesButtons('Mammals')">Mammals</md-button>
-        <md-button ng-click="dc.showSpeciesButtons('Birds')">Birds</md-button>
+        <md-button class="md-raised dataNav" ng-click="dc.showSpeciesButtons('Plants')">Plants</md-button>
+        <md-button class="md-raised dataNav" ng-click="dc.showSpeciesButtons('Mammals')">Mammals</md-button>
+        <md-button class="md-raised dataNav" ng-click="dc.showSpeciesButtons('Birds')">Birds</md-button>
     </div>
+</div>
 
-    <div ng-show="dc.showPlants">
-        <md-button ng-click="dc.getDetails('Bur Oak')">Bur Oak</md-button>
-        <md-button ng-click="dc.getDetails('Red Oak')">Red Oak</md-button>
-        <md-button ng-click="dc.getDetails('Quaking Aspen')">Quaking Aspen</md-button>
-        <md-button ng-click="dc.getDetails('Common Buckthorn')">Common Buckthorn</md-button>
-        <md-button ng-click="dc.getDetails('Paper Birch')">Paper Birch</md-button>
-        <md-button ng-click="dc.getDetails('Milkweed')">Common Milkweed</md-button>
-    </div>
-    <div ng-show="dc.showMammals">
-        <md-button ng-click="dc.getDetails('Ground Squirrel')">Ground Squirrel</md-button>
-    </div>
-    <div ng-show="dc.showBirds">
-        <md-button ng-click="dc.getDetails('Ruby Throated Hummingbird')">Ruby Throated Hummingbird</md-button>
-        <md-button ng-click="dc.getDetails('Dark-eyed Junco')">Dark-eyed Junco</md-button>
-        <md-button ng-click="dc.getDetails('Eastern Bluebird')">Eastern Bluebird</md-button>
-    </div>
+<div class="dataNavButtons" ng-show="dc.showPlants">
+    <md-button class="md-raised" ng-click="dc.getDetails('Bur Oak')">Bur Oak</md-button>
+    <md-button class="md-raised" ng-click="dc.getDetails('Red Oak')">Red Oak</md-button>
+    <md-button class="md-raised" ng-click="dc.getDetails('Quaking Aspen')">Quaking Aspen</md-button>
+    <md-button class="md-raised" ng-click="dc.getDetails('Common Buckthorn')">Common Buckthorn</md-button>
+    <md-button class="md-raised" ng-click="dc.getDetails('Paper Birch')">Paper Birch</md-button>
+    <md-button class="md-raised" ng-click="dc.getDetails('Milkweed')">Common Milkweed</md-button>
+</div>
+<div class="dataNavButtons" ng-show="dc.showMammals">
+    <md-button class="md-raised" ng-click="dc.getDetails('Ground Squirrel')">Ground Squirrel</md-button>
+</div>
+<div class="dataNavButtons" ng-show="dc.showBirds">
+    <md-button class="md-raised" ng-click="dc.getDetails('Ruby Throated Hummingbird')">Ruby Throated Hummingbird</md-button>
+    <md-button class="md-raised" ng-click="dc.getDetails('Dark-eyed Junco')">Dark-eyed Junco</md-button>
+    <md-button class="md-raised" ng-click="dc.getDetails('Eastern Bluebird')">Eastern Bluebird</md-button>
+</div>
 
 </div>
 

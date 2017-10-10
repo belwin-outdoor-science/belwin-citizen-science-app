@@ -271,3 +271,13 @@ img {
 @media (min-width: 1024px) {
   
 }
+
+.dataNavButtons {
+  border: solid;
+}
+
+
+
+button:active {
+  color: red;
+}
