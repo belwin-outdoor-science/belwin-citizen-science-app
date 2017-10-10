@@ -20,7 +20,15 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<br>' +
             '<h2>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
             '<h2>Do you see...</h2> ' +
+               '<h2>Mark all:</h2>' +
+            '<md-radio-group flex layout="row" ng-model="sc.studentDataService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">' +
+         
+            '<md-radio-button value="yes" flex class="md-primary">Y</md-radio-button>' +
+            '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
+            '<md-radio-button value="maybe"  flex class="md-primary">?</md-radio-button>' +
+            '</md-radio-group>' +
             '<br>' +
+
             '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
             'ng-class-even="\'even\'">' +
             '<div flex layout="row" layout-padding layout-align="start center">' +
