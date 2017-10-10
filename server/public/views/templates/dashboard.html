@@ -1,12 +1,16 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container" ng-controller="UserController as uc">
-    <h2>Welcome, {{vm.userService.userObject.userName}}!</h2>
-</div>
-<div ng-controller="DataController as dc" class="row">
-    <md-button ng-click="dc.classNumToggle('1')" ng-href="#/data/1">Class 1 Data</md-button>
-    <md-button ng-click="dc.classNumToggle('2')" ng-href="#/data/2">Class 2 Data</md-button>
-    <md-button ng-click="dc.classNumToggle('3')" ng-href="#/data/3">Class 3 Data</md-button>
-    <md-button ng-click="dc.classNumToggle('4')" ng-href="#/data/4">Class 4 Data</md-button>
-    <md-button ng-click="dc.classNumToggle('5')" ng-href="#/data/5">Class 5 Data</md-button>
-    <md-button ng-click="dc.classNumToggle('all')" ng-href="#/data/0">All Today's Data</md-button>
+<div class="staffBody" ng-controller="UserController as uc" layout="column" layout-align="start center">
+    <p>User logged in: {{vm.userService.userObject.userName}}</p>
+
+    <div ng-controller="DataController as dc"> 
+        
+        <md-button class="classToggleButton" ng-click="dc.classNumToggle('1')" ng-href="#/data/1">Class 1 Data</md-button>
+        <md-button class="classToggleButton" ng-click="dc.classNumToggle('2')" ng-href="#/data/2">Class 2 Data</md-button>
+        <md-button class="classToggleButton" ng-click="dc.classNumToggle('3')" ng-href="#/data/3">Class 3 Data</md-button>
+        <br>
+        <md-button class="classToggleButton" ng-click="dc.classNumToggle('4')" ng-href="#/data/4">Class 4 Data</md-button>
+        <md-button class="classToggleButton" ng-click="dc.classNumToggle('5')" ng-href="#/data/5">Class 5 Data</md-button>
+        <md-button class="classToggleButton" ng-click="dc.classNumToggle('all')" ng-href="#/data/0">All Today's Data</md-button>
+    </div>
+
 </div>

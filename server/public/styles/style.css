@@ -66,7 +66,7 @@ body, html {
   width: 100%;
   border-radius: 0px;
   color: black;
-  background-color: #D4CDAB
+  background-color: #BDD09F;
 }
 
 ul {
@@ -301,4 +301,22 @@ img {
 md-input-container.loginInput{
   width: 500px;
   font-size: 20px;
+}
+
+.md-button.classToggleButton{
+  background-color: #8F3B1B;
+  font-size: 15px;
+  color:white;
+  max-width: 120px;
+  min-height: 50px;
+  min-width: 120px;
+  font-weight: bold;
+  overflow: initial;
+  white-space: normal;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  text-shadow: 0 -1px 0 #000;
+	box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+	cursor: pointer;
 }
