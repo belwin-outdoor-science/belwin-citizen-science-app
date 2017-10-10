@@ -9,7 +9,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.selectedOrganismText = {
         selectedOrganismText: ""
     };
-    self.classSelected = { classSelected: false };    
+    self.classSelected = { classSelected: false };
     self.class = {
         class: ''
     };
@@ -25,16 +25,16 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     console.log('self.lastSession: ');
     console.log(self.lastSession);
 
-    //if there's no local storage, cascades events that will build up StudentDataService.allData
-    if (self.lastSession == 'undefined') {
-        self.showStartContinue.showStartContinue = false;
-        self.clearLocalStorage();
-    }
 
+    //if there's no local storage, cascades events that will build up StudentDataService.allData
+    if (self.lastSession == null || self.lastSession == undefined) {
+        self.showStartContinue.showStartContinue = false;
+        clearLocalStorage();
+    }
     //START NEW
     //called from student-view.html.  
-    
-    self.clearLocalStorage = function () {
+
+    function clearLocalStorage() {
         // add alert that you will clear data?
         // if (confirm("Are you .") == true) {
         self.showStartContinue.showStartContinue = false;
