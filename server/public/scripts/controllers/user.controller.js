@@ -7,8 +7,10 @@ myApp.controller('UserController', ['UserService', 'StaffService', '$routeParams
 
   console.log('$routeParams', $routeParams);
 
+  //Calls function to get user list on staff view
   StaffService.getUsers();
 
+  //Deletes user if user status is deleteable
   vm.deleteUser = function (user) {
     if (user.deleteable === false) {
       console.log('You cant do this!');
@@ -27,7 +29,7 @@ myApp.controller('UserController', ['UserService', 'StaffService', '$routeParams
     }
   };
 
-
+//Shows confirmation for deleting user
   vm.status = '  ';
   vm.showConfirm = function (ev, user) {
     console.log('user: ', user);
