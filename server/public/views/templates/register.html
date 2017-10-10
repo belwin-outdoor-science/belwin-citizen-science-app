@@ -1,27 +1,44 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<h1>Register</h1>
+
 <md-button ng-href="/#dashboard" class="md-raised">
-  <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
+    <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
 </md-button>
+<h2>Add or Remove Staff Accounts</h2>
 <h3 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h3>
 <form ng-submit="lc.registerUser()">
-  <md-content>
-      <div layout="row" layout-align="center center">
-          <md-input-container>
-              <label for "username">Username</label>
-              <input aria-label="username" ng-model="lc.user.username">
-          </md-input-container>
-      </div>
-      <div layout="row" layout-align="center center">
-          <md-input-container>
-              <label for "password">Password</label>
-              <input aria-label="password" type="password" ng-model="lc.user.password">
-          </md-input-container>
-      </div>
-      <div layout="row" layout-align="center center">
-          <md-input-container>
-            <input aria-label="submit" class="btn btn-default" type="submit" name="submit" value="Register" />
-          </md-input-container>
-      </div>
-  </md-content>
+    <md-content>
+        <div layout="row" layout-align="center center">
+            <md-input-container>
+                <label for "username">Username</label>
+                <input aria-label="username" ng-model="lc.user.username">
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center">
+            <md-input-container>
+                <label for "password">Password</label>
+                <input aria-label="password" type="password" ng-model="lc.user.password">
+            </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center">
+            <md-input-container>
+                <input aria-label="submit" class="btn btn-default" type="submit" name="submit" value="Register" />
+            </md-input-container>
+        </div>
+    </md-content>
 </form>
+
+<table id="registeredUsersTable" ng-controller="UserController as uc" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th>Current Users</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="user in uc.StaffService.users">
+            <td> {{user.username}} </td>
+            <td>
+                <md-button ng-click="uc.showConfirm($event, user)">Delete</md-button>
+            </td>
+        </tr>
+    </tbody>
+</table>

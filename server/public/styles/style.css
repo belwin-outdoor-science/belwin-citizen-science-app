@@ -284,3 +284,6 @@ img {
   display: table-cell;
 }
 
+#registeredUsersTable {
+  margin: auto;
+}
