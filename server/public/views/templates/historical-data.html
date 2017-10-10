@@ -1,0 +1,45 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="staffBody">
+    <div>
+        <div layout="row" layout-align="center start">
+            <md-button id="backButton" ng-href="/#dashboard" class="md-raised">
+                <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
+            </md-button>
+            <h3 class="md-display-1">Historical Data</h3>
+        </div>
+    </div>
+
+    <br>
+
+    <div layout="column" layout-align="start center" id="dataNavButtons">
+        <div>
+            <md-button class="navButton" ng-click="">Plants</md-button>
+            <md-button class="navButton" ng-click="">Mammals</md-button>
+            <md-button class="navButton" ng-click="">Birds</md-button>
+        </div>
+        <br>
+        <div ng-show="dc.showPlants">
+            <md-button class="navButton2" ng-click="">Bur Oak</md-button>
+            <md-button class="navButton2" ng-click="">Red Oak</md-button>
+            <md-button class="navButton2" ng-click="">Quaking Aspen</md-button>
+            <br>
+            <md-button class="navButton2" ng-click="">Common Buckthorn</md-button>
+            <md-button class="navButton2" ng-click="">Paper Birch</md-button>
+            <md-button class="navButton2" ng-click="">Common Milkweed</md-button>
+        </div>
+        <div ng-show="dc.showMammals">
+            <md-button class="navButton2" ng-click="">Ground Squirrel</md-button>
+        </div>
+        <div ng-show="dc.showBirds">
+            <md-button class="navButton2" ng-click="">Ruby Throated Hummingbird</md-button>
+            <md-button class="navButton2" ng-click="">Dark-eyed Junco</md-button>
+            <md-button class="navButton2" ng-click="">Eastern Bluebird</md-button>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div ng-show="" ng-include="" layout="column" layout-align="start center"></div>
+    
+</div>
