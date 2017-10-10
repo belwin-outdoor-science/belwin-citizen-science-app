@@ -9,6 +9,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.selectedOrganismText = {
         selectedOrganismText: ""
     };
+    self.classSelected = { classSelected: false };    
     self.class = {
         class: ''
     };
@@ -24,6 +25,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     console.log('self.lastSession: ');
     console.log(self.lastSession);
 
+    //if there's no local storage, cascades events that will build up StudentDataService.allData
     if (self.lastSession == 'undefined') {
         self.showStartContinue.showStartContinue = false;
         self.clearLocalStorage();
@@ -31,6 +33,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //START NEW
     //called from student-view.html.  
+    
     self.clearLocalStorage = function () {
         // add alert that you will clear data?
         // if (confirm("Are you .") == true) {
@@ -42,11 +45,13 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     //CONTINUE
     //called from student-view.html.  Continue button.
     self.continueSession = function () {
+        self.classSelected.classSelected = true;
         self.showStartContinue.showStartContinue = false;
+        //self.lastSession is passed so that after table names have been received,
+        //StudentDataService.allData is given the value of 'allData' from local storage.
         StudentDataService.getTableNames(self.lastSession);
     }
 
-    self.classSelected = { classSelected: false };
     //this sets the class
     self.setClass = function () {
         for (var organism in self.allData) {
