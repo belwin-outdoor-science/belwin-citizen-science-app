@@ -226,5 +226,5 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
 
     //shows the main student view after the class is set
-
+    
 }]);
