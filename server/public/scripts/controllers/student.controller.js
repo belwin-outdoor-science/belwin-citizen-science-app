@@ -65,8 +65,8 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
 
     // for back button to re-set class selection
     vm.resetClassSelection = function (){
-        $location.path('/');
         location.reload();
+        $location.path('#/');
     };
 
 }]);
