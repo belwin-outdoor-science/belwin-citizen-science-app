@@ -1,15 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var pool = require('../modules/pool');
 
 // Handles Ajax request for user information if user is authenticated
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
   console.log('get /user route');
   // check if logged in
-  if(req.isAuthenticated()) {
+  if (req.isAuthenticated()) {
     // send back user object from database
     console.log('logged in', req.user);
     var userInfo = {
-      username : req.user.username
+      username: req.user.username
     };
     res.send(userInfo);
   } else {
@@ -21,11 +22,53 @@ router.get('/', function(req, res) {
 });
 
 // clear all server session information about this user
-router.get('/logout', function(req, res) {
+router.get('/logout', function (req, res) {
   // Use passport's built-in method to log out the user
   console.log('Logged out');
   req.logOut();
   res.sendStatus(200);
+});
+
+router.get('/users', function (req, res) {
+  pool.connect(function (errorConnectingToDatabase, client, done) {
+    if (errorConnectingToDatabase) {
+      console.log('Error connecting to Database', errorConnectingToDatabase);
+      res.sendStatus(500);
+    } else {
+      client.query('SELECT * FROM users;', function (errorMakingQuery, result) {
+        done();
+        if (errorMakingQuery) {
+          console.log('Error Making Query', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          res.send(result.rows);
+        }
+      });
+    }
+  });
+});
+
+router.delete('/:id', function (req, res) {
+  var userId = req.params.id;
+  console.log('delete was hit!');
+  pool.connect(function (errorConnectingToDatabase, client, done) {
+    if (errorConnectingToDatabase) {
+      console.log('Error connecting to database', errorConnectingToDatabase);
+      res.sendStatus(500);
+    } else {
+      client.query('DELETE FROM users WHERE id=$1;',
+        [userId],
+        function (errorMakingQuery, result) {
+          done();
+          if (errorMakingQuery) {
+            console.log('Error making database query', errorMakingQuery);
+            res.sendStatus(500);
+          } else {
+            res.sendStatus(200);
+          }
+        });
+    }
+  });
 });
 
 

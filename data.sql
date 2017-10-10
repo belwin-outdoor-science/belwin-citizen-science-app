@@ -374,7 +374,8 @@ notes VARCHAR (250)
 );
 
 CREATE TABLE users (
-	id SERIAL PRIMARY KEY,
-	username VARCHAR(80) NOT NULL,
-	password VARCHAR(200) NOT NULL
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(80) NOT NULL,
+    password VARCHAR(200) NOT NULL,
+	deleteable BOOLEAN
 );
