@@ -23,7 +23,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.lastSession = JSON.parse(self.storage.getItem('allData'));
     console.log('self.lastSession: ');
     console.log(self.lastSession);
-    
+
     if (self.lastSession == 'undefined') {
         self.showStartContinue.showStartContinue = false;
         self.clearLocalStorage();
@@ -34,9 +34,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.clearLocalStorage = function () {
         // add alert that you will clear data?
         // if (confirm("Are you .") == true) {
-            self.showStartContinue.showStartContinue = false;
+        self.showStartContinue.showStartContinue = false;
         self.storage.clear();
-        self.allData = {};
         StudentDataService.getTableNames('undefined');
     }
 
@@ -47,12 +46,12 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         StudentDataService.getTableNames(self.lastSession);
     }
 
-    self.classSelected = false;
+    self.classSelected = { classSelected: false };
     //this sets the class
     self.setClass = function () {
         for (var organism in self.allData) {
-            self.classSelected = true;
-            self.allData[organism].map(function (object) {
+            self.classSelected.classSelected = true;
+            StudentDataService.allData[organism].map(function (object) {
                 object.class = StudentDataService.allData.bur_oak[0].class;
                 return object;
             });

@@ -14,7 +14,7 @@ ng-click on start will clear local storage
 -->
 </div>
 
-<div ng-show="!sc.studentService.classSelected" class="classSelectView" layout="column" layout-align="start start">
+<div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start start">
   <div id="staffLoginLink" layout='row' layout-align="end start">
     <md-button class="md-raised" href="/#login">Staff Login</md-button>
   </div>
@@ -52,7 +52,7 @@ ng-click on start will clear local storage
   <br>
 </div>
 
-<div ng-show="sc.studentService.classSelected">
+<div ng-show="sc.studentService.classSelected.classSelected">
 
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
     <p class="navText">Type</p>
