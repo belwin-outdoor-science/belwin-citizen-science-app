@@ -18,7 +18,7 @@ router.get('/table_names', function (req, res) { // GET for staff dashboard to s
             res.sendStatus(500);
         } else {
             // when connecting to database worked!
-            client.query('SELECT table_name FROM'+connectionString+ '.INFORMATION_SCHEMA.TABLES WHERE table_schema=\'public\' AND table_type=\'BASE TABLE\' AND table_name != \'users\';', 
+            client.query('SELECT table_name FROM '+connectionString+ '.INFORMATION_SCHEMA.TABLES WHERE table_schema=\'public\' AND table_type=\'BASE TABLE\' AND table_name != \'users\';', 
             function (errorMakingQuery, result) {
                 done();
                 if (errorMakingQuery) {
@@ -45,7 +45,7 @@ router.get('/columns', function (req, res) { // GET for staff dashboard to staff
             res.sendStatus(500);
         } else {
             // when connecting to database worked!
-            client.query('SELECT table_name, column_name FROM' + connectionString +'.INFORMATION_SCHEMA.COLUMNS WHERE columns.table_schema=\'public\' AND columns.table_name != \'users\' AND columns.column_name NOT IN (\'id\', \'recorded\');', 
+            client.query('SELECT table_name, column_name FROM ' + connectionString +'.INFORMATION_SCHEMA.COLUMNS WHERE columns.table_schema=\'public\' AND columns.table_name != \'users\' AND columns.column_name NOT IN (\'id\', \'recorded\');', 
             function (errorMakingQuery, result) {
                 done();
                 if (errorMakingQuery) {
