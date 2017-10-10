@@ -283,3 +283,9 @@ img {
 .md-button.staffStudentButtonDashboard {
   display: table-cell;
 }
+
+.md-button.selectNewClassButton{
+  background-color: #704E2E;
+  color: white;
+  line-height: 20px;
+}

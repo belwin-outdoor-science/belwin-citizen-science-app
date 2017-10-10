@@ -50,7 +50,7 @@ ng-click on start will clear local storage
         </md-radio-group>
 
         <div layout="row" layout-align="center end">
-          <md-button type="ng-submit" class="md-primary md-raised continueButton">Continue</md-button>
+          <md-button type="submit" class="md-primary md-raised continueButton">Continue</md-button>
         </div>
 
       </form>
@@ -60,18 +60,19 @@ ng-click on start will clear local storage
 <div ng-show="sc.studentService.classSelected.classSelected">
 
   <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
+      <md-button layout="column" layout-align="center center" class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select 
+        </br> Class</md-button>
     <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName">
-      <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
-      <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
+      <md-button layout="column" class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
+      <md-button layout="column" class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
     </div>
-    <md-button ng-click="!sc.studentService.classSelected.classSelected">Select Class</md-button>
     <p class="navText">Type</p>
     <div layout="column" layout-align="start center">
-      <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false" ; "species=! species">
+      <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false; species=! species">
         Plants</md-button>
-      <md-button class="navButton" ng-click="mammal = !mammal; plant = false; bird = false" ; "species=! species">
+      <md-button class="navButton" ng-click="mammal = !mammal; plant = false; bird = false; species=! species">
         Mammals</md-button>
-      <md-button class="navButton" ng-click="bird = !bird; mammal = false; plant = false" ; "species=! species">
+      <md-button class="navButton" ng-click="bird = !bird; mammal = false; plant = false; species=! species">
         Birds</md-button>
     </div>
     <br>
