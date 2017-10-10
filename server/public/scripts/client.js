@@ -45,6 +45,15 @@ myApp.config(function ($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/user/:id', {
+      templateUrl: '/views/templates/user.html',
+      controller: 'UserController as uc',
+      resolve: {
+        getuser: function (UserService) {
+          return UserService.getuser();
+        }
+      }
+    })
     .when('/success', {
       templateUrl: '/views/templates/success.html',
       controller: 'StudentController as sc'
