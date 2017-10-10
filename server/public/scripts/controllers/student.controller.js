@@ -77,7 +77,8 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         for (i = 0; i < vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism].length - 1; i++) {
             console.log('property loop:', vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism][i].property)
             currentProperty = vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism][i].property;
-            console.log(vm.studentDataService.allData[vm.studentService.selectedOrganism.selectedOrganism][vm.studentService.site.site].currentProperty)
+            console.log(vm.studentDataService.allData[vm.studentService.selectedOrganism.selectedOrganism][vm.studentService.site.site][currentProperty])
+            vm.studentDataService.allData[vm.studentService.selectedOrganism.selectedOrganism][vm.studentService.site.site][currentProperty] = vm.markAllData
         }
     }
 
