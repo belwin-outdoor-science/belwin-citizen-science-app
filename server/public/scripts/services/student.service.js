@@ -113,6 +113,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //posts all student data stored in self.allData
     self.postAllData = function () {
+        self.studentDataService.submittedData = self.studentDataService.allData;
         //need to figure out why local storage isn't working here
         // var studentDataArray = [self.allData.bur_oak, self.allData.common_buckthorn, self.allData.common_milkweed, self.allData.eastern_bluebird, self.allData.ground_squirrel, self.allData.dark_eyed_junco, self.allData.paper_birch, self.allData.quaking_aspen, self.allData.northern_red_oak, self.allData.ruby_throated_hummingbird];
         var allDataFiltered = {};
@@ -194,8 +195,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 self.postCallbackMessages = [];
             } else {
                 //clear local storage and allData
-                self.storage.clear();
-                self.allData = {};
+                self.clearLocalStorage();
                 console.log('post successful');
 
                 $location.path('/success');

@@ -8,16 +8,17 @@
 
     </div>
 </div>
+{{sc.studentDataService.questionsByOrganism}}
 selected category: {{sc.studentDataDisplayService.selectedCategory.selectedCategory}}
 <div layout="row">
     <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'plants' " ng-repeat="organism in sc.studentDataDisplayService.organisms.plants">
-        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism }}</md-button>
+        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
     </div>
     <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'mammals' " ng-repeat="organism in sc.studentDataDisplayService.organisms.mammals">
-        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism }}</md-button>
+        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
     </div>
     <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'birds' " ng-repeat="organism in sc.studentDataDisplayService.organisms.birds">
-        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism }}</md-button>
+        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
     </div>
 
 </div>
@@ -50,6 +51,19 @@ selected category: {{sc.studentDataDisplayService.selectedCategory.selectedCateg
                 <th class="dataTableHeader">Y</th>
                 <th class="dataTableHeader">N</th>
                 <th class="dataTableHeader">?</th>
+            </tr>
+        </thead>
+
+        <!-- question -->
+        <!-- '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' + -->
+        {{sc.studentDataService.questionsByOrganism.questions}}
+        <thead ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentDataDisplayService.selectedOrganism.selectedOrganism]">
+            <!-- site -->
+            <tr>
+
+                <td>
+{{question}}
+                </td>
             </tr>
         </thead>
         <!-- <tbody>

@@ -7,6 +7,7 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     self.questionsByOrganism = {
         questions: {}
     };
+    self.submittedData = {};
     //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
     self.imageArray = [{
         organismName: 'bur_oak',
@@ -85,7 +86,7 @@ myApp.service('StudentDataService', ['$http', function ($http) {
                 if (lastSession == 'undefined') {
                     self.getTableColumns();
                     console.log('getTableNames, lastSession = undefined');
-                    
+
                 } else {
                     self.allData = lastSession;
                     console.log('self.allData in getTableNames function');

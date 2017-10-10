@@ -3,6 +3,7 @@ myApp.controller('StudentDataDisplayController', ['StudentDataDisplayService', '
 
     var self = this;
     self.studentDataDisplayService = StudentDataDisplayService;
+    self.studentDataService = StudentDataService;
 
     
 }]);
