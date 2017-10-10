@@ -192,7 +192,6 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 self.storage.clear();
                 self.allData = {};
                 console.log('post successful');
-
                 $location.path('/success');
             }
         }
