@@ -14,7 +14,7 @@ body, html {
 }
 
 .instructions {
-  background-color: #D4CDAB;
+  background-color: #FFFCE8;
   color: #DDDDDD;
   padding: 15px;
 }
@@ -150,6 +150,14 @@ img {
   /* border: 10px solid #704E2E; */
 }
 
+.staffBody{
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #FFFCE8;
+}
+
 .md-button.navButton{
     background-color: #4E6172; /* Green */
     color: white;
@@ -196,7 +204,7 @@ img {
 }
 
 .md-button.continueButton{
-  background-color: #586164;
+  background-color: #729120;
   color:white;
   padding: 0 15px 0 15px;
   margin: 15px 20px 15px 20px;
@@ -282,4 +290,15 @@ img {
 }
 .md-button.staffStudentButtonDashboard {
   display: table-cell;
+}
+
+.loginContainer{
+  width: 250px;
+  height: 100px;
+  background-color: #FFFCE8;
+}
+
+md-input-container.loginInput{
+  width: 500px;
+  font-size: 20px;
 }
