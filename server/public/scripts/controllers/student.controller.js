@@ -7,6 +7,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     vm.userObject = UserService.userObject;
     vm.studentService = StudentService;
     vm.studentDataService = StudentDataService;
+    
 
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
@@ -21,7 +22,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<h2>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
             '<h2>Do you see...</h2> ' +
                '<h2>Mark all:</h2>' +
-            '<md-radio-group flex layout="row" ng-model="sc.studentDataService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">' +
+            '<md-radio-group flex layout="row" ng-change="sc.markAll()" ng-model="sc.markAllData">' +
          
             '<md-radio-button value="yes" flex class="md-primary">Y</md-radio-button>' +
             '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
@@ -68,6 +69,16 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         var allDataString = JSON.stringify(vm.studentDataService.allData);
         vm.studentService.storage.setItem('allData', allDataString);
         $mdDialog.hide();
+    }
+
+    vm.markAll = function () {
+        console.log('mark all clicked, choice was ', vm.markAllData)
+       // console.log(vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism])
+        for (i = 0; i < vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism].length - 1; i++) {
+            console.log('property loop:', vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism][i].property)
+            currentProperty = vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism][i].property;
+            console.log(vm.studentDataService.allData[vm.studentService.selectedOrganism.selectedOrganism][vm.studentService.site.site].currentProperty)
+        }
     }
 
 }]);
