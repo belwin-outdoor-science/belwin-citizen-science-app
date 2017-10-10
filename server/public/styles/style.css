@@ -251,6 +251,7 @@ img {
 
 #classDataHeader {
   margin: auto;
+  padding-right: 14%;
 }
 
 
@@ -305,18 +306,35 @@ md-input-container.loginInput{
 
 .md-button.classToggleButton{
   background-color: #8F3B1B;
-  font-size: 15px;
+  font-size: 18px;
   color:white;
-  max-width: 120px;
-  min-height: 50px;
-  min-width: 120px;
+  max-width: 140px;
+  min-height: 120px;
+  min-width: 100px;
   font-weight: bold;
   overflow: initial;
   white-space: normal;
   border-radius: 25px;
   border: none;
   outline: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
   text-shadow: 0 -1px 0 #000;
 	box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
 	cursor: pointer;
+}
+
+.md-button.navButton2{
+  background-color: #BDD09F; /* Green */
+  color: black;
+  max-width: 140px;
+  min-height: 75px;
+  min-width: 140px;
+  white-space: normal;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  text-shadow: 0 -1px 0 #FCFCFC;
+  box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+  cursor: pointer;
 }
