@@ -272,12 +272,11 @@ img {
   
 }
 
-.dataNavButtons {
-  border: solid;
+.md-button.staffStudentButtonLogout {
+  display: table-cell;
+  background-color: #704E2E;
+  color: white;
 }
-
-
-
-button:active {
-  color: red;
+.md-button.staffStudentButtonDashboard {
+  display: table-cell;
 }
