@@ -9,6 +9,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     vm.studentDataService = StudentDataService;
 
 
+
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
         // vm.currentSpecimenQuestions (assign questions based on species element clicked)
@@ -16,13 +17,15 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             targetEvent: $event,
             controller: 'StudentController',
             controllerAs: 'sc',
-            template: '<div id="observationDataEntry">' +
+            template: '<div id="observationDataEntry" layout="column" layout-align="start center">' +
             '<form ng-submit="sc.studentService.postAllData()">' +
             '<br>' +
-            '<h2>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
+            '<div layout="column" layout-align="start center">' +
+            '<h1>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h1>' +
             '<h2>Do you see...</h2> ' +
+            '<md-button class="markEverythingButton" ng-click="sc.markAll()">Mark Everything No</md-button><br>' +
+            '</div>' +
             
-           
 
             // ' <div flex layout="row" layout-padding layout-align="start center"><h2 flex style="max-width:300px; max-height: 300px; padding:15px;">Mark everything at once:</h2>' +
             // '<md-radio-group flex layout="row" ng-change="sc.markAll()" ng-model="sc.markAllData">' +
@@ -31,7 +34,6 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             // '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
             // '<md-radio-button value="maybe" flex class="md-primary">?</md-radio-button>' +
             // '</md-radio-group></div>' +
-            '<md-button ng-click="sc.markAll()">Mark Everything No</md-button><br>' +
 
             '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
             'ng-class-even="\'even\'">' +
@@ -49,8 +51,11 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '</div>' +
             '</div>' +
             '</form>' +
-            '<md-button ng-click="sc.studentService.resetForm();">Reset</md-button>' +
-            '<md-button ng-click="sc.closeDialog()">Save and Close</md-button>' +
+            '<br>' +
+            '<div layout="row" layout-align="end center">' +
+            '<md-button class= "formResetButton" ng-click="sc.studentService.resetForm();">Reset</md-button>' +
+            '<md-button class= "formCloseButton"ng-click="sc.closeDialog()">Save and Close</md-button>' +
+            '</div>' +
             '</div>',
             clickOutsideToClose: true
         }).finally(function () {
@@ -81,18 +86,24 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         }
     }
 
-    vm.showContinueDialog = function ($event) {
-        console.log('$event:', $event);
-        // vm.currentSpecimenQuestions (assign questions based on species element clicked)
+    vm.checkLocalOnLoad = function () {
+        console.log('onload function working, offline storage:', vm.studentService.showStartContinue.showStartContinue)
+        if (vm.studentService.showStartContinue.showStartContinue) {
+            // vm.showContinueDialog();
+        }
+    }
+
+    vm.showContinueDialog = function () {
+    
         $mdDialog.show({
-            targetEvent: $event,
+            // targetEvent: $event,
             controller: 'StudentController',
             controllerAs: 'sc',
-            template: '<div id="continueSavedData">' + 
+            template: '<div id="continueSavedData">' +
             '<p>It looks like you were already collecting some data - do you want to start over?</p>' +
             '</div>',
             clickOutsideToClose: false
-        }).finally(function () {
+        // }).finally(function () {
             // console.log('I get called on escape and clickoutside, allData: ');
             // //add data to local storage on close of the dialog
             // var allDataString = JSON.stringify(vm.studentDataService.allData);
@@ -107,8 +118,10 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     }
 
     // for back button to re-set class selection
-    vm.resetClassSelection = function (){
+    vm.resetClassSelection = function () {
         location.reload();
         $location.path('#/');
     };
+
+    document.onload = vm.checkLocalOnLoad();
 }]);
