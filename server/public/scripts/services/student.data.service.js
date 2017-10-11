@@ -53,6 +53,55 @@ myApp.service('StudentDataService', ['$http', function ($http) {
             notes: ''
         }
         ],
+        pin_oak: [{
+            class: '',
+            site: '1',
+            breaking_leaf_buds: '',
+            leaves: '',
+            increasing_leaf_size: '',
+            colored_leaves: '',
+            falling_leaves: '',
+            flowers_or_flower_buds: '',
+            open_flowers: '',
+            pollen_release: '',
+            fruits: '',
+            ripe_fruits: '',
+            recent_fruit_or_seed_drop: '',
+            notes: ''
+        },
+        {
+            class: '',
+            site: '2',
+            breaking_leaf_buds: '',
+            leaves: '',
+            increasing_leaf_size: '',
+            colored_leaves: '',
+            falling_leaves: '',
+            flowers_or_flower_buds: '',
+            open_flowers: '',
+            pollen_release: '',
+            fruits: '',
+            ripe_fruits: '',
+            recent_fruit_or_seed_drop: '',
+            notes: ''
+        },
+        {
+            class: '',
+            site: '3',
+            breaking_leaf_buds: '',
+            leaves: '',
+            increasing_leaf_size: '',
+            colored_leaves: '',
+            falling_leaves: '',
+            flowers_or_flower_buds: '',
+            open_flowers: '',
+            pollen_release: '',
+            fruits: '',
+            ripe_fruits: '',
+            recent_fruit_or_seed_drop: '',
+            notes: ''
+        }
+        ],
         common_buckthorn: [{
             class: '',
             site: '1',
@@ -519,6 +568,10 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     self.imageArray = [{
         organismName: 'bur_oak',
         file: 'assets/bur-oak.jpg'
+    },
+    {
+        organismName: 'pin_oak',
+        file: 'assets/pin-oak.jpg'
     },
     {
         organismName: 'common_buckthorn',

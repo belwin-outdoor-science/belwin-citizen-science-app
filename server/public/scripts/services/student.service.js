@@ -19,7 +19,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.showStartContinue = { showStartContinue: true };
     self.storage = window.localStorage;
     self.allData = self.studentDataService.allData;
-    var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird'];
+    var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird', 'pin_oak'];
     //on page refresh, if there's local storage, we store it in self.lastSession and this shows a message on student-view.html
     self.lastSession = JSON.parse(self.storage.getItem('allData'));
     console.log('self.lastSession: ');

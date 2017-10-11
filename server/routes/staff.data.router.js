@@ -946,6 +946,98 @@ router.get('/ruby/notes/:classNum', function (req, res) {
     }
 });
 
+//pulls y/n/? totals for all 3 bur oaks matching today's date and the selected class number
+router.get('/pin/:classNum', function (req, res) {
+    // Add a SELECT query
+    if (req.isAuthenticated()) {
+        var userInfo = {
+            username: req.user.username
+        };
+        var classNum = req.params.classNum.toString();
+        console.log('classNum:', classNum)
+        var query = buildGet(allData.pin_oak[0], 'pin_oak', classNum);
+        console.log('pin oak get query: ');
+        console.log(query);
+
+        pool.connect(function (err, client, done) {
+            if (err) {
+                // when connecting to database failed
+                console.log('Error connecting to database', err);
+                res.sendStatus(500);
+            } else {
+                // when connecting to database worked!
+                if (classNum == "0") {
+                    client.query(query, function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query(query, [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } 
+            }
+        });
+    }
+});
+
+router.get('/pin/notes/:classNum', function (req, res) {
+    // Add a SELECT query
+    if (req.isAuthenticated()) {
+        var userInfo = {
+            username: req.user.username
+        };
+        var classNum = req.params.classNum.toString();
+        console.log('classNum:', classNum)
+
+        pool.connect(function (err, client, done) {
+            if (err) {
+                // when connecting to database failed
+                console.log('Error connecting to database', err);
+                res.sendStatus(500);
+            } else {
+                // when connecting to database worked!
+                if (classNum == "0") {
+                    client.query('SELECT notes FROM pin_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                } else {
+                    client.query('SELECT notes FROM pin_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                        done();
+                        if (errorMakingQuery) {
+                            console.log('Error making database query', errorMakingQuery);
+                            res.sendStatus(500);
+                        } else {
+                            console.log('result.rows is: ', result.rows);
+                            res.send(result.rows);
+                        }
+                    });
+                }
+            }
+        });
+    }
+});
+
 //SELECT site, 
 function buildGet(row, organism, classNum) {
     // console.log('buildGet called');
@@ -1498,6 +1590,55 @@ var allData = {
         dead_individuals: '',
         dead_nestlings_or_fledglings: '',
         individuals_at_feeding_station: '',
+        notes: ''
+    }
+    ],
+    pin_oak: [{
+        class: '',
+        site: '1',
+        breaking_leaf_buds: '',
+        leaves: '',
+        increasing_leaf_size: '',
+        colored_leaves: '',
+        falling_leaves: '',
+        flowers_or_flower_buds: '',
+        open_flowers: '',
+        pollen_release: '',
+        fruits: '',
+        ripe_fruits: '',
+        recent_fruit_or_seed_drop: '',
+        notes: ''
+    },
+    {
+        class: '',
+        site: '2',
+        breaking_leaf_buds: '',
+        leaves: '',
+        increasing_leaf_size: '',
+        colored_leaves: '',
+        falling_leaves: '',
+        flowers_or_flower_buds: '',
+        open_flowers: '',
+        pollen_release: '',
+        fruits: '',
+        ripe_fruits: '',
+        recent_fruit_or_seed_drop: '',
+        notes: ''
+    },
+    {
+        class: '',
+        site: '3',
+        breaking_leaf_buds: '',
+        leaves: '',
+        increasing_leaf_size: '',
+        colored_leaves: '',
+        falling_leaves: '',
+        flowers_or_flower_buds: '',
+        open_flowers: '',
+        pollen_release: '',
+        fruits: '',
+        ripe_fruits: '',
+        recent_fruit_or_seed_drop: '',
         notes: ''
     }
     ]
