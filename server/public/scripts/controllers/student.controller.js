@@ -50,6 +50,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '</div>' +
             '</div>' +
             '</form>' +
+            '<br>' +
             '<div layout="row" layout-align="end center">' +
             '<md-button class= "formResetButton" ng-click="sc.studentService.resetForm();">Reset</md-button>' +
             '<md-button class= "formCloseButton"ng-click="sc.closeDialog()">Save and Close</md-button>' +
