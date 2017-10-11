@@ -359,14 +359,9 @@ md-input-container.loginInput {
 }
 
 .md-button.navButton2 {
-  background-color: #BDD09F;
+  background-color: #704E2E;
   /* Green */
-  color: black;
-  max-width: 140px;
-  min-height: 75px;
-  min-width: 140px;
-  white-space: normal;
-  font-weight: bold;
+  color: white;
   border-radius: 5px;
   border: none;
   outline: none;
