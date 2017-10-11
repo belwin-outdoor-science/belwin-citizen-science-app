@@ -27,11 +27,14 @@ ng-click on start will clear local storage
     <div class="container">
       <img class="logo" src="assets/bos-logo-2.png">
     </div>
-    <div id="classSelect">
-      <h3 class="md-display-1">Select a class to start exploring!
-        <br> Your teacher will tell you your class number.</h3>
+    
+    <div layout="column" layout-align="center center">
+      <div><h3 class="md-display-1"> Your teacher will tell you your class number <br>
+        <font size="+2">Select a class and start exploring</font></h3>
+      </div>
+
       <form ng-submit="sc.studentService.setClass();">
-        <md-radio-group class="classButton" ng-model="sc.studentDataService.allData.bur_oak[0].class">
+        <md-radio-group layout="column" layout-align="center center"class="classButton" ng-model="sc.studentDataService.allData.bur_oak[0].class">
           <md-radio-button value="1">
             <h3 class="md-display-1">Class 1</h3>
           </md-radio-button>
@@ -64,7 +67,8 @@ ng-click on start will clear local storage
       <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
       <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
     </div>
-    <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select </br> Class</md-button>
+    <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select Class</md-button>
+    <br>
     <p class="navText">Type</p>
     <div layout="column" layout-align="start center">
       <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false; species=! species">
@@ -110,7 +114,7 @@ ng-click on start will clear local storage
       Eastern Bluebird</md-button>
 
     <div class="buttomButton">
-      <md-button class="navButton" ng-click="sc.studentService.submitData()">Back at Class All Done!</md-button>
+      <md-button class="navButton" ng-click="sc.studentService.submitData()">Back at Class. <br> All Done!</md-button>
     </div>
 
   </md-sidenav>
@@ -138,18 +142,14 @@ ng-click on start will clear local storage
       <br>
       <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="center center">
         <div ng-repeat="site in [1, 2, 3]">
-          <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.setSite(site); sc.showDialog($event);">{{ sc.studentService.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
+          <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.setSite(site); sc.showDialog($event);">Site {{ $index + 1 }}</md-button>
         </div>
       </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-
     <div ng-repeat="imageObject in sc.studentDataService.imageArray">
       <div ng-show="sc.studentService.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="center center">
-        <img ng-src="{{imageObject.file}}">
+        <img class="imageDiv" ng-src="{{imageObject.file}}">
       </div>
     </div>
   </div>
