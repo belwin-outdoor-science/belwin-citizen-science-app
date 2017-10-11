@@ -14,7 +14,7 @@ body, html {
 }
 
 .instructions {
-  background-color: #D4CDAB;
+  background-color: #FFFCE8;
   color: #DDDDDD;
   padding: 15px;
 }
@@ -29,6 +29,7 @@ body, html {
   width: 100%;
   padding: 5%;
   position: absolute;
+  overflow-y: scroll;
 }
 
 #container {
@@ -65,7 +66,7 @@ body, html {
   width: 100%;
   border-radius: 0px;
   color: black;
-  background-color: #D4CDAB
+  background-color: #BDD09F;
 }
 
 ul {
@@ -121,14 +122,16 @@ md-dialog {
 }
 
 img {
-  width: 60%
+  height: 20%;
+  width: 60%;
 }
 
 
 
+
 .logo {
-  width: 40%;
-  margin: 3% 25%;
+  width: 55%;
+  margin: 3% 20%;
 }
 
 .md-sidenav-right{
@@ -145,6 +148,14 @@ img {
   padding-left: 25%;
   background-color: #FFFCE8;
   /* border: 10px solid #704E2E; */
+}
+
+.staffBody{
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: #FFFCE8;
 }
 
 .md-button.navButton{
@@ -193,7 +204,7 @@ img {
 }
 
 .md-button.continueButton{
-  background-color: #586164;
+  background-color: #729120;
   color:white;
   padding: 0 15px 0 15px;
   margin: 15px 20px 15px 20px;
@@ -240,6 +251,7 @@ img {
 
 #classDataHeader {
   margin: auto;
+  padding-right: 14%;
 }
 
 
@@ -253,7 +265,8 @@ img {
 
 
 .speciesNotesCard {
-  max-width: 600px;
+ 
+  min-width: 80%;
 }
 
 .speciesNotesTitle {
@@ -279,4 +292,87 @@ img {
 }
 .md-button.staffStudentButtonDashboard {
   display: table-cell;
+}
+
+.loginContainer{
+  width: 250px;
+  height: 100px;
+  background-color: #FFFCE8;
+}
+
+md-input-container.loginInput{
+  width: 500px;
+  font-size: 20px;
+}
+
+.md-button.classToggleButton{
+  background-color: #8F3B1B;
+  font-size: 18px;
+  color:white;
+  max-width: 140px;
+  min-height: 120px;
+  min-width: 100px;
+  font-weight: bold;
+  overflow: initial;
+  white-space: normal;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-shadow: 0 -1px 0 #000;
+	box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+	cursor: pointer;
+}
+
+.md-button.navButton2{
+  background-color: #BDD09F; /* Green */
+  color: black;
+  max-width: 140px;
+  min-height: 75px;
+  min-width: 140px;
+  white-space: normal;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  text-shadow: 0 -1px 0 #FCFCFC;
+  box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0,0,0,0.6);
+  cursor: pointer;
+}
+.md-button.selectNewClassButton{
+  background-color: #704E2E;
+  color: white;
+  line-height: 20px;
+}
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('images/page-loader.gif') 50% 50% no-repeat #FFFCE8;
+}
+
+.staffLogo{
+  width: 15%;
+}
+.md-button.staffButtons {
+  background-color: #4E6172;
+  color: white;
+  border-radius: 8px;
+  height: 38px;
+}
+.md-button.staffButtonsLogout {
+  background-color: #EB9486;
+  color: white;
+  border-radius: 8px;
+  height: 38px;
+}
+
+.md-button.deleteUser {
+  background-color: #EB9486;
+  color: black;
 }

@@ -373,6 +373,42 @@ notes VARCHAR (250)
 
 );
 
+CREATE TABLE pin_oak (
+
+id SERIAL PRIMARY KEY,
+
+recorded TIMESTAMP DEFAULT current_date,
+
+class VARCHAR(80),
+
+site INT,
+
+breaking_leaf_buds VARCHAR(80),
+
+leaves VARCHAR(80),
+
+increasing_leaf_size VARCHAR(80),
+
+colored_leaves VARCHAR(80),
+
+falling_leaves VARCHAR(80),
+
+flowers_or_flower_buds VARCHAR(80),
+
+open_flowers VARCHAR(80),
+
+pollen_release VARCHAR(80),
+
+fruits VARCHAR(80),
+
+ripe_fruits VARCHAR(80),
+
+recent_fruit_or_seed_drop VARCHAR (80),
+
+notes VARCHAR (250)
+
+);
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(80) NOT NULL,

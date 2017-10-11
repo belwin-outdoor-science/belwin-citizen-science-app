@@ -1,4 +1,4 @@
-myApp.controller('StudentController', ['StudentService', 'StudentDataService', 'UserService', '$mdDialog', '$mdSidenav', function (StudentService, StudentDataService, UserService, $mdDialog, $mdSidenav) {
+myApp.controller('StudentController', ['StudentService', 'StudentDataService', 'UserService', '$mdDialog', '$mdSidenav', '$location', function (StudentService, StudentDataService, UserService, $mdDialog, $mdSidenav, $location) {
     console.log('StudentController Loaded');
 
     var vm = this;
@@ -7,6 +7,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     vm.userObject = UserService.userObject;
     vm.studentService = StudentService;
     vm.studentDataService = StudentDataService;
+
 
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
@@ -20,7 +21,18 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<br>' +
             '<h2>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
             '<h2>Do you see...</h2> ' +
-            '<br>' +
+            
+           
+
+            // ' <div flex layout="row" layout-padding layout-align="start center"><h2 flex style="max-width:300px; max-height: 300px; padding:15px;">Mark everything at once:</h2>' +
+            // '<md-radio-group flex layout="row" ng-change="sc.markAll()" ng-model="sc.markAllData">' +
+
+            // '<md-radio-button value="yes" flex class="md-primary">Y</md-radio-button>' +
+            // '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
+            // '<md-radio-button value="maybe" flex class="md-primary">?</md-radio-button>' +
+            // '</md-radio-group></div>' +
+            '<md-button ng-click="sc.markAll()">Mark Everything No</md-button><br>' +
+
             '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
             'ng-class-even="\'even\'">' +
             '<div flex layout="row" layout-padding layout-align="start center">' +
@@ -50,8 +62,8 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             var testing = JSON.parse(StudentService.storage.getItem('allData'));
             console.log('storage: ');
             console.log(testing);
-            
-            
+
+
         });
     }
     vm.closeDialog = function () { //this is the save and close button on the student data dialog
@@ -62,4 +74,17 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         $mdDialog.hide();
     }
 
+    vm.markAll = function () {
+        for (i = 0; i < vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism].length - 1; i++) {
+            currentProperty = vm.studentDataService.questionsByOrganism.questions[vm.studentService.selectedOrganism.selectedOrganism][i].property;
+            vm.studentDataService.allData[vm.studentService.selectedOrganism.selectedOrganism][vm.studentService.site.site][currentProperty] = "no"
+        }
+    }
+
+
+    // for back button to re-set class selection
+    vm.resetClassSelection = function (){
+        location.reload();
+        $location.path('#/');
+    };
 }]);

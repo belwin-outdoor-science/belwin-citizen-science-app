@@ -19,13 +19,13 @@ ng-click on start will clear local storage
   <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start start">
     <div id="staffLoginLink" layout='row' layout-align="end start">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
-        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard"><md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
         <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
       </div>
       <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="md-raised" href="/#login">Staff Login</md-button>
     </div>
     <div class="container">
-      <img class="logo" src="assets/Belwin-Logo-2.png">
+      <img class="logo" src="assets/bos-logo-2.png">
     </div>
     <div id="classSelect">
       <h3 class="md-display-1">Select a class to start exploring!
@@ -50,33 +50,33 @@ ng-click on start will clear local storage
         </md-radio-group>
 
         <div layout="row" layout-align="center end">
-          <md-button type="ng-submit" class="md-primary md-raised continueButton">Continue</md-button>
+          <md-button type="ng-submit" class="continueButton">Continue</md-button>
         </div>
 
       </form>
     </div>
     <br>
   </div>
-
   <div ng-show="sc.studentService.classSelected.classSelected">
 
     <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName">
-        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard"><md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
         <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
       </div>
+      <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select </br> Class</md-button>
       <p class="navText">Type</p>
       <div layout="column" layout-align="start center">
-        <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false; species = !species">
+        <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false; species=! species">
           Plants</md-button>
-        <md-button class="navButton" ng-click="mammal = !mammal; plant = false; bird = false; species = !species">
+        <md-button class="navButton" ng-click="mammal = !mammal; plant = false; bird = false; species=! species">
           Mammals</md-button>
-        <md-button class="navButton" ng-click="bird = !bird; mammal = false; plant = false; species = !species">
+        <md-button class="navButton" ng-click="bird = !bird; mammal = false; plant = false; species=! species">
           Birds</md-button>
       </div>
       <br>
       <div layout="column" layout-align="center center">
-        <div ng-show="species" class="navText">Species</div>
+        <div ng-show="plant||mammal||bird" class="navText">Species</div>
       </div>
       <md-button class="navButton" ng-show="plant" ng-click="bur_oak = !bur_oak; 
     sc.studentService.selectOrganism('bur_oak', 'Bur Oak')">
@@ -84,6 +84,9 @@ ng-click on start will clear local storage
       <md-button class="navButton" ng-show="plant" ng-click="red_oak = !red_oak; 
     sc.studentService.selectOrganism('northern_red_oak', 'Red Oak')">
         Red Oak</md-button>
+      <md-button class="navButton" ng-show="plant" ng-click="pin_oak = !pin_oak; 
+      sc.studentService.selectOrganism('pin_oak', 'Pin Oak')">
+        Pin Oak</md-button>
       <md-button class="navButton" ng-show="plant" ng-click="quaking_aspen = !quaking_aspen; 
     sc.studentService.selectOrganism('quaking_aspen', 'Quaking Aspen')">
         Quaking Aspen</md-button>
@@ -119,8 +122,8 @@ ng-click on start will clear local storage
     <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
     </md-sidenav>
     <div class="studentBody" layout="column" layout-align="start center" layout-fill>
-      <div class="container">
-        <img class="logo" src="assets/Belwin-Logo-2.png">
+      <div>
+        <img class="logo" src="assets/bos-logo-2.png">
       </div>
       <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
 2. n-show for buttons.  True only if organism from repeat == sc.selectedOrganism -->

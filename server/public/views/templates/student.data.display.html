@@ -1,0 +1,67 @@
+<div class="row">
+    <md-button ng-href="#/student">Start New Observation</md-button>
+</div>
+
+<div id="dataNavButtons" layout="row">
+    <div ng-repeat="(category, arr) in sc.studentDataDisplayService.organisms" layout="row">
+        <md-button ng-click="sc.studentDataDisplayService.selectCategory(category)">{{ category }}</md-button>
+    </div>
+</div>
+
+<div layout="row">
+    <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'plants' " ng-repeat="organism in sc.studentDataDisplayService.organisms.plants">
+        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
+    </div>
+    <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'mammals' " ng-repeat="organism in sc.studentDataDisplayService.organisms.mammals">
+        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
+    </div>
+    <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'birds' " ng-repeat="organism in sc.studentDataDisplayService.organisms.birds">
+        <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
+    </div>
+</div>
+
+<div>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th>{{ sc.studentDataDisplayService.selectedOrganism.space }} </th>
+                <th></th>
+                <th class="speciesNumber">1</th>
+                <th></th>
+                <th></th>
+                <th class="speciesNumber">2</th>
+                <th></th>
+                <th></th>
+                <th class="speciesNumber">3</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th></th>
+                <th class="dataTableHeader">Y</th>
+                <th class="dataTableHeader">N</th>
+                <th class="siteDataBreak dataTableHeader">?</th>
+                <th class="dataTableHeader">Y</th>
+                <th class="dataTableHeader">N</th>
+                <th class="siteDataBreak dataTableHeader">?</th>
+                <th class="dataTableHeader">Y</th>
+                <th class="dataTableHeader">N</th>
+                <th class="dataTableHeader">?</th>
+            </tr>
+        </thead>
+              <tbody ng-repeat="(question, arr) in sc.studentDataDisplayService.tableRows[sc.studentDataDisplayService.selectedOrganism.underscore]">
+            <tr>
+                <td  ng-repeat="x in arr track by $index">{{x}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <md-card class="speciesNotesCard">
+        <h3 class="speciesNotesTitle">Notes</h3>
+        <ul class="speciesNotesList">
+            <li>{{note.notes}}</li>
+        </ul>
+
+    </md-card>
+
+</div>

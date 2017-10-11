@@ -19,7 +19,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.showStartContinue = { showStartContinue: true };
     self.storage = window.localStorage;
     self.allData = self.studentDataService.allData;
-    var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird'];
+    var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird', 'pin_oak'];
     //on page refresh, if there's local storage, we store it in self.lastSession and this shows a message on student-view.html
     self.lastSession = JSON.parse(self.storage.getItem('allData'));
     console.log('self.lastSession: ');
@@ -31,21 +31,16 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         // add alert that you will clear data?
         // if (confirm("Are you .") == true) {
         console.log('clearLocalStorageCalled');
-
         self.showStartContinue.showStartContinue = false;
-        self.storage.clear();
-        StudentDataService.getTableNames('undefined');
+        self.storage.clear(); 
         console.log('clearLocalStorage called.');
-
     }
 
     //if there's no local storage, cascades events that will build up StudentDataService.allData
     if (self.lastSession == null || self.lastSession == undefined) {
         self.showStartContinue.showStartContinue = false;
-        self.clearLocalStorage();
+        
     }
-
-
 
     //CONTINUE
     //called from student-view.html.  Continue button.
@@ -54,13 +49,16 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         self.showStartContinue.showStartContinue = false;
         //self.lastSession is passed so that after table names have been received,
         //StudentDataService.allData is given the value of 'allData' from local storage.
-        StudentDataService.getTableNames(self.lastSession);
+        StudentDataService.allData = self.lastSession;
     }
 
     //this sets the class
     self.setClass = function () {
         for (var organism in self.allData) {
             self.classSelected.classSelected = true;
+            console.log('allData: ');
+            console.log(StudentDataService.allData);
+            
             StudentDataService.allData[organism].map(function (object) {
                 object.class = StudentDataService.allData.bur_oak[0].class;
                 return object;
@@ -113,6 +111,11 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //posts all student data stored in self.allData
     self.postAllData = function () {
+
+        self.studentDataService.submittedData = self.studentDataService.allData;
+        var submittedDataString = JSON.stringify(StudentDataService.allData);
+        self.storage.setItem('submittedData', submittedDataString);
+
         //need to figure out why local storage isn't working here
         // var studentDataArray = [self.allData.bur_oak, self.allData.common_buckthorn, self.allData.common_milkweed, self.allData.eastern_bluebird, self.allData.ground_squirrel, self.allData.dark_eyed_junco, self.allData.paper_birch, self.allData.quaking_aspen, self.allData.northern_red_oak, self.allData.ruby_throated_hummingbird];
         var allDataFiltered = {};
@@ -194,10 +197,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 self.postCallbackMessages = [];
             } else {
                 //clear local storage and allData
-                self.storage.clear();
-                self.allData = {};
+                self.storage.removeItem('allData');
                 console.log('post successful');
-
                 $location.path('/success');
             }
         }
@@ -212,8 +213,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             }
         });
         //clear local storage
-        self.storage.clear();
-        self.allData = StudentDataService.allData;
+        //self.storage.clear();
+        //self.allData = StudentDataService.allData;
     }
 
     //student-view.html on clicking species name, calls this function
@@ -227,5 +228,5 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
 
     //shows the main student view after the class is set
-
+    
 }]);

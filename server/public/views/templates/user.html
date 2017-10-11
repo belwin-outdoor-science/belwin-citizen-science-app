@@ -1,17 +1,24 @@
-<div ng-include="'views/partials/nav.html'"></div>
-
-<table>
-    <thead>
-        <tr>
-            <th>User</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="user in uc.StaffService.users">
-            <td> {{user.username}} </td>
-            <!-- <td><md-button ng-click="uc.deleteUser(user.id)">Delete</md-button></td> -->
-            <!-- ng-click="mc.showConfirm($event)" -->
-            <td><md-button ng-click="uc.showConfirm($event, user)">Delete</md-button></td>
-        </tr>
-    </tbody>
-</table>
+<div class="staffBody">
+    <div ng-include="'views/partials/nav.html'"></div>
+    <md-button ng-href="/#dashboard" class="md-raised">
+        <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back
+    </md-button>
+    <div layout="column" layout-align="center center">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <h2>Users</h2>
+            <thead>
+                <!-- <tr>
+                    <th>User</th>
+                </tr> -->
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in uc.StaffService.users">
+                    <td> {{user.username}} </td>
+                    <td>
+                        <md-button class="deleteUser" ng-click="uc.showConfirm($event, user)"><md-icon class="material-icons">delete</md-icon>Delete</md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

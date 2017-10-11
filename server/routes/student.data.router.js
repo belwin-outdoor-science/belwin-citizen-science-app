@@ -11,7 +11,6 @@ router.post('/bur_oak', function (req, res) {
     
     //see buildStatement function explanation below
     var query = buildStatement('INSERT INTO bur_oak (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
-    console.log('bur_oak router post called ');
     pool.connect(function (err, client, done) {
         if (err) {
             console.log('Error connecting to database', err);
@@ -220,6 +219,32 @@ router.post('/ruby_throated_hummingbird', function (req, res) {
                     done();
                     if (err) {
                         console.log('Error making ruby_throated_hummingbird post query: ', err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                }
+            );
+        }
+    });
+});
+
+router.post('/pin_oak', function (req, res) {
+    console.log('pin oak post');
+    console.log(req.body);
+    
+    //see buildStatement function explanation below
+    var query = buildStatement('INSERT INTO pin_oak (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    console.log('pin_oak router post called ');
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log('Error connecting to database', err);
+            res.sendStatus(500);
+        } else {
+            client.query(query, function (err, result) {
+                    done();
+                    if (err) {
+                        console.log('Error making pin_oak post query: ', err);
                         res.sendStatus(500);
                     } else {
                         res.sendStatus(201);
