@@ -45,7 +45,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '</md-radio-group>' +
             '<md-input-container ng-if="question.text == \'Notes\' " id="textarea">' +
             '<label id="notes">Notes:</label>' +
-            '<textarea rows="3" cols="50" ng-model="sc.studentDataService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
+            '<textarea md-no-autogrow rows="4" cols="50" ng-model="sc.studentDataService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
             '</md-input-container>' +
             '</div>' +
             '</div>' +
