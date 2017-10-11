@@ -31,21 +31,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         // add alert that you will clear data?
         // if (confirm("Are you .") == true) {
         console.log('clearLocalStorageCalled');
-
         self.showStartContinue.showStartContinue = false;
-        self.storage.clear();
+        self.storage.removeItem('allData');
         StudentDataService.getTableNames('undefined');
-        console.log('clearLocalStorage called.');
-
     }
-
-    //if there's no local storage, cascades events that will build up StudentDataService.allData
-    if (self.lastSession == null || self.lastSession == undefined) {
-        self.showStartContinue.showStartContinue = false;
-        self.clearLocalStorage();
-    }
-
-
 
     //CONTINUE
     //called from student-view.html.  Continue button.
@@ -55,6 +44,14 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         //self.lastSession is passed so that after table names have been received,
         //StudentDataService.allData is given the value of 'allData' from local storage.
         StudentDataService.getTableNames(self.lastSession);
+    }
+    //On page load of student-view,
+    // if there's no local storage, this causes a series of 
+    //events that will build up StudentDataService.allData
+    //if there is local storage, an ng-show will show the START and CONTINUE buttons--names may change
+    if (self.lastSession == null || self.lastSession == undefined) {
+        self.showStartContinue.showStartContinue = false;
+        StudentDataService.getTableNames('undefined');
     }
 
     //this sets the class
@@ -113,7 +110,11 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //posts all student data stored in self.allData
     self.postAllData = function () {
+
         self.studentDataService.submittedData = self.studentDataService.allData;
+        var submittedDataString = JSON.stringify(StudentDataService.allData);
+        self.storage.setItem('submittedData', submittedDataString);
+
         //need to figure out why local storage isn't working here
         // var studentDataArray = [self.allData.bur_oak, self.allData.common_buckthorn, self.allData.common_milkweed, self.allData.eastern_bluebird, self.allData.ground_squirrel, self.allData.dark_eyed_junco, self.allData.paper_birch, self.allData.quaking_aspen, self.allData.northern_red_oak, self.allData.ruby_throated_hummingbird];
         var allDataFiltered = {};
@@ -195,9 +196,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 self.postCallbackMessages = [];
             } else {
                 //clear local storage and allData
-                self.clearLocalStorage();
+                self.storage.removeItem('allData');
                 console.log('post successful');
-
                 $location.path('/success');
             }
         }
@@ -212,8 +212,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             }
         });
         //clear local storage
-        self.storage.clear();
-        self.allData = StudentDataService.allData;
+        //self.storage.clear();
+        //self.allData = StudentDataService.allData;
     }
 
     //student-view.html on clicking species name, calls this function

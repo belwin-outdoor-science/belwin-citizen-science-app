@@ -9,7 +9,6 @@
     </div>
 </div>
 
-selected category: {{sc.studentDataDisplayService.selectedCategory.selectedCategory}}
 <div layout="row">
     <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'plants' " ng-repeat="organism in sc.studentDataDisplayService.organisms.plants">
         <md-button ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
@@ -29,7 +28,7 @@ selected category: {{sc.studentDataDisplayService.selectedCategory.selectedCateg
     <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
             <tr>
-                <th>Ground Squirrel</th>
+                <th>{{ sc.studentDataDisplayService.selectedOrganism.space }} </th>
                 <th></th>
                 <th class="speciesNumber">1</th>
                 <th></th>
@@ -53,24 +52,13 @@ selected category: {{sc.studentDataDisplayService.selectedCategory.selectedCateg
                 <th class="dataTableHeader">?</th>
             </tr>
         </thead>
+        <!-- {{ sc.studentDataDisplayService.tableRows[sc.studentDataDisplayService.selectedOrganism.selectedOrganism] }} -->
+        <tbody ng-repeat="(question, arr) in sc.studentDataDisplayService.tableRows[sc.studentDataDisplayService.selectedOrganism.underscore]">
+            <tr>
+                <td  ng-repeat="x in arr track by $index">{{x}} </td>
 
-        <!-- question -->
-        <!-- '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' + -->
-      {{sc.studentDataDisplayService.submittedData}}
-        <thead ng-repeat="question in sc.studentDataDisplayService.questionsByOrganism.questions[sc.studentDataDisplayService.selectedOrganism.selectedOrganism]">
-            <!-- site -->
-            <tr ng-repeat="site in [1, 2, 3]">
-
-                <!-- <td>
-{{question.text}}
-                </td> -->
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-
-                
             </tr>
-        </thead>
+        </tbody>
         <!-- <tbody>
                     <tr>
                         <td>Active Individuals</td>
@@ -123,11 +111,6 @@ selected category: {{sc.studentDataDisplayService.selectedCategory.selectedCateg
                         <td>{{dc.ground.data[2].dead_individuals_maybe}}</td>
                     </tr>
                 </tbody> -->
-
-
-
-
-
     </table>
 
     <md-card class="speciesNotesCard">
