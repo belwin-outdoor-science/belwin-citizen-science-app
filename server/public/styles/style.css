@@ -355,3 +355,24 @@ md-input-container.loginInput{
 	z-index: 9999;
 	background: url('images/page-loader.gif') 50% 50% no-repeat #FFFCE8;
 }
+
+.staffLogo{
+  width: 15%;
+}
+.md-button.staffButtons {
+  background-color: #4E6172;
+  color: white;
+  border-radius: 8px;
+  height: 38px;
+}
+.md-button.staffButtonsLogout {
+  background-color: #EB9486;
+  color: white;
+  border-radius: 8px;
+  height: 38px;
+}
+
+.md-button.deleteUser {
+  background-color: #EB9486;
+  color: black;
+}
