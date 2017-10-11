@@ -19,7 +19,7 @@ ng-click on start will clear local storage
   <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start start">
     <div id="staffLoginLink" layout='row' layout-align="start start">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
-        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard"><md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
         <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
       </div>
 
@@ -67,7 +67,7 @@ ng-click on start will clear local storage
 
     <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName">
-        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard"><md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
         <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
       </div>
       <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select Class</md-button>
@@ -91,6 +91,9 @@ ng-click on start will clear local storage
       <md-button class="navButton" ng-show="plant" ng-click="red_oak = !red_oak; 
     sc.studentService.selectOrganism('northern_red_oak', 'Red Oak')">
         Red Oak</md-button>
+      <md-button class="navButton" ng-show="plant" ng-click="pin_oak = !pin_oak; 
+      sc.studentService.selectOrganism('pin_oak', 'Pin Oak')">
+        Pin Oak</md-button>
       <md-button class="navButton" ng-show="plant" ng-click="quaking_aspen = !quaking_aspen; 
     sc.studentService.selectOrganism('quaking_aspen', 'Quaking Aspen')">
         Quaking Aspen</md-button>
