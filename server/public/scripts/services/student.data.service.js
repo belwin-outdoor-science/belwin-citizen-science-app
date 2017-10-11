@@ -2,61 +2,6 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     console.log('StudentDataService loaded');
 
     var self = this;
-    self.allData = {};
-    var NUM_SITES = 3;
-    self.questionsByOrganism = {
-        questions: {}
-    };
-
-    self.organismsArray = [];
-
-    self.submittedData = {};
-
-    //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
-    self.imageArray = [{
-        organismName: 'bur_oak',
-        file: 'assets/bur-oak.jpg'
-    },
-    {
-        organismName: 'common_buckthorn',
-        file: 'assets/common-buckthorn.jpg'
-    },
-    {
-        organismName: 'common_milkweed',
-        file: 'assets/common-milkweed.jpg'
-    },
-    {
-        organismName: 'dark_eyed_junco',
-        file: 'assets/dark-eyed-junco.jpg'
-    },
-    {
-        organismName: 'eastern_bluebird',
-        file: 'assets/eastern-bluebird.jpg'
-    },
-    {
-        organismName: 'ground_squirrel',
-        file: 'assets/ground-squirrel.jpg'
-    },
-    {
-        organismName: 'paper_birch',
-        file: 'assets/paper-birch.jpg'
-    },
-    {
-        organismName: 'quaking_aspen',
-        file: 'assets/quaking-aspen.jpg'
-    },
-    {
-        organismName: 'northern_red_oak',
-        file: 'assets/red-oak.jpg'
-    },
-    {
-        organismName: 'ruby_throated_hummingbird',
-        file: 'assets/ruby-throated-hummingbird.jpg'
-    }
-    ];
-
-
-
     self.allData = {
         //plants
         bur_oak: [{
@@ -560,6 +505,62 @@ myApp.service('StudentDataService', ['$http', function ($http) {
         }
         ]
     };
+    
+    var NUM_SITES = 3;
+    self.questionsByOrganism = {
+        questions: {}
+    };
+
+    self.organismsArray = [];
+
+    self.submittedData = {};
+
+    //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
+    self.imageArray = [{
+        organismName: 'bur_oak',
+        file: 'assets/bur-oak.jpg'
+    },
+    {
+        organismName: 'common_buckthorn',
+        file: 'assets/common-buckthorn.jpg'
+    },
+    {
+        organismName: 'common_milkweed',
+        file: 'assets/common-milkweed.jpg'
+    },
+    {
+        organismName: 'dark_eyed_junco',
+        file: 'assets/dark-eyed-junco.jpg'
+    },
+    {
+        organismName: 'eastern_bluebird',
+        file: 'assets/eastern-bluebird.jpg'
+    },
+    {
+        organismName: 'ground_squirrel',
+        file: 'assets/ground-squirrel.jpg'
+    },
+    {
+        organismName: 'paper_birch',
+        file: 'assets/paper-birch.jpg'
+    },
+    {
+        organismName: 'quaking_aspen',
+        file: 'assets/quaking-aspen.jpg'
+    },
+    {
+        organismName: 'northern_red_oak',
+        file: 'assets/red-oak.jpg'
+    },
+    {
+        organismName: 'ruby_throated_hummingbird',
+        file: 'assets/ruby-throated-hummingbird.jpg'
+    }
+    ];
+
+
+
+   
 
     createOrganismsArray();
     questionCreator();
