@@ -7,7 +7,11 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     self.questionsByOrganism = {
         questions: {}
     };
+
     self.organismsArray = [];
+
+    self.submittedData = {};
+
     //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
     self.imageArray = [{
         organismName: 'bur_oak',
