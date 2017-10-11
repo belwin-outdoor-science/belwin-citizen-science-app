@@ -48,12 +48,9 @@
                 <th class="dataTableHeader">?</th>
             </tr>
         </thead>
-        {{ sc.studentDataService.submittedData }}
-        {{ sc.studentDataDisplayService.tableRows }}
-        {{ sc.studentDataDisplayService.tableRows[sc.studentDataDisplayService.selectedOrganism.selectedOrganism] }}
-        <tbody ng-repeat="(question, arr) in sc.studentDataDisplayService.tableRows[sc.studentDataDisplayService.selectedOrganism.underscore]">
+              <tbody ng-repeat="(question, arr) in sc.studentDataDisplayService.tableRows[sc.studentDataDisplayService.selectedOrganism.underscore]">
             <tr>
-                <td  ng-repeat="x in arr track by $index">{{x}} </td>
+                <td  ng-repeat="x in arr track by $index">{{x}}</td>
 
             </tr>
         </tbody>
