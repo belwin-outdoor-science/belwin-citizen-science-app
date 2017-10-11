@@ -16,13 +16,15 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             targetEvent: $event,
             controller: 'StudentController',
             controllerAs: 'sc',
-            template: '<div id="observationDataEntry">' +
+            template: '<div id="observationDataEntry" layout="column" layout-align="start center">' +
             '<form ng-submit="sc.studentService.postAllData()">' +
             '<br>' +
-            '<h2>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
+            '<div layout="column" layout-align="start center">' +
+            '<h1>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h1>' +
             '<h2>Do you see...</h2> ' +
+            '<md-button class="markEverythingButton" ng-click="sc.markAll()">Mark Everything No</md-button><br>' +
+            '</div>' +
             
-           
 
             // ' <div flex layout="row" layout-padding layout-align="start center"><h2 flex style="max-width:300px; max-height: 300px; padding:15px;">Mark everything at once:</h2>' +
             // '<md-radio-group flex layout="row" ng-change="sc.markAll()" ng-model="sc.markAllData">' +
@@ -31,7 +33,6 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             // '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
             // '<md-radio-button value="maybe" flex class="md-primary">?</md-radio-button>' +
             // '</md-radio-group></div>' +
-            '<md-button ng-click="sc.markAll()">Mark Everything No</md-button><br>' +
 
             '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
             'ng-class-even="\'even\'">' +
@@ -49,8 +50,10 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '</div>' +
             '</div>' +
             '</form>' +
-            '<md-button ng-click="sc.studentService.resetForm();">Reset</md-button>' +
-            '<md-button ng-click="sc.closeDialog()">Save and Close</md-button>' +
+            '<div layout="row" layout-align="end center">' +
+            '<md-button class= "formResetButton" ng-click="sc.studentService.resetForm();">Reset</md-button>' +
+            '<md-button class= "formCloseButton"ng-click="sc.closeDialog()">Save and Close</md-button>' +
+            '</div>' +
             '</div>',
             clickOutsideToClose: true
         }).finally(function () {

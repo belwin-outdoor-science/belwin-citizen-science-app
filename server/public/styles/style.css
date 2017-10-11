@@ -434,3 +434,18 @@ md-input-container.loginInput {
   background-color: #EB9486;
   color: black;
 }
+
+/* Form button styles */
+.md-button.markEverythingButton {
+  background-color: #4E6172;
+  color: white;
+
+}
+.md-button.formResetButton {
+  background-color: #EB9486;
+  color: black;
+}
+.md-button.formCloseButton {
+  background-color: #4E6172;
+  color: white;
+}
