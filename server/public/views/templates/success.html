@@ -1,4 +1,4 @@
-<div ng-include="'views/partials/header.html'"></div>
+<!-- <div ng-include="'views/partials/header.html'"></div> -->
 
 <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
     <md-card-title>
@@ -6,12 +6,14 @@
             <span class="md-headline">Your observations have been successfully submitted</span>
         </md-card-title-text>
         <md-card-title-media>
-            <div class="md-media-lg card-media"></div>
+            <div class="md-media-lg card-media"><img src="assets/belwin-img-only.png"></div>
         </md-card-title-media>
     </md-card-title>
-    <md-card-actions layout="row" layout-align="end center">
-        <md-button id="homeButton" ng-href="#/" ng-click="sc.resetClassSelection()" class="md-raised">
+    <md-card-actions layout="row" layout-align="end end">
+        <!-- <md-button id="homeButton" ng-href="#/" ng-click="sc.resetClassSelection()" class="md-raised">
             Start A New Observation <md-icon classs="material-icons">forward</md-icon> 
-        </md-button>
+        </md-button> -->
+      
     </md-card-actions>
-</md-card>
+</md-card>  
+<ng-include ng-controller="StudentDataDisplayController as sc"src="'views/templates/student.data.display.html'"></ng-include>
