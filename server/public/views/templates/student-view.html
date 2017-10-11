@@ -121,7 +121,7 @@ ng-click on start will clear local storage
         Eastern Bluebird</md-button>
 
       <div class="buttomButton">
-        <md-button class="navButton" ng-click="sc.studentService.submitData()">Back at Class. <br> All Done!</md-button>
+        <md-button class="navButton" id="backToClassButton" ng-click="sc.studentService.submitData()">Back at Class. <br> All Done!</md-button>
       </div>
 
     </md-sidenav>
@@ -130,7 +130,7 @@ ng-click on start will clear local storage
     </md-sidenav>
     <div class="studentBody" layout="column" layout-align="start center" layout-fill>
       <div>
-        <img class="logo" src="assets/bos-logo-2.png">
+        <img class="logoStudentView" src="assets/bos-logo-2.png">
       </div>
       <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
 2. n-show for buttons.  True only if organism from repeat == sc.selectedOrganism -->
