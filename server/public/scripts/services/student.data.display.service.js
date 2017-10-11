@@ -17,7 +17,7 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
             { underscore: 'quaking_aspen', space: 'Quaking aspen' },
             { underscore: 'common_buckthorn', space: 'Common buckthorn' },
             { underscore: 'paper_birch', space: 'Paper birch' },
-            { underscore: 'milkweed', space: 'Milkweed' },
+            { underscore: 'common_milkweed', space: 'Common Milkweed' },
             { underscore: 'red_oak', space: 'Red oak' }
         ],
         mammals: [
