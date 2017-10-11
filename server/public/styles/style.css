@@ -346,10 +346,6 @@ md-input-container.loginInput{
   line-height: 20px;
 }
 
-.loadingTree {
-  width: 300px;
-}
-
 .loader {
 	position: fixed;
 	left: 0px;
@@ -357,5 +353,5 @@ md-input-container.loginInput{
 	width: 100%;
 	height: 100%;
 	z-index: 9999;
-	background: url('images/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+	background: url('images/page-loader.gif') 50% 50% no-repeat #FFFCE8;
 }

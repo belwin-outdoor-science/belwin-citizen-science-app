@@ -3,6 +3,13 @@
 
 <head>
     <title>Belwin Citizen Science</title>
+    <!-- jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(window).load(function() {
+        $(".loader").fadeOut(3000);
+    })
+    </script>
 
     <!-- STYLE, ICONS, FONTS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,14 +24,6 @@
     <link rel="stylesheet" href="vendors/sweet-alert/sweetalert2.min.css">
     <link rel="stylesheet" href="vendors/sweet-alert/animate.min.css">
     <script src="vendors/jquery.js"></script>    
-
-    <!-- jQuery -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    $(window).load(function() {
-        $(".loader").fadeOut("slow");
-    })
-    </script>
     
     <!-- Angular and Angular-Route -->
     <script src="vendors/angular.min.js" charset="utf-8"></script>
@@ -71,6 +70,9 @@
 </head>
 
 <body ng-app="myApp" onoffline="onOffDetector()" beforeunload="return doNotReload()">
+        <div class="loader">
+            <p>Loading...</p>
+        </div>
     <!-- <header ng-include="'/views/partials/header.html'"></header> -->
 
     <main ng-view></main>
