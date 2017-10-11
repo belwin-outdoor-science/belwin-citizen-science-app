@@ -62,6 +62,10 @@ myApp.config(function ($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/student-view.html',
       controller: 'StudentController as sc'
     }) 
+    .when('/student_display', {
+      templateUrl: '/views/templates/student.data.display.html',
+      controller: 'StudentDataDisplayController as sc'
+    }) 
     .when('/', {
       templateUrl: '/views/templates/student-view.html',
       controller: 'StudentController as sc'
