@@ -39,7 +39,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     //if there's no local storage, cascades events that will build up StudentDataService.allData
     if (self.lastSession == null || self.lastSession == undefined) {
         self.showStartContinue.showStartContinue = false;
-        self.clearLocalStorage();
+        
     }
 
     //CONTINUE
