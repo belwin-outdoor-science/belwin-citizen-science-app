@@ -66,6 +66,10 @@ myApp.config(function ($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/student-view.html',
       controller: 'StudentController as sc'
     })
+    .when('/gif', {
+      templateUrl: '/views/templates/gif.html',
+      controller: 'StudentController as sc'
+    })
     .otherwise({
       redirectTo: '/student'
     });
