@@ -1,38 +1,46 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="row">
-    <md-button id="backButton" ng-href="/#dashboard" class="md-raised">
-        <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
-    </md-button>
-    <h4 ng-hide="dc.allClasses" id="classDataHeader">Data for Class {{dc.classNum}}</h4>
-    <h4 ng-show="dc.allClasses">Data for All Classes</h4>
-</div>
-
-
-<div id="dataNavButtons">
+<div class="staffBody">
     <div>
-        <md-button ng-click="dc.showSpeciesButtons('Plants')">Plants</md-button>
-        <md-button ng-click="dc.showSpeciesButtons('Mammals')">Mammals</md-button>
-        <md-button ng-click="dc.showSpeciesButtons('Birds')">Birds</md-button>
+        <div layout="row" layout-align="center start">
+            <md-button id="backButton" ng-href="/#dashboard" class="md-raised">
+                <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
+            </md-button>
+            <h3 class="md-display-1" ng-hide="dc.allClasses" id="classDataHeader">Data for Class {{dc.classNum}}</h3>
+            <h3 class="md-display-1" ng-show="dc.allClasses">Data for All Classes</h3>
+        </div>
     </div>
 
-    <div ng-show="dc.showPlants">
-        <md-button ng-click="dc.getDetails('Bur Oak')">Bur Oak</md-button>
-        <md-button ng-click="dc.getDetails('Red Oak')">Red Oak</md-button>
-        <md-button ng-click="dc.getDetails('Quaking Aspen')">Quaking Aspen</md-button>
-        <md-button ng-click="dc.getDetails('Common Buckthorn')">Common Buckthorn</md-button>
-        <md-button ng-click="dc.getDetails('Paper Birch')">Paper Birch</md-button>
-        <md-button ng-click="dc.getDetails('Milkweed')">Common Milkweed</md-button>
-    </div>
-    <div ng-show="dc.showMammals">
-        <md-button ng-click="dc.getDetails('Ground Squirrel')">Ground Squirrel</md-button>
-    </div>
-    <div ng-show="dc.showBirds">
-        <md-button ng-click="dc.getDetails('Ruby Throated Hummingbird')">Ruby Throated Hummingbird</md-button>
-        <md-button ng-click="dc.getDetails('Dark-eyed Junco')">Dark-eyed Junco</md-button>
-        <md-button ng-click="dc.getDetails('Eastern Bluebird')">Eastern Bluebird</md-button>
+    <br>
+
+    <div layout="column" layout-align="start center" id="dataNavButtons">
+        <div>
+            <md-button class="navButton" ng-click="dc.showSpeciesButtons('Plants')">Plants</md-button>
+            <md-button class="navButton" ng-click="dc.showSpeciesButtons('Mammals')">Mammals</md-button>
+            <md-button class="navButton" ng-click="dc.showSpeciesButtons('Birds')">Birds</md-button>
+        </div>
+        <br>
+        <div ng-show="dc.showPlants">
+            <md-button class="navButton2" ng-click="dc.getDetails('Bur Oak')">Bur Oak</md-button>
+            <md-button class="navButton2" ng-click="dc.getDetails('Red Oak')">Red Oak</md-button>
+            <md-button class="navButton2" ng-click="dc.getDetails('Quaking Aspen')">Quaking Aspen</md-button>
+            <br>
+            <md-button class="navButton2" ng-click="dc.getDetails('Common Buckthorn')">Common Buckthorn</md-button>
+            <md-button class="navButton2" ng-click="dc.getDetails('Paper Birch')">Paper Birch</md-button>
+            <md-button class="navButton2" ng-click="dc.getDetails('Milkweed')">Common Milkweed</md-button>
+        </div>
+        <div ng-show="dc.showMammals">
+            <md-button class="navButton2" ng-click="dc.getDetails('Ground Squirrel')">Ground Squirrel</md-button>
+        </div>
+        <div ng-show="dc.showBirds">
+            <md-button class="navButton2" ng-click="dc.getDetails('Ruby Throated Hummingbird')">Ruby Throated Hummingbird</md-button>
+            <md-button class="navButton2" ng-click="dc.getDetails('Dark-eyed Junco')">Dark-eyed Junco</md-button>
+            <md-button class="navButton2" ng-click="dc.getDetails('Eastern Bluebird')">Eastern Bluebird</md-button>
+        </div>
+
     </div>
 
+    <br>
+
+    <div ng-show="dc.showData" ng-include="'views/partials/' + dc.partial" layout="column" layout-align="start center"></div>
+    
 </div>
-
-
-<div ng-show="dc.showData" ng-include="'views/partials/' + dc.partial"></div>
