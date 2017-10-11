@@ -93,6 +93,15 @@ md-dialog {
 
 #textarea {
   width: 100%;
+  resize: none;
+  padding-bottom: 0px;
+}
+
+textarea {
+  height: 50px !important;
+  max-height: 50px !important;
+  overflow:auto !important;
+  padding-bottom: 0px;
 }
 
 #observationDataEntry {
