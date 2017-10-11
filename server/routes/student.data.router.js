@@ -229,6 +229,32 @@ router.post('/ruby_throated_hummingbird', function (req, res) {
     });
 });
 
+router.post('/pin_oak', function (req, res) {
+    console.log('pin oak post');
+    console.log(req.body);
+    
+    //see buildStatement function explanation below
+    var query = buildStatement('INSERT INTO pin_oak (class, site, breaking_leaf_buds, leaves, increasing_leaf_size, colored_leaves, falling_leaves, flowers_or_flower_buds, open_flowers, pollen_release, fruits, ripe_fruits, recent_fruit_or_seed_drop, notes) VALUES ', req.body);
+    console.log('pin_oak router post called ');
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log('Error connecting to database', err);
+            res.sendStatus(500);
+        } else {
+            client.query(query, function (err, result) {
+                    done();
+                    if (err) {
+                        console.log('Error making pin_oak post query: ', err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(201);
+                    }
+                }
+            );
+        }
+    });
+});
+
 //modified from kethinov's comment on https://github.com/brianc/node-postgres/issues/530
 //creates a query object from the data with this format:
 // { text: 'INSERT INTO bur_oak (column names) VALUES ($1, $2...), ($3, $4...)',

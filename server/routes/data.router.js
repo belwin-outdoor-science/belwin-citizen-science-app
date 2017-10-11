@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var pool = require('../modules/pool.js');
 
+
 //gets table names from belwin database
 router.get('/table_names', function (req, res) { // GET for staff dashboard to staff data view
     pool.connect(function (err, client, done) {
