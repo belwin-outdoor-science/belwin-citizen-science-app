@@ -109,9 +109,8 @@ ng-click on start will clear local storage
     sc.studentService.selectOrganism('eastern_bluebird', 'Eastern Bluebird')">
       Eastern Bluebird</md-button>
 
-    <div layout="column" layout-align="end center" class="buttomButton">
-      <md-button class="navButton" ng-click="sc.studentService.submitData()">Back at Class
-        <br> All Done!</md-button>
+    <div class="buttomButton">
+      <md-button class="navButton" ng-click="sc.studentService.submitData()">Back at Class All Done!</md-button>
     </div>
 
   </md-sidenav>
@@ -135,7 +134,7 @@ ng-click on start will clear local storage
       </md-card>
     </div>
     <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
-      <h3 class="h3 ">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
+      <h3 class="md-display-2">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
       <br>
       <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="center center">
         <div ng-repeat="site in [1, 2, 3]">
