@@ -32,8 +32,14 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         // if (confirm("Are you .") == true) {
         console.log('clearLocalStorageCalled');
         self.showStartContinue.showStartContinue = false;
-        self.storage.removeItem('allData');
-        StudentDataService.getTableNames('undefined');
+        self.storage.clear(); 
+        console.log('clearLocalStorage called.');
+    }
+
+    //if there's no local storage, cascades events that will build up StudentDataService.allData
+    if (self.lastSession == null || self.lastSession == undefined) {
+        self.showStartContinue.showStartContinue = false;
+        self.clearLocalStorage();
     }
 
     //CONTINUE
@@ -43,21 +49,16 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         self.showStartContinue.showStartContinue = false;
         //self.lastSession is passed so that after table names have been received,
         //StudentDataService.allData is given the value of 'allData' from local storage.
-        StudentDataService.getTableNames(self.lastSession);
-    }
-    //On page load of student-view,
-    // if there's no local storage, this causes a series of 
-    //events that will build up StudentDataService.allData
-    //if there is local storage, an ng-show will show the START and CONTINUE buttons--names may change
-    if (self.lastSession == null || self.lastSession == undefined) {
-        self.showStartContinue.showStartContinue = false;
-        StudentDataService.getTableNames('undefined');
+        StudentDataService.allData = self.lastSession;
     }
 
     //this sets the class
     self.setClass = function () {
         for (var organism in self.allData) {
             self.classSelected.classSelected = true;
+            console.log('allData: ');
+            console.log(StudentDataService.allData);
+            
             StudentDataService.allData[organism].map(function (object) {
                 object.class = StudentDataService.allData.bur_oak[0].class;
                 return object;
@@ -227,5 +228,5 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
 
     //shows the main student view after the class is set
-
+    
 }]);
