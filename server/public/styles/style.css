@@ -125,9 +125,14 @@ img {
   width: 80%;
 }
 
+.container{
+  width: 82%;
+}
+
 .logo {
   width: 55%;
   margin: 3% 20%;
+  margin-left: 6%;
 }
 
 .md-sidenav-right {
@@ -315,6 +320,16 @@ img {
     height: 20%;
     width: 50%;
   }
+  
+  .logo{
+    width: 55%;
+    margin: 0 0 10% 0;
+  }
+  .md-display-1{
+    font-size: 20px;
+    width: 100%
+  }
+
 }
 
 .md-button.staffStudentButtonLogout {
