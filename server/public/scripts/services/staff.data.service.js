@@ -6,6 +6,7 @@ myApp.service('DataService', ['$http', function ($http) {
   
   // data for individual classes
   self.bur = { data: [], notes: [] };
+  self.pin = { data: [], notes: [] };
   self.buckthorn = { data: [], notes: [] };
   self.milkweed = { data: [], notes: [] };
   self.dark = { data: [], notes: [] };
@@ -22,6 +23,7 @@ myApp.service('DataService', ['$http', function ($http) {
 
 self.dataInit = function() {
   self.bur = { data: [], notes: [] };
+  self.pin = { data: [], notes: [] };
   self.buckthorn = { data: [], notes: [] };
   self.milkweed = { data: [], notes: [] };
   self.dark = { data: [], notes: [] };
@@ -171,6 +173,18 @@ self.dataInit = function() {
         self.ruby.notes = response.data;
       })
     });;
+  }
+
+  self.getPin = function (classNum) {
+    $http.get('/dashboard/pin/' + classNum).then(function (response) {
+      self.pin.data = self.sortData(response.data)
+      var sortedArray = [];      
+    }).then(function () {
+      //new get call to pull notes
+      $http.get('/dashboard/pin/notes/' + classNum).then(function (response) {
+        self.pin.notes = response.data;
+      })
+    });
   }
 
   self.selectTable = function (table, tableName) {
