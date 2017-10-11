@@ -14,6 +14,7 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
     vm.ruby = DataService.ruby;
     vm.dark = DataService.dark;
     vm.eastern = DataService.eastern;
+    vm.pin = DataService.pin;
 
     // DataService.dataInit();
 
@@ -60,6 +61,9 @@ myApp.controller('DataController', ['DataService', '$routeParams', function (Dat
         } else if (species == "Eastern Bluebird") {
             vm.partial = "eastern-bluebird-table.html"
             DataService.getEastern(vm.classNum)
+        } else if (species == "Pin Oak") {
+            vm.partial = "pin-oak-table.html"
+            DataService.getPin(vm.classNum)
         }
     }
 
