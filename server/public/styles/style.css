@@ -185,6 +185,11 @@ img {
   cursor: pointer;
 }
 
+.md-button.navButton:focus {     
+  color: black;   
+  font-weight: normal;
+}
+
 .md-button.siteButton {
   background-color: #8F3B1B;
   font-size: 18px;
@@ -275,6 +280,7 @@ img {
 
 .speciesNotesCard {
   min-width: 80%;
+  min-height: 160px;
 }
 
 .speciesNotesTitle {
@@ -334,6 +340,9 @@ img {
     width: 55%;
     margin: 0 0 10% 0;
   }
+
+  
+
   .md-display-1{
     font-size: 20px;
     width: 100%
@@ -386,12 +395,25 @@ md-input-container.loginInput {
   background-color: #704E2E;
   /* Green */
   color: white;
+  white-space: normal;
+  min-width: 120px;
+  max-width: 120px;
+  font-weight: bold;
+  line-height: normal;
+  overflow: initial;
+  white-space: normal;
   border-radius: 5px;
+  font-size: 12px;
   border: none;
   outline: none;
-  text-shadow: 0 -1px 0 #FCFCFC;
+  text-shadow: 0 -1px 0 #000;
   box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0, 0, 0, 0.6);
   cursor: pointer;
+}
+
+.md-button.navButton2:focus{
+  color: black;
+  font-weight: normal;
 }
 
 .md-button.selectNewClassButton {
@@ -442,4 +464,40 @@ md-input-container.loginInput {
 .md-button.deleteUser {
   background-color: #EB9486;
   color: black;
+}
+
+.logoStudentView {
+  width: 95%;
+  padding: 4%;
+}
+
+#backToClassButton{
+  background-color: #EB9486;
+  color: black;
+  font-weight: normal;
+}
+
+/* Form button styles */
+.md-button.markEverythingButton {
+  background-color: #4E6172;
+  color: white;
+  border-radius: 8px;
+  text-shadow: 0 -1px 0 #000;
+  box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
+.md-button.formResetButton {
+  background-color: #EB9486;
+  color: black;
+  border-radius: 8px;
+  box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
+.md-button.formCloseButton {
+  background-color: #4E6172;
+  color: white;
+  border-radius: 8px;
+  text-shadow: 0 -1px 0 #000;
+  box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0, 0, 0, 0.6);
+  font-weight: bold;
 }

@@ -1,6 +1,7 @@
 myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentDataService', function ($http, $location, $mdDialog, StudentDataService) {
     console.log('StudentService loaded');
     var self = this;
+    var NUMBER_OF_ORGANISMS = Object.keys(StudentDataService.allData).length;
     self.studentDataService = StudentDataService;
     self.postCallbackMessages = [];
     self.selectedOrganism = {
@@ -132,7 +133,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                         var theresData = checkForData(object);
                         if (theresData) {
                             numberOfOrganisms++;
-                        }
+                        }                       
                         return theresData;
                     });
                 }
@@ -145,8 +146,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 if (allDataFiltered[organism].length > 0) {
                     postOneOrganism(organism, allDataFiltered[organism], numberOfOrganisms);
                 } else {
-                    i++;
-                    if (i > 9) {
+                    //count number of organisms that have no data in 'i':
+                    i++;                   
+                    //if all ten organisms have no data, then there's no data to send.
+                    if (i > NUMBER_OF_ORGANISMS) {
                         alert('There\'s no data to send');
                     }
                 }
@@ -198,6 +201,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             } else {
                 //clear local storage and allData
                 self.storage.removeItem('allData');
+                var testing = JSON.parse(self.storage.getItem('allData'));
+                console.log('allData after removing it: ');
+                console.log(testing);
+                
                 console.log('post successful');
                 $location.path('/success');
             }
@@ -212,9 +219,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 }
             }
         });
-        //clear local storage
-        //self.storage.clear();
-        //self.allData = StudentDataService.allData;
+
     }
 
     //student-view.html on clicking species name, calls this function
@@ -223,10 +228,15 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         self.selectedOrganism.selectedOrganism = organism;
         //student-view on clicking the species name, set the selected organism variable text for displaying on dom
         self.selectedOrganismText.selectedOrganismText = organismText;
-        console.log('select organism:', self.selectedOrganism)
+        console.log('select organism:', self.selectedOrganism);
+    }  
+
+    //success.html
+    //can't use ng-href because the page needs to be loaded in order for it to bring you back to selecting
+    //the class for some reason.
+    self.loadStudentPage = function () {
+        self.classSelected.classSelected = false;
+        $location.path('#/');
+        
     }
-
-
-    //shows the main student view after the class is set
-    
 }]);
