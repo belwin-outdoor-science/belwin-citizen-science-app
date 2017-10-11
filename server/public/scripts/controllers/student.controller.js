@@ -9,6 +9,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     vm.studentDataService = StudentDataService;
 
 
+
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
         // vm.currentSpecimenQuestions (assign questions based on species element clicked)
@@ -21,8 +22,8 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<br>' +
             '<h2>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h2>' +
             '<h2>Do you see...</h2> ' +
-            
-           
+
+
 
             // ' <div flex layout="row" layout-padding layout-align="start center"><h2 flex style="max-width:300px; max-height: 300px; padding:15px;">Mark everything at once:</h2>' +
             // '<md-radio-group flex layout="row" ng-change="sc.markAll()" ng-model="sc.markAllData">' +
@@ -81,18 +82,24 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         }
     }
 
-    vm.showContinueDialog = function ($event) {
-        console.log('$event:', $event);
-        // vm.currentSpecimenQuestions (assign questions based on species element clicked)
+    vm.checkLocalOnLoad = function () {
+        console.log('onload function working, offline storage:', vm.studentService.showStartContinue.showStartContinue)
+        if (vm.studentService.showStartContinue.showStartContinue) {
+            // vm.showContinueDialog();
+        }
+    }
+
+    vm.showContinueDialog = function () {
+    
         $mdDialog.show({
-            targetEvent: $event,
+            // targetEvent: $event,
             controller: 'StudentController',
             controllerAs: 'sc',
-            template: '<div id="continueSavedData">' + 
+            template: '<div id="continueSavedData">' +
             '<p>It looks like you were already collecting some data - do you want to start over?</p>' +
             '</div>',
             clickOutsideToClose: false
-        }).finally(function () {
+        // }).finally(function () {
             // console.log('I get called on escape and clickoutside, allData: ');
             // //add data to local storage on close of the dialog
             // var allDataString = JSON.stringify(vm.studentDataService.allData);
@@ -107,8 +114,10 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     }
 
     // for back button to re-set class selection
-    vm.resetClassSelection = function (){
+    vm.resetClassSelection = function () {
         location.reload();
         $location.path('#/');
     };
+
+    document.onload = vm.checkLocalOnLoad();
 }]);
