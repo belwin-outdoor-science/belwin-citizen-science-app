@@ -7,6 +7,7 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     self.questionsByOrganism = {
         questions: {}
     };
+    self.organismsArray = [];
     //this array of images is sorted through in the student-view.html. Only one is displayed at a time.
     self.imageArray = [{
         organismName: 'bur_oak',
@@ -50,115 +51,6 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     }
     ];
 
-    function questionCreator() {
-        for (var organism in self.allData) {
-            questionArray = [];
-            for (var question in self.allData[organism][0]) {
-                var questionObj = {};
-                if (question !== 'class' && question !== 'site') {
-                    questionObj.property = question;
-                    question = question.replace(/_/g, ' ');
-                    question = question.charAt(0).toUpperCase() + question.slice(1);
-                    questionObj.text = question;
-                    questionArray.push(questionObj);
-                }
-            }
-            self.questionsByOrganism.questions[organism] = questionArray;
-        }
-    }
-
-    self.organismsArray = [];
-    questionCreator();
-    //self.representativeOrganisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'ground_squirrel', 'eastern_bluebird', 'ruby_throated_hummingbird'];
-
-    //getTableNames generates an array of table names for the organisms from the database.
-    //self.getTableNames gets called when you click start
-    function createOrganismsArray () {
-        for (organism in self.allData) {
-            self.organismsArray.push(organism);
-        }
-    }
-self.useLocalStorageOrNewData = function (lastSession) {
-    if (lastSession !== 'undefined') {
-        self.allData = lastSession;
-        console.log('self.allData in getTableNames function');
-        console.log(self.allData);
-        
-    }
-    
-}
-
-function createOrganismsArray() {
-
-}
-
-
-
-    self.getTableNames = function (lastSession) {
-        $http.get('/data/table_names').then(function (response) {
-            if (response.data) {
-                response.data.forEach(function (tableNameObject) {
-                    self.organismsArray.push(tableNameObject.table_name);
-                    self.allData[tableNameObject.table_name] = [{}, {}, {}];
-                });
-                console.log('lastSession');
-                console.log(lastSession);
-
-                if (lastSession == 'undefined') {
-                    self.getTableColumns();
-                    console.log('getTableNames, lastSession = undefined');
-                    
-                } else {
-                    self.allData = lastSession;
-                    console.log('self.allData in getTableNames function');
-                    console.log(self.allData);
-                    questionCreator();
-                }
-            }
-        }, function (err) {
-            console.log('get table names error: ', err);
-        });
-    }
-    //caled inside getTableNames because it uses the table names stored in self.organismsArray.
-    self.getTableColumns = function () {
-        $http.get('/data/columns').then(function (response) {
-            if (response.data) {
-                console.log('table columns get: ');
-                console.log(response.data);
-
-                processTableColumnsData(response.data);
-            }
-        }, function (err) {
-            console.log('getTableColumns error: ', err);
-
-        });
-    }
-
-    function processTableColumnsData(data) {
-        //data = [{table_name: 'bur_oak', column_name = 'class'}, {table_name: 'bur_oak', column_name', 'breaking_leaf_buds'...]
-        self.organismsArray.forEach(function (organism) { //organism = self.organismsArray[i]
-            //{bur_oak: [{question: '' }, ]}
-            data.forEach(function (tableColumnObject) { //object = data[i]
-                //data = see comment on first line of this function
-                if (tableColumnObject.table_name == organism) {
-                    self.allData[organism].forEach(function (_, i) { // _ = self.allData[organism][i], i
-                        //loops from i = 0 to i = 2 because there are three empty objects in each arrray.
-                        //self.allData = { bur_oak: [{}, {}, {}], quaking_aspen: [{}, {}, {}] ... } three objects for three sites
-                        if (tableColumnObject.column_name == 'site') {
-                            //site: 1, 2, 3 for each
-                            self.allData[organism][i].site = (i + 1).toString(10);
-                        } else {
-                            self.allData[organism][i][tableColumnObject.column_name] = '';
-                        }
-                    });
-                }
-            });
-        });
-        console.log('allData');
-        console.log(self.allData);
-        //
-        questionCreator();
-    }
 
 
     self.allData = {
@@ -664,4 +556,33 @@ function createOrganismsArray() {
         }
         ]
     };
+
+    createOrganismsArray();
+    questionCreator();
+
+    //creates self.organismsArray, which is used in the ng-repeat in student-view.html
+    function createOrganismsArray() {
+        for (organism in self.allData) {
+            self.organismsArray.push(organism);
+        }
+    }
+
+    //populates self.questionsByOrganism, which is used in the ng-repeat in student-view.html
+    function questionCreator() {
+        for (var organism in self.allData) {
+            var questionArray = [];
+            for (var question in self.allData[organism][0]) {
+                var questionObj = {};
+                if (question !== 'class' && question !== 'site') {
+                    questionObj.property = question;
+                    question = question.replace(/_/g, ' ');
+                    question = question.charAt(0).toUpperCase() + question.slice(1);
+                    questionObj.text = question;
+                    questionArray.push(questionObj);
+                }
+            }
+            self.questionsByOrganism.questions[organism] = questionArray;
+        }
+    }
+
 }]);

@@ -31,12 +31,10 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         // add alert that you will clear data?
         // if (confirm("Are you .") == true) {
         console.log('clearLocalStorageCalled');
-
         self.showStartContinue.showStartContinue = false;
         self.storage.clear();
-        StudentDataService.getTableNames('undefined');
+        StudentDataService.allData = self.lastSession;
         console.log('clearLocalStorage called.');
-
     }
 
     //if there's no local storage, cascades events that will build up StudentDataService.allData
@@ -44,8 +42,6 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         self.showStartContinue.showStartContinue = false;
         self.clearLocalStorage();
     }
-
-
 
     //CONTINUE
     //called from student-view.html.  Continue button.
