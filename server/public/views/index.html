@@ -6,8 +6,11 @@
     <!-- jQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
-    $(window).load(function() {
-        $(".loader").fadeOut(2000);
+    // $(window).onbeforeload(function() {
+    //     $(".loader").fadeOut(2000);
+    // })
+    $(document).onload(function(){
+        console.log('page is loaded')
     })
     </script>
 
