@@ -98,8 +98,6 @@ md-dialog {
 }
 
 textarea {
-  /* height: 50px !important;
-  max-height: 50px !important; */
   overflow:auto !important;
 }
 
