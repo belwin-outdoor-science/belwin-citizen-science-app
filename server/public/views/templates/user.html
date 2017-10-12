@@ -12,7 +12,7 @@
                 </tr> -->
             </thead>
             <tbody>
-                <tr ng-repeat="user in uc.StaffService.users">
+                <tr ng-repeat="user in uc.users.data">
                     <td> {{user.username}} </td>
                     <td>
                         <md-button class="deleteUser" ng-click="uc.showConfirm($event, user)"><md-icon class="material-icons">delete</md-icon>Delete</md-button>
