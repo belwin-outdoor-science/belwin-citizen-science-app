@@ -16,7 +16,7 @@ ng-click on start will clear local storage
 </div>
 
 <div ng-show="!sc.studentService.showStartContinue.showStartContinue">
-  <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start start">
+  <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start center">
     <div id="staffLoginLink" layout='row' layout-align="start start">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
         <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">
@@ -30,7 +30,7 @@ ng-click on start will clear local storage
 
     </div>
 
-    <div layout="column" layout-align="start center">
+    <div layout="column" layout-align="center center">
       <div class="wideHeader">
         <h3 class="md-display-1"> Select a class and start exploring. <br>
           <font size="+2">Your teacher will give you the class number.</font>
