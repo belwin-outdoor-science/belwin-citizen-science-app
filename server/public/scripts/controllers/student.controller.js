@@ -21,8 +21,8 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<form ng-submit="sc.studentService.postAllData()">' +
             '<br>' +
             '<div layout="column" layout-align="start center">' +
-            '<h1>{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h1>' +
-            '<h2>Do you see...</h2> ' +
+            '<h1 style="font-family:Varela;">{{sc.studentService.selectedOrganismText.selectedOrganismText}} {{sc.studentService.site.site+1}}</h1>' +
+            '<h2 style="font-family:Varela;">Do you see...</h2> ' +
             '<md-button class="markEverythingButton" ng-click="sc.markAll()">Mark Everything No</md-button><br>' +
             '</div>' +
 
@@ -38,14 +38,14 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<div ng-repeat="question in sc.studentDataService.questionsByOrganism.questions[sc.studentService.selectedOrganism.selectedOrganism]" class="row" ng-class-odd="\'odd\'"' +
             'ng-class-even="\'even\'">' +
             '<div flex layout="row" layout-padding layout-align="start center">' +
-            '<h2 ng-if="question.text != \'Notes\' " flex style="max-width:300px; max-height: 300px; padding:15px;">{{question.text}}?</h2>' +
+            '<h2 style="font-family:Varela;" ng-if="question.text != \'Notes\' " flex style="max-width:300px; max-height: 300px; padding:15px;">{{question.text}}?</h2>' +
             '<md-radio-group flex layout="row" ng-if="question.text != \'Notes\' " ng-model="sc.studentDataService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]">' +
-            '<md-radio-button value="yes" flex class="md-primary">Y</md-radio-button>' +
-            '<md-radio-button value="no" flex class="md-primary">N</md-radio-button>' +
-            '<md-radio-button value="maybe"  flex class="md-primary">?</md-radio-button>' +
+            '<md-radio-button value="yes" flex class="md-primary" style="font-family:Varela;">Y</md-radio-button>' +
+            '<md-radio-button value="no" flex class="md-primary" style="font-family:Varela;">N</md-radio-button>' +
+            '<md-radio-button value="maybe"  flex class="md-primary" style="font-family:Varela;">?</md-radio-button>' +
             '</md-radio-group>' +
             '<md-input-container ng-if="question.text == \'Notes\' " id="textarea">' +
-            '<label id="notes">Notes:</label>' +
+            '<label id="notes" style="font-family:Varela;">Notes:</label>' +
             '<textarea md-no-autogrow rows="4" cols="50" ng-model="sc.studentDataService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
             '</md-input-container>' +
             '</div>' +

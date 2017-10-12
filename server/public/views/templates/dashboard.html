@@ -1,9 +1,9 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="staffBody" ng-controller="UserController as uc" layout="column" layout-align="start center">
-    <p>User logged in: {{vm.userService.userObject.userName}}</p>
+    <p style="font-family:Varela;">User logged in: {{vm.userService.userObject.userName}}</p>
 
 
-    <h3 class="md-display-3">Select Class To View</h3>
+    <h3 class="md-display-3" style="font-family:Varela;">Select Class to View</h3>
 
     <div ng-controller="DataController as dc"> 
         <md-button class="classToggleButton" ng-click="dc.classNumToggle('1')" ng-href="#/data/1">Class 1 Data</md-button>
