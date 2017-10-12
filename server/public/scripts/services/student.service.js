@@ -85,7 +85,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                     .parent(angular.element(document.querySelector('#popupContainer')))
                     .clickOutsideToClose(true)
                     .title('Device Offline')
-                    .textContent('Get closer to the building, then try again!')
+                    .textContent('Your data was not submitted. Get close to the building and try again.')
                     .ariaLabel('Alert Dialog Demo')
                     .ok('Ok!')
                     .openFrom('#left')
@@ -236,7 +236,9 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     //the class for some reason.
     self.loadStudentPage = function () {
         self.classSelected.classSelected = false;
+        self.storage.clear();    
+        self.selectedOrganism.selectedOrganism = '';
         $location.path('#/');
-        
+             
     }
 }]);
