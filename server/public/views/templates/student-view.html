@@ -21,10 +21,10 @@ ng-click on start will clear local storage
     <div id="staffLoginLink" layout='row' layout-align="start start">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
         <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard"><md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
-        <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
+        <md-button layout="row" layout-align="start start" class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
       </div>
 
-      <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="navButton2" href="/#login">Staff Login</md-button>
+      <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="navButton3" href="/#login">Staff Login</md-button>
 
       <img class="logo" src="assets/bos-logo-2.png">
 

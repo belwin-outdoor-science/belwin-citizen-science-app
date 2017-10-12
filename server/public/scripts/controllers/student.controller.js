@@ -46,7 +46,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '</md-radio-group>' +
             '<md-input-container ng-if="question.text == \'Notes\' " id="textarea">' +
             '<label id="notes">Notes:</label>' +
-            '<textarea rows="3" cols="50" ng-model="sc.studentDataService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
+            '<textarea md-no-autogrow rows="4" cols="50" ng-model="sc.studentDataService.allData[sc.studentService.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>' +
             '</md-input-container>' +
             '</div>' +
             '</div>' +
@@ -58,7 +58,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '</div>' +
             '</div>',
             clickOutsideToClose: true
-        }).finally(function () {
+        }).catch(function () {
             console.log('I get called on escape and clickoutside, allData: ');
             //add data to local storage on close of the dialog
             var allDataString = JSON.stringify(vm.studentDataService.allData);
