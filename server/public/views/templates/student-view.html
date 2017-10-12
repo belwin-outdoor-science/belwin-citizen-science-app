@@ -1,12 +1,13 @@
 <div>
-  <div ng-show="!sc.studentService.showStartContinue.showStartContinue">
-    <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start start">
-      <div id="staffLoginLink" layout='row' layout-align="start start">
-        <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
-          <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">
-            <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
-          <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
-        </div>
+    <!-- <div onload="sc.checkLocalOnLoad()" ng-show="!sc.studentService.showStartContinue.showStartContinue"> -->
+  <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start start">
+    <div id="staffLoginLink" layout='row' layout-align="start start">
+      <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard"><md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
+        <md-button layout="row" layout-align="start start" class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
+      </div>
+
+      <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="navButton3" href="/#login">Staff Login</md-button>
 
         <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="navButton2" href="/#login">Staff Login</md-button>
 
