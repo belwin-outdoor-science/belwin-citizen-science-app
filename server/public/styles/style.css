@@ -98,7 +98,7 @@ md-dialog {
 }
 
 textarea {
-  overflow:auto !important;
+  overflow: auto !important;
 }
 
 #observationDataEntry {
@@ -131,7 +131,7 @@ img {
   width: 80%;
 }
 
-.container{
+.container {
   width: 82%;
 }
 
@@ -182,8 +182,8 @@ img {
   cursor: pointer;
 }
 
-.md-button.navButton:focus {     
-  color: black;   
+.md-button.navButton:focus {
+  color: black;
   font-weight: normal;
 }
 
@@ -298,6 +298,7 @@ img {
     /* Green */
     color: white;
     min-width: 130px;
+    max-width: 130px;
     font-size: 10px;
     white-space: normal;
     border-radius: 5px;
@@ -332,19 +333,25 @@ img {
     height: 20%;
     width: 50%;
   }
-  
-  .logo{
+  .logo {
     width: 55%;
     margin: 0 0 10% 0;
   }
-
-  
-
-  .md-display-1{
+  .md-display-1 {
     font-size: 20px;
     width: 100%
   }
-
+  .buttomButton {
+    position: absolute;
+    bottom: 0.5%;
+    margin-left: 16px;
+    font-size: 10px;
+  }
+  .md-button.selectNewClassButton {
+    font-size: 10px;
+    font-weight: normal;
+  }
+  
 }
 
 .md-button.staffStudentButtonLogout {
@@ -409,7 +416,7 @@ md-input-container.loginInput {
   cursor: pointer;
 }
 
-.md-button.navButton2:focus{
+.md-button.navButton2:focus {
   color: black;
   font-weight: normal;
 }
@@ -435,24 +442,26 @@ md-input-container.loginInput {
 }
 
 .loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('images/page-loader.gif') 50% 50% no-repeat #FFFCE8;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: url('images/page-loader.gif') 50% 50% no-repeat #FFFCE8;
 }
 
-.staffLogo{
+.staffLogo {
   width: 15%;
 }
+
 .md-button.staffButtons {
   background-color: #4E6172;
   color: white;
   border-radius: 8px;
   height: 38px;
 }
+
 .md-button.staffButtonsLogout {
   background-color: #EB9486;
   color: white;
@@ -470,13 +479,15 @@ md-input-container.loginInput {
   padding: 4%;
 }
 
-#backToClassButton{
+#backToClassButton {
   background-color: #EB9486;
   color: black;
   font-weight: normal;
 }
 
+
 /* Form button styles */
+
 .md-button.markEverythingButton {
   background-color: #4E6172;
   color: white;
@@ -485,6 +496,7 @@ md-input-container.loginInput {
   box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0, 0, 0, 0.6);
   font-weight: bold;
 }
+
 .md-button.formResetButton {
   background-color: #EB9486;
   color: black;
@@ -492,6 +504,7 @@ md-input-container.loginInput {
   box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0, 0, 0, 0.6);
   font-weight: bold;
 }
+
 .md-button.formCloseButton {
   background-color: #4E6172;
   color: white;
@@ -518,4 +531,21 @@ md-input-container.loginInput {
   text-shadow: 0 -1px 0 #000;
   box-shadow: 0 1px 0 #666, 0 5px 0 #444, 0 6px 6px rgba(0, 0, 0, 0.6);
   cursor: pointer;
+}
+
+#studentInstructions1{
+  font-size: 30px;
+}
+
+#studentInstructions2{
+  font-size: 30px;
+}
+
+.instructionCard{
+  background-color: #FFFCE8;
+  min-height: 50px;
+  min-width: 525px;
+  padding: 50px;
+  border: 5px solid #EB9486;
+  border-radius: 8px;
 }
