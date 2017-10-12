@@ -57,7 +57,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '</div>' +
             '</div>',
             clickOutsideToClose: true
-        }).finally(function () {
+        }).catch(function () {
             console.log('I get called on escape and clickoutside, allData: ');
             //add data to local storage on close of the dialog
             var allDataString = JSON.stringify(vm.studentDataService.allData);
