@@ -93,6 +93,12 @@ md-dialog {
 
 #textarea {
   width: 100%;
+  resize: none;
+  font-size: 30px;
+}
+
+textarea {
+  overflow:auto !important;
 }
 
 #observationDataEntry {
