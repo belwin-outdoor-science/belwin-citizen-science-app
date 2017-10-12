@@ -86,6 +86,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         }
     }
 
+    //checks for local storage and shows continue dialog if needed
     vm.checkLocalOnLoad = function () {
         console.log('onload function working, offline storage:', vm.studentService.showStartContinue.showStartContinue)
         if (vm.studentService.showStartContinue.showStartContinue) {
@@ -93,34 +94,27 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         }
     }
 
+    //prompts user to start over or continue with data in local storage
     vm.showContinueDialog = function () {
+        var confirm = $mdDialog.confirm()
+            .title('It looks like you were already collecting some data today')
+            .textContent('Do you want to start where you left off or start over completely?')
+            .ariaLabel('Continue from last save?')
+           // .targetEvent(ev)
+            .ok('Please start over')
+            .cancel('Keep using my old data');
 
-        $mdDialog.show({
-            // targetEvent: $event,
-            controller: 'DialogController',
-            controllerAs: 'dc',
-            template: '<div id="continueSavedData">' +
-            '<p>It looks like you were already collecting some data - do you want to start over?</p>' +
-            '<md-button ng-model="uc.continueStatus" value="continue">Continue</md-button>' +
-            '<md-button ng-model="uc.continueStatus" value="start">Start Over</md-button></div>',
-            clickOutsideToClose: false,
-            // title: "It looks like you were already collecting some data - do you want to start over?",
-            // ok: 'Yes, start over',
-            // cancel: 'Continue where I was'
-        }).then(function () {
-            console.log('continue y/n: ');
-            console.log()
-            //add data to local storage on close of the dialog
-            // var allDataString = JSON.stringify(vm.studentDataService.allData);
-            // vm.studentService.storage.setItem('allData', allDataString);
-            //console.log(allDataString);
-            // var testing = JSON.parse(StudentService.storage.getItem('allData'));
-            // console.log('storage: ');
-            // console.log(testing);
-            $mdDialog.hide();
-
+        $mdDialog.show(confirm).then(function () {
+          //  vm.status = 'You decided to start over.';
+            console.log('You decided to start over.')
+            StudentService.clearLocalStorage();
+        }, function () {
+          //  vm.status = 'You decided to continue.';
+            console.log('You decided to continue.')
+            StudentService.continueSession()
         });
-    }
+    };
+
 
     // for back button to re-set class selection
     vm.resetClassSelection = function () {
@@ -128,5 +122,5 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         $location.path('#/');
     };
 
-    document.onload = vm.checkLocalOnLoad()
+ document.onload = vm.checkLocalOnLoad() //checks for local storage on page load
 }]);
