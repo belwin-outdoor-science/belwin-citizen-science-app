@@ -13,9 +13,9 @@
           <md-radio-button value="no" flex class="md-primary">N</md-radio-button>
           <md-radio-button value="maybe"  flex class="md-primary">?</md-radio-button>
         </md-radio-group>
-        <md-input-container ng-if="question.text == 'Notes' " id="textarea">
+        <md-input-container  md-no-autogrow ng-if="question.text == 'Notes' " id="textarea">
             <label id="notes">Notes:</label>
-            <textarea rows="3" cols="50" ng-model="sc.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>
+            <textarea rows="3" md-no-autogrow ng-model="sc.allData[sc.selectedOrganism.selectedOrganism][sc.studentService.site.site][question.property]"></textarea>
         </md-input-container>
       </div>
     </div>
