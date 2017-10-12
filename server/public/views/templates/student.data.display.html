@@ -1,5 +1,5 @@
 <div class="staffBody" layout="row" layout-align="end start">
-        <md-button class="md-raised" ng-href="#/student">Start New Observation <md-icon class="material-icons">forward</md-icon></md-button>
+        <!-- <md-button class="md-raised" ng-href="#/student">Start New Observation <md-icon class="material-icons">forward</md-icon></md-button> -->
     </div>
     </br>
     </br>
@@ -23,7 +23,7 @@
     </div>
     
     <div layout="column" layout-align="center center">
-        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" ng-show="sc.studentDataDisplayService.selectedOrganism.space">
             <thead>
                 <tr>
                     <th>{{ sc.studentDataDisplayService.selectedOrganism.space }} </th>
