@@ -111,7 +111,7 @@
 
     <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
     </md-sidenav>
-    <div class="studentBody" layout="column" layout-align="start center" layout-fill>
+    <div class="studentBody" layout="column" layout-align="start center">
       <div  layout="column" layout-align="start center" >
         <img class="logoStudentView" src="assets/bos-logo-2.png">
       </div>
@@ -128,7 +128,7 @@
         </md-card>
       </div>
       <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="start center">
-        <h3 font-size="45px" class="md-display-1" style="font-family:Varela;">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
+        <h3 font-size="45px" class="md-display-1 speciesName" style="font-family:Varela;">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
         <br>
         <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="start center">
           <div ng-repeat="site in [1, 2, 3]">

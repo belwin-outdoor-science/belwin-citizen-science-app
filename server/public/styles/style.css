@@ -275,6 +275,7 @@ img {
   border-bottom: solid;
 }
 
+
 .speciesNotesCard {
   min-width: 80%;
   min-height: 160px;
@@ -350,6 +351,16 @@ img {
   .md-button.selectNewClassButton {
     font-size: 10px;
     font-weight: normal;
+  }
+
+  .logoStudentView{
+    height: 168px;
+  }
+
+  .speciesName{
+    margin-top: 72px;
+    margin-bottom: 47px;
+    text-align: center;
   }
   
 }
