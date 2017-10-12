@@ -237,6 +237,6 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.loadStudentPage = function () {
         self.classSelected.classSelected = false;
         $location.path('#/');
-        
+        self.storage.clear();         
     }
 }]);
