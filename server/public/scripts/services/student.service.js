@@ -25,6 +25,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     console.log('self.lastSession: ');
     console.log(self.lastSession);
 
+    self.continueStatus = "";
+    
     //START NEW
     //called from student-view.html.  
     self.clearLocalStorage = function () {

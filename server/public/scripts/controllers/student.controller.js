@@ -25,7 +25,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<h2>Do you see...</h2> ' +
             '<md-button class="markEverythingButton" ng-click="sc.markAll()">Mark Everything No</md-button><br>' +
             '</div>' +
-            
+
 
             // ' <div flex layout="row" layout-padding layout-align="start center"><h2 flex style="max-width:300px; max-height: 300px; padding:15px;">Mark everything at once:</h2>' +
             // '<md-radio-group flex layout="row" ng-change="sc.markAll()" ng-model="sc.markAllData">' +
@@ -89,30 +89,35 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     vm.checkLocalOnLoad = function () {
         console.log('onload function working, offline storage:', vm.studentService.showStartContinue.showStartContinue)
         if (vm.studentService.showStartContinue.showStartContinue) {
-            // vm.showContinueDialog();
+            vm.showContinueDialog();
         }
     }
 
     vm.showContinueDialog = function () {
-    
+
         $mdDialog.show({
             // targetEvent: $event,
-            controller: 'StudentController',
-            controllerAs: 'sc',
+            controller: 'DialogController',
+            controllerAs: 'dc',
             template: '<div id="continueSavedData">' +
             '<p>It looks like you were already collecting some data - do you want to start over?</p>' +
-            '</div>',
-            clickOutsideToClose: false
-        // }).finally(function () {
-            // console.log('I get called on escape and clickoutside, allData: ');
-            // //add data to local storage on close of the dialog
+            '<md-button ng-model="uc.continueStatus" value="continue">Continue</md-button>' +
+            '<md-button ng-model="uc.continueStatus" value="start">Start Over</md-button></div>',
+            clickOutsideToClose: false,
+            // title: "It looks like you were already collecting some data - do you want to start over?",
+            // ok: 'Yes, start over',
+            // cancel: 'Continue where I was'
+        }).then(function () {
+            console.log('continue y/n: ');
+            console.log()
+            //add data to local storage on close of the dialog
             // var allDataString = JSON.stringify(vm.studentDataService.allData);
             // vm.studentService.storage.setItem('allData', allDataString);
-            // //console.log(allDataString);
+            //console.log(allDataString);
             // var testing = JSON.parse(StudentService.storage.getItem('allData'));
             // console.log('storage: ');
             // console.log(testing);
-
+            $mdDialog.hide();
 
         });
     }
@@ -123,5 +128,5 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         $location.path('#/');
     };
 
-    document.onload = vm.checkLocalOnLoad();
+    document.onload = vm.checkLocalOnLoad()
 }]);
