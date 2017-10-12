@@ -4,7 +4,7 @@
     <div id="staffLoginLink" layout='row' layout-align="start start">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
         <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard"><md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
-        <md-button layout="row" layout-align="start start" class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
+        <!-- <md-button layout="row" layout-align="start start" class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button> -->
       </div>
 
       <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="navButton3" href="/#login">Staff Login</md-button>
@@ -16,28 +16,28 @@
 
       <div layout="column" layout-align="start center">
         <div class="wideHeader">
-          <h3 class="md-display-1"> Your teacher will tell you your class number
+          <h3 class="md-display-1" style="font-family:Varela;"> Your teacher will tell you your class number
             <br>
-            <font size="+2">Select a class and start exploring</font>
+            <font size="+2" style="font-family:Varela;">Select a class and start exploring</font>
           </h3>
         </div>
 
         <form ng-submit="sc.studentService.setClass();">
           <md-radio-group layout="column" layout-align="center center" class="classButton" ng-model="sc.studentDataService.allData.bur_oak[0].class">
             <md-radio-button value="1">
-              <h3 class="md-display-1">Class 1</h3>
+              <h3 class="md-display-1" style="font-family:Varela;">Class 1</h3>
             </md-radio-button>
             <md-radio-button value="2">
-              <h3 class="md-display-1">Class 2</h3>
+              <h3 class="md-display-1" style="font-family:Varela;">Class 2</h3>
             </md-radio-button>
             <md-radio-button value="3">
-              <h3 class="md-display-1">Class 3</h3>
+              <h3 class="md-display-1" style="font-family:Varela;">Class 3</h3>
             </md-radio-button>
             <md-radio-button value="4">
-              <h3 class="md-display-1">Class 4</h3>
+              <h3 class="md-display-1" style="font-family:Varela;">Class 4</h3>
             </md-radio-button>
             <md-radio-button value="5">
-              <h3 class="md-display-1">Class 5</h3>
+              <h3 class="md-display-1" style="font-family:Varela;">Class 5</h3>
             </md-radio-button>
           </md-radio-group>
 
@@ -55,7 +55,7 @@
         <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName">
           <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">
             <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
-          <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
+          <!-- <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button> -->
         </div>
         <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select Class</md-button>
         <br>
@@ -125,14 +125,14 @@
           <md-card>
             <md-card-title>
               <md-card-title-text>
-                <span class="md-headline">1. Select the type of organism</span>
-                <span class="md-headline">2. Select the species of organism</span>
+                <span class="md-headline" style="font-family:Varela;">1. Select the type of organism</span>
+                <span class="md-headline" style="font-family:Varela;">2. Select the species of organism</span>
               </md-card-title-text>
             </md-card-title>
           </md-card>
         </div>
         <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
-          <h3 class="md-display-2">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
+          <h3 class="md-display-2" style="font-family:Varela;">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
           <br>
           <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="center center">
             <div ng-repeat="site in [1, 2, 3]">
