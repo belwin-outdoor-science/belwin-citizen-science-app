@@ -9,6 +9,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
     vm.studentDataService = StudentDataService;
 
 
+
     vm.showDialog = function ($event) {
         console.log('$event:', $event);
         // vm.currentSpecimenQuestions (assign questions based on species element clicked)
@@ -24,7 +25,7 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
             '<h2 style="font-family:Varela;">Do you see...</h2> ' +
             '<md-button class="markEverythingButton" ng-click="sc.markAll()">Mark Everything No</md-button><br>' +
             '</div>' +
-            
+
 
             // ' <div flex layout="row" layout-padding layout-align="start center"><h2 flex style="max-width:300px; max-height: 300px; padding:15px;">Mark everything at once:</h2>' +
             // '<md-radio-group flex layout="row" ng-change="sc.markAll()" ng-model="sc.markAllData">' +
@@ -85,10 +86,41 @@ myApp.controller('StudentController', ['StudentService', 'StudentDataService', '
         }
     }
 
+    //checks for local storage and shows continue dialog if needed
+    vm.checkLocalOnLoad = function () {
+        console.log('onload function working, offline storage:', vm.studentService.showStartContinue.showStartContinue)
+        if (vm.studentService.showStartContinue.showStartContinue) {
+            vm.showContinueDialog();
+        }
+    }
+
+    //prompts user to start over or continue with data in local storage
+    vm.showContinueDialog = function () {
+        var confirm = $mdDialog.confirm()
+            .title('It looks like you were already collecting some data today')
+            .textContent('Do you want to start where you left off or start over completely?')
+            .ariaLabel('Continue from last save?')
+           // .targetEvent(ev)
+            .ok('Please start over')
+            .cancel('Keep using my old data');
+
+        $mdDialog.show(confirm).then(function () {
+          //  vm.status = 'You decided to start over.';
+            console.log('You decided to start over.')
+            StudentService.clearLocalStorage();
+        }, function () {
+          //  vm.status = 'You decided to continue.';
+            console.log('You decided to continue.')
+            StudentService.continueSession()
+        });
+    };
+
 
     // for back button to re-set class selection
-    vm.resetClassSelection = function (){
+    vm.resetClassSelection = function () {
         location.reload();
         $location.path('#/');
     };
+
+ document.onload = vm.checkLocalOnLoad() //checks for local storage on page load
 }]);
