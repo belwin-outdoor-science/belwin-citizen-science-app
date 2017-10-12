@@ -1,4 +1,3 @@
-
 <div ng-show="!sc.studentService.showStartContinue.showStartContinue">
   <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start center">
     <div id="staffLoginLink" layout='row' layout-align="start start">
@@ -14,7 +13,7 @@
 
     </div>
 
-    <div layout="column" layout-align="center center">
+    <div layout="column" layout-align="start center">
       <div class="wideHeader">
         <h3 class="md-display-1" style="font-family:Varela;"> Select a class and start exploring. <br>
           <font size="+2" style="font-family:Varela;">Your teacher will give you the class number.</font>
@@ -113,7 +112,7 @@
     <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
     </md-sidenav>
     <div class="studentBody" layout="column" layout-align="start center" layout-fill>
-      <div>
+      <div  layout="column" layout-align="start center" >
         <img class="logoStudentView" src="assets/bos-logo-2.png">
       </div>
       <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
@@ -121,17 +120,17 @@
       <div ng-hide="sc.studentService.selectedOrganism.selectedOrganism">
         <md-card class="instructionCard">
           <md-card-title>
-            <md-card-title-text layout= "column" layout-align= "center center">
+            <md-card-title-text layout="column" layout-align="center center">
               <span ng-hide="plant||mammal||bird" class="md-headline"><p id="studentInstructions1" style="font-family:Varela;">1. Select the type of organism</p></span>
               <span ng-show="plant||mammal||bird" class="md-headline"><p id="studentInstructions2" style="font-family:Varela;">2. Select species</p></span>
             </md-card-title-text>
           </md-card-title>
         </md-card>
       </div>
-      <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
+      <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="start center">
         <h3 font-size="45px" class="md-display-1" style="font-family:Varela;">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
         <br>
-        <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="center center">
+        <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="start center">
           <div ng-repeat="site in [1, 2, 3]">
             <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.setSite(site); sc.showDialog($event);">Site {{ $index + 1 }}</md-button>
           </div>
@@ -139,7 +138,7 @@
       </div>
 
       <div ng-repeat="imageObject in sc.studentDataService.imageArray">
-        <div ng-show="sc.studentService.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="center center">
+        <div ng-show="sc.studentService.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="start center">
           <img class="imageDiv" ng-src="{{imageObject.file}}">
         </div>
       </div>
