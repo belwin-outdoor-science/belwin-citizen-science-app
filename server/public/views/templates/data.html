@@ -1,12 +1,12 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="staffBody">
     <div>
-        <div layout="row" layout-align="center start">
-            <md-button id="backButton" ng-href="/#dashboard" class="md-raised">
-                <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
-            </md-button>
+        <md-button id="backButton" ng-href="/#dashboard" class="md-raised">
+            <md-icon classs="material-icons">keyboard_arrow_left</md-icon>Back
+        </md-button>
+        <div layout="column" layout-align="center center">
             <h3 class="md-display-1" ng-hide="dc.allClasses" id="classDataHeader" style="font-family:Varela;">Data for Class {{dc.classNum}}</h3>
-            <h3 class="md-display-1" ng-show="dc.allClasses" style="font-family:Varela;">Data for All Classes</h3>
+            <h3 class="md-display-1" ng-show="dc.allClasses" style="font-family:Varela; margin-right: 13%; margin-top: -0%; margin-bottom: -1%;">Data for All Classes</h3>
         </div>
     </div>
 
@@ -43,5 +43,5 @@
     <br>
 
     <div ng-show="dc.showData" ng-include="'views/partials/' + dc.partial" layout="column" layout-align="start center"></div>
-    
+
 </div>
