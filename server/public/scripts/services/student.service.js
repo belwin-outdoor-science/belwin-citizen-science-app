@@ -57,9 +57,6 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.setClass = function () {
         for (var organism in self.allData) {
             self.classSelected.classSelected = true;
-            console.log('allData: ');
-            console.log(StudentDataService.allData);
-            
             StudentDataService.allData[organism].map(function (object) {
                 object.class = StudentDataService.allData.bur_oak[0].class;
                 return object;
@@ -149,7 +146,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                     //count number of organisms that have no data in 'i':
                     i++;                   
                     //if all ten organisms have no data, then there's no data to send.
-                    if (i > NUMBER_OF_ORGANISMS) {
+                    if (i >= NUMBER_OF_ORGANISMS) {
                         alert('There\'s no data to send');
                     }
                 }
@@ -174,7 +171,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         $http.post('/student_data/' + organismUnderscored, studentData).then(function (response) {
             if (response.data) {
                 //console.log('student service -- addBurOak -- success: ', response.data);
-                //clear out student data
+                //clear out student data--replaces all properties in each {} in allData with '' except site.
                 clearAllData(organismUnderscored);  //function defined at bottom
                 //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
                 self.postCallbackMessages.push('success');
@@ -204,7 +201,6 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 var testing = JSON.parse(self.storage.getItem('allData'));
                 console.log('allData after removing it: ');
                 console.log(testing);
-                
                 console.log('post successful');
                 $location.path('/success');
             }

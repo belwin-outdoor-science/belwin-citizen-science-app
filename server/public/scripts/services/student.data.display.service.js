@@ -18,7 +18,7 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
             { underscore: 'common_buckthorn', space: 'Common buckthorn' },
             { underscore: 'paper_birch', space: 'Paper birch' },
             { underscore: 'common_milkweed', space: 'Common Milkweed' },
-            { underscore: 'red_oak', space: 'Red oak' }
+            { underscore: 'northern_red_oak', space: 'Northern Red oak' }
         ],
         mammals: [
             { underscore: 'ground_squirrel', space: 'Ground squirrel' }
@@ -35,7 +35,7 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
     // self.selectedOrganism.underscore = 'bur_oak';
     // self.selectedOrganism.space = 'Bur oak';
     self.selectCategory = function (category) {
-         self.selectedCategory.selectedCategory = category;
+        self.selectedCategory.selectedCategory = category;
         console.log('selectCategory clicked');
 
     }
@@ -43,7 +43,7 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
     self.selectOrganism = function (organism) {
         self.selectedOrganism.underscore = organism.underscore;
         self.selectedOrganism.space = organism.space;
-            console.log('selected organism: ');
+        console.log('selected organism: ');
         console.log(self.selectedOrganism.selectedOrganism);
     }
 
@@ -78,22 +78,27 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
         //example: {bur_oak: ['breaking_buds']}
         for (var organism in self.submittedData) {
             self.tableRows[organism] = {};
-            //these variables won't be included in the table body:
-            if (question !== 'class' ||
-                question !== 'site' ||
-                question !== 'notes') {
-                for (var question in self.submittedData[organism][0]) {
-                    //add the question as the first item in the array, so that it is the 
-                    //first item in a table row--the row label.
-                    self.tableRows[organism][question] = [question];
+            for (var question in self.submittedData[organism][0]) {
+                //add the question as the first item in the array, so that it is the 
+                //first item in a table row--the row label.
+                //these variables won't be included in the table body:
+                if (question !== 'class' &&
+                    question !== 'site' &&
+                    question !== 'notes') {
+                        var questionSpace = question.replace(/_/g, ' ');
+                        questionSpace = questionSpace.charAt(0).toUpperCase() + questionSpace.slice(1);
+                    self.tableRows[organism][question] = [questionSpace];
                 }
             }
         }
+        console.log('self.tableRows: ');
+        console.log(self.tableRows);
+
         for (var organism in self.submittedData) {//organism = bur_oak, quaking_aspen...
             self.submittedData[organism].forEach(function (organismAtOneSite, i) { //organismAtOneSite = self.submittedData[organism][i], where i = 0, 1, 2
                 for (var question in organismAtOneSite) { // question = breaking_leaf_buds...
-                    if (question !== 'class' ||
-                        question !== 'site' ||
+                    if (question !== 'class' &&
+                        question !== 'site' &&
                         question !== 'notes') {
                         var observation = organismAtOneSite[question];
                         var row = [];
@@ -112,6 +117,7 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
                             default:
                                 row = [' ', ' ', ' '];
                         }
+                        
                         self.tableRows[organism][question] = self.tableRows[organism][question].concat(row);
                     }
                 }
@@ -121,5 +127,22 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
     console.log('self.tableRows');
     console.log(self.tableRows);
 
-
+    //create self.notes variable to ng-repeat through
+    self.notes = {};
+    for (var organism in self.submittedData) {//organism = bur_oak, quaking_aspen...
+        self.submittedData[organism].forEach(function (organismAtOneSite, i) { //organismAtOneSite = self.submittedData[organism][i], where i = 0, 1, 2
+            self.notes[organism] = [];
+            for (var question in organismAtOneSite) {
+                if (question == 'notes') {
+                    // console.log('organismAtOneSite');
+                    // console.log(organismAtOneSite);
+                    
+                    self.notes[organism].push(organismAtOneSite.notes); 
+                }
+            }
+        });
+    }
+    console.log('self.notes');
+    console.log(self.notes);
+    
 }]);
