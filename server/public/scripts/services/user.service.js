@@ -29,7 +29,7 @@ myApp.factory('UserService', function($http, $location){
       $http.get('/user/logout').then(function(response) {
         console.log('UserService -- logout -- logged out');
         location.reload(); // refreshes page to clear username from cache, if not, then the username will remain after logout
-        $location.path("/login");
+        $location.path("/student");
       });
     }
   };

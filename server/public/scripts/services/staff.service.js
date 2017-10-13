@@ -3,7 +3,7 @@ myApp.service('StaffService', ['$http', function ($http) {
   
     var self = this;
     self.userInfo = {};
-    
+    self.users = {data: []};
   
     self.getUserInfo = function () {
       $http.get('/dashboard').then(function (response) {
@@ -14,8 +14,8 @@ myApp.service('StaffService', ['$http', function ($http) {
 
     self.getUsers = function () {
       $http.get('/user/users').then(function(response) {
-        self.users = response.data;
-        console.log('got users ', self.users);
+        self.users.data = response.data;
+        console.log('staff service got users ', self.users);
       });
     }
 

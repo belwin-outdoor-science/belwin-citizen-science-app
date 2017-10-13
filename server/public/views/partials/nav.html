@@ -1,11 +1,9 @@
 <div class="navbar">
-  <div class="container" layout="column" layout-align="start center">
-    <img id="headerWithLogo" class="logo" src="assets/bos-logo-2.png">
-    <ul>
-      <li><md-button ng-href="#/student">Student View</md-button></li>
-      <li><md-button ng-href="#register">Register New Staff</md-button></li>
-      <li><md-button ng-href="#user">User List</md-button></li>
-      <li><md-button ng-controller="UserController as uc" ng-click="uc.userService.logout()">Log Out</md-button></li>
-    </ul>
+  <!-- <div class="container" layout="column" layout-align="start center"> -->
+    <img class="staffLogo" src="assets/belwin-img-only.png">
+      <md-button class="staffButtons" ng-href="#/student">Student View</md-button>
+      <md-button class="staffButtons" ng-href="#register">Register New Staff</md-button>
+      <md-button class="staffButtons" ng-href="#user">User List</md-button>
+      <md-button class="staffButtonsLogout" ng-controller="LogoutController as lc" ng-click="lc.userService.logout()">Log Out</md-button>
   </div>
 </div>

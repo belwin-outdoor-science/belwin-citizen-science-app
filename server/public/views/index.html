@@ -5,26 +5,23 @@
     <title>Belwin Citizen Science</title>
     <!-- jQuery -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript">
-    $(window).load(function() {
-        $(".loader").fadeOut(3000);
-    })
-    </script>
+
 
     <!-- STYLE, ICONS, FONTS -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy:300,400,500,700,400italic"> -->
+    <link href="https://fonts.googleapis.com/css?family=Varela" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
     <link rel="stylesheet" href="styles/material.min.css">
 
     <!-- Sweet alert -->
     <script src="vendors/sweet-alert/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="vendors/sweet-alert/sweetalert2.min.css">
     <link rel="stylesheet" href="vendors/sweet-alert/animate.min.css">
-    <script src="vendors/jquery.js"></script>    
-    
+    <script src="vendors/jquery.js"></script>
+
     <!-- Angular and Angular-Route -->
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.min.js" charset="utf-8"></script>
@@ -52,33 +49,46 @@
     <!-- CONTROLLERS -->
     <script type="text/javascript" src="scripts/controllers/student.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/logout.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/staff.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/data.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/start.page.controller.js"></script>
     <script type="text/javascript" src="scripts/controllers/student.data.display.controller.js"></script>
-    
+
+
     <!-- SERVICES -->
     <script type="text/javascript" src="scripts/services/user.service.js"></script>
-    <script type="text/javascript" src="scripts/services/student.service.js"></script>  
+    <script type="text/javascript" src="scripts/services/student.service.js"></script>
     <script type="text/javascript" src="scripts/services/student.data.service.js"></script>
     <script type="text/javascript" src="scripts/services/staff.service.js"></script>
     <script type="text/javascript" src="scripts/services/staff.data.service.js"></script>
     <script type="text/javascript" src="scripts/services/student.data.display.service.js"></script>
-    
-    <link rel="icon" href="/views/belwin_logo.ico" />   <!-- FAVICON FORCED -->
+
+    <link rel="icon" href="/views/belwin_logo.ico" />
+    <!-- FAVICON FORCED -->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body ng-app="myApp" onoffline="onOffDetector()" beforeunload="return doNotReload()">
-        <div class="loader">
-            <p>Loading...</p>
-        </div>
+    <div class="loader">
+        <p>Loading...</p>
+    </div>
     <!-- <header ng-include="'/views/partials/header.html'"></header> -->
 
     <main ng-view></main>
-    
+
 </body>
+
+<script type="text/javascript">
+    // $(window).onbeforeload(function() {
+    //     $(".loader").fadeOut(2000);
+    // })
+    $(window).load(function () {
+        console.log('page is loaded')
+        $(".loader").fadeOut(1000);
+    })
+</script>
 
 </html>

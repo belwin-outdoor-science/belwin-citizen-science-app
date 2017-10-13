@@ -1,51 +1,41 @@
-<!-- <div ng-include="'views/partials/nav.html'"></div> -->
-<!-- stat controller as sc -->
-<div layout="row" layout-align="center center" ng-show="sc.studentService.showStartContinue.showStartContinue">
-  <p class="md-title">It looks like you already started collecting data. Do you want to continue with your collection, or start with a new blank
-    data sheet?</p>
-  <md-button ng-href="#/student" class="md-primary md-raised" ng-click="sc.studentService.clearLocalStorage();">Start new</md-button>
-  <md-button ng-href="#/student" ng-click="sc.studentService.continueSession();" class="md-primary md-raised">Continue previous</md-button>
-  <!-- add toggle class disabled if local storage is empty to continue button 
-ng-disabled="true/false"
-      ng-class="{'md-primary' : vm.cardService.myCards}
-      sets md-primary class if vm.cardService.myCards is true
-
-  add href to start and continue
-ng-click on start will clear local storage
--->
-</div>
-
 <div ng-show="!sc.studentService.showStartContinue.showStartContinue">
-  <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start start">
-    <div id="staffLoginLink" layout='row' layout-align="end start">
+  <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start center">
+    <div id="staffLoginLink" layout='row' layout-align="start start">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
-        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
-        <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">
+          <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
+        <!-- <md-button layout="row" layout-align="start start" class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button> -->
       </div>
-      <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="md-raised" href="/#login">Staff Login</md-button>
-    </div>
-    <div class="container">
+
+      <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="navButton3" href="/#login">Staff Login</md-button>
+
       <img class="logo" src="assets/bos-logo-2.png">
+
     </div>
-    <div id="classSelect">
-      <h3 class="md-display-1">Select a class to start exploring!
-        <br> Your teacher will tell you your class number.</h3>
+
+    <div layout="column" layout-align="start center">
+      <div class="wideHeader">
+        <h3 class="md-display-1" style="font-family:Varela;"> Select a class and start exploring. <br>
+          <font size="+2" style="font-family:Varela;">Your teacher will give you the class number.</font>
+        </h3>
+      </div>
+
       <form ng-submit="sc.studentService.setClass();">
-        <md-radio-group class="classButton" ng-model="sc.studentDataService.allData.bur_oak[0].class">
+        <md-radio-group layout="column" layout-align="center center" class="classButton" ng-model="sc.studentDataService.allData.bur_oak[0].class">
           <md-radio-button value="1">
-            <h3 class="md-display-1">Class 1</h3>
+            <h3 class="md-display-1" style="font-family:Varela;">Class 1</h3>
           </md-radio-button>
           <md-radio-button value="2">
-            <h3 class="md-display-1">Class 2</h3>
+            <h3 class="md-display-1" style="font-family:Varela;">Class 2</h3>
           </md-radio-button>
           <md-radio-button value="3">
-            <h3 class="md-display-1">Class 3</h3>
+            <h3 class="md-display-1" style="font-family:Varela;">Class 3</h3>
           </md-radio-button>
           <md-radio-button value="4">
-            <h3 class="md-display-1">Class 4</h3>
+            <h3 class="md-display-1" style="font-family:Varela;">Class 4</h3>
           </md-radio-button>
           <md-radio-button value="5">
-            <h3 class="md-display-1">Class 5</h3>
+            <h3 class="md-display-1" style="font-family:Varela;">Class 5</h3>
           </md-radio-button>
         </md-radio-group>
 
@@ -61,10 +51,10 @@ ng-click on start will clear local storage
 
     <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName">
-        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">Dashboard</md-button>
-        <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button>
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">
+          <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
+        <!-- <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button> -->
       </div>
-      <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select </br> Class</md-button>
       <p class="navText">Type</p>
       <div layout="column" layout-align="start center">
         <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false; species=! species">
@@ -112,48 +102,44 @@ ng-click on start will clear local storage
     sc.studentService.selectOrganism('eastern_bluebird', 'Eastern Bluebird')">
         Eastern Bluebird</md-button>
 
-      <div layout="column" layout-align="end center" class="buttomButton">
-        <md-button class="navButton" ng-click="sc.studentService.submitData()">Back at Class
-          <br> All Done!</md-button>
+      <div class="buttomButton">
+        <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select Class</md-button>
+        <md-button class="navButton" id="backToClassButton" ng-click="sc.studentService.submitData()">Back at Class. <br> Submit!</md-button>
       </div>
 
     </md-sidenav>
 
     <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
     </md-sidenav>
-    <div class="studentBody" layout="column" layout-align="start center" layout-fill>
-      <div>
-        <img class="logo" src="assets/bos-logo-2.png">
+    <div class="studentBody" layout="column" layout-align="start center">
+      <div  layout="column" layout-align="start center" >
+        <img class="logoStudentView" src="assets/bos-logo-2.png">
       </div>
       <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
 2. n-show for buttons.  True only if organism from repeat == sc.selectedOrganism -->
       <div ng-hide="sc.studentService.selectedOrganism.selectedOrganism">
-        <md-card>
+        <md-card class="instructionCard">
           <md-card-title>
-            <md-card-title-text>
-              <span class="md-headline">1. Select the type of organism</span>
-              <span class="md-headline">2. Select the species of organism</span>
+            <md-card-title-text layout="column" layout-align="center center">
+              <span ng-hide="plant||mammal||bird" class="md-headline"><p id="studentInstructions1" style="font-family:Varela;">1. Select the type of organism</p></span>
+              <span ng-show="plant||mammal||bird" class="md-headline"><p id="studentInstructions2" style="font-family:Varela;">2. Select species</p></span>
             </md-card-title-text>
           </md-card-title>
         </md-card>
       </div>
-      <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
-        <h3 class="h3 ">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
+      <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="start center">
+        <h3 font-size="45px" class="md-display-1 speciesName" style="font-family:Varela;">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
         <br>
-        <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="center center">
+        <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="start center">
           <div ng-repeat="site in [1, 2, 3]">
-            <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.setSite(site); sc.showDialog($event);">{{ sc.studentService.selectedOrganismText.selectedOrganismText}} {{ $index + 1 }}</md-button>
+            <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.setSite(site); sc.showDialog($event);">Site {{ $index + 1 }}</md-button>
           </div>
         </div>
       </div>
 
-      <br>
-      <br>
-      <br>
-
       <div ng-repeat="imageObject in sc.studentDataService.imageArray">
-        <div ng-show="sc.studentService.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="center center">
-          <img ng-src="{{imageObject.file}}">
+        <div ng-show="sc.studentService.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="start center">
+          <img class="imageDiv" ng-src="{{imageObject.file}}">
         </div>
       </div>
     </div>
