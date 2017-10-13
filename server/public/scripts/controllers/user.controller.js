@@ -4,7 +4,7 @@ myApp.controller('UserController', ['UserService', 'StaffService', '$routeParams
   vm.userService = UserService;
   vm.userObject = UserService.userObject;
   vm.StaffService = StaffService;
-
+  vm.users = StaffService.users
   console.log('$routeParams', $routeParams);
 
   //Calls function to get user list on staff view

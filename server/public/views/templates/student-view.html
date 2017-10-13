@@ -1,151 +1,147 @@
-<div>
-    <!-- <div onload="sc.checkLocalOnLoad()" ng-show="!sc.studentService.showStartContinue.showStartContinue"> -->
-  <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start start">
+<div ng-show="!sc.studentService.showStartContinue.showStartContinue">
+  <div ng-show="!sc.studentService.classSelected.classSelected" class="classSelectView" layout="column" layout-align="start center">
     <div id="staffLoginLink" layout='row' layout-align="start start">
       <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName" class="staffStudentButtons">
-        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard"><md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">
+          <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
         <!-- <md-button layout="row" layout-align="start start" class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button> -->
       </div>
 
       <md-button ng-controller="UserController as uc" ng-hide="uc.userService.userObject.userName" class="navButton3" href="/#login">Staff Login</md-button>
 
+      <img class="logo" src="assets/bos-logo-2.png">
 
-        <img class="logo" src="assets/bos-logo-2.png">
+    </div>
 
+    <div layout="column" layout-align="start center">
+      <div class="wideHeader">
+        <h3 class="md-display-1" style="font-family:Varela;"> Select a class and start exploring. <br>
+          <font size="+2" style="font-family:Varela;">Your teacher will give you the class number.</font>
+        </h3>
       </div>
 
-      <div layout="column" layout-align="start center">
-        <div class="wideHeader">
-          <h3 class="md-display-1" style="font-family:Varela;"> Your teacher will tell you your class number
-            <br>
-            <font size="+2" style="font-family:Varela;">Select a class and start exploring</font>
-          </h3>
+      <form ng-submit="sc.studentService.setClass();">
+        <md-radio-group layout="column" layout-align="center center" class="classButton" ng-model="sc.studentDataService.allData.bur_oak[0].class">
+          <md-radio-button value="1">
+            <h3 class="md-display-1" style="font-family:Varela;">Class 1</h3>
+          </md-radio-button>
+          <md-radio-button value="2">
+            <h3 class="md-display-1" style="font-family:Varela;">Class 2</h3>
+          </md-radio-button>
+          <md-radio-button value="3">
+            <h3 class="md-display-1" style="font-family:Varela;">Class 3</h3>
+          </md-radio-button>
+          <md-radio-button value="4">
+            <h3 class="md-display-1" style="font-family:Varela;">Class 4</h3>
+          </md-radio-button>
+          <md-radio-button value="5">
+            <h3 class="md-display-1" style="font-family:Varela;">Class 5</h3>
+          </md-radio-button>
+        </md-radio-group>
+
+        <div layout="row" layout-align="center end">
+          <md-button type="ng-submit" class="continueButton">Continue</md-button>
         </div>
 
-        <form ng-submit="sc.studentService.setClass();">
-          <md-radio-group layout="column" layout-align="center center" class="classButton" ng-model="sc.studentDataService.allData.bur_oak[0].class">
-            <md-radio-button value="1">
-              <h3 class="md-display-1" style="font-family:Varela;">Class 1</h3>
-            </md-radio-button>
-            <md-radio-button value="2">
-              <h3 class="md-display-1" style="font-family:Varela;">Class 2</h3>
-            </md-radio-button>
-            <md-radio-button value="3">
-              <h3 class="md-display-1" style="font-family:Varela;">Class 3</h3>
-            </md-radio-button>
-            <md-radio-button value="4">
-              <h3 class="md-display-1" style="font-family:Varela;">Class 4</h3>
-            </md-radio-button>
-            <md-radio-button value="5">
-              <h3 class="md-display-1" style="font-family:Varela;">Class 5</h3>
-            </md-radio-button>
-          </md-radio-group>
+      </form>
+    </div>
+    <br>
+  </div>
+  <div ng-show="sc.studentService.classSelected.classSelected">
 
-          <div layout="row" layout-align="center end">
-            <md-button type="ng-submit" class="continueButton">Continue</md-button>
-          </div>
-
-        </form>
+    <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
+      <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName">
+        <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">
+          <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
+        <!-- <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button> -->
+      </div>
+      <p class="navText">Type</p>
+      <div layout="column" layout-align="start center">
+        <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false; species=! species">
+          Plants</md-button>
+        <md-button class="navButton" ng-click="mammal = !mammal; plant = false; bird = false; species=! species">
+          Mammals</md-button>
+        <md-button class="navButton" ng-click="bird = !bird; mammal = false; plant = false; species=! species">
+          Birds</md-button>
       </div>
       <br>
-    </div>
-    <div ng-show="sc.studentService.classSelected.classSelected">
-
-      <md-sidenav id="studentNavBar" md-is-locked-open="true" md-component-id="left" class="md-sidenav-left" layout="column" layout-align="start center">
-        <div ng-controller="UserController as uc" ng-show="uc.userService.userObject.userName">
-          <md-button class="staffStudentButtonDashboard md-raised" ng-href="#/dashboard">
-            <md-icon class="material-icons">keyboard_arrow_left</md-icon>Back</md-button>
-          <!-- <md-button class="staffStudentButtonLogout" ng-click="uc.userService.logout()">Log Out</md-button> -->
-        </div>
-        <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select Class</md-button>
-        <br>
-        <p class="navText">Type</p>
-        <div layout="column" layout-align="start center">
-          <md-button class="navButton" ng-click="plant = !plant; mammal = false; bird = false; species=! species">
-            Plants</md-button>
-          <md-button class="navButton" ng-click="mammal = !mammal; plant = false; bird = false; species=! species">
-            Mammals</md-button>
-          <md-button class="navButton" ng-click="bird = !bird; mammal = false; plant = false; species=! species">
-            Birds</md-button>
-        </div>
-        <br>
-        <div layout="column" layout-align="center center">
-          <div ng-show="plant||mammal||bird" class="navText">Species</div>
-        </div>
-        <md-button class="navButton" ng-show="plant" ng-click="bur_oak = !bur_oak; 
+      <div layout="column" layout-align="center center">
+        <div ng-show="plant||mammal||bird" class="navText">Species</div>
+      </div>
+      <md-button class="navButton" ng-show="plant" ng-click="bur_oak = !bur_oak; 
     sc.studentService.selectOrganism('bur_oak', 'Bur Oak')">
-          Bur Oak</md-button>
-        <md-button class="navButton" ng-show="plant" ng-click="red_oak = !red_oak; 
+        Bur Oak</md-button>
+      <md-button class="navButton" ng-show="plant" ng-click="red_oak = !red_oak; 
     sc.studentService.selectOrganism('northern_red_oak', 'Red Oak')">
-          Red Oak</md-button>
-        <md-button class="navButton" ng-show="plant" ng-click="pin_oak = !pin_oak; 
+        Red Oak</md-button>
+      <md-button class="navButton" ng-show="plant" ng-click="pin_oak = !pin_oak; 
       sc.studentService.selectOrganism('pin_oak', 'Pin Oak')">
-          Pin Oak</md-button>
-        <md-button class="navButton" ng-show="plant" ng-click="quaking_aspen = !quaking_aspen; 
+        Pin Oak</md-button>
+      <md-button class="navButton" ng-show="plant" ng-click="quaking_aspen = !quaking_aspen; 
     sc.studentService.selectOrganism('quaking_aspen', 'Quaking Aspen')">
-          Quaking Aspen</md-button>
-        <md-button class="navButton" ng-show="plant" ng-click="common_buckthorn = !common_buckthorn; 
+        Quaking Aspen</md-button>
+      <md-button class="navButton" ng-show="plant" ng-click="common_buckthorn = !common_buckthorn; 
     sc.studentService.selectOrganism('common_buckthorn', 'Common Buckthorn')">
-          Common Buckthorn</md-button>
-        <md-button class="navButton" ng-show="plant" ng-click="paper_birch = !paper_birch; 
+        Common Buckthorn</md-button>
+      <md-button class="navButton" ng-show="plant" ng-click="paper_birch = !paper_birch; 
     sc.studentService.selectOrganism('paper_birch', 'Paper Birch')">
-          Paper Birch</md-button>
-        <md-button class="navButton" ng-show="plant" ng-click="common_milkweed = !common_milkweed; 
+        Paper Birch</md-button>
+      <md-button class="navButton" ng-show="plant" ng-click="common_milkweed = !common_milkweed; 
     sc.studentService.selectOrganism('common_milkweed', 'Common Milkweed')">
-          Common Milkweed</md-button>
-        <md-button class="navButton" ng-show="mammal" ng-click="ground_squirrel = !ground_squirrel; 
+        Common Milkweed</md-button>
+      <md-button class="navButton" ng-show="mammal" ng-click="ground_squirrel = !ground_squirrel; 
     sc.studentService.selectOrganism('ground_squirrel', 'Ground Squirrel')">
-          Ground Squirrel</md-button>
-        <md-button class="navButton" ng-show="bird" ng-click="ruby_throated_hummingbird = !ruby_throated_hummingbird;
+        Ground Squirrel</md-button>
+      <md-button class="navButton" ng-show="bird" ng-click="ruby_throated_hummingbird = !ruby_throated_hummingbird;
     sc.studentService.selectOrganism('ruby_throated_hummingbird', 'Ruby Throated Hummingbird')">
-          Ruby Throated Hummingbird</md-button>
-        <md-button class="navButton" ng-show="bird" ng-click="dark_eyed_junco = !dark_eyed_junco;
+        Ruby Throated Hummingbird</md-button>
+      <md-button class="navButton" ng-show="bird" ng-click="dark_eyed_junco = !dark_eyed_junco;
     sc.studentService.selectOrganism('dark_eyed_junco', 'Dark-eyed Junco')">
-          Dark-eyed Junco</md-button>
-        <md-button class="navButton" ng-show="bird" ng-click="eastern_bluebird = !eastern_bluebird;
+        Dark-eyed Junco</md-button>
+      <md-button class="navButton" ng-show="bird" ng-click="eastern_bluebird = !eastern_bluebird;
     sc.studentService.selectOrganism('eastern_bluebird', 'Eastern Bluebird')">
-          Eastern Bluebird</md-button>
+        Eastern Bluebird</md-button>
 
-        <div class="buttomButton">
-          <md-button class="navButton" id="backToClassButton" ng-click="sc.studentService.submitData()">Back at Class.
-            <br> All Done!</md-button>
-        </div>
+      <div class="buttomButton">
+        <md-button class="selectNewClassButton" ng-click="!sc.studentService.showStartContinue.showStartContinue; sc.studentService.classSelected.classSelected=false">Select Class</md-button>
+        <md-button class="navButton" id="backToClassButton" ng-click="sc.studentService.submitData()">Back at Class. <br> Submit!</md-button>
+      </div>
 
-      </md-sidenav>
+    </md-sidenav>
 
-      <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
-      </md-sidenav>
-      <div class="studentBody" layout="column" layout-align="start center" layout-fill>
-        <div>
-          <img class="logoStudentView" src="assets/bos-logo-2.png">
-        </div>
-        <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
+    <md-sidenav md-component-id="right" md-is-locked-open="$mdMedia('min-width: 333px')" class="md-sidenav-right">
+    </md-sidenav>
+    <div class="studentBody" layout="column" layout-align="start center">
+      <div  layout="column" layout-align="start center" >
+        <img class="logoStudentView" src="assets/bos-logo-2.png">
+      </div>
+      <!-- 1. ng-show true / false value.  This will true when the user clicks an organism.
 2. n-show for buttons.  True only if organism from repeat == sc.selectedOrganism -->
-        <div ng-hide="sc.studentService.selectedOrganism.selectedOrganism">
-          <md-card>
-            <md-card-title>
-              <md-card-title-text>
-                <span class="md-headline" style="font-family:Varela;">1. Select the type of organism</span>
-                <span class="md-headline" style="font-family:Varela;">2. Select the species of organism</span>
-              </md-card-title-text>
-            </md-card-title>
-          </md-card>
-        </div>
-        <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="center center">
-          <h3 class="md-display-2" style="font-family:Varela;">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
-          <br>
-          <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="center center">
-            <div ng-repeat="site in [1, 2, 3]">
-              <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.setSite(site); sc.showDialog($event);">Site {{ $index + 1 }}</md-button>
-            </div>
+      <div ng-hide="sc.studentService.selectedOrganism.selectedOrganism">
+        <md-card class="instructionCard">
+          <md-card-title>
+            <md-card-title-text layout="column" layout-align="center center">
+              <span ng-hide="plant||mammal||bird" class="md-headline"><p id="studentInstructions1" style="font-family:Varela;">1. Select the type of organism</p></span>
+              <span ng-show="plant||mammal||bird" class="md-headline"><p id="studentInstructions2" style="font-family:Varela;">2. Select species</p></span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-card>
+      </div>
+      <div ng-show="sc.studentService.selectedOrganism.selectedOrganism" class="speciesView" layout="column" layout-align="start center">
+        <h3 font-size="45px" class="md-display-1 speciesName" style="font-family:Varela;">{{ sc.studentService.selectedOrganismText.selectedOrganismText }}</h3>
+        <br>
+        <div ng-repeat="organism in sc.studentDataService.organismsArray" layout="row" layout-align="start center">
+          <div ng-repeat="site in [1, 2, 3]">
+            <md-button class='siteButton' ng-show="sc.studentService.selectedOrganism.selectedOrganism == organism" ng-click="sc.studentService.setSite(site); sc.showDialog($event);">Site {{ $index + 1 }}</md-button>
           </div>
         </div>
+      </div>
 
-        <div ng-repeat="imageObject in sc.studentDataService.imageArray">
-          <div ng-show="sc.studentService.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="center center">
-            <img class="imageDiv" ng-src="{{imageObject.file}}">
-          </div>
+      <div ng-repeat="imageObject in sc.studentDataService.imageArray">
+        <div ng-show="sc.studentService.selectedOrganism.selectedOrganism == imageObject.organismName" layout="column" layout-align="start center">
+          <img class="imageDiv" ng-src="{{imageObject.file}}">
         </div>
       </div>
     </div>
   </div>
+</div>
