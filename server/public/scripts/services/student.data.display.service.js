@@ -91,8 +91,6 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
                 }
             }
         }
-        console.log('self.tableRows: ');
-        console.log(self.tableRows);
 
         for (var organism in self.submittedData) {//organism = bur_oak, quaking_aspen...
             self.submittedData[organism].forEach(function (organismAtOneSite, i) { //organismAtOneSite = self.submittedData[organism][i], where i = 0, 1, 2
@@ -124,26 +122,17 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
             });
         }
     }
-    console.log('self.tableRows');
-    console.log(self.tableRows);
 
     //create self.notes variable to ng-repeat through
-    self.notes = { notes: [] };
+    self.notes = {};
     for (var organism in self.submittedData) {//organism = bur_oak, quaking_aspen...
-        self.notes.notes[organism] = [];
+        self.notes[organism] = [];
         self.submittedData[organism].forEach(function (organismAtOneSite, i) { //organismAtOneSite = self.submittedData[organism][i], where i = 0, 1, 2
-
             for (var question in organismAtOneSite) {
                 if (question == 'notes') {
-                    // console.log('organismAtOneSite');
-                    // console.log(organismAtOneSite);
-
-                    self.notes.notes[organism].push(organismAtOneSite.notes);
+                    self.notes[organism].push(organismAtOneSite.notes);
                 }
             }
         });
     }
-    console.log('self.notes');
-    console.log(self.notes);
-
 }]);
