@@ -191,6 +191,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     }
     //this function is called in the success and fail parts of each post request
     function checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms) {
+        console.log('StudentService: made it to checkIfAllPostsAreDoneAndErrorHandling')
         //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
         //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == numberOfOrganisms) {
