@@ -85,8 +85,8 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
                 if (question !== 'class' &&
                     question !== 'site' &&
                     question !== 'notes') {
-                        var questionSpace = question.replace(/_/g, ' ');
-                        questionSpace = questionSpace.charAt(0).toUpperCase() + questionSpace.slice(1);
+                    var questionSpace = question.replace(/_/g, ' ');
+                    questionSpace = questionSpace.charAt(0).toUpperCase() + questionSpace.slice(1);
                     self.tableRows[organism][question] = [questionSpace];
                 }
             }
@@ -117,7 +117,7 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
                             default:
                                 row = [' ', ' ', ' '];
                         }
-                        
+
                         self.tableRows[organism][question] = self.tableRows[organism][question].concat(row);
                     }
                 }
@@ -128,21 +128,22 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
     console.log(self.tableRows);
 
     //create self.notes variable to ng-repeat through
-    self.notes = {};
+    self.notes = { notes: [] };
     for (var organism in self.submittedData) {//organism = bur_oak, quaking_aspen...
+        self.notes.notes[organism] = [];
         self.submittedData[organism].forEach(function (organismAtOneSite, i) { //organismAtOneSite = self.submittedData[organism][i], where i = 0, 1, 2
-            self.notes[organism] = [];
+
             for (var question in organismAtOneSite) {
                 if (question == 'notes') {
                     // console.log('organismAtOneSite');
                     // console.log(organismAtOneSite);
-                    
-                    self.notes[organism].push(organismAtOneSite.notes); 
+
+                    self.notes.notes[organism].push(organismAtOneSite.notes);
                 }
             }
         });
     }
     console.log('self.notes');
     console.log(self.notes);
-    
+
 }]);
