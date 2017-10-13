@@ -62,11 +62,27 @@
 
         <md-card class="speciesNotesCard" ng-show="sc.studentDataDisplayService.selectedOrganism.space">
             <h3 class="speciesNotesTitle">Notes</h3>
-            <ul class="speciesNotesList">
-                <li>{{note.notes}}</li>
-            </ul>
+            <div ng-repeat="(organism, arrayOfNotes) in sc.studentDataDisplayService.notes.notes">
+                    
+                <ul class="speciesNotesList" ng-repeat="note in arrayOfNotes track by $index">
+                        <li ng-show="organism == sc.studentDataDisplayService.selectedOrganism.underscore">{{ note }}</li>
+                    </ul>
+            </div>
         </md-card>
 
+        <!-- <div layout="row" class="" ng-show="sc.studentDataDisplayService.selectedOrganism.space">
+            Hello
+            <md-card c>
+                <div>gfdgfedsfs {{sc.studentDataDisplayService.notes.notes}}
+                </div>
+                <h3 class="speciesNotesTitle">Notes</h3>
+                <div ng-repeat="(organism, arrayOfNotes) in sc.studentDataDisplayService.notes.notes">
+                    <ul class="speciesNotesList" ng-repeat="note in arrayOfNotes track by $index">
+                        <li ng-show="organism == sc.studentDataDisplayService.selectedOrganism.underscore">{{ note }}</li>
+                    </ul>
+                </div>
+            </md-card>
+        </div> -->
     </div>
 
 </div>
