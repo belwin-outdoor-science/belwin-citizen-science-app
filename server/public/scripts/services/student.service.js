@@ -33,14 +33,14 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         // if (confirm("Are you .") == true) {
         console.log('clearLocalStorageCalled');
         self.showStartContinue.showStartContinue = false;
-        self.storage.clear(); 
+        self.storage.clear();
         console.log('clearLocalStorage called.');
     }
 
     //if there's no local storage, cascades events that will build up StudentDataService.allData
     if (self.lastSession == null || self.lastSession == undefined) {
         self.showStartContinue.showStartContinue = false;
-        
+
     }
 
     //CONTINUE
@@ -59,7 +59,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             self.classSelected.classSelected = true;
             console.log('allData: ');
             console.log(StudentDataService.allData);
-            
+
             StudentDataService.allData[organism].map(function (object) {
                 object.class = StudentDataService.allData.bur_oak[0].class;
                 return object;
@@ -120,7 +120,17 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         //need to figure out why local storage isn't working here
         // var studentDataArray = [self.allData.bur_oak, self.allData.common_buckthorn, self.allData.common_milkweed, self.allData.eastern_bluebird, self.allData.ground_squirrel, self.allData.dark_eyed_junco, self.allData.paper_birch, self.allData.quaking_aspen, self.allData.northern_red_oak, self.allData.ruby_throated_hummingbird];
         var allDataFiltered = {};
-        if (confirm("Are you sure you want to submit your data now?  Make sure you are at Belwin Center.") == true) {
+
+        var confirm = $mdDialog.confirm()
+            .title('Are you all done?')
+           // .textContent('Are you all done?')
+            .ariaLabel('Ready to submit?')
+            // .targetEvent(ev)
+            .ok('Yes! Send my data')
+            .cancel('Not Yet');
+
+        $mdDialog.show(confirm).then(function () {
+            //  vm.status = 'You decided to start over.';
             //finally realized I can't redefine self.allData here.  For some reason, it will just
             //be an empty object like it's defined initially in studentDataService, so I used 
             //var allData
@@ -133,7 +143,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                         var theresData = checkForData(object);
                         if (theresData) {
                             numberOfOrganisms++;
-                        }                       
+                        }
                         return theresData;
                     });
                 }
@@ -147,15 +157,16 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                     postOneOrganism(organism, allDataFiltered[organism], numberOfOrganisms);
                 } else {
                     //count number of organisms that have no data in 'i':
-                    i++;                   
+                    i++;
                     //if all ten organisms have no data, then there's no data to send.
                     if (i > NUMBER_OF_ORGANISMS) {
                         alert('There\'s no data to send');
                     }
                 }
             }
-
-        }
+        }, function () {
+            console.log('You are not ready')
+        });
     }
 
     function checkForData(object) {
@@ -205,7 +216,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 var testing = JSON.parse(self.storage.getItem('allData'));
                 console.log('allData after removing it: ');
                 console.log(testing);
-                
+
                 console.log('post successful');
                 $location.path('/success');
             }
@@ -230,16 +241,16 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         //student-view on clicking the species name, set the selected organism variable text for displaying on dom
         self.selectedOrganismText.selectedOrganismText = organismText;
         console.log('select organism:', self.selectedOrganism);
-    }  
+    }
 
     //success.html
     //can't use ng-href because the page needs to be loaded in order for it to bring you back to selecting
     //the class for some reason.
     self.loadStudentPage = function () {
         self.classSelected.classSelected = false;
-        self.storage.clear();    
+        self.storage.clear();
         self.selectedOrganism.selectedOrganism = '';
         $location.path('#/');
-             
+
     }
 }]);
