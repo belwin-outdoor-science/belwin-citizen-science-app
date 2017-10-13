@@ -1,15 +1,15 @@
-<div class="staffBody" layout="row" layout-align="end start">
-        <!-- <md-button class="md-raised" ng-href="#/student">Start New Observation <md-icon class="material-icons">forward</md-icon></md-button> -->
-    </div>
+<div class="staffBody" layout="column" layout-align="start center">
+    <!-- <md-button class="md-raised" ng-href="#/student">Start New Observation <md-icon class="material-icons">forward</md-icon></md-button> -->
+
     </br>
     </br>
     </br>
-    <div id="dataNavButtons" layout="row" layout-align="center center">
+    <div id="dataNavButtons" layout="row" layout-align="center start">
         <div ng-repeat="(category, arr) in sc.studentDataDisplayService.organisms">
             <md-button class="navButton" ng-click="sc.studentDataDisplayService.selectCategory(category)">{{ category }}</md-button>
         </div>
     </div>
-    
+    <br>
     <div layout="row" layout-align="center center" layout-wrap>
         <div ng-show="sc.studentDataDisplayService.selectedCategory.selectedCategory == 'plants' " ng-repeat="organism in sc.studentDataDisplayService.organisms.plants">
             <md-button class="navButton2" ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
@@ -21,8 +21,10 @@
             <md-button class="navButton2" ng-click="sc.studentDataDisplayService.selectOrganism(organism)">{{ organism.space }}</md-button>
         </div>
     </div>
-    
-    <div layout="column" layout-align="center center">
+
+    <br>
+
+    <div layout="column" layout-align="start center">
         <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" ng-show="sc.studentDataDisplayService.selectedOrganism.space">
             <thead>
                 <tr>
@@ -50,20 +52,21 @@
                     <th class="dataTableHeader">?</th>
                 </tr>
             </thead>
-                  <tbody ng-repeat="(question, arr) in sc.studentDataDisplayService.tableRows[sc.studentDataDisplayService.selectedOrganism.underscore]">
+            <tbody ng-repeat="(question, arr) in sc.studentDataDisplayService.tableRows[sc.studentDataDisplayService.selectedOrganism.underscore]">
                 <tr>
-                    <td  ng-repeat="x in arr track by $index">{{x}}</td>
-    
+                    <td ng-repeat="x in arr track by $index">{{x}}</td>
+
                 </tr>
             </tbody>
         </table>
-    
-        <md-card class="speciesNotesCard">
+
+        <md-card class="speciesNotesCard" ng-show="sc.studentDataDisplayService.selectedOrganism.space">
             <h3 class="speciesNotesTitle">Notes</h3>
             <ul class="speciesNotesList">
                 <li>{{note.notes}}</li>
             </ul>
-    
         </md-card>
-    
+
     </div>
+
+</div>
