@@ -494,6 +494,7 @@ md-input-container.loginInput {
   background-color: #EB9486;
   color: black;
   font-weight: normal;
+  min-height: 75px;
 }
 
 
