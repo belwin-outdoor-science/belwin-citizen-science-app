@@ -123,7 +123,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
         var confirm = $mdDialog.confirm()
             .title('Are you all done?')
-           // .textContent('Are you all done?')
+            // .textContent('Are you all done?')
             .ariaLabel('Ready to submit?')
             // .targetEvent(ev)
             .ok('Yes! Send my data')
@@ -139,20 +139,25 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             var numberOfOrganisms = 0;
             organisms.forEach(function (organism, i) {
                 if (allData[organism] != undefined) {
+                    var organismHasData = false;
                     allDataFiltered[organism] = allData[organism].filter(function (object, i) {
                         var theresData = checkForData(object);
                         if (theresData) {
-                            numberOfOrganisms++;
+                            //numberOfOrganisms++;
+                            organismHasData = true;
                         }
                         return theresData;
                     });
+                    if (organismHasData) {
+                        numberOfOrganisms++;
+                    }
                 }
             });
             //post requests
             console.log('allDataFiltered: ');
             console.log(allDataFiltered);
             var i = 0;
-            for (organism in allDataFiltered) {
+            for (var organism in allDataFiltered) {
                 if (allDataFiltered[organism].length > 0) {
                     postOneOrganism(organism, allDataFiltered[organism], numberOfOrganisms);
                 } else {
@@ -203,6 +208,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     //this function is called in the success and fail parts of each post request
     function checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms) {
         console.log('StudentService: made it to checkIfAllPostsAreDoneAndErrorHandling')
+       // console.log('numberOfOrganisms', numberOfOrganisms, 'self.postCallbackMessages', self.postCallbackMessages)
         //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
         //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == numberOfOrganisms) {
@@ -210,6 +216,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
                 //to wifi and the sweet alert would break the app.
                 self.postCallbackMessages = [];
+              //  console.log("in (self.postCallbackMessages.indexOf('error') >= 0)")
             } else {
                 //clear local storage and allData
                 self.storage.removeItem('allData');
@@ -230,7 +237,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 }
             }
         });
-
+        self.studentDataService.allData.bur_oak[0].class = ""
     }
 
     //student-view.html on clicking species name, calls this function
@@ -250,6 +257,5 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         self.storage.clear();
         self.selectedOrganism.selectedOrganism = '';
         $location.path('#/');
-
     }
 }]);
