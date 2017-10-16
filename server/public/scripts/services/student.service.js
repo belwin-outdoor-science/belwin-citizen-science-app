@@ -235,13 +235,13 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 alert('Error uploading data. Try again'); //I was worried they might try to upload data while not connected
                 //to wifi and the sweet alert would break the app.
                 self.postCallbackMessages = [];
-              //  console.log("in (self.postCallbackMessages.indexOf('error') >= 0)")
+                console.log("in (self.postCallbackMessages.indexOf('error') >= 0)")
             } else {
                 //clear local storage and allData
                 self.storage.removeItem('allData');
                 var testing = JSON.parse(self.storage.getItem('allData'));
                 console.log('allData after removing it: ');
-                console.log(testing);
+                console.log(self.allData);
                 console.log('post successful');
                 $location.path('/success');
             }
@@ -249,14 +249,15 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     }
     //clears out self.allData except for site number
     function clearAllData(organism) {
-        self.allData[organism].forEach(function (dataObj, i) {
+        StudentDataService.allData[organism].forEach(function (dataObj, i) {
             for (var question in dataObj) {
                 if (question !== 'site') {
-                    self.allData[organism][i][question] = '';
+                    StudentDataService.allData[organism][i][question] = '';
                 }
             }
         });
-        self.studentDataService.allData.bur_oak[0].class = ""
+        //clears class 
+    self.studentDataService.allData.bur_oak[0].class = ""
     }
 
     //student-view.html on clicking species name, calls this function
