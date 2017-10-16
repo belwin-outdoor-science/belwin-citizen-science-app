@@ -1,4 +1,4 @@
-myApp.controller('LoginController', function($http, $location, UserService) {
+myApp.controller('LoginController', ['$http', 'UserService', '$location', '$mdDialog', function($http, UserService, $location, $mdDialog) {
     console.log('LoginController created');
     var vm = this;
     vm.user = {
@@ -38,17 +38,23 @@ myApp.controller('LoginController', function($http, $location, UserService) {
         $http.post('/register', vm.user).then(function(response) {
           console.log('LoginController -- registerUser -- success');
           if(response) {
-            swal(
-              'User Successfully Created',
-              'Click OK to return your dashboard',
-              'success'
-            )
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(false)
+                .title('New User Account Successfully Submitted.')
+                .textContent('Please provide the account credentials to the new user.')
+                // .ariaLabel('Alert Dialog Demo')
+                .ok('Ok')
+                // .targetEvent(ev)
+            );
           }
           $location.path('/dashboard');
+          
         }).catch(function(response) {
           console.log('LoginController -- registerUser -- error');
           vm.message = "Please try again."
         });
       }
     }
-});
+}]);
