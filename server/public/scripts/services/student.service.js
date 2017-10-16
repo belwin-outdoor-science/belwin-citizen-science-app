@@ -10,14 +10,18 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.selectedOrganismText = {
         selectedOrganismText: ""
     };
-    self.classSelected = { classSelected: false };
+    self.classSelected = {
+        classSelected: false
+    };
     self.class = {
         class: ''
     };
     self.site = {
         site: ""
     };
-    self.showStartContinue = { showStartContinue: true };
+    self.showStartContinue = {
+        showStartContinue: true
+    };
     self.storage = window.localStorage;
     self.allData = self.studentDataService.allData;
     var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird', 'pin_oak'];
@@ -55,16 +59,30 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //this sets the class
     self.setClass = function () {
-        for (var organism in self.allData) {
-            self.classSelected.classSelected = true;
-            console.log('allData: ');
-            console.log(StudentDataService.allData);
+        if (StudentDataService.allData.bur_oak[0].class === '') {
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('No class selected')
+                .textContent('You have not selected a class. Choose a class number to continue.')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Ok!')
+                .openFrom('#left')
+                //.targetEvent(ev)
+            )
+            return;
+        } else
+            for (var organism in self.allData) {
+                self.classSelected.classSelected = true;
+                console.log('allData: ');
+                console.log(StudentDataService.allData);
 
-            StudentDataService.allData[organism].map(function (object) {
-                object.class = StudentDataService.allData.bur_oak[0].class;
-                return object;
-            });
-        }
+                StudentDataService.allData[organism].map(function (object) {
+                    object.class = StudentDataService.allData.bur_oak[0].class;
+                    return object;
+                });
+            }
     }
 
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
@@ -82,13 +100,13 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         } else {
             $mdDialog.show(
                 $mdDialog.alert()
-                    .parent(angular.element(document.querySelector('#popupContainer')))
-                    .clickOutsideToClose(true)
-                    .title('Device Offline')
-                    .textContent('Your data was not submitted. Get close to the building and try again.')
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('Ok!')
-                    .openFrom('#left')
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Device Offline')
+                .textContent('Your data was not submitted. Get close to the building and try again.')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Ok!')
+                .openFrom('#left')
                 //.targetEvent(ev)
             )
         }
@@ -123,7 +141,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
         var confirm = $mdDialog.confirm()
             .title('Are you all done?')
-           // .textContent('Are you all done?')
+            // .textContent('Are you all done?')
             .ariaLabel('Ready to submit?')
             // .targetEvent(ev)
             .ok('Yes! Send my data')
@@ -180,13 +198,14 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         }
         return false;
     }
+
     function postOneOrganism(organismUnderscored, studentData, numberOfOrganisms) {
         organisms.forEach
         $http.post('/student_data/' + organismUnderscored, studentData).then(function (response) {
             if (response.data) {
                 //console.log('student service -- addBurOak -- success: ', response.data);
                 //clear out student data--replaces all properties in each {} in allData with '' except site.
-                clearAllData(organismUnderscored);  //function defined at bottom
+                clearAllData(organismUnderscored); //function defined at bottom
                 //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
                 self.postCallbackMessages.push('success');
                 //needs to be called in every success/err callback because it needs to run after all 10
@@ -207,7 +226,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == numberOfOrganisms) {
             if (self.postCallbackMessages.indexOf('error') >= 0) {
-                alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
+                alert('Error uploading data. Try again'); //I was worried they might try to upload data while not connected
                 //to wifi and the sweet alert would break the app.
                 self.postCallbackMessages = [];
             } else {
