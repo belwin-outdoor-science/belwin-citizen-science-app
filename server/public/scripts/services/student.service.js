@@ -256,6 +256,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 }
             }
         });
+        //clears class 
     self.studentDataService.allData.bur_oak[0].class = ""
     }
 
