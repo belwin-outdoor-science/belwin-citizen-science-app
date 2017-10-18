@@ -206,6 +206,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         for (var property in object) {
             if (property !== 'class' &&
                 property !== 'site' &&
+                property !== 'date' &&
                 object[property] !== '') {
                 //there's at least one data entry
                 return true;

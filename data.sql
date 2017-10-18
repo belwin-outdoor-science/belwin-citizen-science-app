@@ -2,7 +2,7 @@ CREATE TABLE bur_oak (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -39,7 +39,7 @@ CREATE TABLE common_buckthorn (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -74,7 +74,7 @@ CREATE TABLE common_milkweed (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -103,7 +103,7 @@ CREATE TABLE eastern_bluebird (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -150,7 +150,7 @@ CREATE TABLE ground_squirrel (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -173,7 +173,7 @@ CREATE TABLE dark_eyed_junco (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -220,7 +220,7 @@ CREATE TABLE paper_birch (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -257,7 +257,7 @@ CREATE TABLE quaking_aspen (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -294,7 +294,7 @@ CREATE TABLE northern_red_oak (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -331,7 +331,7 @@ CREATE TABLE ruby_throated_hummingbird (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
@@ -377,7 +377,7 @@ CREATE TABLE pin_oak (
 
 id SERIAL PRIMARY KEY,
 
-recorded TIMESTAMP DEFAULT current_date,
+date VARCHAR(80),
 
 class VARCHAR(80),
 
