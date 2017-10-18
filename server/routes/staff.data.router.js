@@ -204,7 +204,7 @@ router.get('/buckthorn/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM common_buckthorn WHERE date = \'' + todaysDateString + '\';', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM common_buckthorn WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
