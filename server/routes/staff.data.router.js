@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var pool = require('../modules/pool.js');
+var moment = require('../public/vendors/moment.js')
+
+//to compare today's current date to dates in db
+var todaysDate = new Date();
+console.log(todaysDate);
+var todaysDateString = pgFormatDate(todaysDate);
+console.log(typeof todaysDateString);
 
 router.get('/', function (req, res) { // GET for staff dashboard to staff data view
     // Add a SELECT query
@@ -95,7 +102,7 @@ router.get('/bur/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM bur_oak WHERE date = \'' + todaysDateString + '\';' , function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -106,7 +113,7 @@ router.get('/bur/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM bur_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM bur_oak WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -186,7 +193,7 @@ router.get('/buckthorn/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM common_buckthorn WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM common_buckthorn WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -197,7 +204,7 @@ router.get('/buckthorn/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM common_buckthorn WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM common_buckthorn WHERE date = \'' + todaysDateString + '\';', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -277,7 +284,7 @@ router.get('/milkweed/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM common_milkweed WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM common_milkweed WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -288,7 +295,7 @@ router.get('/milkweed/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM common_milkweed WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM common_milkweed WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -370,7 +377,7 @@ router.get('/dark/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM dark_eyed_junco WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM dark_eyed_junco WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -381,7 +388,7 @@ router.get('/dark/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM dark_eyed_junco WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM dark_eyed_junco WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -462,7 +469,7 @@ router.get('/eastern/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM eastern_bluebird WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM eastern_bluebird WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -473,7 +480,7 @@ router.get('/eastern/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM eastern_bluebird WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM eastern_bluebird WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -553,7 +560,7 @@ router.get('/ground/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM ground_squirrel WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM ground_squirrel WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -564,7 +571,7 @@ router.get('/ground/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM ground_squirrel WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM ground_squirrel WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -645,7 +652,7 @@ router.get('/northern/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM northern_red_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM northern_red_oak WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -656,7 +663,7 @@ router.get('/northern/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM northern_red_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM northern_red_oak WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -736,7 +743,7 @@ router.get('/paper/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM paper_birch WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM paper_birch WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -747,7 +754,7 @@ router.get('/paper/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM paper_birch WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM paper_birch WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -827,7 +834,7 @@ router.get('/quaking/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM quaking_aspen WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM quaking_aspen WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -838,7 +845,7 @@ router.get('/quaking/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM quaking_aspen WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM quaking_aspen WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -919,7 +926,7 @@ router.get('/ruby/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM ruby_throated_hummingbird WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM ruby_throated_hummingbird WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -930,7 +937,7 @@ router.get('/ruby/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM ruby_throated_hummingbird WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM ruby_throated_hummingbird WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -1011,7 +1018,7 @@ router.get('/pin/notes/:classNum', function (req, res) {
             } else {
                 // when connecting to database worked!
                 if (classNum == "0") {
-                    client.query('SELECT notes FROM pin_oak WHERE recorded >= CURRENT_DATE;', function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM pin_oak WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -1022,7 +1029,7 @@ router.get('/pin/notes/:classNum', function (req, res) {
                         }
                     });
                 } else {
-                    client.query('SELECT notes FROM pin_oak WHERE recorded >= CURRENT_DATE AND class = $1;', [classNum], function (errorMakingQuery, result) {
+                    client.query('SELECT notes FROM pin_oak WHERE date = \'' + todaysDateString + '\' AND class = $1;', [classNum], function (errorMakingQuery, result) {
                         done();
                         if (errorMakingQuery) {
                             console.log('Error making database query', errorMakingQuery);
@@ -1056,7 +1063,7 @@ function buildGet(row, organism, classNum) {
     //take off last comma
     sumStatements = sumStatements.substring(0, sumStatements.length - 1);;
     sumStatements += ' from ' + organism;
-    sumStatements += ' WHERE recorded >= CURRENT_DATE'
+    sumStatements += ' WHERE date = \'' + todaysDateString + '\'';
     if (classNum != "0") {
         sumStatements += ' AND class = $1'
     } 
@@ -1065,6 +1072,29 @@ function buildGet(row, organism, classNum) {
     // console.log('sum statements');
      console.log('sum statements', sumStatements);
     return sumStatements;
+}
+
+//date formatting
+
+function pgFormatDate(date) {
+    // via https://stackoverflow.com/questions/44988104/remove-time-and-timezone-from-string-dates/44997832#44997832
+    if (typeof date != "string") {
+        date = date.toDateString();
+    }
+
+    if (date) {
+        if (moment(date.substring(4, 15), 'MMM DD YYYY').isValid() && date.substring(4, 15).length === 11) {
+            // this handles dates like: "Fri Jul 06 2017 22:10:08 GMT-0500 (CDT)"    
+            return moment(date.substring(4, 15), 'MMM DD YYYY').format('YYYY-MM-DD');
+        } else if (moment(date.substring(0, 10), "YYYY-MM-DD").isValid() && date.substring(0, 10).length === 10) {
+            // this handles dates like: "2017-07-06T02:59:12.037Z" and "2017-07-06"
+            return date.substring(0, 10);
+        } else {
+            throw 'Date not formatted correctly';
+        }
+    } else {
+        throw 'Date must exists for availability to insert'
+    }
 }
 
 // function buildGetEverything(row, organism) {
@@ -1084,7 +1114,7 @@ function buildGet(row, organism, classNum) {
 //     //take off last comma
 //     sumStatements = sumStatements.substring(0, sumStatements.length - 1);;
 //     sumStatements += ' from ' + organism;
-//     sumStatements += ' WHERE recorded >= CURRENT_DATE GROUP BY site ORDER BY site ASC';
+//     sumStatements += ' WHERE date = CURRENT_DATE GROUP BY site ORDER BY site ASC';
 
 //     // console.log('sum statements');
 //     // console.log(sumStatements);
