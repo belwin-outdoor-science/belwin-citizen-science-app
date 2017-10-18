@@ -59,16 +59,17 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //this sets the class
     self.setClass = function () {
+
         if (StudentDataService.allData.bur_oak[0].class === '') {
             $mdDialog.show(
                 $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('No class selected')
-                .textContent('You have not selected a class. Choose a class number to continue.')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Ok!')
-                .openFrom('#left')
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('No class selected')
+                    .textContent('You have not selected a class. Choose a class number to continue.')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Ok!')
+                    .openFrom('#left')
                 //.targetEvent(ev)
             )
             return;
@@ -79,9 +80,18 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 console.log(StudentDataService.allData);
 
                 StudentDataService.allData[organism].map(function (object) {
+                    //set today's date
+                    var todaysDate = new Date();
+                    var todaysDateString = pgFormatDate(todaysDate);
+                    console.log('todaysDateString');
+                    console.log(todaysDateString);
+                    object.date = todaysDateString;
                     object.class = StudentDataService.allData.bur_oak[0].class;
                     return object;
                 });
+                console.log('allData');
+                console.log(StudentDataService.allData);
+                
             }
     }
 
@@ -100,13 +110,13 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         } else {
             $mdDialog.show(
                 $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('Device Offline')
-                .textContent('Your data was not submitted. Get close to the building and try again.')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Ok!')
-                .openFrom('#left')
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Device Offline')
+                    .textContent('Your data was not submitted. Get close to the building and try again.')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Ok!')
+                    .openFrom('#left')
                 //.targetEvent(ev)
             )
         }
@@ -196,6 +206,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         for (var property in object) {
             if (property !== 'class' &&
                 property !== 'site' &&
+                property !== 'date' &&
                 object[property] !== '') {
                 //there's at least one data entry
                 return true;
@@ -224,10 +235,11 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms);
         });
     }
+
     //this function is called in the success and fail parts of each post request
     function checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms) {
         console.log('StudentService: made it to checkIfAllPostsAreDoneAndErrorHandling')
-       // console.log('numberOfOrganisms', numberOfOrganisms, 'self.postCallbackMessages', self.postCallbackMessages)
+        // console.log('numberOfOrganisms', numberOfOrganisms, 'self.postCallbackMessages', self.postCallbackMessages)
         //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
         //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == numberOfOrganisms) {
@@ -257,7 +269,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             }
         });
         //clears class 
-    self.studentDataService.allData.bur_oak[0].class = ""
+        self.studentDataService.allData.bur_oak[0].class = ""
     }
 
     //student-view.html on clicking species name, calls this function
@@ -277,5 +289,26 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         self.storage.clear();
         self.selectedOrganism.selectedOrganism = '';
         $location.path('#/');
+    }
+
+    function pgFormatDate(date) {
+        // via https://stackoverflow.com/questions/44988104/remove-time-and-timezone-from-string-dates/44997832#44997832
+        if (typeof date != "string") {
+            date = date.toDateString();
+        }
+
+        if (date) {
+            if (moment(date.substring(4, 15), 'MMM DD YYYY').isValid() && date.substring(4, 15).length === 11) {
+                // this handles dates like: "Fri Jul 06 2017 22:10:08 GMT-0500 (CDT)"    
+                return moment(date.substring(4, 15), 'MMM DD YYYY').format('YYYY-MM-DD');
+            } else if (moment(date.substring(0, 10), "YYYY-MM-DD").isValid() && date.substring(0, 10).length === 10) {
+                // this handles dates like: "2017-07-06T02:59:12.037Z" and "2017-07-06"
+                return date.substring(0, 10);
+            } else {
+                throw 'Date not formatted correctly';
+            }
+        } else {
+            throw 'Date must exists for availability to insert'
+        }
     }
 }]);
