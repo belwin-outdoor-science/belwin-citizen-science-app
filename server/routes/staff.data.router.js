@@ -101,6 +101,7 @@ router.get('/bur/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM bur_oak WHERE date = \'' + todaysDateString + '\';' , function (errorMakingQuery, result) {
                         done();
@@ -148,6 +149,7 @@ router.get('/buckthorn/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -192,6 +194,7 @@ router.get('/buckthorn/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM common_buckthorn WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -235,6 +238,7 @@ router.get('/milkweed/:classNum', function (req, res) {
         pool.connect(function (err, client, done) {
             if (err) {
                 // when connecting to database failed
+                // if classNum is 0, query is for all classes
                 console.log('Error connecting to database', err);
                 res.sendStatus(500);
             } else {
@@ -283,6 +287,7 @@ router.get('/milkweed/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM common_milkweed WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -332,6 +337,7 @@ router.get('/dark/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -376,6 +382,7 @@ router.get('/dark/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM dark_eyed_junco WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -424,6 +431,7 @@ router.get('/eastern/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -468,6 +476,7 @@ router.get('/eastern/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM eastern_bluebird WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -515,6 +524,7 @@ router.get('/ground/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -559,6 +569,7 @@ router.get('/ground/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM ground_squirrel WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -607,6 +618,7 @@ router.get('/northern/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -651,6 +663,7 @@ router.get('/northern/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM northern_red_oak WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -698,6 +711,7 @@ router.get('/paper/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -742,6 +756,7 @@ router.get('/paper/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM paper_birch WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -789,6 +804,7 @@ router.get('/quaking/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -833,6 +849,7 @@ router.get('/quaking/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM quaking_aspen WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -881,6 +898,7 @@ router.get('/ruby/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -925,6 +943,7 @@ router.get('/ruby/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM ruby_throated_hummingbird WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
@@ -973,6 +992,7 @@ router.get('/pin/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query(query, function (errorMakingQuery, result) {
                         done();
@@ -1017,6 +1037,7 @@ router.get('/pin/notes/:classNum', function (req, res) {
                 res.sendStatus(500);
             } else {
                 // when connecting to database worked!
+                // if classNum is 0, query is for all classes
                 if (classNum == "0") {
                     client.query('SELECT notes FROM pin_oak WHERE date = \'' + todaysDateString + '\';', function (errorMakingQuery, result) {
                         done();
