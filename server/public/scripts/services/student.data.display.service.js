@@ -72,7 +72,11 @@ myApp.service('StudentDataDisplayService', ['$http', '$location', '$mdDialog', '
     console.log(self.submittedData);
 
     formatDataDisplay();
+
+    //populate self.tableRows in this format, with an 'x' for yes, no or ?.
     // { organism: {question: [question, site 1 yes, site 1 no, site 1 ?, site 2 yes...] ...}}
+    //the actual output looks like:
+    // { bur_oak: { breaking_leaf_buds [Breaking leaf buds, x, '', '', x, '', '', x, '', '']} ...}
     function formatDataDisplay() {
         //add each question as the first item in the array of table rows;
         //example: {bur_oak: ['breaking_buds']}
