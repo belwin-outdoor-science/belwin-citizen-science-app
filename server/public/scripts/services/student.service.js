@@ -59,7 +59,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //this sets the class
     self.setClass = function () {
-
+        //bur_oak[0] is used because that is used for the ng-model of the radio buttons on the class select in student-view.html
         if (StudentDataService.allData.bur_oak[0].class === '') {
             $mdDialog.show(
                 $mdDialog.alert()
@@ -73,26 +73,27 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                 //.targetEvent(ev)
             )
             return;
-        } else
+        } else {
+            //loop through allData and assign the class number
             for (var organism in self.allData) {
+                //classSelected is used in an ng-show in 
                 self.classSelected.classSelected = true;
-                console.log('allData: ');
-                console.log(StudentDataService.allData);
 
                 StudentDataService.allData[organism].map(function (object) {
-                    //set today's date
+                    //get today's date and change to a string
                     var todaysDate = new Date();
                     var todaysDateString = pgFormatDate(todaysDate);
                     console.log('todaysDateString');
                     console.log(todaysDateString);
+                    //assign today's date to each object in allData
                     object.date = todaysDateString;
                     object.class = StudentDataService.allData.bur_oak[0].class;
                     return object;
                 });
-                console.log('allData');
+                console.log('allData in setClass');
                 console.log(StudentDataService.allData);
-                
             }
+        }
     }
 
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
@@ -103,9 +104,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
 
     self.submitData = function () {
+        //post the data if online
         if (navigator.onLine) {
-            //console.log('ok, we can send the data')
-            //and then send it
             self.postAllData();
         } else {
             $mdDialog.show(
@@ -140,7 +140,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //posts all student data stored in self.allData
     self.postAllData = function () {
-
+        //store data from current session in submittedData, for use in student.data.view
         self.studentDataService.submittedData = self.studentDataService.allData;
         var submittedDataString = JSON.stringify(StudentDataService.allData);
         self.storage.setItem('submittedData', submittedDataString);
@@ -158,12 +158,8 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             .cancel('Not Yet');
 
         $mdDialog.show(confirm).then(function () {
-            //  vm.status = 'You decided to start over.';
-            //finally realized I can't redefine self.allData here.  For some reason, it will just
-            //be an empty object like it's defined initially in studentDataService, so I used 
-            //var allData
             var allData = JSON.parse(self.storage.getItem('allData'));
-            //remove any empty data objects.
+            //redefine empty objects in allData as [].
             var numberOfOrganisms = 0;
             organisms.forEach(function (organism, i) {
                 if (allData[organism] != undefined) {
@@ -171,11 +167,11 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
                     allDataFiltered[organism] = allData[organism].filter(function (object, i) {
                         var theresData = checkForData(object);
                         if (theresData) {
-                            //numberOfOrganisms++;
                             organismHasData = true;
                         }
                         return theresData;
                     });
+                    //count the number of organisms submitted for use in checkIfAllPostsAreDoneAndErrorHandling function.
                     if (organismHasData) {
                         numberOfOrganisms++;
                     }

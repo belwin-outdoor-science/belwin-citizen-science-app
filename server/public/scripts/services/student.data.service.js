@@ -612,9 +612,6 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     ];
 
 
-
-   
-
     createOrganismsArray();
     questionCreator();
 
@@ -626,6 +623,8 @@ myApp.service('StudentDataService', ['$http', function ($http) {
     }
 
     //populates self.questionsByOrganism, which is used in the ng-repeat in student-view.html
+    //it is an object with this structure:
+    // { questions: [{ property: breaking_leaf_buds, text: "Breaking leaf buds"} ...]}
     function questionCreator() {
         for (var organism in self.allData) {
             var questionArray = [];
