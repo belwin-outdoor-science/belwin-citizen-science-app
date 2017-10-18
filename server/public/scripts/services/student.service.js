@@ -10,14 +10,18 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     self.selectedOrganismText = {
         selectedOrganismText: ""
     };
-    self.classSelected = { classSelected: false };
+    self.classSelected = {
+        classSelected: false
+    };
     self.class = {
         class: ''
     };
     self.site = {
         site: ""
     };
-    self.showStartContinue = { showStartContinue: true };
+    self.showStartContinue = {
+        showStartContinue: true
+    };
     self.storage = window.localStorage;
     self.allData = self.studentDataService.allData;
     var organisms = ['bur_oak', 'common_buckthorn', 'common_milkweed', 'eastern_bluebird', 'ground_squirrel', 'dark_eyed_junco', 'paper_birch', 'quaking_aspen', 'northern_red_oak', 'ruby_throated_hummingbird', 'pin_oak'];
@@ -55,22 +59,40 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
     //this sets the class
     self.setClass = function () {
-        for (var organism in self.allData) {
-            self.classSelected.classSelected = true;
-            console.log('allData: ');
-            console.log(StudentDataService.allData);
 
-            StudentDataService.allData[organism].map(function (object) {
-                //set today's date
-                var todaysDate = new Date();
-                var todaysDateString = pgFormatDate(todaysDate);
-                console.log('todaysDateString');
-                console.log(todaysDateString);
-                object.date = todaysDateString;
-                object.class = StudentDataService.allData.bur_oak[0].class;
-                return object;
-            });
-        }
+        if (StudentDataService.allData.bur_oak[0].class === '') {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('No class selected')
+                    .textContent('You have not selected a class. Choose a class number to continue.')
+                    .ariaLabel('Alert Dialog Demo')
+                    .ok('Ok!')
+                    .openFrom('#left')
+                //.targetEvent(ev)
+            )
+            return;
+        } else
+            for (var organism in self.allData) {
+                self.classSelected.classSelected = true;
+                console.log('allData: ');
+                console.log(StudentDataService.allData);
+
+                StudentDataService.allData[organism].map(function (object) {
+                    //set today's date
+                    var todaysDate = new Date();
+                    var todaysDateString = pgFormatDate(todaysDate);
+                    console.log('todaysDateString');
+                    console.log(todaysDateString);
+                    object.date = todaysDateString;
+                    object.class = StudentDataService.allData.bur_oak[0].class;
+                    return object;
+                });
+                console.log('allData');
+                console.log(StudentDataService.allData);
+                
+            }
     }
 
     //student-view: on clicking organism site number button "bur oak 1" for example, call setSite
@@ -129,7 +151,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
 
         var confirm = $mdDialog.confirm()
             .title('Are you all done?')
-           // .textContent('Are you all done?')
+            // .textContent('Are you all done?')
             .ariaLabel('Ready to submit?')
             // .targetEvent(ev)
             .ok('Yes! Send my data')
@@ -145,20 +167,25 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             var numberOfOrganisms = 0;
             organisms.forEach(function (organism, i) {
                 if (allData[organism] != undefined) {
+                    var organismHasData = false;
                     allDataFiltered[organism] = allData[organism].filter(function (object, i) {
                         var theresData = checkForData(object);
                         if (theresData) {
-                            numberOfOrganisms++;
+                            //numberOfOrganisms++;
+                            organismHasData = true;
                         }
                         return theresData;
                     });
+                    if (organismHasData) {
+                        numberOfOrganisms++;
+                    }
                 }
             });
             //post requests
             console.log('allDataFiltered: ');
             console.log(allDataFiltered);
             var i = 0;
-            for (organism in allDataFiltered) {
+            for (var organism in allDataFiltered) {
                 if (allDataFiltered[organism].length > 0) {
                     postOneOrganism(organism, allDataFiltered[organism], numberOfOrganisms);
                 } else {
@@ -193,7 +220,7 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
             if (response.data) {
                 //console.log('student service -- addBurOak -- success: ', response.data);
                 //clear out student data--replaces all properties in each {} in allData with '' except site.
-                clearAllData(organismUnderscored);  //function defined at bottom
+                clearAllData(organismUnderscored); //function defined at bottom
                 //store 'success' in self.postCallbackMessages for error handling below in checkIfAllPostsAreDoneErrorHandling function.
                 self.postCallbackMessages.push('success');
                 //needs to be called in every success/err callback because it needs to run after all 10
@@ -211,19 +238,21 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     //this function is called in the success and fail parts of each post request
     function checkIfAllPostsAreDoneAndErrorHandling(numberOfOrganisms) {
         console.log('StudentService: made it to checkIfAllPostsAreDoneAndErrorHandling')
+        // console.log('numberOfOrganisms', numberOfOrganisms, 'self.postCallbackMessages', self.postCallbackMessages)
         //there are 10 post requests, so once they have all been pushed to the postCallbackMessages array,
         //it is checked for any 'error' logs.
         if (self.postCallbackMessages.length == numberOfOrganisms) {
             if (self.postCallbackMessages.indexOf('error') >= 0) {
-                alert('Error uploading data. Try again');  //I was worried they might try to upload data while not connected
+                alert('Error uploading data. Try again'); //I was worried they might try to upload data while not connected
                 //to wifi and the sweet alert would break the app.
                 self.postCallbackMessages = [];
+                console.log("in (self.postCallbackMessages.indexOf('error') >= 0)")
             } else {
                 //clear local storage and allData
                 self.storage.removeItem('allData');
                 var testing = JSON.parse(self.storage.getItem('allData'));
                 console.log('allData after removing it: ');
-                console.log(testing);
+                console.log(self.allData);
                 console.log('post successful');
                 $location.path('/success');
             }
@@ -231,14 +260,15 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
     }
     //clears out self.allData except for site number
     function clearAllData(organism) {
-        self.allData[organism].forEach(function (dataObj, i) {
+        StudentDataService.allData[organism].forEach(function (dataObj, i) {
             for (var question in dataObj) {
                 if (question !== 'site') {
-                    self.allData[organism][i][question] = '';
+                    StudentDataService.allData[organism][i][question] = '';
                 }
             }
         });
-
+        //clears class 
+        self.studentDataService.allData.bur_oak[0].class = ""
     }
 
     //student-view.html on clicking species name, calls this function
@@ -258,7 +288,6 @@ myApp.service('StudentService', ['$http', '$location', '$mdDialog', 'StudentData
         self.storage.clear();
         self.selectedOrganism.selectedOrganism = '';
         $location.path('#/');
-
     }
 
     function pgFormatDate(date) {
