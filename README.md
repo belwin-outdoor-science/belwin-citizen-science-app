@@ -9,6 +9,28 @@ To run this code, you will first need to install [Node.js](https://nodejs.org/en
 You will also need to install Postico, or another Ui for postgreSQL.
 
 ### Installing
+A step by step series of examples that tell you have to get a development env running
+
+Clone this repository
+
+Install Node.js
+
+In terminal, cd into the folder where this repository is
+
+ex:
+$ cd belwin-citizen-science-app
+
+In terminal, use 'npm install' to get all of the necessary dependencies
+$ npm install
+
+Copy queries from the data.sql file and execute queries. 
+
+To get the code running, in terminal type 'npm start'
+
+$ npm start
+
+In your preferred browser, go to
+localhost:5000
 
 ## Deployment
 Add additional notes about how to deploy this on a live system
