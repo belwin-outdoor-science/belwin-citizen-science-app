@@ -1,6 +1,25 @@
 # Belwin Citizen Science 
 The Belwin Citizen Science App is a full-stack mobile-view web application for students to record their nature observations during trips to the Belwin Conservancy. It provides an interactive tool for students to track their observations for each site, record any notes, and for staff to be able to consolidate and view current student data. Students can use the application offline for data collection in the field, when the device is connected back to the internet, students will be able to submit data collected.
 
+Feature List:
+- Students can navigate through data gathering views while offline
+- Students can enter data for all specimins on site
+- Application verifies that the device is online before data can be submitted
+- Staff can log in and view the data collected during the day 
+- Staff can create new user accounts
+
+***Student Offline Navigation***
+![Student Offline Navigation](http://res.cloudinary.com/jdshow/image/upload/v1508899140/student_offline_nav_ejckfl.png)
+
+***Student Data Entry***
+![Student Data Entry](http://res.cloudinary.com/jdshow/image/upload/v1508899509/student_data_view_ppcmnp.png)
+
+***Online Verification***
+![Online Verification](http://res.cloudinary.com/jdshow/image/upload/v1508899141/app_offline_q7eck9.png)
+
+***Staff Data View***
+![Staff Data View](http://res.cloudinary.com/jdshow/image/upload/v1508899075/staff_data_view_hfrpmv.png)
+
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -32,8 +51,6 @@ $ npm start
 In your preferred browser, go to
 localhost:5000
 
-## Deployment
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 * [Node.js](https://nodejs.org/en/)
