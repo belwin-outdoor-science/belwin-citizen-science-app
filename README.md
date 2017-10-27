@@ -1,12 +1,16 @@
 # Belwin Citizen Science 
 The Belwin Citizen Science App is a full-stack mobile-view web application for students to record their nature observations during trips to the Belwin Conservancy. It provides an interactive tool for students to track their observations for each site, record any notes, and for staff to be able to consolidate and view current student data. Students can use the application offline for data collection in the field, when the device is connected back to the internet, students will be able to submit data collected.
 
-Feature List:
+### Feature List:
 - Students can navigate through data gathering views while offline
 - Students can enter data for all specimins on site
 - Application verifies that the device is online before data can be submitted
 - Staff can log in and view the data collected during the day 
 - Staff can create new user accounts
+
+
+
+### Screencaps
 
 **Student Offline Navigation**
 
