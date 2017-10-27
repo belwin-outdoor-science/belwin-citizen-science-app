@@ -8,16 +8,20 @@ Feature List:
 - Staff can log in and view the data collected during the day 
 - Staff can create new user accounts
 
-***Student Offline Navigation***
+**Student Offline Navigation**
+
 ![Student Offline Navigation](http://res.cloudinary.com/jdshow/image/upload/v1508899140/student_offline_nav_ejckfl.png)
 
-***Student Data Entry***
+**Student Data Entry**
+
 ![Student Data Entry](http://res.cloudinary.com/jdshow/image/upload/v1508899509/student_data_view_ppcmnp.png)
 
-***Online Verification***
+**Online Verification**
+
 ![Online Verification](http://res.cloudinary.com/jdshow/image/upload/v1508899141/app_offline_q7eck9.png)
 
-***Staff Data View***
+**Staff Data View**
+
 ![Staff Data View](http://res.cloudinary.com/jdshow/image/upload/v1508899075/staff_data_view_hfrpmv.png)
 
 ## Getting Started
